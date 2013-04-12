@@ -1,6 +1,8 @@
+[core]
+  editor = vim
 [user]
-    name =
-    email =
+    name = Nick Diego Yamane
+    email = nick.yamane@openbossa.org
 [color]
     ui = auto
     diff = auto
@@ -15,7 +17,3 @@
     log1 = log --pretty=oneline --abbrev-commit
     rlog = log --pretty=format:\"%h %Cblue%cr%Creset %cn %Cgreen%s%Creset\"
     tag1 = tag | sort -n -t . -k 1,1 -k 2,2 -k 3,3
-[url "git://anongit.kde.org/"]
-    insteadOf = kde:
-[url "ssh://git@git.kde.org/"]
-    pushInsteadOf = kde:

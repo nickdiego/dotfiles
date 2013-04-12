@@ -20,15 +20,3 @@ fi
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
-
-if [ -d "/usr/lib/icecc/bin" ] ; then
-    PATH="/usr/lib/icecc/bin:$PATH"
-fi
-
-if [ -d "/opt/android-ndk-r8b" ] ; then
-    PATH="/opt/android-ndk-r8b:$PATH"
-fi
-
-if [ -d "/opt/android-sdk-linux" ] ; then
-    PATH="/opt/android-sdk-linux/platform-tools:/opt/android-sdk-linux/tools:$PATH"
-fi

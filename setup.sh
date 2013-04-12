@@ -9,7 +9,10 @@ pushd .vim/unbundle/general/vim-powerline
 git checkout develop
 popd
 
-for file in `ls -A -I .git -I .gitmodules -I setup.sh -I .kde`;
+BKPDIR="$HOME/.dot-backups"
+[ -d $BKPDIR ] || mkdir -p $BKPDIR
+
+for file in `ls -A -I .git -I .gitmodules -I setup.sh -I .kde -I .vimrc -I .vim`;
 do
 	echo $PWD/$file
 
@@ -18,7 +21,7 @@ do
 		continue
 	elif [ -e $HOME/$file ]; then
 		echo "backuping..."
-		mv $HOME/$file $HOME/$file-backup-`date +%Y%m%d%H%M%S`
+		mv $HOME/$file $BKPDIR/$file-backup-`date +%Y%m%d%H%M%S`
 		echo "replacing..."
 	else
 		echo "linking..."

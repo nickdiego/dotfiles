@@ -1,0 +1,73 @@
+## Random useful stuff
+echo aa
+
+#PATH=$PATH:/cygdrive/c/QtSDK/Desktop/Qt/4.7.3/mingw/bin:/cygdrive/c/QtSDK/mingw/bin
+SVN_EDITOR="vim"
+
+export N9_IP=192.168.2.15
+export N92_IP=192.168.2.16
+
+#PS1="\033]0;${PWD}\n\033[32m${USER}@${HOSTNAME} \033[33m${PWD/${HOME}/~}$ "
+alias vncn9="vncviewer ${N92_IP}:0"
+alias ssh-clean='rm ~/.ssh/known_hosts'
+alias pixeltool='/home/nick/Programs/QtSdk/Desktop/Qt/474/gcc/bin/pixeltool'
+alias psgrep='ps aux | grep '
+
+export PATH=$PATH:/home/nick/Programs/QtSdk/Desktop/Qt/474/gcc/bin/
+
+export QML_IMPORT_PATH='/usr/lib/qt4/imports'
+export PKG_CONFIG_PATH=/home/nick/Programs/QtSdk/Desktop/Qt/474/gcc/lib/pkgconfig/
+export ZBAR=/home/nick/apm-2012/apps/buscape/zbar-0.10
+export BUSCAPE=/home/nick/apm-2012/apps/buscape/git-repo/searchfoot
+alias zxing=/home/nick/apm-2012/apps/buscape/zxing-2.0/cpp/build/zxing
+alias zbarimg=/home/nick/apm-2012/apps/buscape/zbar-0.10/build/zbarimg/zbarimg
+export LD_LIBRARY_PATH=/usr/lib/qt4/imports/QtMobility/feedback/
+
+export ANDROID_SDK_HOME=/home/nick/android-sdk-linux
+export PATH="$PATH:$ANDROID_SDK_HOME/tools"
+export PATH="$PATH:$ANDROID_SDK_HOME/platform-tools"
+
+export PHABRICATOR=/home/nick/Programs/Phabricator/phabricator
+export ARC=/home/nick/Programs/Phabricator/arcanist
+
+export PATH="$PATH:$ARC/bin"
+if [ -f $ARC/resources/shell/bash-completion ]; then
+  . $ARC/resources/shell/bash-completion
+fi
+
+export PAGSEGURO="$HOME/projects/nfcpayment/pagseguro/git-svn-repo/pagseguro"
+export CHICKEN_WRANGLERS=/home/nick/projects/chicken-wranglers/git-repo/chicken-wranglers-html5
+
+export EDITOR=vi
+export VISUAL=vi
+export NODE_PATH=/usr/local/lib/node_modules
+
+force_arc_lint() {
+  for i in `find . | grep -v externals | grep \\.js`; do
+    arc lint $i;
+  done
+}
+
+export N9_BADDR=1C:E2:CC:26:E2:4B
+
+#icecc_setup
+export USE_SCHEDULER=10.60.69.53
+function icecc_setup {
+  export ICECC_VERSION=$HOME/.icecc/linux-x86_64-gcc4.6.3-x86_64.tar.gz
+  export CCACHE_PREFIX=icecc
+  for i in gcc g++ cc c++; do
+    ln -sf /usr/bin/ccache $HOME/bin/$i
+  done
+}
+
+#nix-related
+WEBKIT=$HOME/projects/webkit-nix
+if [ -f $WEBKIT/nix-env.sh ]; then
+  export WEBKIT
+  . $WEBKIT/nix-env.sh
+fi
+
+export RPI_NICK=pi@10.60.69.52
+
+alias vim='vim -c "set columns=$COLUMNS"'
+alias ssh-diegoyam-server='ssh server-amazon -i ~/key_amazon_server.pem'
