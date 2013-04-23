@@ -71,3 +71,28 @@ export RPI_NICK=pi@10.60.69.52
 
 alias vim='vim -c "set columns=$COLUMNS"'
 alias ssh-diegoyam-server='ssh server-amazon -i ~/key_amazon_server.pem'
+
+# Create a ssh reverse tunnel to my amazon cloud server
+reverse_tunnel_server() {
+  ssh -R 30000:localhost:22 server-amazon
+}
+
+export PATH=$HOME/local/bin:$PATH
+
+# Enables a (already xrandr configured) second monitor, 
+# to see current configured outputs:
+#
+# $ xrandr -q
+#
+# usage: enable_aux_monitor [<XRANDR_OUTPUT_ID>]
+enable_aux_monitor() {
+  OUTPUT_ID=$1
+  [ -z $OUTPUT_ID ] && OUTPUT_ID='DP-1'
+  xrandr --output $OUTPUT_ID --auto --left-of 'DVI-I-1'
+}
+
+disable_aux_monitor() {
+  [ -z $OUTPUT_ID ] && OUTPUT_ID='DP-1'
+  xrandr --output $OUTPUT_ID --off
+}
+
