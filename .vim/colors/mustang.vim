@@ -1,6 +1,6 @@
-" Maintainer:   Henrique C. Alves (hcarvalhoalves@gmail.com)
+" Maintainer:	Henrique C. Alves (hcarvalhoalves@gmail.com)
 " Version:      1.0
-" Last Change:  September 25 2008
+" Last Change:	September 25 2008
 
 set background=dark
 
@@ -18,22 +18,20 @@ if version >= 700
   hi ColorColumn                  guibg=#2d2d2d ctermbg=236
   hi CursorColumn                 guibg=#2d2d2d ctermbg=236
   hi MatchParen    guifg=#d0ffc0  guibg=#2f2f2f gui=bold ctermfg=157 ctermbg=237 cterm=bold
-  hi Pmenu           guifg=#ffffff  guibg=#444444 ctermfg=255 ctermbg=238
-  hi PmenuSel          guifg=#000000  guibg=#b1d631 ctermfg=0 ctermbg=148
+  hi Pmenu		     guifg=#ffffff  guibg=#444444 ctermfg=255 ctermbg=238
+  hi PmenuSel		   guifg=#000000  guibg=#b1d631 ctermfg=0 ctermbg=148
 endif
 
 " General colors
 hi Cursor       guifg=NONE    guibg=#626262 gui=none ctermbg=241
-"hi Normal       guifg=#e2e2e5 guibg=#202020 gui=none ctermfg=253 ctermbg=234
 hi Normal       guifg=#e2e2e5 guibg=#202020 gui=none ctermfg=253 ctermbg=NONE
-"hi NonText      guifg=#808080 guibg=#202020 gui=none ctermfg=244 ctermbg=235
 hi NonText      guifg=#808080 guibg=#202020 gui=none ctermfg=244 ctermbg=NONE
 hi LineNr       guifg=#808080 guibg=#202020 gui=none ctermfg=244 ctermbg=232
 hi StatusLine   guifg=#d3d3d5 guibg=#444444 gui=italic ctermfg=253 ctermbg=238 cterm=italic
 hi StatusLineNC guifg=#939395 guibg=#444444 gui=none ctermfg=246 ctermbg=238
 hi VertSplit    guifg=#444444 guibg=#444444 gui=none ctermfg=238 ctermbg=238
 hi Folded       guifg=#a0a8b0 guibg=#202020 gui=none ctermbg=4 ctermfg=248
-hi Title        guifg=#f6f3e8 guibg=NONE      gui=bold ctermfg=254 cterm=bold
+hi Title        guifg=#f6f3e8 guibg=NONE	  gui=bold ctermfg=254 cterm=bold
 hi Visual       guifg=#faf4c6 guibg=#3c414c gui=none ctermfg=254 ctermbg=4
 hi SpecialKey   guifg=#808080 guibg=#202020 gui=none ctermfg=244 ctermbg=236
 

@@ -8,6 +8,7 @@ set cursorline
 set mouse=a
 set backup                                              " keep a backup file
 set tabpagemax=15                                       " only show 15 tabs
+set nowrap
 
 " forcing 256 colors
 set t_Co=256
@@ -17,6 +18,11 @@ let g:mdf_disable_arrow_keys = 0
 let g:mdf_space_instead_of_tab = 1
 let g:mdf_tabsize = 4
 let g:mdf_listchars = 1
+
+nnoremap <C-Up> :tabprevious<CR>
+nnoremap <C-Down> :tabnext<CR>
+nnoremap <silent> <C-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+nnoremap <silent> <C-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
 
 " The current directory is the directory of the file in the current window.
 "if has("autocmd")
@@ -48,7 +54,7 @@ else
 endif
 
 " When vimrc is edited, reload it
-autocmd! BufWritePost vimrc source ~/.vimrc
+autocmd! BufWritePost .vimrc source ~/.vimrc
 
 
 " Stupid shift key fixes
@@ -63,7 +69,7 @@ if has("user_commands")
     command! -bang QA qa<bang>
     command! -bang Qa qa<bang>
 endif
-cmap Tabe tabe
+"cmap Tabe tabe
 
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
@@ -192,7 +198,7 @@ autocmd! BufWritePost vimrc source ~/.vimrc
         set statusline+=%w%h%m%r                    " Options
         set statusline+=%{fugitive#statusline()}    " Git Hotness
         set statusline+=\ [%{&ff}/%Y]               " filetype
-        set statusline+=\ [%{getcwd()}]             " current dir
+        "set statusline+=\ [%{getcwd()}]             " current dir
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%     " Right aligned file nav info
 
     endif
@@ -214,7 +220,7 @@ autocmd! BufWritePost vimrc source ~/.vimrc
 " }
 
 " NerdTree {
-    map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+    "map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
     map <leader>e :NERDTreeFind<CR>
     nmap <leader>nt :NERDTreeFind<CR>
 
