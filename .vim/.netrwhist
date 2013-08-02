@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/nick/projects/webkit-nix/src/nix/Source/WebKit2/WebProcess/nix'
+let g:netrw_dirhist_2='/home/nick/projects/webkit-nix/src/nix/Source/WebCore/Modules/mediastream'
+let g:netrw_dirhist_3='/home/nick/projects/webkit-nix/src/nix/Tools/MiniBrowser/nix/InjectedBundle/usermedia'
+let g:netrw_dirhist_4='/home/nick/projects/webkit-nix/src/gstreamer-tests/gst-plugins-good/gst/multifile'
+let g:netrw_dirhist_5='/home/nick/.vim/colors'
+let g:netrw_dirhist_6='/home/nick/.vim/bundle-available/vim-fugitive/plugin'
