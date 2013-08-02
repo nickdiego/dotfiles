@@ -42,12 +42,12 @@ case "$TERM" in
     *-*color) color_prompt=yes;;
 esac
 
-__git_ps1 () { # overriding git_ps1 with a lightweight version of it
-    local b="$(git symbolic-ref HEAD 2>/dev/null)";
-    if [ -n "$b" ]; then
-        printf " (%s)" "${b##refs/heads/}";
-    fi
-}
+#__git_ps1 () { # overriding git_ps1 with a lightweight version of it
+#    local b="$(git symbolic-ref HEAD 2>/dev/null)";
+#    if [ -n "$b" ]; then
+#        printf " (%s)" "${b##refs/heads/}";
+#    fi
+#}
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -65,13 +65,13 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1)\$ '
-fi
-
-unset color_prompt force_color_prompt
+GIT_PS1_SHOWDIRTYSTATE=true
+#if [ "$color_prompt" = yes ]; then
+#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
+#else
+#    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1)\$ '
+#fi
+#unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -82,7 +82,7 @@ xterm*|rxvt*)
     ;;
 esac
 
-PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+#PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -127,6 +127,11 @@ fi
 
 export GREP_OPTIONS="-I --exclude-dir=.svn --exclude-dir=.cache"
 
+if [ -f $HOME/.indtenv ]; then
+    . $HOME/.indtenv
+fi
+
+
 # Set git autocompletion and PS1 integration
 #if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
 #  . /usr/local/git/contrib/completion/git-completion.bash
@@ -136,6 +141,18 @@ export GREP_OPTIONS="-I --exclude-dir=.svn --exclude-dir=.cache"
 #    . /opt/local/etc/bash_completion
 #fi
 
-if [ -f $HOME/.indtenv ]; then
-    . $HOME/.indtenv
+__git_ps1 ()
+{
+    local b="$(git symbolic-ref HEAD 2>/dev/null)";
+    if [ -n "$b" ]; then
+        printf " (%s)" "${b##refs/heads/}";
+    fi
+}
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1)\$ '
 fi
+unset color_prompt force_color_prompt
+
