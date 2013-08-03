@@ -1,0 +1,7 @@
+new-window #temp
+rename-window debug
+splitw -h -p 25
+selectp -t 1
+run-shell htop
+splitw -v -p 50
+selectp -t 0

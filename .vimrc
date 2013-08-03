@@ -9,6 +9,7 @@ set mouse=a
 set backup                                              " keep a backup file
 set tabpagemax=15                                       " only show 15 tabs
 set nowrap
+set number
 
 " forcing 256 colors
 set t_Co=256
@@ -23,6 +24,16 @@ nnoremap <C-Up> :tabprevious<CR>
 nnoremap <C-Down> :tabnext<CR>
 nnoremap <silent> <C-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <C-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
+
+
+" Alt+<directional> to switch among splits
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <A-left> :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-down> :TmuxNavigateDown<cr>
+nnoremap <silent> <A-up> :TmuxNavigateUp<cr>
+nnoremap <silent> <A-right> :TmuxNavigateRight<cr>
+"nnoremap <silent> {A-,} :TmuxNavigatePrevious<cr>
 
 " The current directory is the directory of the file in the current window.
 "if has("autocmd")

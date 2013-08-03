@@ -4,10 +4,14 @@
   borderless = True
   sticky = True
 [keybindings]
+  go_up = None
+  next_tab = <Primary><Shift>Page_Down
   split_horiz = None
-  next_tab = None
+  prev_tab = <Primary><Shift>Page_Up
+  go_down = None
   split_vert = None
-  prev_tab = None
+  go_right = None
+  go_left = None
 [profiles]
   [[default]]
     scrollbar_position = hidden
