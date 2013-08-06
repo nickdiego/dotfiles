@@ -3,14 +3,26 @@
   borderless = True
   sticky = True
 [keybindings]
+  reset = None
+  search = None
+  scaled_zoom = None
+  paste = None
+  new_tab = None
   go_up = None
-  next_tab = <Primary><Shift>Page_Down
+  resize_up = None
+  resize_left = None
   split_horiz = None
+  new_window = None
   prev_tab = <Primary><Shift>Page_Up
   go_down = None
-  split_vert = None
+  close_term = None
+  reset_clear = None
   go_right = None
   go_left = None
+  split_vert = None
+  resize_right = None
+  resize_down = None
+  next_tab = <Primary><Shift>Page_Down
 [profiles]
   [[default]]
     scrollbar_position = hidden
