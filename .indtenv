@@ -58,7 +58,8 @@ export PATH=~/bin:$PATH
 #icecc_setup
 export USE_SCHEDULER=10.60.69.53
 function icecc_setup {
-  export ICECC_VERSION=$HOME/.icecc/linux-x86_64-gcc4.6.3-x86_64.tar.gz
+  #export ICECC_VERSION=$HOME/.icecc/linux-x86_64-gcc4.6.3-x86_64.tar.gz
+  export ICECC_VERSION=$HOME/.icecc/linux-x86_64-gcc4.8.1-x86_64.tar.gz
   export CCACHE_PREFIX=icecc
   for i in gcc g++ cc c++; do
     ln -sf /usr/bin/ccache $HOME/bin/$i
@@ -160,3 +161,6 @@ grepsrc() {
     grep $@ `find -name "*[.cpp,.h]"`
 }
 
+export POWERLINE_PATH="$HOME/.local/lib/python2.7/site-packages/powerline"
+export PATH=$PATH:~/.local/bin
+#. $POWERLINE_PATH/bindings/bash/powerline.sh

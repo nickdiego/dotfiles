@@ -1,28 +1,30 @@
 [global_config]
   enabled_plugins = CustomCommandsMenu, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
-  borderless = True
   sticky = True
 [keybindings]
-  reset = None
-  search = None
-  scaled_zoom = None
-  paste = None
-  new_tab = None
-  go_up = None
-  resize_up = None
   resize_left = None
-  split_horiz = None
-  new_window = None
-  prev_tab = <Primary><Shift>Page_Up
-  go_down = None
-  close_term = None
   reset_clear = None
   go_right = None
   go_left = None
-  split_vert = None
   resize_right = None
   resize_down = None
+  scaled_zoom = None
+  prev_tab = <Primary><Shift>Page_Up
+  split_vert = None
+  go_prev = None
+  new_window = None
+  new_terminator = <Primary><Shift>n
+  new_tab = None
+  paste = None
+  reset = None
+  search = None
+  go_up = None
+  resize_up = None
   next_tab = <Primary><Shift>Page_Down
+  split_horiz = None
+  go_down = None
+  close_term = None
+  go_next = None
 [profiles]
   [[default]]
     scrollbar_position = hidden

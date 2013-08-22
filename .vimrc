@@ -40,7 +40,7 @@ nnoremap <silent> <A-right> :TmuxNavigateRight<cr>
 "  autocmd BufEnter * :lchdir %:p:h
 "endif
 
-autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+"autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
 set browsedir=current           " which directory to use for the file browser
 
@@ -247,16 +247,17 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     nnoremap <silent> <D-t> :CtrlP<CR>
     nnoremap <silent> <D-r> :CtrlPMRU<CR>
     let g:ctrlp_working_path_mode = 'ra'
+    set wildignore+=LayoutTests/,PerformanceTests/,Websites/'
     let g:ctrlp_root_markers = ['configure.ac', 'configure.in', '.repo', '.pro']
     let g:ctrlp_custom_ignore = {
         \ 'dir': '\.git$\|\.hg$\|\.svn$',
         \ 'file': '\.exe$\|\.so$\|\.dll$' }
     let g:ctrlp_user_command = {
             \ 'types': {
-                    \ 1: ['.git', 'cd %s && git ls-files'],
+                    \ 1: ['.git', 'cd %s && (git ls-files | grep "\.cpp\$\|\.h\$\|\.cmake\$\|\.messages.in\$")'],
                     \ 2: ['.hg', 'hg --cwd %s locate -I .'],
                     \ },
-            \ 'fallback': 'find %s -type f'
+            \ 'fallback': 'find %s -type f | grep "\.cpp\$\|\.h\$\|\.cmake\$\|\.messages.in\$"'
             \ }
 "}
 
