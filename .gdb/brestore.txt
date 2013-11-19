@@ -1,0 +1,8 @@
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000403683 in onGStreamerDeinterleavePadAddedCallback(GstElement*, GstPad*, AudioFileReader*) at /home/nick/projects/webkit-nix/src/gstreamer-tests/input-tests/AudioFileReaderGStreamer.cpp:143
+2       breakpoint     keep y   0x00000000004036a8 in onGStreamerDeinterleaveReadyCallback(GstElement*, AudioFileReader*) at /home/nick/projects/webkit-nix/src/gstreamer-tests/input-tests/AudioFileReaderGStreamer.cpp:148
+3       breakpoint     keep y   0x00000000004043bd in AudioFileReader::buildInputPipeline() at /home/nick/projects/webkit-nix/src/gstreamer-tests/input-tests/AudioFileReaderGStreamer.cpp:420
+	breakpoint already hit 1 time
+4       breakpoint     keep y   0x00000000004036ca in onGStreamerDecodebinPadAddedCallback(GstElement*, GstPad*, AudioFileReader*) at /home/nick/projects/webkit-nix/src/gstreamer-tests/input-tests/AudioFileReaderGStreamer.cpp:153
+5       breakpoint     keep y   0x0000000000403da7 in AudioFileReader::handleMessage(_GstMessage*) at /home/nick/projects/webkit-nix/src/gstreamer-tests/input-tests/AudioFileReaderGStreamer.cpp:318
+	breakpoint already hit 1 time
