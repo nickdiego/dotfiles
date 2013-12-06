@@ -18,14 +18,13 @@ alias vncn9="vncviewer ${N92_IP}:0"
 alias ssh-clean='rm ~/.ssh/known_hosts'
 alias pixeltool='/home/nick/Programs/QtSdk/Desktop/Qt/474/gcc/bin/pixeltool'
 alias psgrep='ps aux | grep '
-alias fgrep='find|grep'
-alias sendpatch='arc diff --reviewers lmoura,tullio,luck,hugopl,dakerfp,lacerda,setanta,sergio,nick HEAD~1'
+alias fgrep='find|grep --exclude="*~" --exclude="*.swp"'
+alias sendpatch='arc diff --reviewers lmoura,tullio,luck,hugopl,dakerfp,lacerda,setanta,sergio,zanoni HEAD~1'
 alias reattach-tmux='tmux attach -tprogramming'
 
 #export PATH=$PATH:/home/nick/Programs/QtSdk/Desktop/Qt/474/gcc/bin/
 
 export QML_IMPORT_PATH='/usr/lib/qt4/imports'
-export PKG_CONFIG_PATH=/home/nick/Programs/QtSdk/Desktop/Qt/474/gcc/lib/pkgconfig/
 export ZBAR=/home/nick/apm-2012/apps/buscape/zbar-0.10
 export BUSCAPE=/home/nick/apm-2012/apps/buscape/git-repo/searchfoot
 alias zxing=/home/nick/apm-2012/apps/buscape/zxing-2.0/cpp/build/zxing
@@ -59,7 +58,8 @@ export PATH=~/bin:$PATH
 export USE_SCHEDULER=10.60.69.53
 function icecc_setup {
   #export ICECC_VERSION=$HOME/.icecc/linux-x86_64-gcc4.6.3-x86_64.tar.gz
-  export ICECC_VERSION=$HOME/.icecc/linux-x86_64-gcc4.8.1-x86_64.tar.gz
+  #export ICECC_VERSION=$HOME/.icecc/linux-x86_64-gcc4.8.1-x86_64.tar.gz
+  export ICECC_VERSION=$HOME/.icecc/linux-x86_64-gcc4.7.3-x86_64.tar.gz
   export CCACHE_PREFIX=icecc
   for i in gcc g++ cc c++; do
     ln -sf /usr/bin/ccache $HOME/bin/$i
@@ -141,6 +141,19 @@ fix_resolution_main_monitor() {
   xrandr --output $OUTPUT_ID --auto
 }
 
+set_main_monitor() {
+  OUTPUT_ID=$1
+  xrandr --output $OUTPUT_ID --primary
+}
+
+set_left_as_main_monitor() {
+  set_main_monitor 'DVI-I-1'
+}
+
+set_right_as_main_monitor() {
+  set_main_monitor 'DP-1'
+}
+
 start_aux_monitor() {
   fix_resolution_main_monitor && enable_aux_monitor
 }
@@ -164,3 +177,12 @@ grepsrc() {
 export POWERLINE_PATH="$HOME/.local/lib/python2.7/site-packages/powerline"
 export PATH=$PATH:~/.local/bin
 #. $POWERLINE_PATH/bindings/bash/powerline.sh
+
+# APM-2013 stuff
+export WAYLAND=$HOME/projects/apm-2013/nix-wayland
+. $WAYLAND/configenv.sh
+
+# replacing something in several files
+#cat /tmp/xxxxx | xargs -I '{}' sed -i 's/RenderPartObject {IFRAME}/RenderIFrame {IFRAME}/g' {}
+
+export GREP_OPTIONS="--exclude='*~' --exclude='*.swp'"

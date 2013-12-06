@@ -6,10 +6,11 @@ set nocompatible
 colorscheme jellybeans
 set cursorline
 set mouse=a
-set backup                                              " keep a backup file
+"set backup                                              " keep a backup file
 set tabpagemax=15                                       " only show 15 tabs
 set nowrap
 set number
+set noswapfile
 
 " forcing 256 colors
 set t_Co=256
@@ -269,4 +270,9 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     nnoremap <silent> <leader>gl :Glog<CR>
     nnoremap <silent> <leader>gp :Git push<CR>
 "}
+
+" compile all sources as c++11 (just for example, use .clang_complete for
+"  " setting version of the language per project)
+let g:clang_user_options = '-std=c++11'
+
 
