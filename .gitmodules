@@ -36,4 +36,22 @@
 	url = git://github.com/magic-dot-files/TagHighlight.git
 [submodule ".vim/unbundle/general/restore_view.vim"]
 	path = .vim/unbundle/general/restore_view.vim
-	url = git://github.com/vim-scripts/restore_view.vim.git
+    url = git://github.com/vim-scripts/restore_view.vim.git
+
+[submodule ".vim/bundle-available/command-t"]
+	path = .vim/bundle-available/command-t
+    url = git://git.wincent.com/command-t.git
+
+[submodule ".vim/bundle-available/ctrlp.vim"]
+	path = .vim/bundle-available/ctrlp.vim
+    url = https://github.com/kien/ctrlp.vim.git
+
+[submodule ".vim/bundle-available/vim-fugitive"]
+	path = .vim/bundle-available/vim-fugitive
+    url = git://github.com/tpope/vim-fugitive.git
+
+[submodule ".tmux/tmux-colors-solarized.git"]
+	path = .tmux/tmux-colors-solarized.git
+	url = git://github.com/seebi/tmux-colors-solarized.git
+
+
