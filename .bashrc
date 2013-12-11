@@ -3,10 +3,7 @@
 # for examples
 
 # If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+[ -z "$PS1" ] && return
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -125,7 +122,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export GREP_OPTIONS="-I --exclude-dir=.svn --exclude-dir=.cache"
+export GREP_OPTIONS="-I --exclude-dir=.svn --exclude-dir=.cache --exlude=*~"
 
 if [ -f $HOME/.indtenv ]; then
     . $HOME/.indtenv
