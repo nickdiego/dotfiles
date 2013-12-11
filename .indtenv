@@ -180,7 +180,7 @@ export PATH=$PATH:~/.local/bin
 
 # APM-2013 stuff
 export WAYLAND=$HOME/projects/apm-2013/nix-wayland
-. $WAYLAND/configenv.sh
+[ -d $WAYLAND ] && . $WAYLAND/configenv.sh
 
 # replacing something in several files
 #cat /tmp/xxxxx | xargs -I '{}' sed -i 's/RenderPartObject {IFRAME}/RenderIFrame {IFRAME}/g' {}
