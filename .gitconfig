@@ -2,7 +2,7 @@
   editor = vim
 [user]
     name = Nick Diego Yamane
-    email = nick.yamane@openbossa.org
+    email = nick.diego@gmail.com
 [color]
     ui = auto
     diff = auto
@@ -10,10 +10,11 @@
     branch = auto
 [alias]
     br = branch
-    st = status
     co = checkout
     ci = commit
     grep = grep -n
-    log1 = log --pretty=oneline --abbrev-commit
-    rlog = log --pretty=format:\"%h %Cblue%cr%Creset %cn %Cgreen%s%Creset\"
+    l = log
+    ll = log --pretty=format:\"%h %Cblue%cr%Creset %cn %Cgreen%s%Creset\"
+    lll = log --pretty=oneline --abbrev-commit
     tag1 = tag | sort -n -t . -k 1,1 -k 2,2 -k 3,3
+	s = status

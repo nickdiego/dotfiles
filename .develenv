@@ -1,17 +1,7 @@
 ## Random useful stuff
 alias ls='ls --color'
 
-TIA=200.129.163.98
-
 PROXY_INDT=172.18.216.7
-
-PAGSEGURO="$HOME/projects/nfcpayment/pagseguro/git-svn-repo/pagseguro"
-
-export N9_IP=192.168.2.15
-export N9=developer@${N9_IP}
-
-export N92_IP=192.168.2.16
-export N92=developer@${N92_IP}
 
 #PS1="\033]0;${PWD}\n\033[32m${USER}@${HOSTNAME} \033[33m${PWD/${HOME}/~}$ "
 alias vncn9="vncviewer ${N92_IP}:0"
@@ -43,14 +33,10 @@ if [ -f $ARC/resources/shell/bash-completion ]; then
   . $ARC/resources/shell/bash-completion
 fi
 
-export PAGSEGURO="$HOME/projects/nfcpayment/pagseguro/git-svn-repo/pagseguro"
-export CHICKEN_WRANGLERS=/home/nick/projects/chicken-wranglers/git-repo/chicken-wranglers-html5
-
 export EDITOR=vim
 export VISUAL=vim
 export NODE_PATH=/usr/local/lib/node_modules
 
-export N9_BADDR=1C:E2:CC:26:E2:4B
 export MUCURA="nick@mucura.local"
 export PATH=~/bin:$PATH
 

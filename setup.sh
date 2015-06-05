@@ -12,7 +12,7 @@ popd
 BKPDIR="$HOME/.dot-backups"
 [ -d $BKPDIR ] || mkdir -p $BKPDIR
 
-for file in `ls -A -I .git -I .gitmodules -I setup.sh -I .kde -I .vimrc -I .vim`;
+for file in `ls -A -I .git -I .gitmodules -I setup.sh -I .kde -I .vimrc -I .vim -I .config`;
 do
 	echo $PWD/$file
 
