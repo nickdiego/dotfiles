@@ -1,0 +1,2 @@
+text/x-diff;  cat %s | colordiff;copiousoutput
+text/x-patch; cat %s | colordiff;copiousoutput
