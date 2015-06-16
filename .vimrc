@@ -144,7 +144,7 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     " Formatting {
         autocmd FileType Makefile set g:mdf_space_instead_of_tab = 0
         if g:mdf_space_instead_of_tab
-            set expandtab                    " tabs are spaces, not tabs"
+"            set expandtab                    " tabs are spaces, not tabs"
         endif
 
         if !g:mdf_tabsize

@@ -1,13 +1,17 @@
 [core]
-  editor = vim
+    editor = vim
+    abbrev = 12
+
 [user]
     name = Nick Diego Yamane
     email = nick.diego@gmail.com
+
 [color]
     ui = auto
     diff = auto
     status = auto
     branch = auto
+
 [alias]
     br = branch
     co = checkout

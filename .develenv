@@ -153,7 +153,7 @@ reset_findsrc_dir
 findsrc() {
     DIR='.'
     [ -z $FINDSRC_DIR ] && DIR=$PWD
-    find $DIR | grep "$1.cpp\$\|$1.h\$"
+    find $DIR | grep "$1.c\$\|$1.cpp\$\|$1.h\$"
 }
 
 grepsrc() {
@@ -172,3 +172,10 @@ export WAYLAND=$HOME/projects/apm-2013/nix-wayland
 #cat /tmp/xxxxx | xargs -I '{}' sed -i 's/RenderPartObject {IFRAME}/RenderIFrame {IFRAME}/g' {}
 
 export GREP_OPTIONS="--exclude='*~' --exclude='*.swp'"
+
+export KERNEL_SRC_PATH="~/projects/kernel/src/linux-2.6"
+alias kcd="cd $KERNEL_SRC_PATH"
+
+export NICKID="b5eae6e3d474"
+
+alias remove_colors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"'
