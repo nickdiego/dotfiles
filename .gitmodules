@@ -1,6 +1,3 @@
-#[submodule ".vim/unbundle/general/sessionman.vim"]
-#	path = .vim/unbundle/general/sessionman.vim
-#	url = git://github.com/vim-scripts/sessionman.vim.git
 #[submodule ".vim/unbundle/general/ZoomWin"]
 #	path = .vim/unbundle/general/ZoomWin
 #	url = git://github.com/vim-scripts/ZoomWin.git
@@ -10,6 +7,10 @@
 #[submodule ".vim/unbundle/general/restore_view.vim"]
 #	path = .vim/unbundle/general/restore_view.vim
 #  url = git://github.com/vim-scripts/restore_view.vim.git
+
+[submodule ".vim/bundle-available/sessionman.vim"]
+	path = .vim/bundle-available/sessionman.vim
+	url = git://github.com/vim-scripts/sessionman.vim.git
 
 [submodule ".vim/bundle-available/command-t"]
 	path = .vim/bundle-available/command-t
