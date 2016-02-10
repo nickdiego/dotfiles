@@ -1,45 +1,15 @@
-[submodule ".vim/unbundle/general/detectindent"]
-	path = .vim/unbundle/general/detectindent
-	url = git://github.com/ciaranm/detectindent.git
-[submodule ".vim/unbundle/general/matchit.zip"]
-	path = .vim/unbundle/general/matchit.zip
-	url = git://github.com/vim-scripts/matchit.zip.git
-[submodule ".vim/unbundle/general/RelOps"]
-	path = .vim/unbundle/general/RelOps
-	url = git://github.com/vim-scripts/RelOps.git
-[submodule ".vim/unbundle/general/sessionman.vim"]
-	path = .vim/unbundle/general/sessionman.vim
-	url = git://github.com/vim-scripts/sessionman.vim.git
-[submodule ".vim/unbundle/programming/a.vim"]
-	path = .vim/unbundle/programming/a.vim
-	url = git://github.com/vim-scripts/a.vim.git
-[submodule ".vim/unbundle/programming/DoxygenToolkit.vim"]
-	path = .vim/unbundle/programming/DoxygenToolkit.vim
-	url = git://github.com/vim-scripts/DoxygenToolkit.vim.git
-[submodule ".vim/unbundle/general/sudo.vim"]
-	path = .vim/unbundle/general/sudo.vim
-	url = git://github.com/vim-scripts/sudo.vim.git
-[submodule ".vim/ftbundle/bindzone/bind.vim"]
-	path = .vim/ftbundle/bindzone/bind.vim
-	url = git://github.com/seveas/bind.vim.git
-[submodule ".vim/ftbundle/java/javacomplete"]
-	path = .vim/ftbundle/java/javacomplete
-	url = git://github.com/vim-scripts/javacomplete.git
-[submodule ".vim/unbundle/general/ZoomWin"]
-	path = .vim/unbundle/general/ZoomWin
-	url = git://github.com/vim-scripts/ZoomWin.git
-[submodule ".vim/unbundle/general/vim-powerline"]
-	path = .vim/unbundle/general/vim-powerline
-	url = git://github.com/Lokaltog/vim-powerline.git
-[submodule ".vim/unbundle/vim-unbundle"]
-	path = .vim/unbundle/vim-unbundle
-	url = git://github.com/sunaku/vim-unbundle.git
-[submodule ".vim/unbundle/programming/TagHighlight"]
-	path = .vim/unbundle/programming/TagHighlight
-	url = git://github.com/magic-dot-files/TagHighlight.git
-[submodule ".vim/unbundle/general/restore_view.vim"]
-	path = .vim/unbundle/general/restore_view.vim
-    url = git://github.com/vim-scripts/restore_view.vim.git
+#[submodule ".vim/unbundle/general/sessionman.vim"]
+#	path = .vim/unbundle/general/sessionman.vim
+#	url = git://github.com/vim-scripts/sessionman.vim.git
+#[submodule ".vim/unbundle/general/ZoomWin"]
+#	path = .vim/unbundle/general/ZoomWin
+#	url = git://github.com/vim-scripts/ZoomWin.git
+#[submodule ".vim/unbundle/general/vim-powerline"]
+#	path = .vim/unbundle/general/vim-powerline
+#	url = git://github.com/Lokaltog/vim-powerline.git
+#[submodule ".vim/unbundle/general/restore_view.vim"]
+#	path = .vim/unbundle/general/restore_view.vim
+#  url = git://github.com/vim-scripts/restore_view.vim.git
 
 [submodule ".vim/bundle-available/command-t"]
 	path = .vim/bundle-available/command-t
@@ -63,3 +33,7 @@
 [submodule ".vim/bundle-available/vim-tmux-navigator"]
 	path = .vim/bundle-available/vim-tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator.git
+
+[submodule ".vim/bundle-available/YouCompleteMe"]
+	path = .vim/bundle-available/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
