@@ -1,6 +1,7 @@
 #!/bin/bash
 
-sudo apt-get install vim-gtk clang exuberant-ctags git python-fontforge unzip
+sudo apt-get install vim-gtk clang exuberant-ctags git python-fontforge unzip \
+  python-dev silversearcher-ag
 
 git submodule update --init
 git submodule foreach git checkout master
@@ -60,4 +61,17 @@ if [ $? -ne 0  ]; then
 
 	rm -rf ~/tmp
 fi
+
+echo ==========================================================
+echo *** To YouCompleteMe ViM plugin to work you\'ll need some
+echo manual work :\(
+echo -\> Download the latest stable binaries for
+echo clang at http://llvm.org and extrat it at ~/bin for example
+echo and then follow the instructions at:
+echo https://github.com/Valloric/YouCompleteMe/#full-installation-guide
+echo step 4. Compile the ycm_support_libs libraries
+echo passing the flag -DPATH_TO_LLVM_ROOT=\<~/bin/clang+llvm-x.x.x...\>
+echo directory where you extracted the clang binaries.
+echo ...
+echo ==========================================================
 

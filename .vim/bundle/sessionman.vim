@@ -1,0 +1,1 @@
+../bundle-available/sessionman.vim/

@@ -1,7 +1,7 @@
 [core]
     editor = vim
     abbrev = 12
-	autocrlf = true
+	  autocrlf = true
 
 [user]
     name = Nick Diego Yamane

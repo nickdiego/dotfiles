@@ -248,14 +248,14 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     nnoremap <silent> <D-t> :CtrlP<CR>
     nnoremap <silent> <D-r> :CtrlPMRU<CR>
     let g:ctrlp_working_path_mode = 'ra'
-    set wildignore+=LayoutTests/,PerformanceTests/,Websites/'
+    set wildignore+=LayoutTests/,PerformanceTests/,Websites/,*.un~'
     let g:ctrlp_root_markers = ['configure.ac', 'configure.in', '.repo', '.pro', 'package.json']
     let g:ctrlp_custom_ignore = {
         \ 'dir': '\.git$\|\.hg$\|\.svn$',
         \ 'file': '\.exe$\|\.so$\|\.dll$' }
     let g:ctrlp_user_command = {
         \ 'types': {
-            \ 1: ['.git', 'find %s -type f | grep "\.cpp\$\|\.h\$\|\.cmake\$\|\.messages.in\$\|.txt\|\.js\|\.json\$"'],
+            \ 1: ['.git', 'ag %s -l --nocolor --hidden -g ""'],
             \ 2: ['.hg', 'hg --cwd %s locate -I .'],
         \ },
         \ 'fallback': 'find %s -type f | grep "\.cpp\$\|\.h\$\|\.cmake\$\|\.messages.in\$\|.txt\|\.js\|\.json\$"'
