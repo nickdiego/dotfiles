@@ -8,10 +8,6 @@
 #	path = .vim/unbundle/general/restore_view.vim
 #  url = git://github.com/vim-scripts/restore_view.vim.git
 
-[submodule ".vim/bundle-available/sessionman.vim"]
-	path = .vim/bundle-available/sessionman.vim
-	url = git://github.com/vim-scripts/sessionman.vim.git
-
 [submodule ".vim/bundle-available/command-t"]
 	path = .vim/bundle-available/command-t
     url = git://git.wincent.com/command-t.git
@@ -38,3 +34,6 @@
 [submodule ".vim/bundle-available/YouCompleteMe"]
 	path = .vim/bundle-available/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule ".vim/bundle-available/sessionman.vim"]
+	path = .vim/bundle-available/sessionman.vim
+	url = git://github.com/vim-scripts/sessionman.vim.git
