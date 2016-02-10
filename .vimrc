@@ -11,14 +11,14 @@ set tabpagemax=15                                       " only show 15 tabs
 set nowrap
 set number
 set noswapfile
-
+set expandtab
 " forcing 256 colors
 set t_Co=256
 set t_ut=
 
 let g:mdf_disable_arrow_keys = 0
 let g:mdf_space_instead_of_tab = 1
-let g:mdf_tabsize = 4
+let g:mdf_tabsize = 2
 let g:mdf_listchars = 1
 
 nnoremap <C-Up> :tabprevious<CR>
@@ -249,17 +249,17 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     nnoremap <silent> <D-r> :CtrlPMRU<CR>
     let g:ctrlp_working_path_mode = 'ra'
     set wildignore+=LayoutTests/,PerformanceTests/,Websites/'
-    let g:ctrlp_root_markers = ['configure.ac', 'configure.in', '.repo', '.pro']
+    let g:ctrlp_root_markers = ['configure.ac', 'configure.in', '.repo', '.pro', 'package.json']
     let g:ctrlp_custom_ignore = {
         \ 'dir': '\.git$\|\.hg$\|\.svn$',
         \ 'file': '\.exe$\|\.so$\|\.dll$' }
     let g:ctrlp_user_command = {
-            \ 'types': {
-                    \ 1: ['.git', 'cd %s && (git ls-files | grep "\.cpp\$\|\.h\$\|\.cmake\$\|\.messages.in\$")'],
-                    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-                    \ },
-            \ 'fallback': 'find %s -type f | grep "\.cpp\$\|\.h\$\|\.cmake\$\|\.messages.in\$"'
-            \ }
+        \ 'types': {
+            \ 1: ['.git', 'find %s -type f | grep "\.cpp\$\|\.h\$\|\.cmake\$\|\.messages.in\$\|.txt\|\.js\|\.json\$"'],
+            \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+        \ },
+        \ 'fallback': 'find %s -type f | grep "\.cpp\$\|\.h\$\|\.cmake\$\|\.messages.in\$\|.txt\|\.js\|\.json\$"'
+    \ }
 "}
 
 " Fugitive {
