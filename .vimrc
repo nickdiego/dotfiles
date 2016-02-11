@@ -7,10 +7,8 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
 " my plugins
 Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
@@ -18,21 +16,22 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-scripts/sessionman.vim'
 Plugin 'Valloric/YouCompleteMe'
-
+Plugin 'Lokaltog/vim-powerline'
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
+call vundle#end()
+filetype plugin on
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+let mapleader=","
+nnoremap <Leader>a :echo "Hey there ,"<CR>
+set pastetoggle=<F2>
+nnoremap ; :
 
 colorscheme jellybeans
 set cursorline
@@ -297,7 +296,7 @@ autocmd! BufWritePost vimrc source ~/.vimrc
 "}
 
 " Fugitive {
-    nnoremap <silent> <leader>gs :Gstatus<CR>
+    nnoremap <silent> <Leader>gs :Gstatus<CR>
     nnoremap <silent> <leader>gd :Gdiff<CR>
     nnoremap <silent> <leader>gc :Gcommit<CR>
     nnoremap <silent> <leader>gb :Gblame<CR>
