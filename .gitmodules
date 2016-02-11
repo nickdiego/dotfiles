@@ -1,3 +1,5 @@
+# Migrate these to Vundle
+#
 #[submodule ".vim/unbundle/general/ZoomWin"]
 #	path = .vim/unbundle/general/ZoomWin
 #	url = git://github.com/vim-scripts/ZoomWin.git
@@ -8,32 +10,9 @@
 #	path = .vim/unbundle/general/restore_view.vim
 #  url = git://github.com/vim-scripts/restore_view.vim.git
 
-[submodule ".vim/bundle-available/command-t"]
-	path = .vim/bundle-available/command-t
-    url = git://git.wincent.com/command-t.git
-
-[submodule ".vim/bundle-available/ctrlp.vim"]
-	path = .vim/bundle-available/ctrlp.vim
-    url = https://github.com/kien/ctrlp.vim.git
-
-[submodule ".vim/bundle-available/vim-fugitive"]
-	path = .vim/bundle-available/vim-fugitive
-    url = git://github.com/tpope/vim-fugitive.git
-
 [submodule ".tmux/tmux-colors-solarized"]
 	path = .tmux/tmux-colors-solarized
 	url = git://github.com/seebi/tmux-colors-solarized.git
 [submodule ".tmux/tmux-powerline.git"]
 	path = .tmux/tmux-powerline.git
 	url = git://github.com/erikw/tmux-powerline.git
-
-[submodule ".vim/bundle-available/vim-tmux-navigator"]
-	path = .vim/bundle-available/vim-tmux-navigator
-	url = https://github.com/christoomey/vim-tmux-navigator.git
-
-[submodule ".vim/bundle-available/YouCompleteMe"]
-	path = .vim/bundle-available/YouCompleteMe
-	url = https://github.com/Valloric/YouCompleteMe.git
-[submodule ".vim/bundle-available/sessionman.vim"]
-	path = .vim/bundle-available/sessionman.vim
-	url = git://github.com/vim-scripts/sessionman.vim.git
