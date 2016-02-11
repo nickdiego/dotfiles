@@ -62,16 +62,22 @@ if [ $? -ne 0  ]; then
 	rm -rf ~/tmp
 fi
 
+# downloads Vundle plugin manager
+[ -d .vim/bundle ] || mkdir -p .vim/bundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+# install the Vundle plugins configured in .vimrc
+vim +PluginInstall +qall
+
 echo ==========================================================
 echo *** To YouCompleteMe ViM plugin to work you\'ll need some
 echo manual work :\(
 echo -\> Download the latest stable binaries for
-echo clang at http://llvm.org and extrat it at ~/bin for example
+echo clang at http://llvm.org and extrat it at ~/bin/clang-binaries for example
 echo and then follow the instructions at:
 echo https://github.com/Valloric/YouCompleteMe/#full-installation-guide
 echo step 4. Compile the ycm_support_libs libraries
-echo passing the flag -DPATH_TO_LLVM_ROOT=\<~/bin/clang+llvm-x.x.x...\>
-echo directory where you extracted the clang binaries.
+echo passing the flag -DPATH_TO_LLVM_ROOT=~/bin/clang-binaries
 echo ...
 echo ==========================================================
 
