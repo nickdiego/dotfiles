@@ -9,3 +9,7 @@ alias icemonlab='icemon -n swui'
 #alias egrep='egrep --color=always'
 
 alias t='~/bin/todo.sh'
+
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec $SHELL -l"
+
