@@ -17,6 +17,9 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-scripts/sessionman.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'Lokaltog/vim-powerline'
+Plugin 'scrooloose/syntastic'
+Plugin 'Shutnik/jshint2.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()
 filetype plugin on
@@ -116,8 +119,23 @@ if has("user_commands")
 endif
 "cmap Tabe tabe
 
+" syntastic stuff
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
+
+" YouCompleteMe stuff
+let g:ycm_confirm_extra_conf = 0
+
 
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv

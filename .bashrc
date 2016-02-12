@@ -127,29 +127,13 @@ if [ -f $HOME/.develenv ]; then
 fi
 
 
-# Set git autocompletion and PS1 integration
-#if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
-#  . /usr/local/git/contrib/completion/git-completion.bash
-#fi
-
-#if [ -f /opt/local/etc/bash_completion ]; then
-#    . /opt/local/etc/bash_completion
-#fi
-
-__git_ps1 ()
-{
-    local b="$(git symbolic-ref HEAD 2>/dev/null)";
-    if [ -n "$b" ]; then
-        printf " (%s)" "${b##refs/heads/}";
-    fi
-}
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[00m\]\[\033[34m\][\w] \[\033[32m\]\u@\h\[\033[31m\]$(__git_ps1)\[\033[00m\] \$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1)\$ '
-fi
-unset color_prompt force_color_prompt
+# Load the shell dotfiles, and then some:
+# * ~/.path can be used to extend `$PATH`.
+# * ~/.extra can be used for other settings you don’t want to commit.
+for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;
 
 # Sets the Mail Environment Variable
 MAIL=/var/spool/mail/nick && export MAIL

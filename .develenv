@@ -180,5 +180,9 @@ export NICKID="b5eae6e3d474"
 
 alias remove_colors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"'
 
-IRONPROJ_SRC="$HOME/iron-src"
-test -d $IRONPROJ_SRC && cd $IRONPROJ_SRC
+IRON_ROOT_PROJ_SRC="$HOME/projects/iron-man/src/certi_hardware_diagnosis"
+IRON_SERVER_PROJ_SRC="$HOME/projects/iron-man/src/certi_hardware_diagnosis/dev/apps/diagnosis-server"
+
+alias set_certi_product="$IRON_ROOT_PROJ_SRC/externals/certi_common_libs/scripts/setproduct.sh certi_desktop_linux"
+alias iron="cd $IRON_ROOT_PROJ_SRC"
+alias ironsrv="cd $IRON_SERVER_PROJ_SRC"
