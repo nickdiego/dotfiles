@@ -19,6 +19,8 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'scrooloose/syntastic'
 Plugin 'Shutnik/jshint2.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'digitaltoad/vim-pug'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -58,6 +60,8 @@ nnoremap <C-Up> :tabprevious<CR>
 nnoremap <C-Down> :tabnext<CR>
 nnoremap <silent> <C-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <C-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
+nnoremap <F5> :e!<CR>
+nnoremap <F7> :tabedit ~/.vimrc<CR>
 
 
 " Alt+<directional> to switch among splits
@@ -127,8 +131,15 @@ set statusline+=%*
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" vim-javascript stuff
+" let b:javascript_fold = 1
+" let javascript_enable_domhtmlcss = 1
+
+" javascript-libraries-syntax.vim stuff
+" let g:used_javascript_libs = 'angularjs'
 
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
