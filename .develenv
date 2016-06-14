@@ -110,21 +110,26 @@ git_import_svn_tags()  {
 #
 # $ xrandr -q
 #
-# usage: enable_aux_monitor [<XRANDR_OUTPUT_ID>]
-enable_aux_monitor() {
-  OUTPUT_ID=$1
-  [ -z $OUTPUT_ID ] && OUTPUT_ID='DP-1'
-  xrandr --output $OUTPUT_ID --auto --primary --right-of 'DVI-I-1'
+# usage: enable_display [<XRANDR_OUTPUT_ID>]
+export DISPLAY_MAIN='LVDS1'
+export DISPLAY_AUX='VGA1'
+
+enable_aux_display() {
+  xrandr --output $DISPLAY_AUX --auto --primary --above $DISPLAY_MAIN
 }
 
-disable_aux_monitor() {
-  [ -z $OUTPUT_ID ] && OUTPUT_ID='DP-1'
+enable_main_display() {
+  xrandr --output $DISPLAY_MAIN --auto --below $DISPLAY_AUX
+}
+
+disable_display() {
+  OUTPUT_ID=$1
+  [ -z $OUTPUT_ID ] && OUTPUT_ID=$DISPLAY_AUX
   xrandr --output $OUTPUT_ID --off
 }
 
 fix_resolution_main_monitor() {
-  OUTPUT_ID='DVI-I-1'
-  xrandr --output $OUTPUT_ID --auto
+  xrandr --output $DISPLAY_MAIN --auto --primary
 }
 
 set_main_monitor() {
@@ -133,15 +138,17 @@ set_main_monitor() {
 }
 
 set_left_as_main_monitor() {
-  set_main_monitor 'DVI-I-1'
+  set_main_monitor $DISPLAY_AUX
 }
 
 set_right_as_main_monitor() {
-  set_main_monitor 'DP-1'
+  set_main_monitor $DISPLAY_MAIN
 }
 
 start_aux_monitor() {
-  fix_resolution_main_monitor && enable_aux_monitor
+  enable_aux_display && sleep 1
+  disable_display $DISPLAY_MAIN && sleep 1
+  enable_main_display
 }
 export PATH="/home/nick/projects/chromium/depot_tools:$PATH"
 
@@ -181,11 +188,15 @@ export NICKID="b5eae6e3d474"
 alias remove_colors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"'
 
 IRON_ROOT_PROJ_SRC="$HOME/projects/iron-man/src/certi_hardware_diagnosis"
-IRON_SERVER_PROJ_SRC="$HOME/projects/iron-man/src/certi_hardware_diagnosis/dev/apps/diagnosis-server"
+IRON_SERVER_PROJ_SRC="$IRON_ROOT_PROJ_SRC/dev/apps/diagnosis-server"
+IRON_CLIENT_PROJ_SRC="$IRON_ROOT_PROJ_SRC/dev/apps/diagnosis-control-center"
 
 alias set_certi_product="$IRON_ROOT_PROJ_SRC/externals/certi_common_libs/scripts/setproduct.sh certi_desktop_linux"
 alias iron="cd $IRON_ROOT_PROJ_SRC"
 alias ironsrv="cd $IRON_SERVER_PROJ_SRC"
+alias ironclt="cd $IRON_CLIENT_PROJ_SRC"
+alias ironclt_build="cd $IRON_ROOT_PROJ_SRC/.build_certi_desktop_linux_x86_64/dev/apps/diagnosis-control-center/src"
+alias ironclt_tests="cd $IRON_ROOT_PROJ_SRC/.build_certi_desktop_linux_x86_64/dev/tests/diagnosis-control-center/src"
 
 # open vim session
 v() {
@@ -205,4 +216,6 @@ _vim_sessions() {
 }
 
 complete -F _vim_sessions v
+
+alias pjson='json | pygmentize -l json'
 

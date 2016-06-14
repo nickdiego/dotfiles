@@ -75,7 +75,7 @@ flags = [
 #
 # Most projects will NOT need to set this to anything; you can just change the
 # 'flags' list of compilation flags. Notice that YCM itself uses that approach.
-compilation_database_folder = '/home/nick/projects/iron-man/src/certi_hardware_diagnosis/.build_certi_desktop_linux_debug'
+compilation_database_folder = '/home/nick/projects/iron-man/src/certi_hardware_diagnosis/.build_certi_desktop_linux_x86_64'
 
 
 if os.path.exists( compilation_database_folder ):

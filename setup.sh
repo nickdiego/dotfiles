@@ -14,7 +14,7 @@ BKPDIR="$HOME/.dot-backups"
 [ -d $BKPDIR ] || mkdir -p $BKPDIR
 
 link_dot_files() {
-  for file in `ls -A -I .git -I .gitmodules -I setup.sh -I .kde -I .vimrc -I .vim -I .config`;
+  for file in `ls -A -I .git -I .gitmodules -I setup.sh -I .kde -I .config`;
   do
     echo $PWD/$file
 

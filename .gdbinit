@@ -26,3 +26,4 @@ end
 
 source ~/.gdb/minibrowser.gdb
 source ~/.gdb/drowser.gdb
+source ~/.gdb/diagnosis.gdb
