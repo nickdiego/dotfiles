@@ -244,7 +244,7 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     " Searching {
         "set hlsearch                    " highlight the last used search pattern
         set incsearch                   " do incremental searching
-        "set ignorecase                 " Ignore case when searching.
+        set ignorecase                 " Ignore case when searching.
         set smartcase                   " case-sensitive if search contains an uppercase character
 
         " clearing highlighted search
