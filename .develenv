@@ -12,21 +12,10 @@ alias fgrep='find|grep --exclude="*~" --exclude="*.swp"'
 alias sendpatch='arc diff --reviewers lmoura,tullio,luck,hugopl,dakerfp,lacerda,setanta,sergio,zanoni HEAD~1'
 alias reattach-tmux='tmux attach -tprogramming'
 
-#export PATH=$PATH:/home/nick/Programs/QtSdk/Desktop/Qt/474/gcc/bin/
-
-export QML_IMPORT_PATH='/usr/lib/qt4/imports'
 export ZBAR=/home/nick/apm-2012/apps/buscape/zbar-0.10
 export BUSCAPE=/home/nick/apm-2012/apps/buscape/git-repo/searchfoot
 alias zxing=/home/nick/apm-2012/apps/buscape/zxing-2.0/cpp/build/zxing
 alias zbarimg=/home/nick/apm-2012/apps/buscape/zbar-0.10/build/zbarimg/zbarimg
-export LD_LIBRARY_PATH=/usr/lib/qt4/imports/QtMobility/feedback/
-
-export PHABRICATOR=/home/nick/Programs/Phabricator/phabricator
-export ARC=/home/nick/Programs/Phabricator/arcanist
-export PATH="$PATH:$ARC/bin"
-if [ -f $ARC/resources/shell/bash-completion ]; then
-  . $ARC/resources/shell/bash-completion
-fi
 
 export EDITOR=vim
 export VISUAL=vim
@@ -146,7 +135,6 @@ start_aux_monitor() {
   disable_display $DISPLAY_MAIN && sleep 1
   enable_main_display
 }
-export PATH="/home/nick/projects/chromium/depot_tools:$PATH"
 
 reset_findsrc_dir() {
     export FINDSRC_DIR='.'
@@ -164,7 +152,6 @@ grepsrc() {
 }
 
 export POWERLINE_PATH="$HOME/.local/lib/python2.7/site-packages/powerline"
-export PATH=$PATH:~/.local/bin
 #. $POWERLINE_PATH/bindings/bash/powerline.sh
 
 # replacing something in several files
@@ -192,6 +179,15 @@ _vim_sessions() {
 }
 
 complete -F _vim_sessions v
+
+remove_from_path() {
+  local p d dirs
+  dirs=$@
+  for d in $dirs; do
+    p=`echo $PATH | sed -e "s,:$d,,"`
+    export PATH=$p
+  done
+}
 
 # Set $verbose_env var to see debug messages
 # from env scripts

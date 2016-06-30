@@ -7,8 +7,8 @@ custom_proj_config() {
 
   proj_ibmo="$proj"
   local src_ibmo="$proj_ibmo/src"
-  src_ibmo_lib="$src_ibmo/src/libibmo"
-  src_ibmo_tool="$src_ibmo/src/ibmotool"
+  src_ibmo_lib="$src_ibmo/libibmo"
+  src_ibmo_tool="$src_ibmo/ibmotool"
   alias ibmo="cd $src_ibmo"
 }
 
