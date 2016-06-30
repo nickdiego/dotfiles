@@ -21,13 +21,8 @@ alias zxing=/home/nick/apm-2012/apps/buscape/zxing-2.0/cpp/build/zxing
 alias zbarimg=/home/nick/apm-2012/apps/buscape/zbar-0.10/build/zbarimg/zbarimg
 export LD_LIBRARY_PATH=/usr/lib/qt4/imports/QtMobility/feedback/
 
-export ANDROID_SDK_HOME=/home/nick/android-sdk-linux
-export PATH="$PATH:$ANDROID_SDK_HOME/tools"
-export PATH="$PATH:$ANDROID_SDK_HOME/platform-tools"
-
 export PHABRICATOR=/home/nick/Programs/Phabricator/phabricator
 export ARC=/home/nick/Programs/Phabricator/arcanist
-
 export PATH="$PATH:$ARC/bin"
 if [ -f $ARC/resources/shell/bash-completion ]; then
   . $ARC/resources/shell/bash-completion
@@ -59,10 +54,10 @@ if [ -f $WEBKIT/nix-env.sh ]; then
   . $WEBKIT/nix-env.sh
 fi
 
-alias vim='vim -c "set columns=$COLUMNS"'
+#alias vim='vim -c "set columns=$COLUMNS"'
 export RPI_NICK=pi@10.60.69.52
 
-alias vim='vim -c "set columns=$COLUMNS"'
+#alias vim='vim -c "set columns=$COLUMNS"'
 alias ssh-diegoyam-server='ssh server-amazon -i ~/key_amazon_server.pem'
 
 # Create a ssh reverse tunnel to my amazon cloud server
@@ -90,7 +85,8 @@ git_import_svn_tags()  {
     BODY="$(git log -1 --format=%s $REF)"
     #echo "ref=[$REF] parent=[$(git rev-parse $REF^)] tagname=[$TAG_NAME] branch=[$BRANCH]" >&2
 
-    echo "git tag -a -m \"$BODY\" $TAG_NAME $REF^"    echo "git branch -r -d $BRANCH"
+    echo "git tag -a -m \"$BODY\" $TAG_NAME $REF^"
+    echo "git branch -r -d $BRANCH"
     if [ ! -z $DO_IT ]; then
       git tag -a -m "$BODY" $TAG_NAME $REF^
       git branch -r -d $BRANCH
@@ -171,37 +167,17 @@ export POWERLINE_PATH="$HOME/.local/lib/python2.7/site-packages/powerline"
 export PATH=$PATH:~/.local/bin
 #. $POWERLINE_PATH/bindings/bash/powerline.sh
 
-# APM-2013 stuff
-export WAYLAND=$HOME/projects/apm-2013/nix-wayland
-[ -d $WAYLAND ] && . $WAYLAND/configenv.sh
-
 # replacing something in several files
 #cat /tmp/xxxxx | xargs -I '{}' sed -i 's/RenderPartObject {IFRAME}/RenderIFrame {IFRAME}/g' {}
 
 alias grep="grep --exclude='*~' --exclude='*.swp'"
-
-export KERNEL_SRC_PATH="~/projects/kernel/src/linux-2.6"
-alias kcd="cd $KERNEL_SRC_PATH"
-
-export NICKID="b5eae6e3d474"
-
 alias remove_colors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"'
-
-IRON_ROOT_PROJ_SRC="$HOME/projects/iron-man/src/certi_hardware_diagnosis"
-IRON_SERVER_PROJ_SRC="$IRON_ROOT_PROJ_SRC/dev/apps/diagnosis-server"
-IRON_CLIENT_PROJ_SRC="$IRON_ROOT_PROJ_SRC/dev/apps/diagnosis-control-center"
-
-alias set_certi_product="$IRON_ROOT_PROJ_SRC/externals/certi_common_libs/scripts/setproduct.sh certi_desktop_linux"
-alias iron="cd $IRON_ROOT_PROJ_SRC"
-alias ironsrv="cd $IRON_SERVER_PROJ_SRC"
-alias ironclt="cd $IRON_CLIENT_PROJ_SRC"
-alias ironclt_build="cd $IRON_ROOT_PROJ_SRC/.build_certi_desktop_linux_x86_64/dev/apps/diagnosis-control-center/src"
-alias ironclt_tests="cd $IRON_ROOT_PROJ_SRC/.build_certi_desktop_linux_x86_64/dev/tests/diagnosis-control-center/src"
+alias pjson='json | pygmentize -l json'
 
 # open vim session
 v() {
-  local arg=`test -z $1 || echo +SessionOpen $1`
-  vim "$arg"
+  local arg=`test -z $1 || echo -S ~/.vim/sessions/$1`
+  vim $arg
 }
 
 _vim_sessions() {
@@ -217,5 +193,28 @@ _vim_sessions() {
 
 complete -F _vim_sessions v
 
-alias pjson='json | pygmentize -l json'
+# Set $verbose_env var to see debug messages
+# from env scripts
+#verbose_env=on
+tools_dir=$HOME/devtools
+if [ -d ~/.tools-env.d ]; then
+  for env_script in ~/.tools-env.d/*.sh; do
+    if [ -r $env_script ]; then
+      . $env_script
+    fi
+  done
+  unset i
+fi
 
+proj_dir=$HOME/projects
+if [ -d ~/.projects-env.d ]; then
+  for env_script in ~/.projects-env.d/*.sh; do
+    if [ -r $env_script ]; then
+      . $env_script
+    fi
+  done
+  unset i
+fi
+
+unset tools_dir
+unset proj_dir
