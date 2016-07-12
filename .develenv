@@ -90,6 +90,11 @@ git_import_svn_tags()  {
   fi
 }
 
+# git completion in Arch
+if [ -f /usr/share/git/completion/git-completion.bash ]; then
+  . /usr/share/git/completion/git-completion.bash
+fi
+
 # Enables a (already xrandr configured) second monitor,
 # to see current configured outputs:
 #

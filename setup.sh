@@ -1,7 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install vim-gtk clang exuberant-ctags git python-fontforge unzip \
-  python-dev silversearcher-ag
+sudo pacman -S tmux openssh git nfs-utils highlight
 
 git submodule update --init
 git submodule foreach git checkout master
@@ -46,27 +45,6 @@ install_vim_plugins() {
 
 link_dot_files
 install_vim_plugins
-
-if [ $? -ne 0  ]; then
-	mkdir -p ~/tmp
-	wget -c http://font.ubuntu.com/download/ubuntu-font-family-0.80.zip -O ~/tmp/ubuntu-font-family-0.80.zip
-	unzip ~/tmp/ubuntu-font-family-0.80.zip -d ~/tmp
-
-	pushd ~/tmp/ubuntu-font-family-0.80
-	chmod +x ~/.vim/bundle/vim-powerline/fontpatcher/fontpatcher
-	for f in `ls *.ttf`;
-	do
-		~/.vim/bundle/vim-powerline/fontpatcher/fontpatcher $f
-	done
-	fonts=`ls *Powerline.ttf`
-	if [ $? -eq 0 ]; then
-		mkdir -p $HOME/.fonts
-		cp $fonts $HOME/.fonts
-		sudo fc-cache -vf
-	fi
-	popd
-#	rm -rf ~/tmp
-fi
 
 # TODO instruct to install by the simple way (./install.py --...)
 echo ==========================================================
