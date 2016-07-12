@@ -5,8 +5,8 @@ custom_tool_config() {
   test -d $tool || return 1
   [ ! -z $verbose_env ] && echo Setting env for $tool
 
-  export ANDROID_SDK_HOME=$tool
-  export PATH="$PATH:$ANDROID_SDK_HOME/tools:$ANDROID_SDK_HOME/platform_tools"
+  export ANDROID_SDK=$tool
+  export PATH="$PATH:$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools"
 
 }
 

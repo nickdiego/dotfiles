@@ -7,8 +7,8 @@ custom_tool_config() {
   test -d $tool || return 1
   [ ! -z $verbose_env ] && echo Setting env for $tool
 
-  export ANDROID_NDK_HOME=$tool
-  export PATH="$PATH:$ANDROID_NDK_HOME"
+  export ANDROID_NDK=$tool
+  export PATH="$PATH:$ANDROID_NDK"
 }
 
 custom_tool_config 'android-ndk'

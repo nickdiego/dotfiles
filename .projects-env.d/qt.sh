@@ -39,6 +39,22 @@ _qt_builds() {
 }
 
 complete -F _qt_builds switch_qt
-switch_qt $build_qt_default
+#switch_qt $build_qt_default
+
+config_qt_for_android() {
+  local src_dir=$proj_qt/src/qt5
+  cd $src_dir &&
+  ./configure -xplatform android-g++ -nomake tests -nomake examples \
+    -android-ndk $ANDROID_NDK -android-sdk $ANDROID_SDK \
+    -android-ndk-host linux-x86_64 -android-toolchain-version 4.9 \
+    -skip qttranslations -skip qtwebkit -skip qtserialport \
+    -skip qtwebkit-examples -no-warnings-are-errors \
+    -opensource -confirm-license
+}
+
+build_qt_for_android() {
+  local src_dir=$proj_qt/src/qt5
+  cd $src_dir && make -j4
+}
 
 
