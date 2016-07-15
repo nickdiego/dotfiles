@@ -1,11 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/home/nick/projects/webkit-nix/src/nix/Source/WebKit2/WebProcess/nix'
-let g:netrw_dirhist_2='/home/nick/projects/webkit-nix/src/nix/Source/WebCore/Modules/mediastream'
-let g:netrw_dirhist_3='/home/nick/projects/webkit-nix/src/nix/Tools/MiniBrowser/nix/InjectedBundle/usermedia'
-let g:netrw_dirhist_4='/home/nick/projects/webkit-nix/src/gstreamer-tests/gst-plugins-good/gst/multifile'
-let g:netrw_dirhist_5='/home/nick/.vim/colors'
-let g:netrw_dirhist_6='/home/nick/.vim/bundle-available/vim-fugitive/plugin'
-let g:netrw_dirhist_7='/home/nick/projects/iron-man/src/sailsjs-angularjs-bootstrap-example/.tmp/public/linker/js'
-let g:netrw_dirhist_8='/home/nick/projects/iron-man/src/certi_hardware_diagnosis/dev/apps/diagnosis-server/node_modules/async'
-let g:netrw_dirhist_9='/usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Window.2'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/home/nick/projects/magic-dot-files/.git'

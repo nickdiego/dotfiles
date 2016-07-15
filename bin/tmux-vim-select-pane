@@ -8,15 +8,13 @@
 
 set -e
 
-# gets the tty of active tmux pane
-active_tty="$(tmux list-panes -F '#{pane_active}#{pane_tty}' | grep '^1')"
+cmd="$(tmux display -p '#{pane_current_command}')"
+cmd="$(basename "$cmd" | tr A-Z a-z)"
 
-# checks if there's a foreground Vim process in attached to that tty
-if ps c -o 'stat=,command=' -t "${active_tty#1}" | grep '+' | grep -iE '\bvim?\b' >/dev/null ; then
-  direction="$(echo "${1#-}" | sed -e 's/D/Down/' -e 's/U/Up/' -e 's/L/Left/' -e 's/R/Right/')";
+if [ "${cmd%m}" = "vi" ]; then
+  direction="$(echo "${1#-}" | sed -e 's/D/Down/' -e 's/U/Up/' -e 's/L/Left/' -e 's/R/Right/')"
   # forward the keystroke to Vim
-  tmux send-keys M-$direction
+  tmux send-keys "M-$direction"
 else
   tmux select-pane "$@"
 fi
-

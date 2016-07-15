@@ -1,6 +1,10 @@
 #!/bin/bash
 
-sudo pacman -S tmux openssh git nfs-utils highlight
+sudo pacman -S tmux openssh git nfs-utils highlight \
+  the_silver_searcher \
+  faience-icon-theme gtk-engine-murrine # visual stuff
+
+# download and install manually https://github.com/mclmzz/arc-theme-Red
 
 git submodule update --init
 git submodule foreach git checkout master

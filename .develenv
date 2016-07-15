@@ -5,8 +5,6 @@ PROXY_INDT=172.18.216.7
 
 #PS1="\033]0;${PWD}\n\033[32m${USER}@${HOSTNAME} \033[33m${PWD/${HOME}/~}$ "
 alias vncn9="vncviewer ${N92_IP}:0"
-alias ssh-clean='rm ~/.ssh/known_hosts'
-alias pixeltool='/home/nick/Programs/QtSdk/Desktop/Qt/474/gcc/bin/pixeltool'
 alias psgrep='ps aux | grep '
 alias fgrep='find|grep --exclude="*~" --exclude="*.swp"'
 alias sendpatch='arc diff --reviewers lmoura,tullio,luck,hugopl,dakerfp,lacerda,setanta,sergio,zanoni HEAD~1'
@@ -43,7 +41,7 @@ if [ -f $WEBKIT/nix-env.sh ]; then
   . $WEBKIT/nix-env.sh
 fi
 
-#alias vim='vim -c "set columns=$COLUMNS"'
+alias vim='vim -c "set columns=$COLUMNS"'
 export RPI_NICK=pi@10.60.69.52
 
 #alias vim='vim -c "set columns=$COLUMNS"'
@@ -219,3 +217,5 @@ fi
 
 unset tools_dir
 unset proj_dir
+
+export curr_proj_build_dir=$src_drunk_clt/build
