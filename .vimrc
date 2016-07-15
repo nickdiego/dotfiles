@@ -20,6 +20,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'peterhoeg/vim-qml'
 Plugin 'wesQ3/vim-windowswap'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'roosta/srcery'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -37,7 +39,6 @@ nnoremap <Leader>a :echo "Hey there ,"<CR>
 set pastetoggle=<F2>
 nnoremap ; :
 
-colorscheme jellybeans
 set cursorline
 set mouse=a
 "set backup                                              " keep a backup file
@@ -49,6 +50,15 @@ set expandtab
 " forcing 256 colors
 set t_Co=256
 set t_ut=
+
+set background=dark
+let base16colorspace=256
+let g:jellybeans_use_lowcolor_black = 0
+let g:jellybeans_use_term_italics = 1
+
+let g:srcery_italic = 1
+let g:srcery_italic = 1
+colorscheme srcery
 
 let g:mdf_disable_arrow_keys = 0
 let g:mdf_space_instead_of_tab = 1

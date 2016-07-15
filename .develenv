@@ -99,8 +99,12 @@ fi
 # $ xrandr -q
 #
 # usage: enable_display [<XRANDR_OUTPUT_ID>]
-export DISPLAY_MAIN='LVDS1'
-export DISPLAY_AUX='VGA1'
+# Running Wayland
+export DISPLAY_MAIN='XWAYLAND0'
+export DISPLAY_AUX='XWAYLAND1'
+# Running Xorg
+#export DISPLAY_MAIN='LVDS1'
+#export DISPLAY_AUX='VGA0'
 
 enable_aux_display() {
   xrandr --output $DISPLAY_AUX --auto --primary --above $DISPLAY_MAIN
@@ -117,7 +121,9 @@ disable_display() {
 }
 
 fix_resolution_main_monitor() {
-  xrandr --output $DISPLAY_MAIN --auto --primary
+  xrandr --newmode "1440x900"  106.50  1440 1528 1672 1904  900 903 909 934 -hsync +vsync
+  xrandr --addmode $DISPLAY_MAIN "1440x900"
+  xrandr --output $DISPLAY_MAIN --mode "1440x900"
 }
 
 set_main_monitor() {
