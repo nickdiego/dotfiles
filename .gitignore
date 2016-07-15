@@ -3,4 +3,5 @@
 *~
 .vim/sessions
 .vim/bundle
+.pyc
 
