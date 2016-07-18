@@ -22,6 +22,8 @@ Plugin 'peterhoeg/vim-qml'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'roosta/srcery'
+Plugin 'w0ng/vim-hybrid'
+Plugin 'zeis/vim-kolor'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -40,7 +42,7 @@ set pastetoggle=<F2>
 nnoremap ; :
 
 set cursorline
-set mouse=a
+set mouse=
 "set backup                                              " keep a backup file
 set tabpagemax=15                                       " only show 15 tabs
 set nowrap
@@ -55,10 +57,21 @@ set background=dark
 let base16colorspace=256
 let g:jellybeans_use_lowcolor_black = 0
 let g:jellybeans_use_term_italics = 1
+"colorscheme jellybeans
+
+let g:hybrid_custom_term_colors = 0
+let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+colorscheme hybrid
 
 let g:srcery_italic = 1
 let g:srcery_italic = 1
-colorscheme srcery
+"colorscheme srcery
+
+let g:kolor_italic = 1                    " Enable italic. Default: 1
+let g:kolor_bold = 1                      " Enable bold. Default: 1
+let g:kolor_underlined = 0                " Enable underline. Default: 0
+let g:kolor_alternative_matchparen = 0    " Gray 'MatchParen' color. Default: 0
+"colorscheme kolor
 
 let g:mdf_disable_arrow_keys = 0
 let g:mdf_space_instead_of_tab = 1
