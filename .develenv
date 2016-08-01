@@ -103,14 +103,20 @@ fi
 if [ ! -z $WAYLAND_DISPLAY ]; then
   export DISPLAY_MAIN='XWAYLAND0'
   export DISPLAY_AUX='XWAYLAND1'
+  export DISPLAY_AUX='XWAYLAND2'
 else
   # Running Xorg
   export DISPLAY_MAIN='LVDS1'
   export DISPLAY_AUX='VGA1'
+  export DISPLAY_AUX2='HDMI1'
 fi
 
 enable_aux_display() {
-  xrandr --output $DISPLAY_AUX --auto --primary --above $DISPLAY_MAIN
+  xrandr --output $DISPLAY_AUX --auto --primary --left-of $DISPLAY_MAIN
+}
+
+enable_aux2_display() {
+  xrandr --output $DISPLAY_AUX2 --auto --left-of $DISPLAY_AUX
 }
 
 enable_main_display() {
@@ -233,9 +239,13 @@ screenshot() {
   local file="$HOME/Pictures/screenshot-`date +'%b-%d-%y_%H:%M:%S'`.jpg"
 	echo "## Select the screen region."
 	echo "## Will save it in $file"
-	gm import "$file" && shotwell "$file"
+	gm import "$file" && nautilus "$file"&
 }
 
 get_external_ip() {
   curl -s http://whatismyip.org/ | grep -oP '(\d{1,3}\.){3}\d+'
+}
+
+bashrc-reload() {
+  source ~/.bashrc
 }
