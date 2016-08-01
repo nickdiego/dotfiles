@@ -2,7 +2,8 @@
 
 sudo pacman -S tmux openssh git nfs-utils highlight \
   the_silver_searcher \
-  faience-icon-theme gtk-engine-murrine # visual stuff
+  faience-icon-theme gtk-engine-murrine \ # visual stuff
+  graphicsmagick bash-completion autojump xclip
 
 # download and install manually https://github.com/mclmzz/arc-theme-Red
 
@@ -17,7 +18,8 @@ BKPDIR="$HOME/.dot-backups"
 [ -d $BKPDIR ] || mkdir -p $BKPDIR
 
 link_dot_files() {
-  for file in `ls -A -I .git -I .gitmodules -I setup.sh -I .kde -I .config`;
+  local ignoredirs='.gitmodules -I setup.sh -I .kde -I .xdg-config'
+  for file in `ls -A -I .git -I $ignoredirs`;
   do
     echo $PWD/$file
 
