@@ -24,6 +24,8 @@ Plugin 'nanotech/jellybeans.vim'
 Plugin 'roosta/srcery'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'zeis/vim-kolor'
+Plugin 'junegunn/seoul256.vim'
+Plugin 'morhetz/gruvbox'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -57,11 +59,11 @@ set background=dark
 let base16colorspace=256
 let g:jellybeans_use_lowcolor_black = 0
 let g:jellybeans_use_term_italics = 1
-"colorscheme jellybeans
+colorscheme jellybeans
 
 let g:hybrid_custom_term_colors = 0
 let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
-colorscheme hybrid
+"colorscheme hybrid
 
 let g:srcery_italic = 1
 let g:srcery_italic = 1
@@ -72,6 +74,14 @@ let g:kolor_bold = 1                      " Enable bold. Default: 1
 let g:kolor_underlined = 0                " Enable underline. Default: 0
 let g:kolor_alternative_matchparen = 0    " Gray 'MatchParen' color. Default: 0
 "colorscheme kolor
+
+let g:seoul256_background = 233
+"colorscheme seoul256
+
+let g:gruvbox_italic = 1
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_contrast_light = 'hard'
+"colorscheme gruvbox
 
 let g:mdf_disable_arrow_keys = 0
 let g:mdf_space_instead_of_tab = 1
