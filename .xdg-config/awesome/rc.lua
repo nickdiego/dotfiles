@@ -42,6 +42,7 @@ beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "gnome-terminal"
+webbroser = "firefox"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -83,7 +84,7 @@ end
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
+    tags[s] = awful.tag({ "devel", "web", "chat", "etc" }, s, layouts[1])
 end
 -- }}}
 
@@ -232,27 +233,29 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
+    awful.key({ modkey,           }, "Up",   awful.tag.viewprev       ),
+    awful.key({ modkey,           }, "Down",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
-    awful.key({ modkey,           }, "j",
-        function ()
-            awful.client.focus.byidx( 1)
-            if client.focus then client.focus:raise() end
-        end),
-    awful.key({ modkey,           }, "k",
-        function ()
-            awful.client.focus.byidx(-1)
-            if client.focus then client.focus:raise() end
-        end),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
+    --awful.key({ modkey,           }, "j",
+    --    function ()
+    --        awful.client.focus.byidx( 1)
+    --        if client.focus then client.focus:raise() end
+    --    end),
+    --awful.key({ modkey,           }, "k",
+    --    function ()
+    --        awful.client.focus.byidx(-1)
+    --        if client.focus then client.focus:raise() end
+    --    end),
+    awful.key({ modkey,           }, "w", function () awful.util.spawn(webbroser) end),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ modkey,           }, "Down", function () awful.screen.focus_relative( 1) end),
-    awful.key({ modkey,           }, "Up", function () awful.screen.focus_relative(-2) end),
+    awful.key({ modkey,           }, "Right", function () awful.screen.focus_relative( 1) end),
+    awful.key({ modkey,           }, "Left", function () awful.screen.focus_relative(-1) end),
+    awful.key({ modkey,           }, "k", function () awful.screen.focus_relative( 1) end),
+    awful.key({ modkey,           }, "j", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
     awful.key({ modkey,           }, "Tab",
         function ()
@@ -384,8 +387,8 @@ awful.rules.rules = {
     { rule = { class = "gimp" },
       properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
+    --{ rule = { class = "Firefox" },
+    --  properties = { tag = tags[1][2] } },
 }
 -- }}}
 
