@@ -26,6 +26,7 @@ Plugin 'w0ng/vim-hybrid'
 Plugin 'zeis/vim-kolor'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'morhetz/gruvbox'
+Plugin 'Yggdroot/indentLine'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -54,6 +55,9 @@ set expandtab
 " forcing 256 colors
 set t_Co=256
 set t_ut=
+
+let g:indentLine_enabled = 1
+let g:indentLine_char = '┆'
 
 set background=dark
 let base16colorspace=256
@@ -206,10 +210,10 @@ endif
 "
 "set whichwrap=b,s,h,l,<,>,[,]                       " backspace and cursor keys wrap to
 "
-"if g:mdf_listchars
-"    set list
-"    set listchars=tab:»·,trail:·,extends:#,nbsp:.       " strings to use in 'list' mode
-"endif
+if g:mdf_listchars
+    set list
+    set listchars=tab:»·,trail:·,extends:#,nbsp:.       " strings to use in 'list' mode
+endif
 
 
 
