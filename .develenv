@@ -281,3 +281,5 @@ get_external_ip() {
 bashrc-reload() {
   source ~/.bashrc
 }
+
+alias load-ssh-keys='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_rsa_2016'
