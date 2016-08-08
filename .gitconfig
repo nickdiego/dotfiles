@@ -26,3 +26,5 @@
     ra = rebase -i --autosquash
 [credential]
 	helper = store
+[diff]
+	submodule = log
