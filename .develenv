@@ -1,3 +1,4 @@
+# vim:ft=sh:
 ## Random useful stuff
 alias ls='ls --color'
 
@@ -107,32 +108,63 @@ if [ ! -z $WAYLAND_DISPLAY ]; then
 else
   # Running Xorg
   export DISPLAY_MAIN='LVDS1'
-  export DISPLAY_AUX='VGA1'
+  export DISPLAY_AUX1='VGA1'
   export DISPLAY_AUX2='HDMI1'
 fi
 
-enable_aux_display() {
-  xrandr --output $DISPLAY_AUX --auto --primary --left-of $DISPLAY_MAIN
+MODE_DISPLAY_AUX="1440x900"
+
+enable-display-aux1() {
+  xrandr --output $DISPLAY_AUX1 --mode $MODE_DISPLAY_AUX $@
 }
 
-enable_aux2_display() {
-  xrandr --output $DISPLAY_AUX2 --auto --left-of $DISPLAY_AUX
+enable-display-aux2() {
+  xrandr --output $DISPLAY_AUX2 --mode $MODE_DISPLAY_AUX $@
 }
 
-enable_main_display() {
-  xrandr --output $DISPLAY_MAIN --auto --below $DISPLAY_AUX
+enable-display-main() {
+  xrandr --output $DISPLAY_MAIN --auto $@
 }
 
 disable_display() {
   OUTPUT_ID=$1
-  [ -z $OUTPUT_ID ] && OUTPUT_ID=$DISPLAY_AUX
+  [ -z $OUTPUT_ID ] && OUTPUT_ID=$DISPLAY_AUX1
   xrandr --output $OUTPUT_ID --off
 }
+
+alias disable-display-main="disable_display $DISPLAY_MAIN"
+alias disable-display-aux1="disable_display $DISPLAY_AUX1"
+alias disable-display-aux2="disable_display $DISPLAY_AUX2"
 
 fix_resolution_main_monitor() {
   xrandr --newmode "1440x900"  106.50  1440 1528 1672 1904  900 903 909 934 -hsync +vsync
   xrandr --addmode $DISPLAY_MAIN "1440x900"
   xrandr --output $DISPLAY_MAIN --mode "1440x900"
+}
+
+fake-arrange-displays() {
+    echo xrandr \
+          --output $DISPLAY_AUX2 --mode "$MODE_DISPLAY_AUX" --primary \
+          --output $DISPLAY_AUX1 --mode "$MODE_DISPLAY_AUX" --right-of $DISPLAY_AUX2 \
+          --output $DISPLAY_MAIN --auto --right-of $DISPLAY_AUX1
+}
+
+arrange-displays() {
+  if [ "x$1" = 'x2' ]; then
+    disable_display $DISPLAY_MAIN && sleep 1
+    enable-display-aux2
+  else
+
+    m="1440x900_2"
+    xrandr --newmode "$MODE_DISPLAY_AUX" 126.00  1440 1528 1680 1920  900 903 909 940 -hsync +vsync
+    xrandr --addmode $DISPLAY_AUX1 "$MODE_DISPLAY_AUX"
+    xrandr --addmode $DISPLAY_AUX2 "$MODE_DISPLAY_AUX"
+    xrandr --output $DISPLAY_AUX2 --off --output $DISPLAY_AUX1 --off
+    sleep 2
+    xrandr --output $DISPLAY_AUX2 --mode "$MODE_DISPLAY_AUX" --primary \
+          --output $DISPLAY_AUX1 --mode "$MODE_DISPLAY_AUX" --right-of $DISPLAY_AUX2 \
+          --output $DISPLAY_MAIN --auto --right-of $DISPLAY_AUX1
+  fi
 }
 
 set_main_monitor() {
@@ -141,7 +173,7 @@ set_main_monitor() {
 }
 
 set_left_as_main_monitor() {
-  set_main_monitor $DISPLAY_AUX
+  set_main_monitor $DISPLAY_AUX1
 }
 
 set_right_as_main_monitor() {
@@ -149,9 +181,9 @@ set_right_as_main_monitor() {
 }
 
 start_aux_monitor() {
-  enable_aux_display && sleep 1
+  enable_display_aux1 && sleep 1
   disable_display $DISPLAY_MAIN && sleep 1
-  enable_main_display
+  enable-display-main
 }
 
 reset_findsrc_dir() {
