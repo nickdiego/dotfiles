@@ -283,3 +283,4 @@ bashrc-reload() {
 }
 
 alias load-ssh-keys='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_rsa_2016'
+alias image-dimensions="identify -format \"%i -> %w x %h\n\" $@"
