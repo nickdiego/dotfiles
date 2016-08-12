@@ -10,6 +10,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+require("volume")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -208,6 +209,7 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
+    right_layout:add(volume_widget)
     right_layout:add(kbdcfg.widget)
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(mytextclock)
@@ -292,7 +294,15 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)
+    awful.key({ modkey }, "p", function() menubar.show() end),
+
+    -- Media keys
+    awful.key({ }, "XF86AudioRaiseVolume", function ()
+      awful.util.spawn("amixer set Master 8%+") end),
+    awful.key({ }, "XF86AudioLowerVolume", function ()
+      awful.util.spawn("amixer set Master 8%-") end),
+    awful.key({ }, "XF86AudioMute", function ()
+      awful.util.spawn("amixer sset Master toggle") end)
 )
 
 clientkeys = awful.util.table.join(
@@ -464,3 +474,4 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
