@@ -262,10 +262,11 @@ if [ -d ~/.projects-env.d ]; then
   unset i
 fi
 
+#export curr_proj_build_dir=$src_drunk_clt/build
+export curr_proj_build_dir="$src_ibmo_tool/.build/linux"
+
 unset tools_dir
 unset proj_dir
-
-export curr_proj_build_dir=$src_drunk_clt/build
 
 screenshot() {
   local file="$HOME/Pictures/screenshot-`date +'%b-%d-%y_%H:%M:%S'`.jpg"
