@@ -11,6 +11,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 require("volume")
+require("battery")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -209,6 +210,7 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
+    right_layout:add(batterywidget)
     right_layout:add(volume_widget)
     right_layout:add(kbdcfg.widget)
     if s == 1 then right_layout:add(wibox.widget.systray()) end
@@ -399,6 +401,8 @@ awful.rules.rules = {
     -- Set Firefox to always map on tags number 2 of screen 1.
     --{ rule = { class = "Firefox" },
     --  properties = { tag = tags[1][2] } },
+    { rule = { class = "ibmotool" },
+      callback = function(c) awful.client.movetoscreen(c, 2) end },
 }
 -- }}}
 
