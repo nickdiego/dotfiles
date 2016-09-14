@@ -13,7 +13,7 @@ kbdcfg.update = function ()
   for i = 1, #(kbdcfg.layout) do
     if (kbdcfg.layout[i][1] == l) then
       kbdcfg.current = i
-      kbdcfg.widget:set_text(" | " .. kbdcfg.layout[i][3] .. " | ")
+      kbdcfg.widget:set_text(" " .. kbdcfg.layout[i][3] .. " |")
     end
   end
 end

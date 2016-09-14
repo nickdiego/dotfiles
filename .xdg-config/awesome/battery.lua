@@ -11,7 +11,7 @@ function update_battery_text()
     batterywidget:set_markup(" |<span color=\"red\">" ..
     text .. "</span> | ")
   else
-    batterywidget:set_text(" |" .. text .. " | ")
+    batterywidget:set_text(text .. " |")
   end
   fh:close()
 end
