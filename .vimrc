@@ -120,7 +120,7 @@ set browsedir=current           " which directory to use for the file browser
 
 set popt=left:8pc,right:3pc     " print options
 
-if version >= 730
+if version >= 730 && version < 800
     if has("autocmd")
         " Autosave & Load Views.
         autocmd BufWritePost,WinLeave,BufWinLeave ?* if MakeViewCheck() | mkview | endif
