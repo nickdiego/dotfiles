@@ -238,6 +238,7 @@ fi
 
 #export curr_proj_build_dir=$src_drunk_clt/build
 export curr_proj_build_dir="$src_ibmo_tool/.build/linux"
+export curr_proj_target="Msys-x86_64"
 
 unset tools_dir
 unset proj_dir
@@ -259,3 +260,9 @@ bashrc-reload() {
 
 alias load-ssh-keys='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_rsa_2016'
 alias image-dimensions="identify -format \"%i -> %w x %h\n\" $@"
+
+trust-key() {
+  local key=$1
+  gpg --recv-key $key
+  gpg --lsign $key
+}
