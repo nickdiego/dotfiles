@@ -271,3 +271,9 @@ trust-key() {
   gpg --recv-key $key
   gpg --lsign $key
 }
+
+set-window-title() {
+  which wmctrl || { echo "Error! 'wmctrl' not installed!";  return 1; }
+  wmctrl -r :ACTIVE: -N "$1"
+}
+

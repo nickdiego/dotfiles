@@ -12,3 +12,8 @@ custom_proj_config() {
 
 custom_proj_config 'knockout'
 unset custom_proj_config
+
+knock-chroot() {
+  schroot -c precise64 &&
+  set-window-title "CHROOT (Ubuntu 12.04 x86_64)"
+}
