@@ -1,0 +1,151 @@
+2016-07-27 12:43:13		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2016-07-27 12:43:29	=!=	You can not write text in this buffer
+2016-07-27 12:43:49	=!=	Too few arguments for command "/query" (help on command: /help query)
+2016-07-27 12:45:12		[core]
+2016-07-27 12:45:12		  away     buffer   command  debug    filter   history  key      mouse    plugin   proxy    reload   save     set      upgrade  version  window 
+2016-07-27 12:45:12		  bar      color    cursor   eval     help     input    layout   mute     print    quit     repeat   secure   unset    uptime   wait   
+2016-07-27 12:45:12		[aspell]
+2016-07-27 12:45:12		  aspell
+2016-07-27 12:45:12		[guile]
+2016-07-27 12:45:12		  guile
+2016-07-27 12:45:12		[tcl]
+2016-07-27 12:45:12		  tcl
+2016-07-27 12:45:12		[exec]
+2016-07-27 12:45:12		  exec
+2016-07-27 12:45:12		[fifo]
+2016-07-27 12:45:12		  fifo
+2016-07-27 12:45:12		[charset]
+2016-07-27 12:45:12		  charset
+2016-07-27 12:45:12		[perl]
+2016-07-27 12:45:12		  perl
+2016-07-27 12:45:12		[lua]
+2016-07-27 12:45:12		  lua
+2016-07-27 12:45:12		[python]
+2016-07-27 12:45:12		  python
+2016-07-27 12:45:12		[logger]
+2016-07-27 12:45:12		  logger
+2016-07-27 12:45:12		[xfer]
+2016-07-27 12:45:12		  me  xfer
+2016-07-27 12:45:12		[irc]
+2016-07-27 12:45:12		  admin       cap         dehalfop    halfop      join        list        motd        notify      pong        rehash      sanick      servlist    time        userhost    wallops   
+2016-07-27 12:45:12		  allchan     connect     deop        ignore      kick        lusers      msg         op          query       remove      sapart      squery      topic       users       who       
+2016-07-27 12:45:12		  allpv       ctcp        devoice     info        kickban     map         names       oper        quiet       restart     saquit      squit       trace       version     whois     
+2016-07-27 12:45:12		  allserv     cycle       die         invite      kill        me          nick        part        quote       sajoin      server      stats       unban       voice       whowas    
+2016-07-27 12:45:12		  ban         dcc         disconnect  ison        links       mode        notice      ping        reconnect   samode      service     summon      unquiet     wallchops 
+2016-07-27 12:45:12		[alias]
+2016-07-27 12:45:12		  AAWAY    AME      ANICK    BYE      CHAT     CLOSE    IG       K        LEAVE    MSGBUF   N        REDRAW   SIGNOFF  UB       V        WC       WII    
+2016-07-27 12:45:12		  alias    AMSG     BEEP     C        CL       EXIT     J        KB       M        MUB      Q        SAY      T        UMODE    W        WI       WW     
+2016-07-27 12:45:12		[relay]
+2016-07-27 12:45:12		  relay
+2016-07-27 12:45:12		[script]
+2016-07-27 12:45:12		  script
+2016-07-27 12:45:12		[trigger]
+2016-07-27 12:45:12		  trigger
+2016-07-27 12:45:19	=!=	Too few arguments for command "/query" (help on command: /help query)
+2016-07-27 12:45:48	=!=	Too few arguments for command "/query" (help on command: /help query)
+2016-07-27 12:47:14	=!=	Error: WeeChat main buffer can't be closed
+2016-07-27 12:47:33	=!=	You can not write text in this buffer
+2016-07-27 12:47:52	=!=	Error: WeeChat main buffer can't be closed
+2016-07-27 12:49:47		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, script, tcl, trigger, xfer
+2016-07-27 13:11:58		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-07-27 13:13:35		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-07-27 13:15:09		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-07-27 13:15:29		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-07-27 13:24:05		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-07-27 14:29:48		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-07-27 14:30:43		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-07-27 14:30:51		irc: server freenode added
+2016-07-27 14:31:19		Option changed: irc.server.freenode.nicks = "diegoyam,diegoyam_,diegoyam__,diegoyam___"  (default if null: "nick,nick1,nick2,nick3,nick4")
+2016-07-27 14:31:51		Option changed: irc.server.freenode.username = "diegoyam"  (default if null: "nick")
+2016-07-27 14:32:03		Option changed: irc.server.freenode.autoconnect = on  (default if null: off)
+2016-07-27 14:32:31		Option changed: irc.server.freenode.command = "/msg nickserv identify 123mudar"  (default if null: "")
+2016-07-27 14:33:29		Option changed: irc.server.freenode.autojoin = "#archlinux,#webkit,#blink,#qt"  (default if null: "")
+2016-07-27 14:37:05		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-07-27 14:37:55		script: downloading list of scripts...
+2016-07-27 14:37:57		script: 309 scripts for WeeChat 1.5
+2016-07-27 14:37:59		perl: loading script "/home/nick/.weechat/perl/buffers.pl"
+2016-07-27 14:37:59		perl: registered script "buffers", version 5.3 (Sidebar with list of buffers)
+2016-07-27 14:37:59		New key binding (context "mouse"): @bar(buffers):ctrl-wheeldown => hsignal:buffers_mouse
+2016-07-27 14:37:59		New key binding (context "mouse"): @bar(buffers):ctrl-wheelup => hsignal:buffers_mouse
+2016-07-27 14:37:59		New key binding (context "mouse"): @item(buffers):button2* => hsignal:buffers_mouse
+2016-07-27 14:37:59		New key binding (context "mouse"): @item(buffers):button1* => hsignal:buffers_mouse
+2016-07-27 14:44:46		Option changed: weechat.look.mouse = on  (default: off)
+2016-07-27 14:45:50		perl scripts loaded: buffers
+2016-07-27 14:45:50		script: 309 scripts for WeeChat 1.5
+2016-07-27 14:45:50		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-07-27 14:46:14		perl scripts loaded: buffers
+2016-07-27 14:46:14		script: 309 scripts for WeeChat 1.5
+2016-07-27 14:46:14		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-07-27 17:57:00		perl scripts loaded: buffers
+2016-07-27 17:57:01		script: 309 scripts for WeeChat 1.5
+2016-07-27 17:57:01		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-07-29 05:55:14		fifo: removing old fifo pipe "/home/nick/.weechat/weechat_fifo_22841"
+2016-07-29 05:55:15		perl scripts loaded: buffers
+2016-07-29 05:55:15		script: downloading list of scripts...
+2016-07-29 05:55:15		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-07-29 05:55:19		script: 309 scripts for WeeChat 1.5
+2016-07-29 05:55:26		perl scripts loaded: buffers
+2016-07-29 05:55:26		script: 309 scripts for WeeChat 1.5
+2016-07-29 05:55:26		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-07-31 17:30:08		fifo: removing old fifo pipe "/home/nick/.weechat/weechat_fifo_1732"
+2016-07-31 17:30:09		perl scripts loaded: buffers
+2016-07-31 17:30:09		script: downloading list of scripts...
+2016-07-31 17:30:09		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-07-31 17:30:11		script: 310 scripts for WeeChat 1.5
+2016-08-01 10:05:38		fifo: removing old fifo pipe "/home/nick/.weechat/weechat_fifo_8477"
+2016-08-01 10:05:39		perl scripts loaded: buffers
+2016-08-01 10:05:39		script: 310 scripts for WeeChat 1.5
+2016-08-01 10:05:39		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-08-03 20:53:50		perl scripts loaded: buffers
+2016-08-03 20:53:50		script: downloading list of scripts...
+2016-08-03 20:53:50		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-08-03 20:53:53		script: 310 scripts for WeeChat 1.5
+2016-08-03 20:57:32		Option changed: irc.server.freenode.autojoin = "#dri-devel"  (default if null: "")
+2016-08-03 20:58:21		Option changed: irc.server.freenode.autojoin = "#dri-devel,#archlinux,#intel-gfx"  (default if null: "")
+2016-08-03 20:58:25		perl scripts loaded: buffers
+2016-08-03 20:58:25		script: 310 scripts for WeeChat 1.5
+2016-08-03 20:58:25		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-08-03 21:19:14	=!=	Too few arguments for command "/query" (help on command: /help query)
+2016-08-03 21:19:16	=!=	Too few arguments for command "/query" (help on command: /help query)
+2016-08-04 10:08:39		perl scripts loaded: buffers
+2016-08-04 10:08:39		script: 310 scripts for WeeChat 1.5
+2016-08-04 10:08:39		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-08-18 17:08:27		perl scripts loaded: buffers
+2016-08-18 17:08:27		script: downloading list of scripts...
+2016-08-18 17:08:27		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-08-18 17:08:32		script: 310 scripts for WeeChat 1.5
+2016-08-18 17:10:21		Option changed: irc.server.freenode.autojoin = "#dri-devel,#archlinux,#qt,#intel-gfx,#webkit,#blink,#qt-labs"  (default if null: "")
+2016-08-18 17:10:27	=!=	Too few arguments for command "/query" (help on command: /help query)
+2016-08-18 17:10:30		perl scripts loaded: buffers
+2016-08-18 17:10:30		script: 310 scripts for WeeChat 1.5
+2016-08-18 17:10:30		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-08-18 17:28:30		irc: server oftc added
+2016-08-18 17:41:15		Option changed: irc.server.oftc.autoconnect = on  (default if null: off)
+2016-08-18 17:42:45		Option changed: irc.server.oftc.autojoin = "#msys2"  (default if null: "")
+2016-08-18 17:42:56	=!=	Too few arguments for command "/query" (help on command: /help query)
+2016-08-18 17:42:59		perl scripts loaded: buffers
+2016-08-18 17:42:59		script: 310 scripts for WeeChat 1.5
+2016-08-18 17:42:59		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-09-14 10:13:57		fifo: removing old fifo pipe "/home/nick/.weechat/weechat_fifo_21552"
+2016-09-14 10:13:58		perl scripts loaded: buffers
+2016-09-14 10:13:58		script: downloading list of scripts...
+2016-09-14 10:13:58		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-09-14 10:14:01		script: 310 scripts for WeeChat 1.5
+2016-09-14 10:42:51		perl scripts loaded: buffers
+2016-09-14 10:42:51		script: 310 scripts for WeeChat 1.5
+2016-09-14 10:42:51		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-09-14 11:06:31	=!=	Error: unknown command "/hidebars" (type /help for help)
+2016-09-14 11:06:49	=!=	Error: unknown command "/showbars" (type /help for help)
+2016-09-14 11:06:52	=!=	Error: unknown command "/showbar" (type /help for help)
+2016-09-14 11:07:01	=!=	Error: unknown command "/showbars" (type /help for help)
+2016-09-14 11:11:11		perl scripts loaded: buffers
+2016-09-14 11:11:11		script: 310 scripts for WeeChat 1.5
+2016-09-14 11:11:11		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-09-14 11:11:50		perl scripts loaded: buffers
+2016-09-14 11:11:50		script: 310 scripts for WeeChat 1.5
+2016-09-14 11:11:50		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-09-14 11:12:34	=!=	Error: unknown command "/showbars" (type /help for help)
+2016-09-22 15:00:15		perl scripts loaded: buffers
+2016-09-22 15:00:15		script: downloading list of scripts...
+2016-09-22 15:00:15		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2016-09-22 15:00:22		script: 310 scripts for WeeChat 1.5
