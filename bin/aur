@@ -1,0 +1,15 @@
+#!/bin/bash
+
+buildroot=~/pkg-builds
+aururl='https://aur.archlinux.org'
+
+pushd $buildroot
+for pkgname in $@; do
+  echo "Processing package $pkgname..."
+  test -d $pkgname || git clone ${aururl}/${pkgname}.git
+  cd $pkgname
+  makepkg -sri || break
+done
+popd
+echo
+echo Done!
