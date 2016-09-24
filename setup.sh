@@ -22,24 +22,29 @@ popd
 BKPDIR="$HOME/.dot-backups"
 [ -d $BKPDIR ] || mkdir -p $BKPDIR
 
+link_dot_file() {
+  local file=$1
+  local link=$2
+  test -z $link && link=$file
+
+  if [ $PWD/$file == `readlink -f $HOME/$link` ]; then
+    echo "skipping..."
+    return 1
+  elif [ -e $HOME/$file ]; then
+    echo "replacing..."
+    mv $HOME/$file $BKPDIR/$file-backup-`date +%Y%m%d%H%M%S`
+  else
+    echo "linking..."
+  fi
+  ln -sfv $PWD/$file $HOME
+}
+
 link_dot_files() {
-  local ignoredirs='.gitmodules -I setup.sh -I .kde -I .xdg-config'
-  for file in `ls -A -I .git -I $ignoredirs`;
+  local ignoredirs="-I '.*~' -I .git -I .gitmodules -I setup.sh -I .kde -I .xdg-config"
+  for file in `ls -A $ignoredirs`;
   do
-    echo $PWD/$file
-
-    if [ $PWD/$file == `readlink -f $HOME/$file` ]; then
-      echo "skipping..."
-      continue
-    elif [ -e $HOME/$file ]; then
-      echo "backing up..."
-      mv $HOME/$file $BKPDIR/$file-backup-`date +%Y%m%d%H%M%S`
-      echo "replacing..."
-    else
-      echo "linking..."
-    fi
-
-    ln -sf $PWD/$file $HOME
+    echo -n "Installing $PWD/$file: "
+    link_dot_file $file
   done
 }
 
@@ -50,12 +55,11 @@ install_vim_plugins() {
 
   # install the Vundle plugins configured in .vimrc
   vim +PluginInstall +qall
-
-  ls $HOME/.fonts/Ubuntu*-Powerline.ttf > /dev/null
 }
 
 link_dot_files
 install_vim_plugins
+bashrc-reload
 
 # TODO instruct to install by the simple way (./install.py --...)
 echo ==========================================================

@@ -20,8 +20,9 @@ export EDITOR=vim
 export VISUAL=vim
 export NODE_PATH=/usr/local/lib/node_modules
 
+export PATH=~/.bin:~/local/bin:$PATH
+
 export MUCURA="nick@mucura.local"
-export PATH=~/bin:$PATH
 
 #icecc_setup
 export USE_SCHEDULER=10.60.69.53
@@ -52,8 +53,6 @@ alias ssh-diegoyam-server='ssh server-amazon -i ~/key_amazon_server.pem'
 reverse_tunnel_server() {
   ssh -R 30000:localhost:22 server-amazon
 }
-
-export PATH=$HOME/local/bin:$PATH
 
 # When using git-svn to manipulate a svn repo
 # through git tool, the SVN tags are not automatically
