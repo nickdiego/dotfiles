@@ -52,10 +52,6 @@ fi
 git submodule update --init
 git submodule foreach git checkout master
 
-pushd .vim/unbundle/general/vim-powerline
-git checkout develop
-popd
-
 link_dot_files
 # FIXME generalize this to work with all dirs inside .xdg-config
 link_dot_file .xdg-config/awesome .config/awesome
