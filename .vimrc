@@ -27,6 +27,7 @@ Plugin 'zeis/vim-kolor'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'Yggdroot/indentLine'
+Plugin 'tbastos/vim-lua'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
