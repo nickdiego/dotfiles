@@ -4,4 +4,6 @@
 .vim/sessions
 .vim/bundle
 *.pyc
+.weechat/logs
+.weechat/weechat.log
 
