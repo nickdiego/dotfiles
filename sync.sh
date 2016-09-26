@@ -1,6 +1,6 @@
 #!/bin/bash
 
-link_dot_file() {
+sync_dot_file() {
   local file=$1
   local link=$2
   local bkpdir="$HOME/.dot-backups"
@@ -19,12 +19,12 @@ link_dot_file() {
   ln -sfv $PWD/$file $HOME
 }
 
-link_dot_files() {
+sync_dot_files() {
   local ignoredirs='-I ".*~" -I .git -I .gitmodules -I setup.sh -I .kde -I .xdg-config'
   local files_to_install=`eval "ls --color=never -A $ignoredirs"`
 
   for file in $files_to_install; do
-    link_dot_file $file
+    sync_dot_file $file
   done
 }
 
@@ -37,24 +37,12 @@ install_vim_plugins() {
   vim +PluginInstall +qall
 }
 
-if [ `uname` != 'Linux' ]; then
-  echo '######## Trying to install script in a non-Linux environment!'
-  echo '######## This is still untested and most probably wont work :('
-else
-  sudo pacman -S tmux openssh git nfs-utils highlight \
-    the_silver_searcher acpi \
-    faience-icon-theme gtk-engine-murrine \
-    graphicsmagick bash-completion autojump xclip
-fi
-
-# download and install manually https://github.com/mclmzz/arc-theme-Red
-
 git submodule update --init
 git submodule foreach git checkout master
 
-link_dot_files
+sync_dot_files
 # FIXME generalize this to work with all dirs inside .xdg-config
-link_dot_file .xdg-config/awesome .config/awesome
+sync_dot_file .xdg-config/awesome .config/awesome
 install_vim_plugins
 . ~/.bashrc
 
