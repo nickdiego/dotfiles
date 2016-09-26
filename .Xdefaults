@@ -1,0 +1,21 @@
+*background: black
+*foreground: #B2B2B2
+
+XTerm*foreground: #B2B2B2
+XTerm*background: black
+XTerm*saveLines: 10000
+XTerm*faceName: monospace
+XTerm*faceSize: 12pt;
+XTerm*boldFont: monospace
+Xterm*visualBell: false
+Xterm*altSendsEscape: true
+XTerm*eightBitInput: false
+
+XTerm*color0:  black
+XTerm*color1:  red
+XTerm*color2:  green
+XTerm*color3:  yellow
+XTerm*color4:  blue
+XTerm*color5:  magenta
+XTerm*color6:  cyan
+XTerm*color7:  #B2B2B2

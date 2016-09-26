@@ -1,0 +1,9 @@
+XTerm*foreground: white
+XTerm*background: black
+XTerm*saveLines: 10000
+XTerm*faceName: monospace
+XTerm*faceSize: 10pt;
+XTerm*boldFont: monospace
+Xterm*visualBell: false
+Xterm*altSendsEscape: true
+XTerm*eightBitInput: false

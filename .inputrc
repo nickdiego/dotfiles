@@ -1,0 +1,9 @@
+set bell-style none
+set meta-flag on
+set convert-meta off
+set output-meta on
+set show-all-if-ambiguous on
+set visible-stats on
+set page-completions off
+"\e[A":history-search-backward
+"\e[B":history-search-forward
