@@ -265,6 +265,28 @@ bashrc-reload() {
 alias load-ssh-keys='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_rsa_2016'
 alias image-dimensions="identify -format \"%i -> %w x %h\n\" $@"
 
+pac() {
+  local needs_sudo=0
+  for arg in $@; do
+    case $arg in
+      -S | -R | -Rs | -Syu)
+        needs_sudo=1
+        ;;
+    esac
+  done
+  if [ $needs_sudo -eq 1 ]; then
+    sudo pacman $@
+  else
+    pacman $@
+  fi
+}
+
+alias i='pac -S'
+alias s='pac -Ss'
+alias r='pac -R'
+alias rr='pac -Rs'
+alias u='pac -Syu'
+
 trust-key() {
   local key=$1
   gpg --recv-key $key
