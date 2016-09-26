@@ -191,8 +191,7 @@ alias pjson='json | pygmentize -l json'
 
 # open vim session
 v() {
-  local arg=`test -z $1 || echo -S ~/.vim/sessions/$1`
-  vim $arg
+  eval "vim '+SessionOpen $1'"
 }
 
 _vim_sessions() {
