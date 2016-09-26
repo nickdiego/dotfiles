@@ -37,9 +37,6 @@ install_vim_plugins() {
   vim +PluginInstall +qall
 }
 
-git submodule update --init
-git submodule foreach git checkout master
-
 sync_dot_files
 # FIXME generalize this to work with all dirs inside .xdg-config
 sync_dot_file .xdg-config/awesome .config/awesome
