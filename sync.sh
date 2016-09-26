@@ -43,7 +43,7 @@ install_vim_plugins() {
   [ -d .vim/bundle/Vundle.vim ] || git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
   # install the Vundle plugins configured in .vimrc
-  vim +PluginInstall +qall
+  vim -u .vim/plugins.vim +PluginInstall +qall
 }
 
 bkpdir="$HOME/.dot-backups/bkp-`date +'%b-%d-%y_%H:%M:%S'`"
