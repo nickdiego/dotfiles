@@ -14,6 +14,7 @@ custom_proj_config 'knockout'
 unset custom_proj_config
 
 knock-chroot() {
-  schroot -c precise64 &&
-  set-window-title "CHROOT (Ubuntu 12.04 x86_64)"
+  echo "Entering Knockout chroot environment..."
+  schroot -c precise64 -u nick
+  set-window-title "$PWD"
 }

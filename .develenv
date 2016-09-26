@@ -217,36 +217,6 @@ remove_from_path() {
   done
 }
 
-# Set $verbose_env var to see debug messages
-# from env scripts
-#verbose_env=on
-tools_dir=$HOME/devtools
-if [ -d ~/.tools-env.d ]; then
-  for env_script in ~/.tools-env.d/*.sh; do
-    if [ -r $env_script ]; then
-      . $env_script
-    fi
-  done
-  unset i
-fi
-
-proj_dir=$HOME/projects
-if [ -d ~/.projects-env.d ]; then
-  for env_script in ~/.projects-env.d/*.sh; do
-    if [ -r $env_script ]; then
-      . $env_script
-    fi
-  done
-  unset i
-fi
-
-#export curr_proj_build_dir=$src_drunk_clt/build
-export curr_proj_build_dir="$src_ibmo_tool/.build/linux"
-export curr_proj_target="Msys-x86_64"
-
-unset tools_dir
-unset proj_dir
-
 screenshot() {
   local file="$HOME/Pictures/screenshot-`date +'%b-%d-%y_%H:%M:%S'`.jpg"
 	echo "## Select the screen region."
@@ -294,7 +264,43 @@ trust-key() {
 }
 
 set-window-title() {
-  which wmctrl || { echo "Error! 'wmctrl' not installed!";  return 1; }
-  wmctrl -r :ACTIVE: -N "$1"
+  which wmctrl >/dev/null || { echo "Error! 'wmctrl' not installed!";  return 1; }
+  DISPLAY=':0' wmctrl -r :ACTIVE: -N "$1"
 }
+
+if [ ! -z ${SCHROOT_CHROOT_NAME} ]; then
+  set-window-title "CHROOT (${SCHROOT_CHROOT_NAME})"
+fi
+
+## Projects confs
+
+# Set $verbose_env var to see debug messages
+# from env scripts
+#verbose_env=on
+tools_dir=$HOME/devtools
+if [ -d ~/.tools-env.d ]; then
+  for env_script in ~/.tools-env.d/*.sh; do
+    if [ -r $env_script ]; then
+      . $env_script
+    fi
+  done
+  unset i
+fi
+
+proj_dir=$HOME/projects
+if [ -d ~/.projects-env.d ]; then
+  for env_script in ~/.projects-env.d/*.sh; do
+    if [ -r $env_script ]; then
+      . $env_script
+    fi
+  done
+  unset i
+fi
+
+#export curr_proj_build_dir=$src_drunk_clt/build
+export curr_proj_build_dir="$src_ibmo_tool/.build/linux"
+export curr_proj_target="Msys-x86_64"
+
+unset tools_dir
+unset proj_dir
 
