@@ -17,15 +17,16 @@ sync_dot_file() {
   echo -n "Installing ${src}: "
   if [[ -L $tgt && `readlink -f $tgt` = $src ]]; then
     echo "skipping..."
-    return 1
+    return 0
   fi
   if [[ -f $tgt || -d $tgt ]]; then
     echo "replacing..."
-    backup_dot_file $tgt
+    backup_dot_file $tgt || return 1
   else
     echo "linking..."
   fi
   ln -sf $src $tgt
+  return 0
 }
 
 sync_dot_files() {
@@ -33,8 +34,9 @@ sync_dot_files() {
   local files_to_install=`eval "ls --color=never -A $ignoredirs"`
 
   for file in $files_to_install; do
-    sync_dot_file $file
+    sync_dot_file $file || return 1
   done
+  return 0
 }
 
 install_vim_plugins() {
@@ -44,34 +46,54 @@ install_vim_plugins() {
 
   # install the Vundle plugins configured in .vimrc
   vim -u .vim/plugins.vim +PluginInstall +qall
+
+  if [ $? -ne 0 ]; then
+    echo "### Error: Failed to install Vim plugins!"
+    return 1
+  fi
+
+  local ycm_path=.vim/bundle/YouCompleteMe
+  local ycm_core_lib=${ycm_path}/third_party/ycmd/ycm_core.so
+  if [ -f $ycm_core_lib ]; then
+    echo "YouCompleteMe: ycm_core.so already exists. Skipping..."
+    return 0
+  fi
+
+  echo ==========================================================
+  echo Trying to compile native YouCompleteMe support libs...
+  echo NOTE: If it fails you\'ll must check the logs and install
+  echo it manually \;\)
+  echo ==========================================================
+  local log=ycm_compile.log
+  pushd $ycm_path
+
+  ./install.py --clang-completer > $log
+  local result=$?
+  if [ $result -eq 0 ]; then
+    echo "YouCompleteMe build succeeded!"
+    rm ${log}
+  else
+    echo "YouCompleteMe build failed!"
+    echo "Check ${log} for more details."
+  fi
+  popd
+  return $result
 }
 
 bkpdir="$HOME/.dot-backups/bkp-`date +'%b-%d-%y_%H:%M:%S'`"
 
 # Sync plain/simple dot files/dirs
-sync_dot_files
+sync_dot_files &&
 
 # Sync xdg-config files
 # FIXME generalize this to work with all dirs inside .xdg-config
-sync_dot_file .xdg-config/awesome .config/awesome
+sync_dot_file .xdg-config/awesome .config/awesome &&
 
 # Install vim plugins (using Vundle for now)
-install_vim_plugins
+install_vim_plugins &&
 
 # Reload bashrc
-. ~/.bashrc
+. ~/.bashrc &&
 
+echo "DONE!"
 unset bkpdir
-
-# TODO instruct to install by the simple way (./install.py --...)
-echo ==========================================================
-echo To YouCompleteMe ViM plugin to work you\'ll need some
-echo manual work :\(
-echo -\> Download the latest stable binaries for
-echo clang at http://llvm.org and extrat it at ~/bin/clang-binaries for example
-echo and then follow the instructions at:
-echo https://github.com/Valloric/YouCompleteMe/#full-installation-guide
-echo step 4. Compile the ycm_support_libs libraries
-echo passing the flag -DPATH_TO_LLVM_ROOT=~/bin/clang-binaries
-echo ...
-echo ==========================================================
