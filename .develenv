@@ -1,28 +1,11 @@
 # vim:ft=sh:
-## Random useful stuff
-alias ls='ls --color'
-
-PROXY_INDT=172.18.216.7
-
-#PS1="\033]0;${PWD}\n\033[32m${USER}@${HOSTNAME} \033[33m${PWD/${HOME}/~}$ "
-alias vncn9="vncviewer ${N92_IP}:0"
-alias psgrep='ps aux | grep '
-alias fgrep='find|grep --exclude="*~" --exclude="*.swp"'
-alias sendpatch='arc diff --reviewers lmoura,tullio,luck,hugopl,dakerfp,lacerda,setanta,sergio,zanoni HEAD~1'
-alias reattach-tmux='tmux attach -tprogramming'
-
-export ZBAR=/home/nick/apm-2012/apps/buscape/zbar-0.10
-export BUSCAPE=/home/nick/apm-2012/apps/buscape/git-repo/searchfoot
-alias zxing=/home/nick/apm-2012/apps/buscape/zxing-2.0/cpp/build/zxing
-alias zbarimg=/home/nick/apm-2012/apps/buscape/zbar-0.10/build/zbarimg/zbarimg
-
+# Development env helpers (vars,
+# functions, workarounds, aliases,
+# plugins, etc..
 export EDITOR=vim
 export VISUAL=vim
 export NODE_PATH=/usr/local/lib/node_modules
-
 export PATH=~/.bin:~/local/bin:$PATH
-
-export MUCURA="nick@mucura.local"
 
 #icecc_setup
 export USE_SCHEDULER=10.60.69.53
@@ -43,12 +26,10 @@ if [ -f $WEBKIT/nix-env.sh ]; then
   . $WEBKIT/nix-env.sh
 fi
 
+# work around some term/vim issues with window resizing
 alias vim='vim -c "set columns=$COLUMNS"'
-export RPI_NICK=pi@10.60.69.52
 
-#alias vim='vim -c "set columns=$COLUMNS"'
 alias ssh-diegoyam-server='ssh server-amazon -i ~/key_amazon_server.pem'
-
 # Create a ssh reverse tunnel to my amazon cloud server
 reverse_tunnel_server() {
   ssh -R 30000:localhost:22 server-amazon
@@ -217,7 +198,7 @@ remove_from_path() {
   done
 }
 
-screenshot() {
+take-screenshot() {
   local file="$HOME/Pictures/screenshot-`date +'%b-%d-%y_%H:%M:%S'`.jpg"
 	echo "## Select the screen region."
 	echo "## Will save it in $file"
