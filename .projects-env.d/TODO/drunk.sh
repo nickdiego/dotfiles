@@ -1,6 +1,6 @@
 #!/bin/bash
 
-custom_proj_config() {
+config() {
   local proj=$proj_dir/$1
   test -d $proj || return 1
   [ ! -z $verbose_env ] && echo Setting env for $proj
@@ -15,5 +15,5 @@ custom_proj_config() {
   alias drunkclt="cd $src_drunk_clt"
 }
 
-custom_proj_config 'drunk-waiter'
-unset custom_proj_config
+config 'drunk-waiter'
+unset config

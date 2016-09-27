@@ -1,0 +1,119 @@
+# vim:ft=sh:
+
+# Set $verbose_env var to see debug messages
+# from env scripts
+verbose_env=y
+
+_proj_dir=~/projects
+_projects=()
+
+# Helper functions
+
+config_proj() {
+  local script=$1
+  source $script
+  if [[ -z $projname ]]; then
+    echo "Error: Couldn't find \$projname for $script"
+    return 1
+  else
+    local projpath=$_proj_dir/$projname
+    test -d $projpath || return 1
+    log_message "Setting env for $projpath"
+    generate_proj_env $projname $projpath
+    clear_proj_env
+  fi
+}
+
+generate_proj_env() {
+  local projname=$1 projpath=$2 subproj
+  eval "${projname}_proj_root=$projpath"
+  if declared_func setenv; then
+    eval "${projname}_setenv() {
+      $(declare -f setenv)
+      setenv \$@
+    }"
+    local subs=${subprojects[@]:-$projname}
+    for subproj in $subs; do
+      setenv $projpath $subproj
+      generate_subproj_env $projname $projpath $subproj
+    done
+  fi
+}
+
+generate_subproj_env() {
+  local projname=$1 projpath=$2 subproj=$3
+  eval "${subproj}_src_dir=${srcdir}"
+  eval "${subproj}_targets=(${targets[@]})"
+  eval "${subproj}_build_dir=${srcdir}"
+  local funcname=${subprojects[@]:+activate_${subproj}}
+  if declared_func ${funcname:=activate}; then
+    eval "${subproj}_set_as_curr_project() {
+      $(declare -f ${funcname})
+      set_proj_env $projname $projpath $subproj
+      ${funcname} \$@
+      clear_proj_env
+    }"
+    _projects+=($subproj)
+  fi
+  clear_subproj_env
+}
+
+set_curr_project() {
+  local projname=$1
+  local activatefunc=${projname}_set_as_curr_project
+  if ! declared_func $activatefunc; then
+    echo "Error: Project '$projname' not found!"
+    return 1
+  fi
+  $activatefunc
+  export curr_proj_build_dir=$builddir
+  export curr_proj_target=$target
+  clear_subproj_env
+}
+
+set_proj_env() {
+  local projname=$1 projpath=$2 subproj=$3
+  ${projname}_setenv $projpath $subproj
+}
+
+clear_proj_env() {
+   unset -v projname subprojects targets
+   unset -f setenv activate
+}
+
+clear_subproj_env() {
+   unset -v srcdir builddir target
+   # TODO unset functions?
+}
+
+declared_func() {
+  declare -f "$1" >/dev/null
+}
+
+log_message() {
+  [[ $verbose_env = 'y' ]] && echo $@
+}
+
+if [ -d ~/.projects-env.d ]; then
+  for script in ~/.projects-env.d/*.sh; do
+    config_proj $script
+  done
+  unset script
+fi
+
+## Bash completion stuff
+__available_projects() {
+  local cur prev projects
+
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  prev="${COMP_WORDS[COMP_CWORD-1]}"
+  projects="${_projects[@]}"
+
+  COMPREPLY=( $(compgen -W "${projects}" -- ${cur}) )
+  return 0
+}
+
+complete -F __available_projects set_curr_project
+
+
+unset -v verbose_env

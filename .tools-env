@@ -1,0 +1,14 @@
+# vim:ft=sh:
+
+tools_dir=~/devtools
+
+if [ -d ~/.tools-env.d ]; then
+  for env_script in ~/.tools-env.d/*.sh; do
+    if [ -r $env_script ]; then
+      . $env_script
+    fi
+  done
+  unset env_script
+fi
+
+

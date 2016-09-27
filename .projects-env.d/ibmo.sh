@@ -1,16 +1,35 @@
 #!/bin/bash
 
-custom_proj_config() {
-  local proj=$proj_dir/$1
-  test -d $proj || return 1
-  [ ! -z $verbose_env ] && echo Setting env for $proj
+# std project variables
+projname='ibmo'
+subprojects=('libibmo' 'ibmotool')
 
-  proj_ibmo="$proj"
-  local src_ibmo="$proj_ibmo/src"
-  src_ibmo_lib="$src_ibmo/libibmo"
-  src_ibmo_tool="$src_ibmo/ibmotool"
-  alias ibmo="cd $src_ibmo"
+setenv() {
+  local root=$1 subproj=$2
+  case $subproj in
+    libibmo)
+      srcdir="$root/src/ibmotool/libibmo"
+      targets=('Msys-x86_64' 'Linux-x86_64')
+      ;;
+    ibmotool)
+      srcdir="$root/src/ibmotool"
+      targets=('Msys-x86_64' 'Linux-x86_64')
+      ;;
+    *)
+      return 1
+      ;;
+  esac
 }
 
-custom_proj_config 'ibmo'
-unset custom_proj_config
+activate_libibmo() {
+  builddir="$srcdir/.build/$target"
+  target=${targets[0]} # FIXME get from parameters
+}
+
+activate_ibmotool() {
+  builddir="$srcdir/.build/$target"
+  target=${targets[0]} # FIXME get from parameters
+
+  # TODO Call come env initialization script
+}
+

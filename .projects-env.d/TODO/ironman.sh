@@ -1,6 +1,6 @@
 #!/bin/bash
 
-custom_proj_config() {
+config() {
   local proj=$proj_dir/$1
   test -d $proj || return 1
   [ ! -z $verbose_env ] && echo Setting env for $proj
@@ -18,5 +18,5 @@ custom_proj_config() {
   alias ironclt_tests="cd $src_iron_root/.build_certi_desktop_linux_x86_64/dev/tests/diagnosis-control-center/src"
 }
 
-custom_proj_config 'iron-man'
-unset custom_proj_config
+config 'iron-man'
+unset config
