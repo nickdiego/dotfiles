@@ -5,7 +5,8 @@
 export EDITOR=vim
 export VISUAL=vim
 export NODE_PATH=/usr/local/lib/node_modules
-export GREP_OPTIONS="--exclude='*~' --exclude='*.swp'"
+export MAIL=/var/spool/mail/nick
+export CUSTOM_GREP_OPTIONS=('--exclude=*~' '--exclude=*.swp')
 
 export PATH=~/.bin:~/local/bin:$PATH
 
