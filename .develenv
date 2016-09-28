@@ -5,6 +5,8 @@
 export EDITOR=vim
 export VISUAL=vim
 export NODE_PATH=/usr/local/lib/node_modules
+export GREP_OPTIONS="--exclude='*~' --exclude='*.swp'"
+
 export PATH=~/.bin:~/local/bin:$PATH
 
 #icecc_setup
@@ -167,7 +169,6 @@ export POWERLINE_PATH="$HOME/.local/lib/python2.7/site-packages/powerline"
 # replacing something in several files
 #cat /tmp/xxxxx | xargs -I '{}' sed -i 's/RenderPartObject {IFRAME}/RenderIFrame {IFRAME}/g' {}
 
-alias grep="grep --exclude='*~' --exclude='*.swp'"
 alias remove_colors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"'
 alias pjson='json | pygmentize -l json'
 
