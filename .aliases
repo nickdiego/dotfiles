@@ -39,3 +39,4 @@ if [ -x /usr/bin/dircolors ]; then
   alias egrep="egrep --color=auto ${CUSTOM_GREP_OPTIONS[@]}"
 fi
 
+alias shellcode='highlight -S sh -O xterm256'
