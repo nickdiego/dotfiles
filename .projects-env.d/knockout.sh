@@ -11,6 +11,8 @@ setenv() {
 }
 
 activate() {
+  local subproj=$1
+
   function chroot_precise64() {
     echo "Entering Knockout chroot environment..."
     schroot -c precise64 -u nick
@@ -20,14 +22,10 @@ activate() {
   builddir="$projroot/build/$target" #TODO
   target=${targets[0]} # FIXME get from parameters
 
-  local opt_chroot=0
-  while (( $# )); do
-    case $1 in
-      --chroot) opt_chroot=1 ;;
-    esac
-    shift
-  done
-  (( opt_chroot )) && echo "chroo??"
+  if (( ${_opt[--chroot]} )); then
+    echo "$subproj: chroot??"
+    #chroot_precise64
+  fi
 
   # TODO Call come env initialization script
 }
