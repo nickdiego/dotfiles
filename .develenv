@@ -6,6 +6,7 @@ export EDITOR=vim
 export VISUAL=vim
 export NODE_PATH=/usr/local/lib/node_modules
 export MAIL=/var/spool/mail/nick
+export FIGNORE='.swp:.un~'
 export CUSTOM_GREP_OPTIONS=('--exclude=*~' '--exclude=*.swp')
 
 export PATH=~/.bin:~/local/bin:$PATH
@@ -250,6 +251,18 @@ set-window-title() {
   which wmctrl >/dev/null || { echo "Error! 'wmctrl' not installed!";  return 1; }
   DISPLAY=':0' wmctrl -r :ACTIVE: -N "$1"
 }
+
+fdecl() {
+  if ! type highlight >/dev/null; then
+    echo "Error: highlight tool not installed!"
+    echo "See: http://www.andre-simon.de/doku/highlight/en/highlight.php"
+    return 1
+  fi
+  local f=${1:?Usage: fdecl <function_name>}
+  declare -f $1 | highlight -S sh -O xterm256
+}
+
+### CHROOT handling
 
 if [ ! -z ${SCHROOT_CHROOT_NAME} ]; then
   set-window-title "CHROOT (${SCHROOT_CHROOT_NAME})"
