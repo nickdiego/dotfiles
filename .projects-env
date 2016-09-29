@@ -7,6 +7,8 @@ verbose_env=n
 _proj_dir=~/projects
 _projects=()
 
+_prev_project=()
+
 # Helper functions
 
 config_proj() {
@@ -17,11 +19,12 @@ config_proj() {
     if declared_func setenv; then
       eval "${projname}_setenv() {
         $(declare -f setenv)
+        projroot=$projpath
         setenv \$@
       }"
       local subs=${subprojects[@]:-$projname}
       for subproj in $subs; do
-        setenv $projpath $subproj
+        ${projname}_setenv $subproj
         generate_subproj_env $projname $projpath $subproj
       done
     fi
@@ -29,22 +32,27 @@ config_proj() {
 
   function generate_subproj_env() {
     local projname=$1 projpath=$2 subproj=$3
-    eval "${subproj}_src_dir=${srcdir}"
-    eval "${subproj}_targets=(${targets[@]})"
-    eval "${subproj}_build_dir=${srcdir}"
+    local prefix=$(generate_prefix $projname $subproj)
+    eval "${prefix}_src_dir=${srcdir}"
+    eval "${prefix}_targets=(${targets[@]})"
     if declared_func 'activate'; then
-      eval "${subproj}_set_as_curr_project() {
+      eval "${prefix}_set_as_curr_project() {
         $(declare -f activate)
-        ${projname}_setenv '$projpath' '$subproj'
+        ${projname}_setenv '$subproj'
         activate '${subproj}' \$@
       }"
-      _projects+=($subproj)
+      _projects+=(${prefix/\_/\/})
     fi
     clear_subproj_env
   }
 
+  function generate_prefix() {
+    local proj=$1 sub=$2
+    [ "$proj" = "$sub" ] && echo $proj || echo "${proj}_${sub}"
+  }
+
   function clear_proj_env() {
-     unset -v projname subprojects targets
+     unset -v projname projroot subprojects targets
      unset -f setenv activate
   }
 
@@ -65,7 +73,7 @@ config_proj() {
 
   source $script
   if [[ -z $projname ]]; then
-    echo "Error: Couldn't find \$projname for $script"
+    log_message "Error: Couldn't find \$projname for $script"
     return 1
   else
     local projpath=$_proj_dir/$projname
@@ -79,13 +87,14 @@ config_proj() {
 
 ## Public functions
 set_curr_project() {
-  local projname=$1
-  local activatefunc=${projname}_set_as_curr_project
+  local projname=$1 local prefix=${1/\//\_}
+  local activatefunc=${prefix}_set_as_curr_project
   if ! declared_func $activatefunc; then
     echo "Error: Project '$projname' not found!"
     return 1
   fi
-  $activatefunc
+  shift && $activatefunc $@
+  (( _backing )) || _prev_project+=($curr_project)
   export curr_project=$projname
   export curr_proj_build_dir=$builddir
   export curr_proj_target=$target
@@ -93,12 +102,24 @@ set_curr_project() {
 }
 
 cd_project() {
-  local p=${1:-$curr_project}
-  [ "$p" = "$curr_project" ] || set_curr_project $p
-  case $p in
-    -) popd >/dev/null
+  local projname=${1:-$curr_project}
+  local prefix=${projname/\//\_}
+  case $projname in
+    -)
+      local last=$((${#_prev_project[@]} - 1))
+      if (( $last < 0 )); then
+        echo "No previous project set."
+      else
+        _backing=1 cd_project ${_prev_project[$last]}
+        unset -v _prev_project[$last] _backing
+      fi
       ;;
-    *) eval "pushd \${${p}_src_dir} >/dev/null"
+    *)
+      if [ "$projname" != "$curr_project" ]; then
+        shift && set_curr_project $projname $@
+      fi
+      eval "pushd \${${prefix}_src_dir} >/dev/null"
+      ;;
   esac
 }
 

@@ -5,21 +5,20 @@ projname='ibmo'
 subprojects=('libibmo' 'ibmotool')
 
 setenv() {
-  local root=$1 subproj=$2
+  local subproj=$1
   case $subproj in
     libibmo)
-      srcdir="$root/src/ibmotool/libs/libibmo"
+      srcdir="$projroot/src/ibmotool/libs/libibmo"
       targets=('Msys-x86_64' 'Linux-x86_64')
       ;;
     ibmotool)
-      srcdir="$root/src/ibmotool"
+      srcdir="$projroot/src/ibmotool"
       targets=('Msys-x86_64' 'Linux-x86_64')
       ;;
     *)
       return 1
       ;;
   esac
-  projroot=$root
 }
 
 activate() {

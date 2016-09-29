@@ -1,15 +1,14 @@
 #!/bin/bash
 
-# std project variables
-projname='kernel'
+projname=qt5
 
 setenv() {
-  srcdir="$projroot/src/linux"
-  targets=('Linux-x86_64')
+  srcdir=${projroot}/src/qt5
+  targets=('Msys-x86_64' 'Linux-x86_64')
 }
 
 activate() {
-  builddir="$projroot/build/$target"
+  builddir="$projroot/build/$target" #TODO
   target=${targets[0]} # FIXME get from parameters
 
   # TODO Call come env initialization script
