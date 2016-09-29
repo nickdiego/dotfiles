@@ -136,8 +136,8 @@ set_project() {
   curr_proj_target=$target
   clear_subproj_env
 
-  log_message "Switched${_opt['--back']:+ back} to project '${projid}'"\
-    " (Back stack: [ ${_prev_project[@]//' '/\<\-} ])"
+  log_message "Switched ${_opt['--back']:+back }to project '${projid}'" \
+    " (Back stack: [ $(sed 's/ / > /g' <<< "${_prev_project[@]}") ])"
 }
 
 cd_project() {
