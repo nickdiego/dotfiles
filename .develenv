@@ -262,9 +262,3 @@ fi
 
 [ -f ~/.tools-env ] && . ~/.tools-env
 [ -f ~/.projects-env ] && . ~/.projects-env
-
-alias pset=set_project
-alias pcd=cd_project
-
-complete -F __available_projects pset
-complete -F __available_projects pcd

@@ -2,13 +2,11 @@
 
 _proj_dir=~/projects
 
+unset -v _prev_project _projects
 declare -a _projects _prev_project
-declare -A _argopts
 
 # Helper functions
-
 config_proj() {
-
   function generate_proj_env() {
     local projname=$1 projpath=$2 subproj
     eval "${projname}_proj_root=$projpath"
@@ -55,7 +53,7 @@ config_proj() {
   }
 
   function clear_subproj_env() {
-     unset -v srcdir builddir target
+     unset -v srcdir builddir target options
      # TODO unset functions?
   }
 
@@ -147,25 +145,46 @@ cd_project() {
   cd $curr_proj_src_dir
 }
 
+## Bash completion stuff
+__projectopts() {
+  #(( ${#_projects[@]:-0} )) || return 0
+  local i=1 cur="${COMP_WORDS[COMP_CWORD]}"
+  local optset=() result=()
+  local arg proj
+  while (( i < COMP_CWORD )); do
+    arg=${COMP_WORDS[i]}
+    case $arg in
+      --* | -?) optset+=( $arg );;
+      *) [[ ${_projects[@]} = *${arg}* ]] && proj=$arg
+        ;;
+    esac
+    i=$((i+1))
+  done
+  if [[ -z ${proj:-} ]]; then
+    result+=( "${_projects[*]}" )
+  else
+    result+=( "$_cmdproj_options" "\$${proj}_options" )
+  fi
+  COMPREPLY=( $(compgen -W "${result[*]}" -- ${cur}) )
+  return 0
+}
+
+## Init stuff
+_cmdproj_options=( '-v' )
+
 if [ -d ~/.projects-env.d ]; then
   for script in ~/.projects-env.d/*.sh; do
     config_proj $script
   done
-  _prev_project=()
   unset script
 fi
 
-## Bash completion stuff
-__available_projects() {
-  local cur prev projects
+complete -F __projectopts set_project
+complete -F __projectopts cd_project
 
-  cur="${COMP_WORDS[COMP_CWORD]}"
-  prev="${COMP_WORDS[COMP_CWORD-1]}"
-  projects="${_projects[@]}"
+## Aliases
+alias pset='set_project'
+alias pcd='cd_project'
+complete -F __projectopts pset
+complete -F __projectopts pcd
 
-  COMPREPLY=( $(compgen -W "${projects}" -- ${cur}) )
-  return 0
-}
-
-complete -F __available_projects set_project
-complete -F __available_projects cd_project
