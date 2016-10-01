@@ -31,7 +31,7 @@ if [ -f $WEBKIT/nix-env.sh ]; then
 fi
 
 # work around some term/vim issues with window resizing
-alias vim='vim -c "set columns=$COLUMNS"'
+#alias vim='vim -c "set columns=$COLUMNS"'
 
 alias ssh-diegoyam-server='ssh server-amazon -i ~/key_amazon_server.pem'
 # Create a ssh reverse tunnel to my amazon cloud server
@@ -176,7 +176,14 @@ alias pjson='json | pygmentize -l json'
 
 # open vim session
 v() {
-  eval "vim '+SessionOpen $1'"
+  local session=${1:-${curr_proj_vimsession}}
+
+  if [[ -z $session ]]; then
+    echo "No session passed as argument nor \$curr_proj_vimsession set!" >&2
+    return 1
+  fi
+
+  eval "vim '+SessionOpen $session' '+set columns=$COLUMNS'"
 }
 
 _vim_sessions() {

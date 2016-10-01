@@ -80,7 +80,19 @@ install_vim_plugins() {
   return $result
 }
 
+install_submodules() {
+  echo "Fetching submodules..."
+  git submodule update --init &&
+  git submodule foreach git checkout master &&
+  echo "Installing tmux plugins..."
+  ./.tmux/plugins/tpm/scripts/install_plugins.sh
+}
+
 bkpdir="$HOME/.dot-backups/bkp-`date +'%b-%d-%y_%H:%M:%S'`"
+
+
+# Install submodules
+install_submodules &&
 
 # Sync plain/simple dot files/dirs
 sync_dot_files &&

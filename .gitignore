@@ -6,4 +6,5 @@
 *.pyc
 .weechat/logs
 .weechat/weechat.log
-
+.tmux/plugins
+.tmux/resurrect
