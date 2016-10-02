@@ -31,20 +31,24 @@ config_proj() {
     eval "${prefix}_src_dir=${srcdir}"
     eval "${prefix}_targets=(${targets[@]})"
     eval "${prefix}_options=(${options[@]})"
-    if declared_func 'activate'; then
+    if ! declared_func 'activate'; then
+      eval "${prefix}_set_as_curr_project() {
+        ${projname}_setenv '$subproj'
+      }"
+    else
       eval "${prefix}_set_as_curr_project() {
         $(declare -f activate)
         ${projname}_setenv '$subproj'
         activate '${subproj}' \$@
       }"
-      _projects+=(${prefix/\_/\/})
     fi
+    _projects+=( $(generate_prefix $projname $subproj '_') )
     clear_subproj_env
   }
 
   function generate_prefix() {
-    local proj=$1 sub=$2
-    [ "$proj" = "$sub" ] && echo $proj || echo "${proj}_${sub}"
+    local proj=$1 sub=$2 sep=${3:-_}
+    [ "$proj" = "$sub" ] && echo $proj || echo "${proj}${sep}${sub}"
   }
 
   function clear_proj_env() {
@@ -53,8 +57,8 @@ config_proj() {
   }
 
   function clear_subproj_env() {
-     unset -v srcdir builddir target options
-     # TODO unset functions?
+     unset -v srcdir builddir target options vimsession
+     unset -f setenv activate
   }
 
   function declared_func() {
@@ -118,20 +122,18 @@ set_project() {
     unset -v _prev_project[$last]
   fi
 
+  local subproj=${projid#*/}
   local prefix=${projid/\//\_}
   local activatefunc=${prefix}_set_as_curr_project
-  if ! declared_func $activatefunc; then
-    echo "Error: Project '$projid' not found!"
-    return 1
-  fi
   if [[ "$projid" != "$curr_project" && "${_opt['--back']}" -ne 1 ]]; then
     _prev_project+=($curr_project)
   fi
-  $activatefunc ${projid#*/}
+  declared_func $activatefunc && $activatefunc $subproj
   curr_project=$projid
   curr_proj_src_dir=$srcdir
   curr_proj_build_dir=$builddir
   curr_proj_target=$target
+  curr_proj_vimsession=${vimsession:-$subproj}
   clear_subproj_env
 
   log_message "Switched ${_opt['--back']:+back }to project '${projid}'" \
