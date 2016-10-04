@@ -78,7 +78,9 @@ flags = [
 compilation_database_folder = os.environ.get('curr_proj_build_dir')
 
 
-if os.path.exists( compilation_database_folder ):
+if compilation_database_folder != None and \
+    os.path.exists( compilation_database_folder ) and \
+    os.path.exists( compilation_database_folder + '/compile_commands.json'):
   database = ycm_core.CompilationDatabase( compilation_database_folder )
 else:
   database = None
