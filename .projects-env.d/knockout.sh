@@ -1,13 +1,14 @@
 #!/bin/bash
 
 projname=knockout
-subprojects=(cc pic)
+subprojects=(scripts cc pic)
 
 setenv() {
   local subproj=$1
   local srcbasedir="$projroot/repos/sunspot"
   srcdir=${srcbasedir}/${subproj}
   targets=('armv7a-mediatek482_001_neon-linux-gnueabi-strip')
+  options=('--chroot')
 }
 
 activate() {
@@ -23,8 +24,8 @@ activate() {
   target=${targets[0]} # FIXME get from parameters
 
   if (( ${_opt[--chroot]} )); then
-    echo "$subproj: chroot??"
-    #chroot_precise64
+    echo "$subproj: chrooting..."
+    chroot_precise64
   fi
 
   # TODO Call come env initialization script
