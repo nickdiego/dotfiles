@@ -71,10 +71,10 @@ config_proj() {
     log_message "Error: Couldn't find \$projname for $script"
     return 1
   else
-    local projpath=$_proj_dir/$projname
-    test -d $projpath || return 1
-    log_message "Setting env for $projpath"
-    generate_proj_env $projname $projpath
+    local projrootpath=${projpath:-$_proj_dir/$projname}
+    test -d $projrootpath || return 1
+    log_message "Setting env for $projrootpath"
+    generate_proj_env $projname $projrootpath
     clear_proj_env
   fi
 }
