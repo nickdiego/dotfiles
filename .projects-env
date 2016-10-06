@@ -42,7 +42,7 @@ config_proj() {
         activate '${subproj}' \$@
       }"
     fi
-    _projects+=( $(generate_prefix $projname $subproj '_') )
+    _projects+=( $(generate_prefix $projname $subproj '/') )
     clear_subproj_env
   }
 
@@ -58,7 +58,6 @@ config_proj() {
 
   function clear_subproj_env() {
      unset -v srcdir builddir target options vimsession
-     unset -f setenv activate
   }
 
   function declared_func() {
@@ -157,7 +156,7 @@ __projectopts() {
     arg=${COMP_WORDS[i]}
     case $arg in
       --* | -?) optset+=( $arg );;
-      *) [[ ${_projects[@]} = *${arg}* ]] && proj=$arg
+      *) [[ "${_projects[@]}" =~ "${arg}" ]] && proj=${arg/\//_}
         ;;
     esac
     i=$((i+1))
