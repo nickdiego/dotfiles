@@ -43,3 +43,5 @@ fi
 ## http://www.andre-simon.de/doku/highlight/en/highlight.php"
 alias shellcode='highlight -S sh -O xterm256'
 alias fdecl="declare -f $1 | highlight -S sh -O xterm256"
+
+alias lets-go='arrange-displays -0 && dm-tool lock'
