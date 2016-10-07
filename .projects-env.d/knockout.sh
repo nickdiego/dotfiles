@@ -1,7 +1,7 @@
 #!/bin/bash
 
 projname=knockout
-subprojects=(scripts cc pic)
+subprojects=(scripts 3rdparty pic cc)
 
 setenv() {
   local subproj=$1
