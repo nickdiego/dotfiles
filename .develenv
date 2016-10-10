@@ -133,7 +133,23 @@ fake-arrange-displays() {
           --output $DISPLAY_MAIN --auto --right-of $DISPLAY_AUX1
 }
 
+add-display-mode() {
+  local hres=${1:-1440} vres=${2:-900}
+  local name=${3:-"${hres}x${vres}_custom"}
+  local mode=$(cvt $hres $vres | tail -n1 | sed 's,^Modeline ".\+"\s\+,,')
+  xrandr --newmode "$name" $mode
+}
+
+add-aux-display-modes() {
+  local modename=$1
+  add-display-mode 1440 900 "$modename"
+  xrandr --addmode $DISPLAY_AUX1 "$modename"
+  xrandr --addmode $DISPLAY_AUX2 "$modename"
+}
+
 arrange-displays() {
+  local modename='1440x900_aux'
+  add-aux-display-modes "$modename"
   case $1 in
     -2)
       enable-display-aux1 --left-of $DISPLAY_MAIN && sleep 1 &&
@@ -144,8 +160,8 @@ arrange-displays() {
         --output $DISPLAY_AUX1 --off \
         --output $DISPLAY_MAIN --auto;;
     -3 | '')
-      xrandr --output $DISPLAY_AUX2 --left-of $DISPLAY_AUX1 --auto \
-        --output $DISPLAY_AUX1 --left-of $DISPLAY_MAIN --auto \
+      xrandr --output $DISPLAY_AUX2 --left-of $DISPLAY_AUX1 --mode "$modename" \
+        --output $DISPLAY_AUX1 --left-of $DISPLAY_MAIN --mode "$modename" \
         --output $DISPLAY_MAIN --auto;;
   esac
 }
