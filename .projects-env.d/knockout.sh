@@ -32,6 +32,7 @@ activate() {
     minicom -w -D $dev -b 115200
   fi
 
-  # TODO Call come env initialization script
+  # Call env initialization script if exists
+  [ -r $srcdir/env.sh ] && . $srcdir/env.sh $target
 }
 

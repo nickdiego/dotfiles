@@ -22,7 +22,7 @@ activate() {
   builddir="$srcdir/.build/$target"
   target=${targets[0]} # FIXME get from parameters
 
-  # Call env initialization script
+  # Call env initialization script if exists
   [ -r $srcdir/env.sh ] && . $srcdir/env.sh $target
 }
 
