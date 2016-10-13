@@ -164,7 +164,7 @@ __projectopts() {
   if [[ -z ${proj:-} ]]; then
     result+=( "${_projects[*]}" )
   else
-    result+=( "$_cmdproj_options" "\$${proj}_options" )
+    result+=( "$_cmdproj_options" "\${${proj}_options[@]}" )
   fi
   COMPREPLY=( $(compgen -W "${result[*]}" -- ${cur}) )
   return 0
