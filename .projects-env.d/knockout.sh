@@ -8,7 +8,7 @@ setenv() {
   local srcbasedir="$projroot/repos/sunspot"
   srcdir=${srcbasedir}/${subproj}
   targets=('armv7a-mediatek482_001_neon-linux-gnueabi-strip')
-  options=('--chroot')
+  options=('--chroot' '--minicom')
 }
 
 activate() {
@@ -26,6 +26,10 @@ activate() {
   if (( ${_opt[--chroot]} )); then
     echo "$subproj: chrooting..."
     chroot_precise64
+  elif (( ${_opt[--minicom]} )); then
+    local dev='/dev/ttyUSB0'
+    echo "$subproj: connecting to ${dev}..."
+    minicom -w -D $dev -b 115200
   fi
 
   # TODO Call come env initialization script
