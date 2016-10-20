@@ -78,72 +78,32 @@ if [ -f /usr/share/git/completion/git-completion.bash ]; then
   . /usr/share/git/completion/git-completion.bash
 fi
 
-# Enables a (already xrandr configured) second monitor,
-# to see current configured outputs:
-#
+# Multihead helper functions
+# To see current display config, execute:
 # $ xrandr -q
-#
-# usage: enable_display [<XRANDR_OUTPUT_ID>]
+
 # Running Wayland
 if [ ! -z $WAYLAND_DISPLAY ]; then
   export DISPLAY_MAIN='XWAYLAND0'
   export DISPLAY_AUX='XWAYLAND1'
   export DISPLAY_AUX='XWAYLAND2'
-else
-  # Running Xorg
+else # assuming Running Xorg
   export DISPLAY_MAIN='LVDS1'
   export DISPLAY_AUX1='VGA1'
   export DISPLAY_AUX2='HDMI1'
 fi
 
-MODE_DISPLAY_AUX="1440x900"
-
-enable-display-aux1() {
-  xrandr --output $DISPLAY_AUX1 --mode $MODE_DISPLAY_AUX $@
-}
-
-enable-display-aux2() {
-  xrandr --output $DISPLAY_AUX2 --mode $MODE_DISPLAY_AUX $@
-}
-
-enable-display-main() {
-  xrandr --output $DISPLAY_MAIN --auto $@
-}
-
-disable_display() {
-  OUTPUT_ID=$1
-  [ -z $OUTPUT_ID ] && OUTPUT_ID=$DISPLAY_AUX1
-  xrandr --output $OUTPUT_ID --off
-}
-
-alias disable-display-main="disable_display $DISPLAY_MAIN"
-alias disable-display-aux1="disable_display $DISPLAY_AUX1"
-alias disable-display-aux2="disable_display $DISPLAY_AUX2"
-
-fix_resolution_main_monitor() {
-  xrandr --newmode "1440x900"  106.50  1440 1528 1672 1904  900 903 909 934 -hsync +vsync
-  xrandr --addmode $DISPLAY_MAIN "1440x900"
-  xrandr --output $DISPLAY_MAIN --mode "1440x900"
-}
-
-fake-arrange-displays() {
-    echo xrandr \
-          --output $DISPLAY_AUX2 --mode "$MODE_DISPLAY_AUX" --primary \
-          --output $DISPLAY_AUX1 --mode "$MODE_DISPLAY_AUX" --right-of $DISPLAY_AUX2 \
-          --output $DISPLAY_MAIN --auto --right-of $DISPLAY_AUX1
-}
-
 add-display-mode() {
   local hres=${1:-1440} vres=${2:-900}
   local name=${3:-"${hres}x${vres}_custom"}
   local mode=$(cvt $hres $vres | tail -n1 | sed 's,^Modeline ".\+"\s\+,,')
-  xrandr --newmode "$name" $mode
+  xrandr --newmode "$name" $mode 2>/dev/null || return 1
 }
 
 add-aux-display-modes() {
   local modename=$1
-  add-display-mode 1440 900 "$modename"
-  xrandr --addmode $DISPLAY_AUX1 "$modename"
+  add-display-mode 1440 900 "$modename" &&
+  xrandr --addmode $DISPLAY_AUX1 "$modename" &&
   xrandr --addmode $DISPLAY_AUX2 "$modename"
 }
 
@@ -151,35 +111,37 @@ arrange-displays() {
   local modename='1440x900_aux'
   add-aux-display-modes "$modename"
   case $1 in
-    -2)
-      enable-display-aux1 --left-of $DISPLAY_MAIN && sleep 1 &&
-      disable-display-main && sleep 1 &&
-      enable-display-aux2 --left-of $DISPLAY_AUX1;;
     -0 | --reset)
       xrandr --output $DISPLAY_AUX2 --off \
         --output $DISPLAY_AUX1 --off \
         --output $DISPLAY_MAIN --auto;;
+    -2)
+      xrandr --output $DISPLAY_MAIN --off \
+        --output $DISPLAY_AUX2 --left-of $DISPLAY_AUX1 --mode "$modename" --primary \
+        --output $DISPLAY_AUX1 --mode "$modename";;
     -3 | '')
-      xrandr --output $DISPLAY_AUX2 --left-of $DISPLAY_AUX1 --mode "$modename" \
-        --output $DISPLAY_AUX1 --left-of $DISPLAY_MAIN --mode "$modename" \
+      xrandr --output $DISPLAY_AUX2 --mode "$modename" --left-of $DISPLAY_AUX1 \
+        --output $DISPLAY_AUX1 --mode "$modename" --left-of $DISPLAY_MAIN \
         --output $DISPLAY_MAIN --auto;;
   esac
 }
 
+# Find/Grep src helper functions
 reset_findsrc_dir() {
-    export FINDSRC_DIR='.'
+  export FINDSRC_DIR='.'
 }
-reset_findsrc_dir
 
 findsrc() {
-    DIR='.'
-    [ -z $FINDSRC_DIR ] && DIR=$PWD
-    find $DIR | grep "$1.c\$\|$1.cpp\$\|$1.h\$"
+  DIR='.'
+  [ -z $FINDSRC_DIR ] && DIR=$PWD
+  find $DIR | grep "$1.c\$\|$1.cpp\$\|$1.h\$"
 }
 
 grepsrc() {
-    grep $@ `find -name "*[.cpp,.h]"`
+  grep $@ `find -name "*[.cpp,.h]"`
 }
+
+reset_findsrc_dir
 
 export POWERLINE_PATH="$HOME/.local/lib/python2.7/site-packages/powerline"
 #. $POWERLINE_PATH/bindings/bash/powerline.sh
