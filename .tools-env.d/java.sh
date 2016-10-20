@@ -5,8 +5,8 @@ custom_tool_config() {
   test -d $tool || return 1
   [ ! -z $verbose_env ] && echo Setting env for $tool
 
-  export JAVA_HOME=$tool
-  export PATH="$PATH:$JAVA_HOME/bin"
+  #export JAVA_HOME=$tool
+  #export PATH="$PATH:$JAVA_HOME/bin"
 }
 
 custom_tool_config 'jdk1.8.0_92'
