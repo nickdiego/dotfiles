@@ -1,0 +1,28 @@
+#!/bin/sh
+# vim:ft=sh:
+
+(( $# >= 2 )) || {
+  echo "usage: $0 <new-email> <new-name> [<curr-email>]"
+  exit 1
+}
+
+default='nick.diego@gmail.com'
+newemail=$1
+newname=$2
+old=${3:-$default}
+filter="OLD_EMAIL=\"$old\"
+CORRECT_NAME=\"$newname\"
+CORRECT_EMAIL=\"$newemail\"
+
+if [ \"\$GIT_COMMITTER_EMAIL\" = \"\$OLD_EMAIL\" ]
+then
+    export GIT_COMMITTER_NAME=\"\$CORRECT_NAME\"
+    export GIT_COMMITTER_EMAIL=\"\$CORRECT_EMAIL\"
+fi
+if [ \"\$GIT_AUTHOR_EMAIL\" = \"\$OLD_EMAIL\" ]
+then
+    export GIT_AUTHOR_NAME=\"\$CORRECT_NAME\"
+    export GIT_AUTHOR_EMAIL=\"\$CORRECT_EMAIL\"
+fi"
+
+git filter-branch --env-filter "$filter" --tag-name-filter cat -- --branches --tags
