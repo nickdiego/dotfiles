@@ -24,7 +24,8 @@ activate() {
   target=${targets[0]} # FIXME get from parameters
 
   # Call env initialization script if exists
-  [ -r $projroot/env.sh ] && . $projroot/env.sh $target
+  [ -r $projroot/repos/sunspot/env.sh ] &&
+    . $projroot/repos/sunspot/env.sh $target
 
   # Process options
   if (( ${_opt[--chroot]} )); then
