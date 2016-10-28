@@ -188,9 +188,9 @@ remove_from_path() {
 
 take-screenshot() {
   local file="$HOME/Pictures/screenshot-`date +'%b-%d-%y_%H:%M:%S'`.jpg"
-	echo "## Select the screen region."
-	echo "## Will save it in $file"
-	gm import "$file" && nautilus "$file"&
+  echo "## Select the screen region."
+  echo "## Will save it in $file"
+  gm import "$file" && nautilus "$file"&
 }
 
 get_external_ip() {
@@ -213,7 +213,7 @@ pac() {
         ;;
     esac
   done
-  if [ $needs_sudo -eq 1 ]; then
+  if (( $needs_sudo )); then
     sudo pacman $@
   else
     pacman $@
