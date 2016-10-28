@@ -15,9 +15,11 @@ activate() {
   local subproj=$1
 
   function chroot_precise64() {
-    echo "Entering Knockout chroot environment..."
+    local label='precise64'
+    local title="chroot [${label}]"
+    echo "Entering Knockout chroot environment '$label'..."
+    set-window-title "$title"
     schroot -c precise64 -u nick
-    set-window-title "$PWD"
   }
 
   builddir="$projroot/build/$target" #TODO

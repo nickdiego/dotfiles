@@ -1,3 +1,4 @@
+# vim:ft=sh:
 # Shell prompt based on the Solarized Dark theme.
 # Screenshot: http://i.imgur.com/EkEtphC.png
 # Heavily inspired by @necolas’s prompt: https://github.com/necolas/dotfiles
@@ -113,9 +114,12 @@ else
 	hostStyle="${bold}${yellow}";
 fi;
 
+chroot="$SCHROOT_CHROOT_NAME"
+
 # Set the terminal title to the current working directory.
 #PS1="\[\033]0;\w\007\]";
 PS1="\[\033]0;\w\007\]";
+PS1+="${chroot:+${red}(${chroot})}"
 PS1+="\[${reset}${blue}\][\W] "; # working directory
 PS1+="\[${bold}\]"; # newline
 PS1+="\[${userStyle}\]\u"; # username
@@ -132,7 +136,6 @@ export PS1;
 
 PS2="\[${yellow}\]→ \[${reset}\]";
 export PS2;
-
 
 
 #if [ "$color_prompt" = yes ]; then

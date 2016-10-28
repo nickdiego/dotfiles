@@ -233,15 +233,10 @@ trust-key() {
 }
 
 set-window-title() {
+  test -n $TMUX && tmux rename-window "$1"
   which wmctrl >/dev/null || { echo "Error! 'wmctrl' not installed!";  return 1; }
   DISPLAY=':0' wmctrl -r :ACTIVE: -N "$1"
 }
-
-### CHROOT handling
-
-if [ ! -z ${SCHROOT_CHROOT_NAME} ]; then
-  set-window-title "CHROOT (${SCHROOT_CHROOT_NAME})"
-fi
 
 ## Projects confs
 
