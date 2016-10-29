@@ -5,10 +5,11 @@ subprojects=(scripts 3rdparty pic cc ncl)
 
 setenv() {
   local subproj=$1
-  local srcbasedir="$projroot/repos/sunspot"
-  srcdir=${srcbasedir}/${subproj}
   targets=('armv7a-mediatek482_001_neon-linux-gnueabi-strip')
   options=('--chroot' '--minicom')
+  [[ $subproj == $projname ]] &&
+    srcdir=$projroot ||
+    srcdir="$projroot/repos/sunspot/${subproj}"
 }
 
 activate() {

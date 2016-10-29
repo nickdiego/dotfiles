@@ -17,8 +17,8 @@ config_proj() {
         projroot=$projpath
         setenv \$@
       }"
-      local subs=${subprojects[@]:-$projname}
-      for subproj in $subs; do
+      local subs=( $projname ${subprojects[@]} )
+      for subproj in ${subs[@]}; do
         ${projname}_setenv $subproj
         generate_subproj_env $projname $projpath $subproj
       done
