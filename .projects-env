@@ -147,11 +147,7 @@ set_project() {
     for d in ${dirnames[@]}; do
       eval "curr_proj_${d}_dir=${dirs[${d}]}"
     done
-    local dirlabel=${defaultdir:-src}
-    curr_proj_dir=${dirs[$dirlabel]}
-    # FIXME used by YouCompleteMe conf
-    # check some less limited way to do this
-    curr_proj_build_dir=${dirs[build]}
+    curr_proj_dir=${dirs[${defaultdir:-src}]}
   fi
 
   curr_proj_target=$target
