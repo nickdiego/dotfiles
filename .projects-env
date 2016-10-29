@@ -52,7 +52,7 @@ config_proj() {
   }
 
   function clear_proj_env() {
-     unset -v projname projroot subprojects targets
+     unset -v projname projpath projroot subprojects targets
      unset -f setenv activate
   }
 
