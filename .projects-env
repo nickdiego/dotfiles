@@ -15,6 +15,7 @@ config_proj() {
         $(declare -f setenv)
         projname=$projname
         projroot=$projpath
+        declare -Ag dirs=( [root]=${projpath} )
         setenv \$@
       }"
       local subs=( $projname ${subprojects[@]} )
@@ -27,8 +28,12 @@ config_proj() {
 
   function generate_subproj_env() {
     local projname=$1 projpath=$2 subproj=$3
-    local prefix=$(generate_prefix $projname $subproj)
-    eval "${prefix}_src_dir=${srcdir}"
+    local d prefix=$(generate_prefix $projname $subproj)
+    declare -Ag ${prefix}_dirs
+    for d in "${!dirs[@]}"; do
+      eval "${prefix}_dirs[$d]=${dirs[$d]}"
+    done
+    eval "${prefix}_defaultdir=${defaultdir}"
     eval "${prefix}_targets=(${targets[@]})"
     eval "${prefix}_options=(${options[@]})"
     if ! declared_func 'activate'; then
@@ -57,7 +62,7 @@ config_proj() {
   }
 
   function clear_subproj_env() {
-     unset -v srcdir builddir target options vimsession
+     unset -v dirs defaultdir target options vimsession
   }
 
   function declared_func() {
@@ -106,6 +111,13 @@ process_args() {
   echo "declare -A _opt=(${opts[@]});"
 }
 
+clear_curr_proj_vars() {
+  local varname
+  for varname in "${!curr_proj*}"; do
+    unset -v ${varname}
+  done
+}
+
 ## Public functions
 set_project() {
   eval $(process_args $@)
@@ -127,12 +139,24 @@ set_project() {
   if [[ "$projid" != "$curr_project" && "${_opt['--back']}" -ne 1 ]]; then
     _prev_project+=($curr_project)
   fi
+
+  clear_curr_proj_vars
   declared_func $activatefunc && $activatefunc $subproj
-  curr_project=$projid
-  curr_proj_src_dir=$srcdir
-  curr_proj_build_dir=$builddir
+  local d dirnames=("${!dirs[@]}")
+  if (( ${#dirnames[@]} )); then
+    for d in ${dirnames[@]}; do
+      eval "curr_proj_${d}_dir=${dirs[${d}]}"
+    done
+    local dirlabel=${defaultdir:-src}
+    curr_proj_dir=${dirs[$dirlabel]}
+    # FIXME used by YouCompleteMe conf
+    # check some less limited way to do this
+    curr_proj_build_dir=${dirs[build]}
+  fi
+
   curr_proj_target=$target
   curr_proj_vimsession=${vimsession:-$subproj}
+  curr_project=$projid
   clear_subproj_env
 
   log_message "Switched ${_opt['--back']:+back }to project '${projid}'" \
@@ -143,7 +167,7 @@ cd_project() {
   eval $(process_args $@)
   local projid=${_val[0]:-$curr_project}
   set_project $projid ${!_opt[@]}
-  cd $curr_proj_src_dir
+  cd $curr_proj_dir
 }
 
 ## Bash completion stuff

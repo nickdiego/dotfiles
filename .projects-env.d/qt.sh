@@ -3,12 +3,12 @@
 projname=qt5
 
 setenv() {
-  srcdir=${projroot}/src/qt5
+  dirs[src]=${projroot}/src/qt5
   targets=('Msys-x86_64' 'Linux-x86_64')
 }
 
 activate() {
-  builddir="$projroot/build/$target" #TODO
+  dirs[build]="$projroot/build/$target" #TODO
   target=${targets[0]} # FIXME get from parameters
 
   # TODO Call come env initialization script

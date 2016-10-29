@@ -3,7 +3,7 @@
 projname='tmux_resurrect'
 
 setenv() {
-  srcdir=${projroot}
+  dirs[src]=${projroot}
   vimsession='tmux-resurrect'
 }
 

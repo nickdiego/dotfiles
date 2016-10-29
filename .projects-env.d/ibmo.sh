@@ -8,13 +8,13 @@ setenv() {
   local subproj=$1
   case $subproj in
     ibmo)
-      srcdir=$projroot
+      dirs[src]=$projroot
       ;;
     libibmo)
-      srcdir="$projroot/src/ibmotool/libs/libibmo"
+      dirs[src]="$projroot/src/ibmotool/libs/libibmo"
       ;;
     ibmotool)
-      srcdir="$projroot/src/ibmotool"
+      dirs[src]="$projroot/src/ibmotool"
       ;;
     *)
       return 1
@@ -24,7 +24,7 @@ setenv() {
 }
 
 activate() {
-  builddir="$srcdir/.build/$target"
+  dirs[build]="${dirs[src]}/.build/$target"
   target=${targets[0]} # FIXME get from parameters
 
   # TODO Call come env initialization script

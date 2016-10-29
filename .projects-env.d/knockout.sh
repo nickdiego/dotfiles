@@ -7,9 +7,12 @@ setenv() {
   local subproj=$1
   targets=('armv7a-mediatek482_001_neon-linux-gnueabi-strip')
   options=('--chroot' '--minicom')
-  [[ $subproj == $projname ]] &&
-    srcdir=$projroot ||
-    srcdir="$projroot/repos/sunspot/${subproj}"
+  if [[ $subproj == $projname ]]; then
+    dirs[src]=$projroot
+  else
+    dirs[src]="$projroot/repos/sunspot/${subproj}"
+  fi
+  dirs[precompiled]="$projroot/repos/sunspot/precompiled/arch/knockout"
 }
 
 activate() {
@@ -23,7 +26,7 @@ activate() {
     schroot -c precise64 -u nick
   }
 
-  builddir="$projroot/build/$target" #TODO
+  dirs[build]="$projroot/build/$target" #TODO
   target=${targets[0]} # FIXME get from parameters
 
   # Call env initialization script if exists
