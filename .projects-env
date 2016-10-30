@@ -118,10 +118,26 @@ clear_curr_proj_vars() {
   done
 }
 
+get_hash_val() {
+  local hashname=$1 key=$2
+  eval "echo \${${hashname}[$key]}"
+}
+
+declare_proj_dirs() {
+  local proj=$1
+  local root=$(get_hash_val ${proj}_dirs root)
+  echo "local rootdir='$root'"
+  shift
+  while (( $# )); do
+    echo "local ${1}dir='${root}/$(get_hash_val ${proj}_dirs $1)'"
+    shift
+  done
+}
+
 ## Public functions
 set_project() {
   eval $(process_args $@)
-  local projid=${_val[0]}
+  local projid=${_val[0]#@}
   if [ "$projid" = "-" ] || (( ${_opt['--back']} )); then
     local last=$((${#_prev_project[@]} - 1))
     if (( $last < 0 )); then
@@ -169,6 +185,42 @@ cd_project() {
 }
 
 ## Bash completion stuff
+
+__cdopts()
+{
+    local cur prev words cword;
+    _init_completion || return;
+    local IFS='
+' i j k;
+    compopt -o filenames;
+    if [[ -z "${CDPATH:-}" || "$cur" == ?(.)?(.)/* ]]; then
+        _filedir -d;
+        return;
+    fi;
+    local -r mark_dirs=$(_rl_enabled mark-directories && echo y);
+    local -r mark_symdirs=$(_rl_enabled mark-symlinked-directories && echo y);
+    for i in ${CDPATH//:/'
+'};
+    do
+        k="${#COMPREPLY[@]}";
+        for j in $( compgen -d -- $i/$cur );
+        do
+            if [[ ( -n $mark_symdirs && -h $j || -n $mark_dirs && ! -h $j ) && ! -d ${j#$i/} ]];then
+                j+="/";
+            fi;
+            COMPREPLY[k++]=${j#$i/};
+            #echo "----------> [${j#$i/}] -> [${COMPREPLY[@]}]"
+        done;
+    done;
+    #_filedir -d;
+    if [[ ${#COMPREPLY[@]} -eq 1 ]]; then
+        i=${COMPREPLY[0]};
+        if [[ "$i" == "$cur" && $i != "*/" ]]; then
+            COMPREPLY[0]="${i}/";
+        fi;
+    fi;
+    return
+}
 __projectopts() {
   #(( ${#_projects[@]:-0} )) || return 0
   local i=1 cur="${COMP_WORDS[COMP_CWORD]}"
@@ -177,19 +229,32 @@ __projectopts() {
   while (( i < COMP_CWORD )); do
     arg=${COMP_WORDS[i]}
     case $arg in
-      --* | -?) optset+=( $arg );;
-      *) [[ "${_projects[@]}" =~ "${arg}" ]] && proj=${arg/\//_}
+      --* | -?)
+        optset+=( $arg )
+        ;;
+      @*)
+        arg=${arg#@}
+        if [[ -z $arg ]]; then
+          [[ -z $curr_project ]] && return 1 || proj=${curr_project/\//_}
+        else
+          [[ "${_projects[@]}" =~ "${arg}" ]] && proj=${arg/\//_}
+        fi
         ;;
     esac
     i=$((i+1))
   done
-  if [[ -z ${proj:-} ]]; then
-    result+=( "${_projects[*]}" )
+  if [[ -z ${proj} ]]; then
+    result+=( "${_projects[*]/#/@}" )
   else
-    result+=( "$_cmdproj_options" "\${${proj}_options[@]}" )
+    if [[ $cur = --* || $cur = -? ]]; then
+      result+=( "$_cmdproj_options" "\${${proj}_options[@]}" )
+    else
+      eval $(declare_proj_dirs $proj src)
+      CDPATH="${srcdir:-$rootdir}" __cdopts
+      return
+    fi
   fi
   COMPREPLY=( $(compgen -W "${result[*]}" -- ${cur}) )
-  return 0
 }
 
 ## Init stuff
