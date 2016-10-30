@@ -163,9 +163,6 @@ set_project() {
     for d in ${dirnames[@]}; do
       eval "curr_proj_${d}_dir=${dirs[${d}]}"
     done
-    curr_proj_dir="${dirs[root]}"
-    d=${defaultdir:-src}
-    [[ $d != 'root' ]] && curr_proj_dir+="/${dirs[$d]}"
   fi
 
   curr_proj_target=$target
@@ -181,7 +178,7 @@ cd_project() {
   eval $(process_args $@)
   local projid=${_val[0]:-$curr_project}
   set_project $projid ${!_opt[@]}
-  cd $curr_proj_dir
+  cd "${curr_proj_root_dir}/${_val[1]}"
 }
 
 ## Bash completion stuff
@@ -192,7 +189,7 @@ __cdopts()
   _init_completion || return;
   local IFS='
 ' i j k;
-  compopt -o filenames;
+  compopt -o filenames -o nospace
   if [[ -z "${proj_cdpath:-}" || "$cur" == ?(.)?(.)/* ]]; then
     _filedir -d;
     return;
@@ -266,11 +263,11 @@ if [ -d ~/.projects-env.d ]; then
 fi
 
 complete -F __projectopts set_project
-complete -o nospace -F __projectopts cd_project
+complete -F __projectopts cd_project
 
 ## Aliases
 alias pset='set_project'
 alias pcd='cd_project'
 complete -F __projectopts pset
-complete -o nospace -F __projectopts pcd
+complete -F __projectopts pcd
 
