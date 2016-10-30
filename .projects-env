@@ -188,38 +188,36 @@ cd_project() {
 
 __cdopts()
 {
-    local cur prev words cword;
-    _init_completion || return;
-    local IFS='
+  local cur prev words cword;
+  _init_completion || return;
+  local IFS='
 ' i j k;
-    compopt -o filenames;
-    if [[ -z "${CDPATH:-}" || "$cur" == ?(.)?(.)/* ]]; then
-        _filedir -d;
-        return;
-    fi;
-    local -r mark_dirs=$(_rl_enabled mark-directories && echo y);
-    local -r mark_symdirs=$(_rl_enabled mark-symlinked-directories && echo y);
-    for i in ${CDPATH//:/'
+  compopt -o filenames;
+  if [[ -z "${proj_cdpath:-}" || "$cur" == ?(.)?(.)/* ]]; then
+    _filedir -d;
+    return;
+  fi;
+  local -r mark_dirs=$(_rl_enabled mark-directories && echo y);
+  local -r mark_symdirs=$(_rl_enabled mark-symlinked-directories && echo y);
+  for i in ${proj_cdpath//:/'
 '};
+  do
+    k="${#COMPREPLY[@]}";
+    for j in $( compgen -d -- $i/$cur );
     do
-        k="${#COMPREPLY[@]}";
-        for j in $( compgen -d -- $i/$cur );
-        do
-            if [[ ( -n $mark_symdirs && -h $j || -n $mark_dirs && ! -h $j ) && ! -d ${j#$i/} ]];then
-                j+="/";
-            fi;
-            COMPREPLY[k++]=${j#$i/};
-            #echo "----------> [${j#$i/}] -> [${COMPREPLY[@]}]"
-        done;
+      if [[ ( -n $mark_symdirs && -h $j || -n $mark_dirs && ! -h $j ) && ! -d ${j#$i/} ]];then
+        j+="/";
+      fi;
+      COMPREPLY[k++]=${j#$i/};
     done;
-    #_filedir -d;
-    if [[ ${#COMPREPLY[@]} -eq 1 ]]; then
-        i=${COMPREPLY[0]};
-        if [[ "$i" == "$cur" && $i != "*/" ]]; then
-            COMPREPLY[0]="${i}/";
-        fi;
+  done;
+  if [[ ${#COMPREPLY[@]} -eq 1 ]]; then
+    i=${COMPREPLY[0]};
+    if [[ "$i" == "$cur" && $i != "*/" ]]; then
+      COMPREPLY[0]="${i}/";
     fi;
-    return
+  fi;
+  return
 }
 __projectopts() {
   #(( ${#_projects[@]:-0} )) || return 0
@@ -250,7 +248,7 @@ __projectopts() {
       result+=( "$_cmdproj_options" "\${${proj}_options[@]}" )
     else
       eval $(declare_proj_dirs $proj src)
-      CDPATH="${srcdir:-$rootdir}" __cdopts
+      proj_cdpath="${srcdir:-$rootdir}" __cdopts
       return
     fi
   fi
@@ -268,11 +266,11 @@ if [ -d ~/.projects-env.d ]; then
 fi
 
 complete -F __projectopts set_project
-complete -F __projectopts cd_project
+complete -o nospace -F __projectopts cd_project
 
 ## Aliases
 alias pset='set_project'
 alias pcd='cd_project'
 complete -F __projectopts pset
-complete -F __projectopts pcd
+complete -o nospace -F __projectopts pcd
 
