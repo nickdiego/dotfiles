@@ -138,7 +138,13 @@ declare_proj_dirs() {
 set_project() {
   eval $(process_args $@)
   local projid=${_val[0]#@}
-  if [ "$projid" = "-" ] || (( ${_opt['--back']} )); then
+  if [[ -z "${projid:-}" ]]; then
+    if [[ -z "${curr_project:-}" ]]; then
+      echo "Failed to switch do project dir: \$curr_project empty."
+      return 1
+    fi
+    projid="$curr_project"
+  elif [[ "$projid" = "-" ]] || (( ${_opt['--back']} )); then
     local last=$((${#_prev_project[@]} - 1))
     if (( $last < 0 )); then
       echo "No previous project set."
@@ -160,8 +166,9 @@ set_project() {
   declared_func $activatefunc && $activatefunc $subproj
   local d dirnames=("${!dirs[@]}")
   if (( ${#dirnames[@]} )); then
+    eval "curr_proj_root_dir='${dirs[root]}'"
     for d in ${dirnames[@]}; do
-      eval "curr_proj_${d}_dir=${dirs[${d}]}"
+      [[ "$d" != root ]] && eval "curr_proj_${d}_dir='${dirs[root]}/${dirs[${d}]}'"
     done
   fi
 
@@ -178,46 +185,43 @@ cd_project() {
   eval $(process_args $@)
   local projid=${_val[0]:-$curr_project}
   set_project $projid ${!_opt[@]}
-  cd "${curr_proj_root_dir}/${_val[1]}"
+  local basedir=${curr_proj_src_dir:-$curr_proj_root_dir}
+  cd "${basedir}/${_val[1]}"
 }
 
 ## Bash completion stuff
 
 __cdopts()
 {
-  local cur prev words cword;
-  _init_completion || return;
+  local cur prev words cword
+  _init_completion || return
   local IFS='
 ' i j k;
   compopt -o filenames -o nospace
   if [[ -z "${proj_cdpath:-}" || "$cur" == ?(.)?(.)/* ]]; then
-    _filedir -d;
-    return;
+    _filedir -d
+    return
   fi;
-  local -r mark_dirs=$(_rl_enabled mark-directories && echo y);
-  local -r mark_symdirs=$(_rl_enabled mark-symlinked-directories && echo y);
+  local -r mark_dirs=$(_rl_enabled mark-directories && echo y)
+  local -r mark_symdirs=$(_rl_enabled mark-symlinked-directories && echo y)
   for i in ${proj_cdpath//:/'
 '};
   do
-    k="${#COMPREPLY[@]}";
-    for j in $( compgen -d -- $i/$cur );
-    do
-      if [[ ( -n $mark_symdirs && -h $j || -n $mark_dirs && ! -h $j ) && ! -d ${j#$i/} ]];then
-        j+="/";
-      fi;
-      COMPREPLY[k++]=${j#$i/};
-    done;
-  done;
+    k="${#COMPREPLY[@]}"
+    for j in $( compgen -d -- $i/$cur ); do
+      [[ ( -n $mark_symdirs && -h $j || -n $mark_dirs && ! -h $j ) &&
+        ! -d ${j#$i/} ]] && j+="/"
+      COMPREPLY[k++]=${j#$i/}
+    done
+  done
   if [[ ${#COMPREPLY[@]} -eq 1 ]]; then
     i=${COMPREPLY[0]};
-    if [[ "$i" == "$cur" && $i != "*/" ]]; then
-      COMPREPLY[0]="${i}/";
-    fi;
+    [[ "$i" == "$cur" && $i != "*/" ]] && COMPREPLY[0]="${i}/"
   fi;
-  return
 }
+
 __projectopts() {
-  #(( ${#_projects[@]:-0} )) || return 0
+  (( ${#_projects[@]:-0} )) || return 0
   local i=1 cur="${COMP_WORDS[COMP_CWORD]}"
   local optset=() result=()
   local arg proj
@@ -229,7 +233,7 @@ __projectopts() {
         ;;
       @*)
         arg=${arg#@}
-        if [[ -z $arg ]]; then
+        if [[ -z "$arg" ]]; then
           [[ -z $curr_project ]] && return 1 || proj=${curr_project/\//_}
         else
           [[ "${_projects[@]}" =~ "${arg}" ]] && proj=${arg/\//_}
