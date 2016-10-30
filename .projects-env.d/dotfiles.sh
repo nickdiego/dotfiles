@@ -3,7 +3,7 @@
 projname=dotfiles
 
 setenv() {
-  dirs[src]=${projroot}
+  dirs[src]='/'
   options=('--sync') # TODO impl support
 }
 

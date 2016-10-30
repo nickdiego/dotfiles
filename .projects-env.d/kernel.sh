@@ -4,13 +4,13 @@
 projname='kernel'
 
 setenv() {
-  dirs[src]="$projroot/src/linux"
+  dirs[src]="src/linux"
   defaultdir=root
   targets=('Linux-x86_64')
 }
 
 activate() {
-  dirs[build]="$projroot/build/$target"
+  dirs[build]="build/$target"
   target=${targets[0]} # FIXME get from parameters
 
   # TODO Call come env initialization script

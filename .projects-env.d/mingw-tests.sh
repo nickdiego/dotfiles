@@ -9,10 +9,10 @@ setenv() {
   local subproj=$1
   case $subproj in
     'helloqtquick')
-      paths[src]="$projroot/hello-qt-quick"
+      paths[src]="hello-qt-quick"
       ;;
     *)
-      paths[src]="$projroot/$subproj"
+      paths[src]="$subproj"
       ;;
   esac
   targets=('Linux-x86_64' 'Msys-x86_64')

@@ -147,7 +147,9 @@ set_project() {
     for d in ${dirnames[@]}; do
       eval "curr_proj_${d}_dir=${dirs[${d}]}"
     done
-    curr_proj_dir=${dirs[${defaultdir:-src}]}
+    curr_proj_dir="${dirs[root]}"
+    d=${defaultdir:-src}
+    [[ $d != 'root' ]] && curr_proj_dir+="/${dirs[$d]}"
   fi
 
   curr_proj_target=$target
