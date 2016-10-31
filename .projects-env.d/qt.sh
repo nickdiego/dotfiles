@@ -3,7 +3,7 @@
 projname=qt5
 
 setenv() {
-  dirs[src]=${projroot}/src/qt5
+  dirs[src]=src/qt5
   targets=('Msys-x86_64' 'Linux-x86_64')
 }
 
