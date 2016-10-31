@@ -7,8 +7,14 @@ setenv() {
   local subproj=$1
   targets=('armv7a-mediatek482_001_neon-linux-gnueabi-strip')
   options=('--chroot' '--minicom')
-  [[ $subproj != $projname ]] && dirs[src]="repos/sunspot/${subproj}"
-  dirs[precompiled]="repos/sunspot/precompiled/arch/knockout"
+  dirs[precompiled]='repos/sunspot/precompiled/arch/knockout'
+  dirs[sunspot]='repos/sunspot'
+  if [[ $subproj == $projname ]]; then
+    defaultdir=sunspot
+  else
+    dirs[src]="repos/sunspot/${subproj}"
+    defaultdir=src
+  fi
 }
 
 activate() {
