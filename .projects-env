@@ -243,6 +243,7 @@ __projectopts() {
     i=$((i+1))
   done
   if [[ -z ${proj} ]]; then
+    [[ "$cur" != @* ]] && cur="@${cur}"
     result+=( "${_projects[*]/#/@}" )
   else
     if [[ $cur = --* || $cur = -? ]]; then
