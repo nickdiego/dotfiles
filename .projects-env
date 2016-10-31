@@ -164,11 +164,14 @@ set_project() {
 
   clear_curr_proj_vars
   declared_func $activatefunc && $activatefunc $subproj
-  local d dirnames=("${!dirs[@]}")
+  local d fulldir dirnames=("${!dirs[@]}")
   if (( ${#dirnames[@]} )); then
     eval "curr_proj_root_dir='${dirs[root]}'"
     for d in ${dirnames[@]}; do
-      [[ "$d" != root ]] && eval "curr_proj_${d}_dir='${dirs[root]}/${dirs[${d}]}'"
+      [[ "$d" == root ]] && continue
+      fulldir="${dirs[root]}/${dirs[${d}]}"
+      eval "curr_proj_${d}_dir='${fulldir}'"
+      [[ "$d" == "$defaultdir" ]] && curr_proj_defaultdir="$fulldir"
     done
   fi
 
@@ -185,7 +188,8 @@ cd_project() {
   eval $(process_args $@)
   local projid=${_val[0]:-$curr_project}
   set_project $projid ${!_opt[@]}
-  local basedir=${curr_proj_src_dir:-$curr_proj_root_dir}
+  local basedir="$curr_proj_defaultdir"
+  [[ -n $basedir ]] || basedir=${curr_proj_src_dir:-$curr_proj_root_dir}
   cd "${basedir}/${_val[1]}"
 }
 
