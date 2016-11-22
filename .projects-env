@@ -85,7 +85,7 @@ config_proj() {
 
 # Internal helper functions
 log_message() {
-  (( ${_opt['-v']} )) && echo $@
+  (( ${_opt[-v]} )) && echo $@
 }
 
 # TODO For now supports only boolean
@@ -236,7 +236,7 @@ __cdopts()
 }
 
 __projectopts() {
-  (( ${#_projects[@]:-0} )) || return 0
+  (( ${#_projects[@]} )) || return 0
   local i=1 cur="${COMP_WORDS[COMP_CWORD]}"
   local optset=() result=()
   local arg proj
