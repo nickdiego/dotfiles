@@ -41,6 +41,7 @@ activate() {
     chroot_precise64
   elif (( ${_opt[--minicom]} )); then
     local dev='/dev/ttyUSB0'
+    bind_knock_tmux_keys
     echo "$subproj: connecting to ${dev}..."
     minicom -w -D $dev -b 115200
   fi

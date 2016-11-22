@@ -100,5 +100,8 @@ for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
 done;
 unset file;
 
+# Sets the Mail Environment Variable
+MAIL=/var/spool/mail/nick && export MAIL
+
 export NVM_DIR="/home/nick/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

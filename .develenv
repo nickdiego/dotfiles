@@ -126,6 +126,27 @@ arrange-displays() {
   esac
 }
 
+add-big-display-modes() {
+  local modename=$1
+  add-display-mode 1440 818 "$modename" &&
+  xrandr --addmode VGA1 "$modename"
+}
+
+arrange-displays2() {
+  local modename='aux27'
+  add-big-display-modes "$modename"
+  case $1 in
+    -0 | --reset)
+      xrandr --output VGA1 --off \
+        --output $DISPLAY_MAIN --auto;;
+    -2 | '')
+      #local mode="--mode $modename"
+      local mode="--auto"
+      xrandr --output VGA1 $mode --left-of $DISPLAY_MAIN \
+        --output $DISPLAY_MAIN --auto;;
+  esac
+}
+
 # Find/Grep src helper functions
 reset_findsrc_dir() {
   export FINDSRC_DIR='.'
@@ -242,3 +263,4 @@ set-window-title() {
 
 [ -f ~/.tools-env ] && . ~/.tools-env
 [ -f ~/.projects-env ] && . ~/.projects-env
+set_project @knockout
