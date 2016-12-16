@@ -175,6 +175,11 @@ set_project() {
 
   clear_curr_proj_vars
   declared_func $activatefunc && $activatefunc $subproj
+
+  # FIXME: Re-generate proj env, they may change
+  # dependingo on the options are passed to
+  # set_project/cd_project
+
   local d fulldir dirnames=("${!dirs[@]}")
   if (( ${#dirnames[@]} )); then
     eval "curr_proj_root_dir='${dirs[root]}'"
