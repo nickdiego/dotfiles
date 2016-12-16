@@ -24,6 +24,7 @@ document brestore
   restore breakpoints saved by bsave
 end
 
-source ~/.gdb/minibrowser.gdb
-source ~/.gdb/drowser.gdb
-source ~/.gdb/diagnosis.gdb
+#source ~/.gdb/minibrowser.gdb
+#source ~/.gdb/drowser.gdb
+#source ~/.gdb/diagnosis.gdb
+source ~/.gdb/knockout_cc.gdb
