@@ -5,10 +5,12 @@ subprojects=(scripts 3rdparty pic cc ncl)
 
 setenv() {
   local subproj=$1
-  targets=('armv7a-mediatek482_001_neon-linux-gnueabi-strip')
-  options=('--chroot' '--minicom')
-  dirs[precompiled]='repos/sunspot/precompiled/arch/knockout'
+  targets=('knockout' 'x86')
+  options=('--chroot' '--minicom' '--emulator')
   dirs[sunspot]='repos/sunspot'
+
+  target=${targets[0]}
+
   if [[ $subproj == $projname ]]; then
     defaultdir=sunspot
   else
@@ -28,8 +30,12 @@ activate() {
     schroot -c precise64 -u nick
   }
 
+  (( ${_opt[--emulator]} )) && target=${targets[1]} || target=${targets[0]}
+
+  dirs[precompiled]="repos/sunspot/precompiled/arch/$target"
+  dirs[sandbox]="repos/sunspot/precompiled/arch/$target/sandbox"
+
   dirs[build]="build/$target" #TODO
-  target=${targets[0]} # FIXME get from parameters
 
   # Call env initialization script if exists
   [ -r $projroot/repos/sunspot/env.sh ] &&
