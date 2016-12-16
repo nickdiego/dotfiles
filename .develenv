@@ -241,6 +241,10 @@ pac() {
   fi
 }
 
+check_shared_lib() {
+  ldd -r $1
+}
+
 alias i='pac -S'
 alias s='pac -Ss'
 alias r='pac -R'
@@ -264,3 +268,6 @@ set-window-title() {
 [ -f ~/.tools-env ] && . ~/.tools-env
 [ -f ~/.projects-env ] && . ~/.projects-env
 set_project @knockout
+
+export ethernet='enp1s0'
+export wlan='wlp2s0'

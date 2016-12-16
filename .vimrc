@@ -308,10 +308,10 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     nnoremap <silent> <D-r> :CtrlPMRU<CR>
     let g:ctrlp_working_path_mode = 'ra'
     set wildignore+=LayoutTests/,PerformanceTests/,Websites/,*.un~'
-    let g:ctrlp_root_markers = ['configure.ac', 'configure.in', '.repo', '.pro', 'package.json']
+    let g:ctrlp_root_markers = ['.git', '.repo', '.pro', 'package.json', 'build.xml', 'main.ncl' ]
     let g:ctrlp_custom_ignore = {
         \ 'dir': '\.git$\|\.hg$\|\.svn$',
-        \ 'file': '\.exe$\|\.so$\|\.dll$' }
+        \ 'file': '\.exe$\|\.so$\|\.dll$\|\.class' }
     let g:ctrlp_user_command = {
         \ 'types': {
             \ 1: ['.git', 'ag %s -l --nocolor --hidden -g "" --ignore node_modules --ignore bower_components'],
