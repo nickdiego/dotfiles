@@ -1,4 +1,3 @@
-# vim:ft=sh:
 # Development env helpers (vars,
 # functions, workarounds, aliases,
 # plugins, etc..
@@ -263,6 +262,31 @@ set-window-title() {
   DISPLAY=':0' wmctrl -r :ACTIVE: -N "$1"
 }
 
+custom_find() {
+  declare -a opts
+  while (( $# )); do
+    case "$1" in
+      '-n') opts+=( '-name' );;
+      *) opts+=( "$1" );;
+    esac
+    shift
+  done
+  echo find "${opts[@]}"
+}
+
+#TODO not working yet
+#alias f='custom_find'
+#complete -F _find f
+
+find_in_jars() {
+  local keyword=$1
+  local dir=$2 i
+  for i in $(find ${dir} -name '*.jar'); do
+    echo "----- jarfile: $i"
+    unzip -l $i | grep --color $keyword
+  done
+} && alias fj='find_in_jars'
+
 ## Projects confs
 
 [ -f ~/.tools-env ] && . ~/.tools-env
@@ -271,3 +295,5 @@ set_project @knockout
 
 export ethernet='enp1s0'
 export wlan='wlp2s0'
+
+# ex: ts=2 sw=2 et filetype=sh
