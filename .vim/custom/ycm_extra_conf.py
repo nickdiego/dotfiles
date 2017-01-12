@@ -75,15 +75,21 @@ flags = [
 #
 # Most projects will NOT need to set this to anything; you can just change the
 # 'flags' list of compilation flags. Notice that YCM itself uses that approach.
-compilation_database_folder = os.environ.get('curr_proj_build_dir')
 
+def CompilationDatabaseExists(folder):
+    return folder != None and \
+      os.path.exists( folder ) and \
+      os.path.exists( folder + '/compile_commands.json')
 
-if compilation_database_folder != None and \
-    os.path.exists( compilation_database_folder ) and \
-    os.path.exists( compilation_database_folder + '/compile_commands.json'):
+database = None
+
+compilation_database_folder = os.environ.get('COMPILATION_DATABASE_PATH')
+if CompilationDatabaseExists(compilation_database_folder):
   database = ycm_core.CompilationDatabase( compilation_database_folder )
 else:
-  database = None
+  compilation_database_folder = os.environ.get('curr_proj_build_dir')
+  if CompilationDatabaseExists(compilation_database_folder):
+    database = ycm_core.CompilationDatabase( compilation_database_folder )
 
 SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]
 
