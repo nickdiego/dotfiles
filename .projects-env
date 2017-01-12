@@ -186,7 +186,7 @@ set_project() {
     for d in ${dirnames[@]}; do
       [[ "$d" == root ]] && continue
       fulldir="${dirs[root]}/${dirs[${d}]}"
-      eval "curr_proj_${d}_dir='${fulldir}'"
+      eval "export curr_proj_${d}_dir='${fulldir}'"
       [[ "$d" == "$defaultdir" ]] && curr_proj_defaultdir="$fulldir"
     done
   fi
