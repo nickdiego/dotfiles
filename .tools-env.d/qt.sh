@@ -37,11 +37,16 @@ qt_config() {
   }
 
   export QT_PLATFORM_DIR="${qt_versiondir}/${target_plat}"
+  export PATH="${QT_PLATFORM_DIR}/bin:$PATH"
   export QT_PLATFORMS=( $(basename -a ${qt_versiondir}/*) )
+
+  # Used by cmake-based projects meant to run in android
+  export Qt5_host="${qt_versiondir}/gcc_64"
+  export Qt5_android="${qt_versiondir}/android_armv7"
 
   if [[ ${QT_PLATFORMS[@]} =~ android_armv7 ]]; then
     export ANDROID_NATIVE_API_LEVEL=android-9
-    export ANT_LOCATION=/usr/bin/ant
+    export ANT=/usr/bin/ant
   fi
 }
 

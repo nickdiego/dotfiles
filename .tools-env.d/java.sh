@@ -1,14 +1,13 @@
 #!/bin/bash
 
-custom_tool_config() {
+_java_config() {
   local tool=$tools_dir/$1
   test -d $tool || return 1
-  [ ! -z $verbose_env ] && echo Setting env for $tool
+  (( $verbose_env )) && echo Setting env for $tool
 
-  #export JAVA_HOME=$tool
-  #export PATH="$PATH:$JAVA_HOME/bin"
+  export JAVA_HOME=$tool
+  export PATH="$JAVA_HOME/bin:$PATH"
 }
 
-custom_tool_config 'jdk1.8.0_92'
-unset custom_tool_config
+_java_config 'jdk1.8.0_92'
 

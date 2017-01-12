@@ -8,6 +8,8 @@ custom_tool_config() {
   [ ! -z $verbose_env ] && echo Setting env for $tool
 
   export ANDROID_NDK=$tool
+  export ANDROID_NDK_TOOLCHAIN_ROOT="${ANDROID_NDK}/toolchains"
+  export ANDROID_NDK_r12b=$tool
   export PATH="$PATH:$ANDROID_NDK"
 }
 
