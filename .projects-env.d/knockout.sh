@@ -17,6 +17,11 @@ setenv() {
     dirs[src]="repos/sunspot/${subproj}"
     defaultdir=src
   fi
+
+  phoneme='3rdparty/phoneme_advanced_mr2/cdc'
+  phoneme_builddir="${phoneme}/build/linux-x86-generic"
+  # FIXME for now fixed in x86. Should read from ~/tpv_profile
+  precomp='precompiled/arch/x86/lib'
 }
 
 activate() {

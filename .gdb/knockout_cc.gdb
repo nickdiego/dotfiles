@@ -1,6 +1,6 @@
 # Debug commands to help degugging knockout common_core
 
-define drowser-webprocess-breakpoints
+define cc-breakpoints
     break JNI_CreateJavaVM
 end
 
