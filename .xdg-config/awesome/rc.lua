@@ -244,8 +244,8 @@ globalkeys = awful.util.table.join(
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ modkey,           }, "Right", function () awful.screen.focus_relative(-1) end),
-    awful.key({ modkey,           }, "Left", function () awful.screen.focus_relative(1) end),
+    awful.key({ modkey,           }, "Right", function () awful.screen.focus_relative(1) end),
+    awful.key({ modkey,           }, "Left", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "k", function () awful.screen.focus_relative( 1) end),
     awful.key({ modkey,           }, "j", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
@@ -392,7 +392,7 @@ awful.rules.rules = {
     { rule = { class = "ibmotool" },
       callback = function(c) awful.client.movetoscreen(c, 2) end },
     { rule = { name = "DFB X11 system window" },
-      callback = function(c) awful.client.movetoscreen(c, 2) end },
+      callback = function(c) awful.client.movetoscreen(c, 1) end },
 }
 -- }}}
 
