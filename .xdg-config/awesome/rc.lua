@@ -393,6 +393,8 @@ awful.rules.rules = {
       callback = function(c) awful.client.movetoscreen(c, 2) end },
     { rule = { name = "DFB X11 system window" },
       callback = function(c) awful.client.movetoscreen(c, 1) end },
+    { rule = { name = "Prototype" },
+      callback = function(c) awful.client.movetoscreen(c, 1) end },
 }
 -- }}}
 

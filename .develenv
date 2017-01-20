@@ -291,9 +291,17 @@ find_in_jars() {
 
 [ -f ~/.tools-env ] && . ~/.tools-env
 [ -f ~/.projects-env ] && . ~/.projects-env
-set_project @knockout
+#set_project @knockout
+set_project @drunk/client &>/dev/null
 
 export ethernet='enp1s0'
 export wlan='wlp2s0'
+
+udpate_cups_ppd_file() {
+  echo "## Updating ppd files..."
+  sudo /usr/bin/cups-genppdupdate &&
+  echo "## Restarting cuspsd service..."
+  sudo systemctl restart org.cups.cupsd.service
+}
 
 # ex: ts=2 sw=2 et filetype=sh

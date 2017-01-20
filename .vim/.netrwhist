@@ -1,4 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/home/nick/projects/magic-dot-files/.git'
 let g:netrw_dirhist_2='/home/nick/projects/dotfiles/.tmux'
+let g:netrw_dirhist_3='/home/nick/projects/drunk-waiter/sandbox/qzxing/examples/QZXingLive'
+let g:netrw_dirhist_4='/home/nick/projects/drunk-waiter/sandbox/fluid/material-design-icons/places'
+let g:netrw_dirhist_5='/home/nick/projects/drunk-waiter/src/qt-client-prototype/.build/android_armv7-debug/res'
+let g:netrw_dirhist_6='/home/nick/projects/drunk-waiter/sandbox/fluid/controls'
