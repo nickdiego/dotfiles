@@ -24,11 +24,11 @@ set background=dark
 let base16colorspace=256
 let g:jellybeans_use_lowcolor_black = 0
 let g:jellybeans_use_term_italics = 1
-colorscheme jellybeans
+"colorscheme jellybeans
 
 let g:hybrid_custom_term_colors = 0
 let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
-"colorscheme hybrid
+colorscheme hybrid
 
 let g:srcery_italic = 1
 let g:srcery_italic = 1
