@@ -1,7 +1,7 @@
 #!/bin/bash
 
 _qt_rootdir=${QT_ROOTDIR_DEFAULT:=$tools_dir/qt-5}
-_qt_version=${QT_VERSION_DEFAULT:=5.7}
+_qt_version=${QT_VERSION_DEFAULT:=5.8}
 _qt_target_plat=${QT_TARGETPLAT_DEFAULT:='android_armv7'}
 
 ## options related stuff
