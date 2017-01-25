@@ -62,18 +62,20 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
 {
-    awful.layout.suit.floating,
+    awful.layout.suit.max,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
+    awful.layout.suit.floating,
+    --[[ unused for now
+    awful.layout.suit.tile.left,
     awful.layout.suit.tile.top,
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.spiral,
     awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier
+    ]]--
 }
 -- }}}
 
@@ -258,7 +260,7 @@ globalkeys = awful.util.table.join(
         end),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
@@ -379,22 +381,50 @@ awful.rules.rules = {
                      focus = awful.client.focus.filter,
                      raise = true,
                      keys = clientkeys,
-                     buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
-    { rule = { class = "gimp" },
-      properties = { floating = true } },
+                     buttons = clientbuttons,
+                     screen = awful.screen.preferred,
+                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
+     }
+    },
+
+    { rule_any = {
+          instance = {
+            "DTA",  -- Firefox addon DownThemAll.
+            "copyq",  -- Includes session name in class.
+          },
+          class = {
+            "MPlayer",
+            "gimp",
+            "MessageWin",  -- kalarm.
+            "Sxiv",
+            "Wpa_gui",
+            "pinentry",
+            "veromix",
+          "xtightvncviewer"},
+
+          name = {
+            "Event Tester",  -- xev.
+          },
+          role = {
+            "AlarmWindow",  -- Thunderbird's calendar.
+            "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+          }
+      }, properties = { floating = true }
+    },
+
     -- Set Firefox to always map on tags number 2 of screen 1.
-    --{ rule = { class = "Firefox" },
-    --  properties = { tag = tags[1][2] } },
+    { rule = { class = "Firefox" },
+      properties = { screen = 2, tag = "web" }
+    },
     { rule = { class = "ibmotool" },
-      callback = function(c) awful.client.movetoscreen(c, 2) end },
+      properties = { screen = 1 },
+    },
     { rule = { name = "DFB X11 system window" },
-      callback = function(c) awful.client.movetoscreen(c, 1) end },
-    { rule = { name = "Prototype" },
-      callback = function(c) awful.client.movetoscreen(c, 1) end },
+      properties = { screen = 1 }
+    },
+    { rule = { name = "Drunkwaiter" },
+      properties = { screen = 1 }
+    },
 }
 -- }}}
 
