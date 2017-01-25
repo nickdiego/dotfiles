@@ -4,6 +4,7 @@ let mapleader=","
 nnoremap <Leader>a :echo "Hey there ,"<CR>
 set pastetoggle=<F2>
 nnoremap ; :
+inoremap jj <Esc>
 
 set cursorline
 set mouse=
@@ -28,7 +29,7 @@ let g:jellybeans_use_term_italics = 1
 
 let g:hybrid_custom_term_colors = 0
 let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
-colorscheme hybrid
+"colorscheme hybrid
 
 let g:srcery_italic = 1
 let g:srcery_italic = 1
@@ -47,6 +48,8 @@ let g:gruvbox_italic = 1
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_contrast_light = 'hard'
 "colorscheme gruvbox
+
+colorscheme Tomorrow-Night-Bright
 
 let g:mdf_disable_arrow_keys = 0
 let g:mdf_space_instead_of_tab = 1
@@ -240,9 +243,9 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     " }
 
     " Searching {
-        "set hlsearch                    " highlight the last used search pattern
+        set hlsearch                    " highlight the last used search pattern
         set incsearch                   " do incremental searching
-        set ignorecase                 " Ignore case when searching.
+        set ignorecase                  " Ignore case when searching.
         set smartcase                   " case-sensitive if search contains an uppercase character
 
         " clearing highlighted search
