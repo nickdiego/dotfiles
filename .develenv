@@ -207,7 +207,9 @@ remove_from_path() {
 }
 
 take-screenshot() {
-  local file="$HOME/Pictures/screenshot-`date +'%b-%d-%y_%H:%M:%S'`.jpg"
+  local outdir=${1:-$HOME/Pictures}
+  local filename="${2:-screenshot-`date +'%b-%d-%y_%H:%M:%S'`}.jpg"
+  local file="${outdir}/${filename}"
   echo "## Select the screen region."
   echo "## Will save it in $file"
   gm import "$file" && nautilus "$file"&
