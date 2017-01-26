@@ -29,7 +29,7 @@ let g:jellybeans_use_term_italics = 1
 
 let g:hybrid_custom_term_colors = 0
 let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
-"colorscheme hybrid
+colorscheme hybrid
 
 let g:srcery_italic = 1
 let g:srcery_italic = 1
@@ -49,7 +49,7 @@ let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_contrast_light = 'hard'
 "colorscheme gruvbox
 
-colorscheme Tomorrow-Night-Bright
+"colorscheme Tomorrow-Night-Bright
 
 let g:mdf_disable_arrow_keys = 0
 let g:mdf_space_instead_of_tab = 1
@@ -332,6 +332,14 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     "not supported for C/C++ :(
     nnoremap <Leader>r :YcmCompleter GoToReferences<CR>
 " }
+
+" NerdCommenter {
+    " Using default ones for now
+    " See https://github.com/scrooloose/nerdcommenter
+    " for more details..
+    " Tip: toogle comment in normal or visual: <Leader>c<space>
+" }
+
 " Fugitive {
     nnoremap <silent> <Leader>gs :Gstatus<CR>
     nnoremap <silent> <leader>gd :Gdiff<CR>
