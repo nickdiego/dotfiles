@@ -59,7 +59,7 @@ let g:mdf_listchars = 1
 nnoremap <C-Up> :tabprevious<CR>
 nnoremap <C-Down> :tabnext<CR>
 nnoremap <silent> <C-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-nnoremap <silent> <C-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
+nnoremap <silent> <C-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 nnoremap <F5> :e!<CR>
 nnoremap <F7> :tabedit ~/.vimrc<CR>
 
