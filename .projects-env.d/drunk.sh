@@ -18,12 +18,13 @@ setenv() {
 }
 
 activate() {
-  target=${targets[1]}
+  target=${targets[0]}
 
   local envscript="${projroot}/${dirs[src]}/env.sh"
   test -r $envscript && . $envscript $target
 
   local root=$(readlink -f $projroot)
   dirs[build]="${builddir#${root}/}"
+  export COMPILATION_DATABASE_DIR="${builddir}"
 }
 
