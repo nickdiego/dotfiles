@@ -325,6 +325,13 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     \ }
 "}
 
+" YouCompleteMe {
+    nnoremap <Leader>d :YcmCompleter GoTo<CR>
+    nnoremap <Leader>h :YcmCompleter GoToInclude<CR>
+    nnoremap <Leader>t :YcmCompleter GetType<CR>
+    "not supported for C/C++ :(
+    nnoremap <Leader>r :YcmCompleter GoToReferences<CR>
+" }
 " Fugitive {
     nnoremap <silent> <Leader>gs :Gstatus<CR>
     nnoremap <silent> <leader>gd :Gdiff<CR>
