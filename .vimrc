@@ -309,7 +309,8 @@ autocmd! BufWritePost vimrc source ~/.vimrc
 " ctrlp {
     nnoremap <silent> <D-t> :CtrlP<CR>
     nnoremap <silent> <D-r> :CtrlPMRU<CR>
-    let g:ctrlp_working_path_mode = 'ra'
+    "let g:ctrlp_working_path_mode = 'ra'
+    let g:ctrlp_working_path_mode = '' "will use the current PWD
     set wildignore+=LayoutTests/,PerformanceTests/,Websites/,*.un~'
     let g:ctrlp_root_markers = ['.git', '.repo', '.pro', 'package.json', 'build.xml', 'main.ncl' ]
     let g:ctrlp_custom_ignore = {
