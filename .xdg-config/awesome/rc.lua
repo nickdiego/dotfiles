@@ -430,7 +430,7 @@ awful.rules.rules = {
 
     -- Set Firefox to always map on tags number 2 of screen 1.
     { rule = { class = "Firefox" },
-      properties = { screen = 3, tag = "web" }
+      properties = { screen = (screen.count() < 3 and 1 or 3), tag = "web" }
     },
     { rule = { class = "ibmotool" },
       properties = { screen = 1 },
