@@ -105,8 +105,13 @@ endif
 " When vimrc is edited, reload it
 autocmd! BufWritePost .vimrc source ~/.vimrc
 
-" Ctrl-f call Ag.vim
-nnoremap <C-f> :Ag<space>
+" Ctrl-Shift-f calls Ag.vim
+nnoremap <C-F> :Ag<space>
+" <leader>ag calls Ag.vim with the word under cursor
+nnoremap <Leader>ag :Ag <C-r><C-w><C-m>
+
+" sessionman
+nnoremap <Leader>ss :SessionSave<CR>
 
 
 " Stupid shift key fixes
