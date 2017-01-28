@@ -443,7 +443,7 @@ awful.rules.rules = {
       properties = { screen = 1 }
     },
     { rule = { name = "Drunkwaiter" },
-      properties = { screen = 1 }
+      properties = { screen = (screen.count() < 3 and 1 or 3) }
     },
 }
 -- }}}
