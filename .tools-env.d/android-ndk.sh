@@ -10,7 +10,8 @@ custom_tool_config() {
   export ANDROID_NDK=$tool
   export ANDROID_NDK_TOOLCHAIN_ROOT="${ANDROID_NDK}/toolchains"
   export ANDROID_NDK_r12b=$tool
-  export PATH="$PATH:$ANDROID_NDK"
+  export ANDROID_NDK_TOOLCHAIN_ARM="${ANDROID_NDK_TOOLCHAIN_ROOT}/arm-linux-androideabi-4.9/prebuilt/linux-x86_64"
+  export PATH="$PATH:${ANDROID_NDK_TOOLCHAIN_ARM}/bin"
 }
 
 custom_tool_config 'android-ndk'
