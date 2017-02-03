@@ -110,8 +110,10 @@ nnoremap <C-F> :Ag<space>
 " <leader>ag calls Ag.vim with the word under cursor
 nnoremap <Leader>ag :Ag <C-r><C-w><C-m>
 
+nnoremap <Leader>ss :%s,\<<C-r><C-w>\>,
+
 " sessionman
-nnoremap <Leader>ss :SessionSave<CR>
+nnoremap <Leader>SS :SessionSave<CR>
 
 
 " Stupid shift key fixes
