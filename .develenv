@@ -3,25 +3,13 @@
 # plugins, etc..
 export EDITOR=vim
 export VISUAL=vim
-export NODE_PATH=/usr/local/lib/node_modules
 export MAIL=/var/spool/mail/nick
 export FIGNORE='.swp:.un~'
 export CUSTOM_GREP_OPTIONS=('--exclude=*~' '--exclude=*.swp')
 
 export PATH=~/.bin:~/local/bin:$PATH
 
-#icecc_setup
-export USE_SCHEDULER=10.60.69.53
-function icecc_setup {
-  #export ICECC_VERSION=$HOME/.icecc/linux-x86_64-gcc4.6.3-x86_64.tar.gz
-  #export ICECC_VERSION=$HOME/.icecc/linux-x86_64-gcc4.8.1-x86_64.tar.gz
-  export ICECC_VERSION=$HOME/.icecc/linux-x86_64-gcc4.7.3-x86_64.tar.gz
-  export CCACHE_PREFIX=icecc
-  for i in gcc g++ cc c++; do
-    ln -sf /usr/bin/ccache $HOME/bin/$i
-  done
-}
-
+#TODO move to .projects-env.d/nix.sh
 #nix-related
 WEBKIT=$HOME/projects/webkit-nix
 if [ -f $WEBKIT/nix-env.sh ]; then
