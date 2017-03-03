@@ -4,7 +4,6 @@ let mapleader=","
 nnoremap <Leader>a :echo "Hey there ,"<CR>
 set pastetoggle=<F2>
 nnoremap ; :
-inoremap jj <Esc>
 
 set cursorline
 set mouse=
