@@ -76,8 +76,8 @@ if [ ! -z $WAYLAND_DISPLAY ]; then
   export DISPLAY_AUX='XWAYLAND2'
 else # assuming Running Xorg
   export DISPLAY_MAIN='LVDS1'
-  export DISPLAY_AUX1='VGA1'
-  export DISPLAY_AUX2='HDMI1'
+  export DISPLAY_AUX1='HDMI1'
+  export DISPLAY_AUX2='VGA1'
 fi
 
 add-display-mode() {
@@ -94,24 +94,27 @@ add-aux-display-modes() {
   xrandr --addmode $DISPLAY_AUX2 "$modename"
 }
 
+_arrange_displays_opts=( --reset --work-1 --work-2 --home )
 arrange-displays() {
   local modename='1440x900_aux'
   add-aux-display-modes "$modename"
   case $1 in
-    -0 | --reset)
+    --reset)
       xrandr --output $DISPLAY_AUX2 --off \
         --output $DISPLAY_AUX1 --off \
         --output $DISPLAY_MAIN --auto;;
-    -2)
+    --work-1)
       xrandr --output $DISPLAY_MAIN --off \
         --output $DISPLAY_AUX2 --left-of $DISPLAY_AUX1 --mode "$modename" --primary \
         --output $DISPLAY_AUX1 --mode "$modename";;
-    -3 | '')
+    --work-2 | '')
       xrandr --output $DISPLAY_AUX2 --mode "$modename" --left-of $DISPLAY_AUX1 \
-        --output $DISPLAY_AUX1 --mode "$modename" --left-of $DISPLAY_MAIN \
-        --output $DISPLAY_MAIN --auto;;
+        --output $DISPLAY_MAIN --auto --left-of $DISPLAY_AUX2 \
+        --output $DISPLAY_AUX1 --mode "$modename";;
+    --home)
+      xrandr --output $DISPLAY_AUX1 --auto --right-of $DISPLAY_MAIN
   esac
-}
+} && complete -W "${_arrange_displays_opts[*]}" arrange-displays
 
 add-big-display-modes() {
   local modename=$1
