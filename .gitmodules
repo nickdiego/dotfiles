@@ -12,4 +12,6 @@
   url = https://github.com/blueyed/awesome-cyclefocus
   ignore = dirty
   branch = v4
-
+[submodule ".powerline/fonts"]
+	path = .powerline/fonts
+	url = https://github.com/powerline/fonts.git

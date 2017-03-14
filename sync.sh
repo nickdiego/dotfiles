@@ -85,7 +85,9 @@ install_submodules() {
   git submodule update --init &&
   git submodule foreach git checkout master &&
   echo "Installing tmux plugins..."
-  ./.tmux/plugins/tpm/scripts/install_plugins.sh
+  .tmux/plugins/tpm/scripts/install_plugins.sh &&
+  echo "Installing powerline..."
+  .powerline/fonts/install.sh
 }
 
 bkpdir="$HOME/.dot-backups/bkp-`date +'%b-%d-%y_%H:%M:%S'`"
@@ -101,7 +103,7 @@ sync_dot_files &&
 # FIXME generalize this to work with all dirs inside .xdg-config
 sync_dot_file .xdg-config/awesome .config/awesome &&
 
-mkdir -p .local/share/konsole
+mkdir -p .local/share/konsole &&
 sync_dot_file .local-config/share/konsole .local/share/konsole &&
 
 # Install vim plugins (using Vundle for now)

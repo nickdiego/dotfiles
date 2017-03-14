@@ -56,7 +56,7 @@ let g:mdf_tabsize = 2
 let g:mdf_listchars = 1
 
 "Powerline configs
-"let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols = 'fancy'
 
 nnoremap <C-Up> :tabprevious<CR>
 nnoremap <C-Down> :tabnext<CR>

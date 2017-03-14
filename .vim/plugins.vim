@@ -14,7 +14,6 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-scripts/sessionman.vim'
 Plugin 'Valloric/YouCompleteMe'
 "Plugin 'editorconfig/editorconfig-vim'
-Plugin 'Lokaltog/vim-powerline'
 Plugin 'scrooloose/syntastic'
 Plugin 'Shutnik/jshint2.vim'
 Plugin 'pangloss/vim-javascript'
@@ -30,6 +29,8 @@ Plugin 'morhetz/gruvbox'
 Plugin 'Yggdroot/indentLine'
 Plugin 'tbastos/vim-lua'
 Plugin 'scrooloose/nerdcommenter'
+"Plugin 'Lokaltog/vim-powerline'
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()
