@@ -30,7 +30,7 @@ sync_dot_file() {
 }
 
 sync_dot_files() {
-  local ignoredirs='-I ".*~" -I .git -I .gitmodules -I sync.sh -I .kde -I .xdg-config'
+  local ignoredirs='-I ".*~" -I .git -I .gitmodules -I sync.sh -I .kde -I .xdg-config -I .local-config'
   local files_to_install=`eval "ls --color=never -A $ignoredirs"`
 
   for file in $files_to_install; do
@@ -100,6 +100,9 @@ sync_dot_files &&
 # Sync xdg-config files
 # FIXME generalize this to work with all dirs inside .xdg-config
 sync_dot_file .xdg-config/awesome .config/awesome &&
+
+mkdir -p .local/share/konsole
+sync_dot_file .local-config/share/konsole .local/share/konsole &&
 
 # Install vim plugins (using Vundle for now)
 install_vim_plugins &&
