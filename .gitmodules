@@ -7,3 +7,9 @@
 [submodule ".tmux/plugins/tpm"]
   path = .tmux/plugins/tpm
   url = https://github.com/tmux-plugins/tpm.git
+[submodule ".xdg-config/awesome/cyclefocus"]
+  path = .xdg-config/awesome/cyclefocus
+  url = https://github.com/blueyed/awesome-cyclefocus
+  ignore = dirty
+  branch = v4
+

@@ -11,6 +11,9 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 
+local cyclefocus = require("cyclefocus")
+cyclefocus.display_notifications = false
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -263,6 +266,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "k", function () awful.screen.focus_relative( 1) end),
     awful.key({ modkey,           }, "j", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
+
     awful.key({ modkey,           }, "Tab",
         function ()
             awful.client.focus.history.previous()
@@ -334,7 +338,18 @@ clientkeys = awful.util.table.join(
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
-        end)
+        end),
+
+    -- Alt-Tab: cycle through clients on the same screen.
+    cyclefocus.key({ "Mod1", }, "Tab", 1, {
+        cycle_filters = { cyclefocus.filters.same_screen, cyclefocus.filters.common_tag },
+        keys = {'Tab', 'ISO_Left_Tab'}  -- default, could be left out
+    }),
+    -- Alt-Shift-Tab: cycle through clients on the same screen.
+    cyclefocus.key({ "Mod1", "Shift" }, "Tab", -1, {
+        cycle_filters = { cyclefocus.filters.same_screen, cyclefocus.filters.common_tag },
+        keys = {'Tab', 'ISO_Left_Tab'}  -- default, could be left out
+    })
 )
 
 -- Bind all key numbers to tags.
