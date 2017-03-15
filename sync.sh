@@ -101,13 +101,13 @@ sync_dot_files &&
 
 # Sync xdg-config files
 # FIXME generalize this to work with all dirs inside .xdg-config
-sync_dot_file .xdg-config/awesome .config/awesome &&
+sync_dot_file .xdg-config/awesome .config/awesome
+sync_dot_file .xdg-config/konsolerc .config/konsolerc
 
-mkdir -p .local/share/konsole &&
-sync_dot_file .local-config/share/konsole .local/share/konsole &&
+sync_dot_file .local-config/share/konsole .local/share/konsole
 
 # Install vim plugins (using Vundle for now)
-install_vim_plugins &&
+install_vim_plugins
 
 # Reload bashrc
 . ~/.bashrc &&
