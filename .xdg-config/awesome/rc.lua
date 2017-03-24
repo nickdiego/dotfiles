@@ -58,11 +58,11 @@ editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
-local layouts =
+awful.layout.layouts =
 {
-    awful.layout.suit.floating,
-    awful.layout.suit.max,
     awful.layout.suit.tile,
+    awful.layout.suit.max,
+    awful.layout.suit.floating,
     awful.layout.suit.tile.bottom,
     --[[ unused for now
     awful.layout.suit.tile.left,
@@ -286,8 +286,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
-    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+    awful.key({ modkey,           }, "space", function () awful.layout.inc(1) end),
+    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1) end),
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
     awful.key({ modkey, "Control" }, "k", kbdcfg.switch),
