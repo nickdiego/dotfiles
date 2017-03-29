@@ -103,6 +103,7 @@ sync_dot_files &&
 # FIXME generalize this to work with all dirs inside .xdg-config
 sync_dot_file .xdg-config/awesome .config/awesome
 sync_dot_file .xdg-config/konsolerc .config/konsolerc
+sync_dot_file .xdg-config/mimeapps.list .config/mimeapps.list
 
 sync_dot_file .local-config/share/konsole .local/share/konsole
 
