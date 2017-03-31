@@ -49,6 +49,7 @@ terminal = "konsole"
 webbrowser = "chromium"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
+lockscreen = "dm-tool lock"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -257,6 +258,7 @@ globalkeys = awful.util.table.join(
     --        if client.focus then client.focus:raise() end
     --    end),
     awful.key({ modkey,           }, "w", function () awful.util.spawn(webbrowser) end),
+    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn(lockscreen) end),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
