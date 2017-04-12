@@ -29,6 +29,7 @@ Plugin 'morhetz/gruvbox'
 Plugin 'Yggdroot/indentLine'
 Plugin 'tbastos/vim-lua'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
 "Plugin 'Lokaltog/vim-powerline'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 

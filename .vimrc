@@ -52,11 +52,14 @@ let g:gruvbox_contrast_light = 'hard'
 
 let g:mdf_disable_arrow_keys = 0
 let g:mdf_space_instead_of_tab = 1
-let g:mdf_tabsize = 2
+let g:mdf_tabsize = 4
 let g:mdf_listchars = 1
 
 "Powerline configs
 let g:Powerline_symbols = 'fancy'
+
+"Eclim configs
+let g:EclimCompletionMethod = 'omnifunc'
 
 nnoremap <C-Up> :tabprevious<CR>
 nnoremap <C-Down> :tabnext<CR>
@@ -330,7 +333,7 @@ autocmd! BufWritePost vimrc source ~/.vimrc
             \ 1: ['.git', 'ag %s -l --nocolor --hidden -g "" --ignore node_modules --ignore bower_components'],
             \ 2: ['.hg', 'hg --cwd %s locate -I .'],
         \ },
-        \ 'fallback': 'find %s -type f | grep "\.cpp\$\|\.h\$\|\.cmake\$\|\.messages.in\$\|.txt\|\.js\|\.json\$"'
+        \ 'fallback': 'find %s -type f | grep "\.cpp\$\|\.h\$\|\.cmake\$\|\.messages.in\$\|.txt\|\.js\|\.json\$\|\.java\$"'
     \ }
 "}
 
