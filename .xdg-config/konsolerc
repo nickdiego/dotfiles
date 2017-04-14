@@ -1,5 +1,5 @@
 [Desktop Entry]
-DefaultProfile=devel.profile
+DefaultProfile=Profile 1.profile
 
 [Favorite Profiles]
 Favorites=
@@ -14,7 +14,7 @@ State=AAAA/wAAAAD9AAAAAAAAAjIAAAFSAAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
 
 [Profile Shortcuts]
-Esc=devel.profile
+Esc[$d]
 
 [TabBar]
 TabBarVisibility=AlwaysHideTabBar
