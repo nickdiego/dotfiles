@@ -310,6 +310,14 @@ globalkeys = awful.util.table.join(
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end),
+    -- Toggle wibox
+    awful.key({ modkey }, "b",
+        function ()
+            myscreen = awful.screen.focused()
+            myscreen.mywibox.visible = not myscreen.mywibox.visible
+        end,
+        {description = "toggle statusbar"}
+        ),
 
     -- Media keys
     awful.key({ }, "XF86AudioRaiseVolume", function ()
