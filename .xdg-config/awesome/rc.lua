@@ -49,7 +49,7 @@ terminal = "konsole"
 webbrowser = "chromium"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
-lockscreen = "dm-tool lock"
+lockscreen = "/usr/lib/kscreenlocker_greet"
 filemanager = "ranger"
 filemanager_cmd = terminal .." -e " .. filemanager
 
