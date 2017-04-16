@@ -9,3 +9,4 @@ function run() {
 
 # Start apps
 run nm-applet
+run chromium --no-startup-window
