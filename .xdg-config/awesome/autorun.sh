@@ -9,4 +9,5 @@ function run() {
 
 # Start apps
 run nm-applet
+run dropbox
 run chromium --no-startup-window
