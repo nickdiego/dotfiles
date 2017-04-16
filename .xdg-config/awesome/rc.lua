@@ -50,6 +50,8 @@ webbrowser = "chromium"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 lockscreen = "dm-tool lock"
+filemanager = "ranger"
+filemanager_cmd = terminal .." -e " .. filemanager
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -258,6 +260,7 @@ globalkeys = awful.util.table.join(
     --        if client.focus then client.focus:raise() end
     --    end),
     awful.key({ modkey,           }, "w", function () awful.util.spawn(webbrowser) end),
+    awful.key({ modkey,           }, "e", function () awful.util.spawn(filemanager_cmd) end),
     awful.key({ modkey, "Control" }, "l", function () awful.util.spawn(lockscreen) end),
 
     -- Layout manipulation
