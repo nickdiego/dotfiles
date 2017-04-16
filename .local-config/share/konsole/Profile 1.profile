@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=Linux
-Font=DejaVu Sans Mono for Powerline,9,-1,5,50,0,0,0,0,0,Book
+Font=xos4 Terminus,9,-1,5,50,0,0,0,0,0,Regular
 
 [General]
 Name=Profile 1
