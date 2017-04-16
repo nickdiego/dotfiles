@@ -201,9 +201,10 @@ take-screenshot() {
   local outdir=${1:-$HOME/Pictures}
   local filename="${2:-screenshot-`date +'%b-%d-%y_%H:%M:%S'`}.jpg"
   local file="${outdir}/${filename}"
+  test -d $outdir || mkdir -p $outdir
   echo "## Select the screen region."
   echo "## Will save it in $file"
-  gm import "$file" && nautilus "$file"&
+  gm import "$file" && nemo "$file"&
 }
 
 get_external_ip() {
