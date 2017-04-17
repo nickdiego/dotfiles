@@ -1,0 +1,7 @@
+<kpartgui name="konsole" version="1">
+  <ActionProperties>
+    <Action name="edit_copy" shortcut="Ctrl+Ins"/>
+    <Action name="edit_paste" shortcut="Shift+Ins"/>
+    <Action name="options_show_menubar" shortcut="Ctrl+Shift+M"/>
+  </ActionProperties>
+</kpartgui>

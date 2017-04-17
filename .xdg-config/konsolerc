@@ -16,5 +16,8 @@ ToolBarsMovable=Disabled
 [Profile Shortcuts]
 Esc[$d]
 
+[Shortcut Schemes]
+Current Scheme=tmux
+
 [TabBar]
 TabBarVisibility=AlwaysHideTabBar
