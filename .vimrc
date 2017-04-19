@@ -24,7 +24,11 @@ set background=dark
 let base16colorspace=256
 let g:jellybeans_use_lowcolor_black = 0
 let g:jellybeans_use_term_italics = 1
-colorscheme jellybeans
+"colorscheme jellybeans
+
+let g:molokai_original = 1
+let g:rehash256 = 1
+colorscheme molokai
 
 let g:hybrid_custom_term_colors = 0
 let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
@@ -50,6 +54,19 @@ let g:gruvbox_contrast_light = 'hard'
 
 "colorscheme Tomorrow-Night-Bright
 
+
+" NeoVim Configs {
+if !has('nvim')
+    set ttymouse=xterm2
+endif
+
+if exists(':tnoremap')
+    tnoremap <Esc> <C-\><C-n>
+endif
+
+let g:powerline_pycmd = 'py3'
+" }
+
 let g:mdf_disable_arrow_keys = 0
 let g:mdf_space_instead_of_tab = 1
 let g:mdf_tabsize = 4
@@ -57,6 +74,9 @@ let g:mdf_listchars = 1
 
 "Powerline configs
 let g:Powerline_symbols = 'fancy'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='laederon'
 
 "Eclim configs
 let g:EclimCompletionMethod = 'omnifunc'
@@ -71,12 +91,15 @@ nnoremap <F7> :tabedit ~/.vimrc<CR>
 
 " Alt+<directional> to switch among splits
 let g:tmux_navigator_no_mappings = 1
-
 nnoremap <silent> <A-left> :TmuxNavigateLeft<cr>
 nnoremap <silent> <A-down> :TmuxNavigateDown<cr>
 nnoremap <silent> <A-up> :TmuxNavigateUp<cr>
 nnoremap <silent> <A-right> :TmuxNavigateRight<cr>
-"nnoremap <silent> {A-,} :TmuxNavigatePrevious<cr>
+nnoremap <silent> {A-,} :TmuxNavigatePrevious<cr>
+
+" ENSIME stuff (disabled for now)
+"autocmd BufWritePost *.java silent :EnTypeCheck<CR>
+"nnoremap <localleader>jt :EnTypeCheck<CR>
 
 " The current directory is the directory of the file in the current window.
 "if has("autocmd")
@@ -158,7 +181,7 @@ cmap w!! w !sudo tee % >/dev/null
 
 " YouCompleteMe stuff
 let g:ycm_confirm_extra_conf = 0
-let g:ycm_global_ycm_extra_conf = '~/.vim/custom/ycm_extra_conf.py'
+"let g:ycm_global_ycm_extra_conf = '~/.vim/custom/ycm_extra_conf.py'
 
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
@@ -365,4 +388,8 @@ autocmd! BufWritePost vimrc source ~/.vimrc
 "  " setting version of the language per project)
 let g:clang_user_options = '-std=c++11'
 
+" Eclim {
+    nnoremap <Leader>ji :JavaImport<CR>
+
+" }
 

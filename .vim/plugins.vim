@@ -26,12 +26,23 @@ Plugin 'w0ng/vim-hybrid'
 Plugin 'zeis/vim-kolor'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'morhetz/gruvbox'
+Plugin 'tomasr/molokai'
 Plugin 'Yggdroot/indentLine'
 Plugin 'tbastos/vim-lua'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-"Plugin 'Lokaltog/vim-powerline'
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'ensime/ensime-vim'
+
+Plugin 'vim-airline/vim-airline-themes'
+
+if has('nvim')
+    Plugin 'vim-airline/vim-airline'
+else
+    Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+endif
+
+
+"Plugin 'vim-airline/vim-airline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()

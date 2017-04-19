@@ -104,6 +104,7 @@ sync_dot_files &&
 sync_dot_file .xdg-config/awesome .config/awesome
 sync_dot_file .xdg-config/konsolerc .config/konsolerc
 sync_dot_file .xdg-config/mimeapps.list .config/mimeapps.list
+sync_dot_file .xdg-config/nvim .config/nvim
 
 sync_dot_file .local-config/share/konsole .local/share/konsole
 
