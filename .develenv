@@ -154,9 +154,6 @@ grepsrc() {
 
 reset_findsrc_dir
 
-export POWERLINE_PATH="$HOME/.local/lib/python2.7/site-packages/powerline"
-#. $POWERLINE_PATH/bindings/bash/powerline.sh
-
 # replacing something in several files
 #cat /tmp/xxxxx | xargs -I '{}' sed -i 's/RenderPartObject {IFRAME}/RenderIFrame {IFRAME}/g' {}
 
@@ -290,6 +287,10 @@ set_project @drunk/client &>/dev/null
 
 export ethernet='enp1s0'
 export wlan='wlp2s0'
+
+if [ -r $HOME/.vim/bundle/powerline/scripts/powerline-config ]; then
+  export PATH="$HOME/.vim/bundle/powerline/scripts:$PATH"
+fi
 
 udpate_cups_ppd_file() {
   echo "## Updating ppd files..."
