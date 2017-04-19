@@ -1,6 +1,9 @@
 [Appearance]
 ColorScheme=Linux
-Font=xos4 Terminus,9,-1,5,50,0,0,0,0,0,Regular
+Font=xos4 Terminess Powerline,9,-1,5,50,0,0,0,0,0,Regular
+
+[Cursor Options]
+CursorShape=0
 
 [General]
 Icon=utilities-terminal
