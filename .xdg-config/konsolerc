@@ -1,5 +1,5 @@
 [Desktop Entry]
-DefaultProfile=Profile 1.profile
+DefaultProfile=devel.profile
 
 [Favorite Profiles]
 Favorites=
@@ -14,7 +14,7 @@ State=AAAA/wAAAAD9AAAAAAAABVQAAALsAAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
 
 [Profile Shortcuts]
-Esc[$d]
+Esc=devel.profile
 
 [Shortcut Schemes]
 Current Scheme=tmux
