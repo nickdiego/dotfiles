@@ -282,8 +282,7 @@ find_in_jars() {
 
 [ -f ~/.tools-env ] && . ~/.tools-env
 [ -f ~/.projects-env ] && . ~/.projects-env
-#set_project @knockout
-set_project @drunk/client &>/dev/null
+set_project @itriad
 
 export ethernet='enp1s0'
 export wlan='wlp2s0'
