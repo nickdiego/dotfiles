@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e
+
+fname="${1:-screenvideo}.mp4"
+video_dir_on_device="/sdcard/screen-videos"
+video_path_on_device="${video_dir_on_device}/${fname}"
+dest="${PWD}/${fname}"
+
+echo "Looking for android devices..."
+adb wait-for-device
+devid=$(adb get-serialno)
+
+trap _handle_interrupt INT
+function _handle_interrupt() {
+    echo "Finishing capture..."
+    sleep 3
+    echo "Saving to ${dest}..."
+    adb pull ${video_path_on_device}
+    adb shell rm ${video_path_on_device}
+    echo "Done."
+}
+
+echo "Capturing screen video for device ${devid}..."
+echo "(Ctrl-C to finish)"
+adb shell mkdir -p  ${video_dir_on_device}
+adb shell screenrecord ${video_path_on_device}
+
+# ex: ts=4 sw=4 et filetype=sh
+
