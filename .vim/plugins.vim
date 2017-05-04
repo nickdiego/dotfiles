@@ -31,13 +31,13 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'tbastos/vim-lua'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-Plugin 'ensime/ensime-vim'
 
 Plugin 'vim-airline/vim-airline-themes'
 
 if has('nvim')
     Plugin 'vim-airline/vim-airline'
 else
+    "Plugin 'ensime/ensime-vim'
     Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 endif
 
