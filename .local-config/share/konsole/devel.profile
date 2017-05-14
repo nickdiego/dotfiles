@@ -1,5 +1,5 @@
 [Appearance]
-ColorScheme=Linux
+ColorScheme=custom
 Font=xos4 Terminus,9,-1,5,50,0,0,0,0,0,Regular
 
 [General]
