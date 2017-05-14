@@ -1,4 +1,5 @@
 local wibox = require("wibox")
+local timer = require("gears").timer
 
 batterywidget = wibox.widget.textbox()
 batterywidget:set_text(" | Battery | ")

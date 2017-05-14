@@ -1,5 +1,6 @@
 local wibox = require("wibox")
 local awful = require("awful")
+local timer = require("gears").timer
 
 volume_widget = wibox.widget.textbox()
 volume_widget:set_align("right")
