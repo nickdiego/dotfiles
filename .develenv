@@ -306,4 +306,17 @@ config_static_tmp_ip() {
   sudo ifconfig $dev $ip netmask $mask
 }
 
+vysor() {
+  local electron_dir="$HOME/sandbox/electron-chrome"
+  local electron_exe="${electron_dir}/node_modules/electron/dist/electron"
+  $electron_exe $electron_dir --app-id=gidgenkbbabolejbgbpnhbimgjbffefm
+}
+
+if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+  eval `ssh-agent`>/dev/null
+  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+
+ssh-add -l > /dev/null || ssh-add
 # ex: ts=2 sw=2 et filetype=sh
