@@ -9,9 +9,10 @@ declare -a _projects _prev_project
 config_proj() {
     function generate_proj_env() {
         local projname=$1 projpath=$2 subproj
-        eval "${projname}_proj_root=$projpath"
+        local prefix=$(generate_var_prefix $projname)
+        eval "${prefix}_proj_root=$projpath"
         if declared_func setenv; then
-            eval "${projname}_setenv() {
+            eval "${prefix}_setenv() {
                 $(declare -f setenv)
                 projname=$projname
                 projroot=$projpath
@@ -20,7 +21,7 @@ config_proj() {
             }"
             local subs=( $projname ${subprojects[@]} )
             for subproj in ${subs[@]}; do
-                ${projname}_setenv $subproj
+                ${prefix}_setenv $subproj
                 generate_subproj_env $projname $projpath $subproj
             done
         fi
@@ -28,32 +29,44 @@ config_proj() {
 
     function generate_subproj_env() {
         local projname=$1 projpath=$2 subproj=$3
-        local d prefix=$(generate_prefix $projname $subproj)
-        declare -Ag ${prefix}_dirs
+        local full_prefix=$(generate_full_var_prefix $projname $subproj)
+        local proj_prefix=$(generate_var_prefix $projname)
+        declare -Ag ${full_prefix}_dirs
+        local d
         for d in "${!dirs[@]}"; do
-            eval "${prefix}_dirs[$d]=${dirs[$d]}"
+            eval "${full_prefix}_dirs[$d]=${dirs[$d]}"
         done
-        eval "${prefix}_defaultdir=${defaultdir}"
-        eval "${prefix}_targets=(${targets[@]})"
-        eval "${prefix}_options=(${options[@]})"
+        eval "${full_prefix}_defaultdir=${defaultdir}"
+        eval "${full_prefix}_targets=(${targets[@]})"
+        eval "${full_prefix}_options=(${options[@]})"
         if ! declared_func 'activate'; then
-            eval "${prefix}_set_as_curr_project() {
-                ${projname}_setenv '$subproj'
+            eval "${full_prefix}_set_as_curr_project() {
+                ${proj_prefix}_setenv '$subproj'
             }"
         else
-            eval "${prefix}_set_as_curr_project() {
+            eval "${full_prefix}_set_as_curr_project() {
                 $(declare -f activate)
-                ${projname}_setenv '$subproj'
+                ${proj_prefix}_setenv '$subproj'
                 activate '${subproj}' \$@
             }"
         fi
-        _projects+=( $(generate_prefix $projname $subproj '/') )
+        _projects+=( $(generate_projid $projname $subproj) )
         clear_subproj_env
     }
 
-    function generate_prefix() {
-        local proj=$1 sub=$2 sep=${3:-_}
-        [ "$proj" = "$sub" ] && echo $proj || echo "${proj}${sep}${sub}"
+    function generate_var_prefix() {
+        sed 's/[^a-zA-Z0-9]/_/g' <<< $1
+    }
+
+    function generate_full_var_prefix() {
+        local proj=$(generate_var_prefix $1)
+        local sub=$(generate_var_prefix $2)
+        [ "$proj" = "$sub" ] && echo $proj || echo "${proj}_${sub}"
+    }
+
+    function generate_projid() {
+        local proj=$1 sub=$2 sep=$3
+        [ "$proj" = "$sub" ] && echo "${proj}" || echo "${proj}/${sub}"
     }
 
     function clear_proj_env() {
@@ -167,7 +180,7 @@ set_project() {
     fi
 
     local subproj=${projid#*/}
-    local prefix=${projid/\//\_}
+    local prefix=$(generate_var_prefix $projid)
     local activatefunc=${prefix}_set_as_curr_project
     if [[ "$projid" != "$curr_project" && "${_opt['--back']}" -ne 1 ]]; then
         _prev_project+=($curr_project)
@@ -255,9 +268,9 @@ __projectopts() {
                 arg=${arg#@}
                 if [[ -z "$arg" ]]; then
                     [[ -z $curr_project ]] && return 1 ||
-                        proj=${curr_project/\//_}
+                        proj=$(generate_var_prefix $curr_project)
                 else
-                    [[ "${_projects[@]}" =~ "${arg}" ]] && proj=${arg/\//_}
+                    [[ "${_projects[@]}" =~ "${arg}" ]] && proj=$(generate_var_prefix $arg)
                 fi
                 ;;
         esac
