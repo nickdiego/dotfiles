@@ -1,6 +1,6 @@
 #!/bin/bash
 
-projname='tmux_resurrect'
+projname='tmux-resurrect'
 
 setenv() {
   dirs[src]='/'

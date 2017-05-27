@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # std project variables
-projname='drunk'
+projname='drunk-waiter'
 subprojects=('client' 'server')
 
 setenv() {
