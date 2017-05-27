@@ -2,10 +2,11 @@
     editor = vim
     abbrev = 12
 	autocrlf = input
+	excludesfile = /home/nick/.PatchDeliveryTool/pdc_tools/.gitignore_global
 
 [user]
     name = Nick Diego Yamane
-    email = nick.diego@gmail.com
+	email = nick.yamane@tcl.com
 
 [color]
     ui = auto
@@ -25,6 +26,8 @@
     s = status
     ra = rebase -i --autosquash
     ds = diff --staged
+    fix-gitignore = cherry-pick c6b4ac781301
+    enable-debug-unsigned = stash apply 6e6e0a975ba
 [credential]
 	helper = store
 [diff]
