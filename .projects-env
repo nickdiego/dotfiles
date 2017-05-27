@@ -1,4 +1,4 @@
-# vim:ft=sh:
+#!/usr/bin/bash
 
 _proj_dir=~/projects
 
@@ -7,85 +7,85 @@ declare -a _projects _prev_project
 
 # Helper functions
 config_proj() {
-  function generate_proj_env() {
-    local projname=$1 projpath=$2 subproj
-    eval "${projname}_proj_root=$projpath"
-    if declared_func setenv; then
-      eval "${projname}_setenv() {
-        $(declare -f setenv)
-        projname=$projname
-        projroot=$projpath
-        declare -Ag dirs=( [root]=${projpath} )
-        setenv \$@
-      }"
-      local subs=( $projname ${subprojects[@]} )
-      for subproj in ${subs[@]}; do
-        ${projname}_setenv $subproj
-        generate_subproj_env $projname $projpath $subproj
-      done
-    fi
-  }
+    function generate_proj_env() {
+        local projname=$1 projpath=$2 subproj
+        eval "${projname}_proj_root=$projpath"
+        if declared_func setenv; then
+            eval "${projname}_setenv() {
+                $(declare -f setenv)
+                projname=$projname
+                projroot=$projpath
+                declare -Ag dirs=( [root]=${projpath} )
+                setenv \$@
+            }"
+            local subs=( $projname ${subprojects[@]} )
+            for subproj in ${subs[@]}; do
+                ${projname}_setenv $subproj
+                generate_subproj_env $projname $projpath $subproj
+            done
+        fi
+    }
 
-  function generate_subproj_env() {
-    local projname=$1 projpath=$2 subproj=$3
-    local d prefix=$(generate_prefix $projname $subproj)
-    declare -Ag ${prefix}_dirs
-    for d in "${!dirs[@]}"; do
-      eval "${prefix}_dirs[$d]=${dirs[$d]}"
-    done
-    eval "${prefix}_defaultdir=${defaultdir}"
-    eval "${prefix}_targets=(${targets[@]})"
-    eval "${prefix}_options=(${options[@]})"
-    if ! declared_func 'activate'; then
-      eval "${prefix}_set_as_curr_project() {
-        ${projname}_setenv '$subproj'
-      }"
+    function generate_subproj_env() {
+        local projname=$1 projpath=$2 subproj=$3
+        local d prefix=$(generate_prefix $projname $subproj)
+        declare -Ag ${prefix}_dirs
+        for d in "${!dirs[@]}"; do
+            eval "${prefix}_dirs[$d]=${dirs[$d]}"
+        done
+        eval "${prefix}_defaultdir=${defaultdir}"
+        eval "${prefix}_targets=(${targets[@]})"
+        eval "${prefix}_options=(${options[@]})"
+        if ! declared_func 'activate'; then
+            eval "${prefix}_set_as_curr_project() {
+                ${projname}_setenv '$subproj'
+            }"
+        else
+            eval "${prefix}_set_as_curr_project() {
+                $(declare -f activate)
+                ${projname}_setenv '$subproj'
+                activate '${subproj}' \$@
+            }"
+        fi
+        _projects+=( $(generate_prefix $projname $subproj '/') )
+        clear_subproj_env
+    }
+
+    function generate_prefix() {
+        local proj=$1 sub=$2 sep=${3:-_}
+        [ "$proj" = "$sub" ] && echo $proj || echo "${proj}${sep}${sub}"
+    }
+
+    function clear_proj_env() {
+        unset -v projname projpath projroot subprojects targets
+        unset -f setenv activate
+    }
+
+    function clear_subproj_env() {
+        unset -v dirs defaultdir target options vimsession
+    }
+
+    function declared_func() {
+        declare -f "$1" >/dev/null
+    }
+
+    local script=$1
+    source $script
+    if [[ -z $projname ]]; then
+        log_message "Error: Couldn't find \$projname for $script"
+        return 1
     else
-      eval "${prefix}_set_as_curr_project() {
-        $(declare -f activate)
-        ${projname}_setenv '$subproj'
-        activate '${subproj}' \$@
-      }"
+        local projrootpath=${projpath:-$_proj_dir/$projname}
+        test -d $projrootpath || return 1
+        log_message "Setting env for $projrootpath"
+        generate_proj_env $projname $projrootpath
+        clear_proj_env
     fi
-    _projects+=( $(generate_prefix $projname $subproj '/') )
-    clear_subproj_env
-  }
-
-  function generate_prefix() {
-    local proj=$1 sub=$2 sep=${3:-_}
-    [ "$proj" = "$sub" ] && echo $proj || echo "${proj}${sep}${sub}"
-  }
-
-  function clear_proj_env() {
-     unset -v projname projpath projroot subprojects targets
-     unset -f setenv activate
-  }
-
-  function clear_subproj_env() {
-     unset -v dirs defaultdir target options vimsession
-  }
-
-  function declared_func() {
-    declare -f "$1" >/dev/null
-  }
-
-  local script=$1
-  source $script
-  if [[ -z $projname ]]; then
-    log_message "Error: Couldn't find \$projname for $script"
-    return 1
-  else
-    local projrootpath=${projpath:-$_proj_dir/$projname}
-    test -d $projrootpath || return 1
-    log_message "Setting env for $projrootpath"
-    generate_proj_env $projname $projrootpath
-    clear_proj_env
-  fi
 }
 
 # Internal helper functions
 log_message() {
-  (( ${_opt[-v]} )) && echo $@
+    (( ${_opt[-v]} )) && echo $@
 }
 
 # TODO For now supports only boolean
@@ -93,200 +93,201 @@ log_message() {
 # TODO implement _extraargs, for args
 # after "--", if present
 process_args() {
-  declare -a vals opts
-  while (( $# )); do
-    case $1 in
-      -?)
-        opts+=("[${1}]=1")
-        ;;
-      --*)
-        opts+=("[${1}]=1")
-        ;;
-      *)
-        vals+=( $1 )
-    esac
-    shift
-  done
-  echo "declare -a _val=(${vals[@]});"
-  echo "declare -A _opt=(${opts[@]});"
+    declare -a vals opts
+    while (( $# )); do
+        case $1 in
+            -?)
+                opts+=("[${1}]=1")
+                ;;
+            --*)
+                opts+=("[${1}]=1")
+                ;;
+            *)
+                vals+=( $1 )
+        esac
+        shift
+    done
+    echo "declare -a _val=(${vals[@]});"
+    echo "declare -A _opt=(${opts[@]});"
 }
 
 clear_curr_proj_vars() {
-  local varname
-  for varname in "${!curr_proj*}"; do
-    unset -v ${varname}
-  done
+    local varname
+    for varname in "${!curr_proj*}"; do
+        unset -v ${varname}
+    done
 }
 
 get_hash_val() {
-  local hashname=$1 key=$2
-  eval "echo \${${hashname}[$key]}"
+    local hashname=$1 key=$2
+    eval "echo \${${hashname}[$key]}"
 }
 
 get_hash_keys() {
-  local hashname=$1
-  eval "echo \${!${hashname}[@]}"
+    local hashname=$1
+    eval "echo \${!${hashname}[@]}"
 }
 
 declare_proj_dirs() {
-  local fulldir proj=$1; shift
-  local root=$(get_hash_val ${proj}_dirs root)
-  local default=$(eval "echo \$${proj}_defaultdir")
+    local fulldir proj=$1; shift
+    local root=$(get_hash_val ${proj}_dirs root)
+    local default=$(eval "echo \$${proj}_defaultdir")
 
-  set $(get_hash_keys ${proj}_dirs)
-  echo "local rootdir='$root'"
-  while (( $# )); do
-    if [[ "$1" != root ]]; then
-      fulldir="${root}/$(get_hash_val ${proj}_dirs $1)"
-      echo "local ${1}dir='$fulldir'"
-      [[ "$1" == "$default" ]] && echo "local defaultdir='$fulldir'"
-    fi
-    shift
-  done
+    set $(get_hash_keys ${proj}_dirs)
+    echo "local rootdir='$root'"
+    while (( $# )); do
+        if [[ "$1" != root ]]; then
+            fulldir="${root}/$(get_hash_val ${proj}_dirs $1)"
+            echo "local ${1}dir='$fulldir'"
+            [[ "$1" == "$default" ]] && echo "local defaultdir='$fulldir'"
+        fi
+        shift
+    done
 }
 
 ## Public functions
 set_project() {
-  eval $(process_args $@)
-  local projid=${_val[0]#@}
-  if [[ -z "${projid:-}" ]]; then
-    if [[ -z "${curr_project:-}" ]]; then
-      echo "Failed to switch do project dir: \$curr_project empty."
-      return 1
+    eval $(process_args $@)
+    local projid=${_val[0]#@}
+    if [[ -z "${projid:-}" ]]; then
+        if [[ -z "${curr_project:-}" ]]; then
+            echo "Failed to switch do project dir: \$curr_project empty."
+            return 1
+        fi
+        projid="$curr_project"
+    elif [[ "$projid" = "-" ]] || (( ${_opt['--back']} )); then
+        local last=$((${#_prev_project[@]} - 1))
+        if (( $last < 0 )); then
+            echo "No previous project set."
+            return 1
+        fi
+        _opt['--back']=1
+        projid=${_prev_project[$last]}
+        unset -v _prev_project[$last]
     fi
-    projid="$curr_project"
-  elif [[ "$projid" = "-" ]] || (( ${_opt['--back']} )); then
-    local last=$((${#_prev_project[@]} - 1))
-    if (( $last < 0 )); then
-      echo "No previous project set."
-      return 1
+
+    local subproj=${projid#*/}
+    local prefix=${projid/\//\_}
+    local activatefunc=${prefix}_set_as_curr_project
+    if [[ "$projid" != "$curr_project" && "${_opt['--back']}" -ne 1 ]]; then
+        _prev_project+=($curr_project)
     fi
-    _opt['--back']=1
-    projid=${_prev_project[$last]}
-    unset -v _prev_project[$last]
-  fi
 
-  local subproj=${projid#*/}
-  local prefix=${projid/\//\_}
-  local activatefunc=${prefix}_set_as_curr_project
-  if [[ "$projid" != "$curr_project" && "${_opt['--back']}" -ne 1 ]]; then
-    _prev_project+=($curr_project)
-  fi
+    clear_curr_proj_vars
+    declared_func $activatefunc && $activatefunc $subproj
 
-  clear_curr_proj_vars
-  declared_func $activatefunc && $activatefunc $subproj
+    # FIXME: Re-generate proj env, they may change
+    # dependingo on the options are passed to
+    # set_project/cd_project
 
-  # FIXME: Re-generate proj env, they may change
-  # dependingo on the options are passed to
-  # set_project/cd_project
+    local d fulldir dirnames=("${!dirs[@]}")
+    if (( ${#dirnames[@]} )); then
+        eval "curr_proj_root_dir='${dirs[root]}'"
+        for d in ${dirnames[@]}; do
+            [[ "$d" == root ]] && continue
+            fulldir="${dirs[root]}/${dirs[${d}]}"
+            eval "export curr_proj_${d}_dir='${fulldir}'"
+            [[ "$d" == "$defaultdir" ]] && curr_proj_defaultdir="$fulldir"
+        done
+    fi
 
-  local d fulldir dirnames=("${!dirs[@]}")
-  if (( ${#dirnames[@]} )); then
-    eval "curr_proj_root_dir='${dirs[root]}'"
-    for d in ${dirnames[@]}; do
-      [[ "$d" == root ]] && continue
-      fulldir="${dirs[root]}/${dirs[${d}]}"
-      eval "export curr_proj_${d}_dir='${fulldir}'"
-      [[ "$d" == "$defaultdir" ]] && curr_proj_defaultdir="$fulldir"
-    done
-  fi
+    curr_proj_target=$target
+    curr_proj_vimsession=${vimsession:-$subproj}
+    curr_project=$projid
+    clear_subproj_env
 
-  curr_proj_target=$target
-  curr_proj_vimsession=${vimsession:-$subproj}
-  curr_project=$projid
-  clear_subproj_env
-
-  log_message "Switched ${_opt['--back']:+back }to project '${projid}'" \
-    " (Back stack: [ $(sed 's/ / > /g' <<< "${_prev_project[@]}") ])"
+    log_message "Switched ${_opt['--back']:+back }to project '${projid}'" \
+        " (Back stack: [ $(sed 's/ / > /g' <<< "${_prev_project[@]}") ])"
 }
 
 cd_project() {
-  eval $(process_args $@)
-  local projid=${_val[0]:-$curr_project}
-  set_project $projid ${!_opt[@]}
-  local basedir="$curr_proj_defaultdir"
-  [[ -n $basedir ]] || basedir=${curr_proj_src_dir:-$curr_proj_root_dir}
-  cd "${basedir}/${_val[1]}"
+    eval $(process_args $@)
+    local projid=${_val[0]:-$curr_project}
+    set_project $projid ${!_opt[@]}
+    local basedir="$curr_proj_defaultdir"
+    [[ -n $basedir ]] || basedir=${curr_proj_src_dir:-$curr_proj_root_dir}
+    cd "${basedir}/${_val[1]}"
 }
 
 ## Bash completion stuff
 
 __cdopts()
 {
-  local cur prev words cword
-  _init_completion || return
-  local IFS='
-' i j k;
-  compopt -o filenames -o nospace
-  if [[ -z "${proj_cdpath:-}" || "$cur" == ?(.)?(.)/* ]]; then
-    _filedir -d
-    return
-  fi;
-  local -r mark_dirs=$(_rl_enabled mark-directories && echo y)
-  local -r mark_symdirs=$(_rl_enabled mark-symlinked-directories && echo y)
-  for i in ${proj_cdpath//:/'
-'};
-  do
-    k="${#COMPREPLY[@]}"
-    for j in $( compgen -d -- $i/$cur ); do
-      [[ ( -n $mark_symdirs && -h $j || -n $mark_dirs && ! -h $j ) &&
-        ! -d ${j#$i/} ]] && j+="/"
-      COMPREPLY[k++]=${j#$i/}
+    local cur prev words cword
+    _init_completion || return
+    local IFS='
+    ' i j k;
+    compopt -o filenames -o nospace
+    if [[ -z "${proj_cdpath:-}" || "$cur" == ?(.)?(.)/* ]]; then
+        _filedir -d
+        return
+    fi;
+    local -r mark_dirs=$(_rl_enabled mark-directories && echo y)
+    local -r mark_symdirs=$(_rl_enabled mark-symlinked-directories && echo y)
+    for i in ${proj_cdpath//:/'
+        '};
+    do
+        k="${#COMPREPLY[@]}"
+        for j in $( compgen -d -- $i/$cur ); do
+            [[ ( -n $mark_symdirs && -h $j || -n $mark_dirs && ! -h $j ) &&
+                ! -d ${j#$i/} ]] && j+="/"
+            COMPREPLY[k++]=${j#$i/}
+        done
     done
-  done
-  if [[ ${#COMPREPLY[@]} -eq 1 ]]; then
-    i=${COMPREPLY[0]};
-    [[ "$i" == "$cur" && $i != "*/" ]] && COMPREPLY[0]="${i}/"
-  fi;
+    if [[ ${#COMPREPLY[@]} -eq 1 ]]; then
+        i=${COMPREPLY[0]};
+        [[ "$i" == "$cur" && $i != "*/" ]] && COMPREPLY[0]="${i}/"
+    fi;
 }
 
 __projectopts() {
-  (( ${#_projects[@]} )) || return 0
-  local i=1 cur="${COMP_WORDS[COMP_CWORD]}"
-  local optset=() result=()
-  local arg proj
-  while (( i < COMP_CWORD )); do
-    arg=${COMP_WORDS[i]}
-    case $arg in
-      --* | -?)
-        optset+=( $arg )
-        ;;
-      @*)
-        arg=${arg#@}
-        if [[ -z "$arg" ]]; then
-          [[ -z $curr_project ]] && return 1 || proj=${curr_project/\//_}
-        else
-          [[ "${_projects[@]}" =~ "${arg}" ]] && proj=${arg/\//_}
-        fi
-        ;;
-    esac
-    i=$((i+1))
-  done
-  if [[ -z ${proj} ]]; then
-    [[ "$cur" != @* ]] && cur="@${cur}"
-    result+=( "${_projects[*]/#/@}" )
-  else
-    if [[ $cur = --* || $cur = -? ]]; then
-      result+=( "$_cmdproj_options" "\${${proj}_options[@]}" )
+    (( ${#_projects[@]} )) || return 0
+    local i=1 cur="${COMP_WORDS[COMP_CWORD]}"
+    local optset=() result=()
+    local arg proj
+    while (( i < COMP_CWORD )); do
+        arg=${COMP_WORDS[i]}
+        case $arg in
+            --* | -?)
+                optset+=( $arg )
+                ;;
+            @*)
+                arg=${arg#@}
+                if [[ -z "$arg" ]]; then
+                    [[ -z $curr_project ]] && return 1 ||
+                        proj=${curr_project/\//_}
+                else
+                    [[ "${_projects[@]}" =~ "${arg}" ]] && proj=${arg/\//_}
+                fi
+                ;;
+        esac
+        i=$((i+1))
+    done
+    if [[ -z ${proj} ]]; then
+        [[ "$cur" != @* ]] && cur="@${cur}"
+        result+=( "${_projects[*]/#/@}" )
     else
-      eval $(declare_proj_dirs $proj)
-      export proj_cdpath="$defaultdir"
-      [ -z "${proj_cdpath:-}" ] && proj_cdpath="${srcdir:-$rootdir}"
-      __cdopts
-      return
+        if [[ $cur = --* || $cur = -? ]]; then
+            result+=( "$_cmdproj_options" "\${${proj}_options[@]}" )
+        else
+            eval $(declare_proj_dirs $proj)
+            export proj_cdpath="$defaultdir"
+            [ -z "${proj_cdpath:-}" ] && proj_cdpath="${srcdir:-$rootdir}"
+            __cdopts
+            return
+        fi
     fi
-  fi
-  COMPREPLY=( $(compgen -W "${result[*]}" -- ${cur}) )
+    COMPREPLY=( $(compgen -W "${result[*]}" -- ${cur}) )
 }
 
 ## Init stuff
 _cmdproj_options=( '-v' )
 
 if [ -d ~/.projects-env.d ]; then
-  for script in ~/.projects-env.d/*.sh; do
-    config_proj $script
-  done
-  unset script
+    for script in ~/.projects-env.d/*.sh; do
+        config_proj $script
+    done
+    unset script
 fi
 
 complete -F __projectopts set_project
@@ -298,3 +299,4 @@ alias pcd='cd_project'
 complete -F __projectopts pset
 complete -F __projectopts pcd
 
+# vim:ft=sh sw=4:
