@@ -2,15 +2,16 @@
 
 # std project variables
 projname='itriad'
-subprojects=('udacity')
+subprojects=('udacity' 'music-os')
 
 setenv() {
-  #dirs[src]=""
-  #targets=('Linux-x86_64')
   defaultdir=root
   case $subproj in
     udacity)
       dirs[src]="android-study/udacity/devel-android-apps"
+      ;;
+    music-os)
+      dirs[src]="music/src/MusicOS"
       ;;
   esac
 }
