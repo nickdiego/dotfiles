@@ -65,8 +65,8 @@ modkey = "Mod4"
 awful.layout.layouts =
 {
     awful.layout.suit.tile,
-    awful.layout.suit.max,
     awful.layout.suit.floating,
+    awful.layout.suit.max,
     awful.layout.suit.tile.bottom,
     --[[ unused for now
     awful.layout.suit.tile.left,
@@ -185,7 +185,14 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "code", "term", "web", "chat", "etc" }, s, awful.layout.layouts[1])
+    local tags = { "code", "term", "web", "chat", "etc" }
+    local layouts = awful.layout.layouts
+    for i,name in ipairs(tags) do
+        awful.tag.add(name, {
+            layout = (i <= 3) and layouts[1] or layouts[2],
+            screen = s,
+            selected = i==1})
+    end
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -370,7 +377,7 @@ clientkeys = awful.util.table.join(
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 9 do
+for i = 1, 5 do
     globalkeys = awful.util.table.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
