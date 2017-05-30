@@ -305,6 +305,10 @@ config_static_tmp_ip() {
   sudo ifconfig $dev $ip netmask $mask
 }
 
+download_dir() {
+  wget -r --no-parent --reject "index.html*" $1
+}
+
 vysor() {
   local electron_dir="$HOME/sandbox/electron-chrome"
   local electron_exe="${electron_dir}/node_modules/electron/dist/electron"
