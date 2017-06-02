@@ -91,11 +91,10 @@ nnoremap <F7> :tabedit ~/.vimrc<CR>
 
 " Alt+<directional> to switch among splits
 let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <A-left> :TmuxNavigateLeft<cr>
-nnoremap <silent> <A-down> :TmuxNavigateDown<cr>
-nnoremap <silent> <A-up> :TmuxNavigateUp<cr>
-nnoremap <silent> <A-right> :TmuxNavigateRight<cr>
-nnoremap <silent> {A-,} :TmuxNavigatePrevious<cr>
+nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
 
 " ENSIME stuff (disabled for now)
 "autocmd BufWritePost *.java silent :EnTypeCheck<CR>
