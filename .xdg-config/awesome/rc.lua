@@ -46,7 +46,7 @@ themename = "darker"
 beautiful.init("~/.config/awesome/themes/" .. themename .. ".lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "konsole"
+terminal = "termite"
 webbrowser = "chromium"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
