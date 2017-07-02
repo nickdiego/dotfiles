@@ -65,73 +65,6 @@ if [ -f /usr/share/git/completion/git-completion.bash ]; then
   . /usr/share/git/completion/git-completion.bash
 fi
 
-# Multihead helper functions
-# To see current display config, execute:
-# $ xrandr -q
-
-# Running Wayland
-if [ ! -z $WAYLAND_DISPLAY ]; then
-  export DISPLAY_MAIN='XWAYLAND0'
-  export DISPLAY_AUX='XWAYLAND1'
-  export DISPLAY_AUX='XWAYLAND2'
-else # assuming Running Xorg
-  case `hostname` in
-    nick-laptop) export DISPLAY_MAIN='eDP1';;
-    *) export DISPLAY_MAIN='LVDS1';;
-  esac
-  export DISPLAY_AUX1='HDMI1'
-  export DISPLAY_AUX2='VGA1'
-fi
-
-add-display-mode() {
-  local hres=${1:-1440} vres=${2:-900}
-  local name=${3:-"${hres}x${vres}_custom"}
-  local mode=$(cvt $hres $vres | tail -n1 | sed 's,^Modeline ".\+"\s\+,,')
-  xrandr --newmode "$name" $mode 2>/dev/null || return 1
-}
-
-add-aux-display-modes() {
-  local modename=$1
-  add-display-mode 1440 900 "$modename" &&
-  xrandr --addmode $DISPLAY_AUX1 "$modename" &&
-  xrandr --addmode $DISPLAY_AUX2 "$modename"
-}
-
-_arrange_displays_opts=( --reset --default )
-arrange-displays() {
-  local modename='1440x900_aux'
-  add-aux-display-modes "$modename"
-  case $1 in
-    --reset)
-      xrandr --output $DISPLAY_AUX2 --off \
-        --output $DISPLAY_AUX1 --off \
-        --output $DISPLAY_MAIN --auto;;
-    *)
-      xrandr --output $DISPLAY_AUX1 --auto --right-of $DISPLAY_MAIN
-  esac
-} && complete -W "${_arrange_displays_opts[*]}" arrange-displays
-
-add-big-display-modes() {
-  local modename=$1
-  add-display-mode 1440 818 "$modename" &&
-  xrandr --addmode VGA1 "$modename"
-}
-
-arrange-displays2() {
-  local modename='aux27'
-  add-big-display-modes "$modename"
-  case $1 in
-    -0 | --reset)
-      xrandr --output VGA1 --off \
-        --output $DISPLAY_MAIN --auto;;
-    -2 | '')
-      #local mode="--mode $modename"
-      local mode="--auto"
-      xrandr --output VGA1 $mode --left-of $DISPLAY_MAIN \
-        --output $DISPLAY_MAIN --auto;;
-  esac
-}
-
 # Find/Grep src helper functions
 reset_findsrc_dir() {
   export FINDSRC_DIR='.'
@@ -320,4 +253,11 @@ load-ssh-keys() {
 }
 
 load-ssh-keys &>/dev/null
+
+if [ -r ~/.bin/display-utils.sh ]; then
+  source ~/.bin/display-utils.sh &&
+    alias arrange-displays=toggle-aux-display &&
+    complete -W "${_arrange_displays_opts[*]}" arrange-displays
+fi
+
 # ex: ts=2 sw=2 et filetype=sh

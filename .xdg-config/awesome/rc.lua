@@ -53,6 +53,7 @@ editor_cmd = terminal .. " -e " .. editor
 lockscreen = "/usr/lib/kscreenlocker_greet"
 filemanager = "ranger"
 filemanager_cmd = terminal .." -e " .. filemanager
+toggledisplay = "~/.bin/toggle-aux-display"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -290,6 +291,10 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end),
+    awful.key({ modkey,           }, "Home", function()
+            awful.spawn.with_shell(toggledisplay)
+            awesome.restart()
+        end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 

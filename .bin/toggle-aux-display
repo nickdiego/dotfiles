@@ -1,0 +1,21 @@
+#!/bin/bash
+
+source ~/.bin/display-utils.sh
+
+opt=${1#--}
+
+if (( ! $# )); then
+  n=$(xrandr -q | grep 'connected[ primary]\+\? [0-9x+]\+' | wc -l)
+  (( n > 1 )) && opt='disable' || opt='enable'
+fi
+
+case $opt in
+  disable)
+    xrandr --output $DISPLAY_AUX --off \
+      --output $DISPLAY_MAIN --auto;;
+  enable)
+    xrandr --output $DISPLAY_AUX --auto --right-of $DISPLAY_MAIN
+esac
+
+# ex: ts=2 sw=2 et filetype=sh
+
