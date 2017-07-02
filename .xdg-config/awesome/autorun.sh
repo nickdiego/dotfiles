@@ -8,6 +8,7 @@ function run() {
 }
 
 # Start apps
+run compton
 run nm-applet
 run dropbox
 run chromium --no-startup-window
