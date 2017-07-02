@@ -342,6 +342,13 @@ globalkeys = awful.util.table.join(
       awful.util.spawn("amixer set Master 8%-") end),
     awful.key({ }, "XF86AudioMute", function ()
       awful.util.spawn("amixer sset Master toggle") end),
+    awful.key({}, "XF86AudioPlay", function()
+      awful.util.spawn("playerctl play-pause", false) end),
+    awful.key({}, "XF86AudioNext", function()
+      awful.util.spawn("playerctl next", false) end),
+    awful.key({}, "XF86AudioPrev", function()
+      awful.util.spawn("playerctl previous", false) end),
+    -- Brightness
     awful.key({ }, "XF86MonBrightnessDown", function ()
         awful.util.spawn("xbacklight -dec 8") end),
     awful.key({ }, "XF86MonBrightnessUp", function ()
