@@ -45,4 +45,4 @@ alias fdecl="declare -f $1 | highlight -S sh -O xterm256"
 
 alias lets-go='arrange-displays -0 && dm-tool lock'
 alias fm='ranger'
-alias vim=nvim
+#alias vim=nvim
