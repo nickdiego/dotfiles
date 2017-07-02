@@ -19,3 +19,6 @@ XTerm*color4:  blue
 XTerm*color5:  magenta
 XTerm*color6:  cyan
 XTerm*color7:  #B2B2B2
+
+xterm*metaSendsEscape: true
+
