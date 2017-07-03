@@ -1,0 +1,11 @@
+[options]
+font = Hack 9
+size_hints = true
+geometry = 100x30
+
+[colors]
+foreground = #dcdccc
+background  = rgba(0, 0, 0, 1)
+#background  = #000000
+
+
