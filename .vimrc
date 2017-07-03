@@ -23,12 +23,13 @@ let g:indentLine_char = '┆'
 set background=dark
 let base16colorspace=256
 let g:jellybeans_use_lowcolor_black = 0
-let g:jellybeans_use_term_italics = 1
-"colorscheme jellybeans
+"let g:jellybeans_use_term_italics = 1
+"let g:jellybeans_use_term_background_color = 1
+colorscheme jellybeans
 
 let g:molokai_original = 1
 let g:rehash256 = 1
-colorscheme molokai
+"colorscheme molokai
 
 let g:hybrid_custom_term_colors = 0
 let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
@@ -76,7 +77,9 @@ let g:mdf_listchars = 1
 let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='laederon'
+"let g:airline_theme='laederon'
+"let g:airline_theme='hybridline'
+let g:airline_theme='minimalist'
 
 "Eclim configs
 let g:EclimCompletionMethod = 'omnifunc'
