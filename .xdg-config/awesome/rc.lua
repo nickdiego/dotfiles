@@ -469,7 +469,9 @@ awful.rules.rules = {
             "Wpa_gui",
             "pinentry",
             "veromix",
-          "xtightvncviewer"},
+            "xtightvncviewer",
+            "nemo"
+            },
 
           name = {
             "Event Tester",  -- xev.
@@ -481,12 +483,18 @@ awful.rules.rules = {
       }, properties = { floating = true }
     },
 
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    { rule = { class = "Firefox" },
+    -- Set Brower/Mail Client to always map on tags number 2 of screen 1.
+    { rule_any = { class = {"Firefox", "Chromium", "Chrome", "Evolution" } },
       properties = { screen = (screen.count() < 3 and 1 or 3), tag = "web" }
+    },
+    { rule_any = { class = {"Slack", "Telegram"} },
+      properties = { screen = 1, tag = "chat", floating = true }
     },
     { rule = { name = "DFB X11 system window" },
       properties = { screen = 1 }
+    },
+    { rule = { class = "Gimp" },
+      properties = { tag = "etc" }
     },
     { rule = { name = "Drunkwaiter" },
       properties = { screen = (screen.count() < 3 and 1 or 3) }
