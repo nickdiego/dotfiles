@@ -453,7 +453,20 @@ awful.rules.rules = {
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
-     }
+     },
+     callback = function(c)
+         awful.client.setslave(c)
+         if not c.class and not c.name then
+             local f
+             f = function(_c)
+                 _c:disconnect_signal("property::name", f)
+                 if _c.name == "Spotify" then
+                     awful.rules.apply(_c)
+                 end
+             end
+             c:connect_signal("property::name", f)
+         end
+     end
     },
 
     { rule_any = {
@@ -484,11 +497,17 @@ awful.rules.rules = {
     },
 
     -- Set Brower/Mail Client to always map on tags number 2 of screen 1.
-    { rule_any = { class = {"Firefox", "Chromium", "Chrome", "Evolution" } },
-      properties = { screen = (screen.count() < 3 and 1 or 3), tag = "web" }
+    { rule_any = { class = {"Firefox", "Chromium", "Chrome" } },
+      properties = { screen = (screen.count() < 3 and 1 or 3), tag = "web", maximized = false}
+    },
+    { rule_any = { class = { "Evolution" } },
+      properties = { screen = 1, tag = "web", maximized_vertical = true, maximized_horizontal = true }
     },
     { rule_any = { class = {"Slack", "Telegram"} },
       properties = { screen = 1, tag = "chat", floating = true }
+    },
+    { rule = { name = "Spotify" },
+      properties = { screen = 1, tag = "etc", maximized_vertical = true, maximized_horizontal = true }
     },
     { rule = { name = "DFB X11 system window" },
       properties = { screen = 1 }
