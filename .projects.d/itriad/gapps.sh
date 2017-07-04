@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # std project variables
 projname='gapps'
 subprojects=('music-os')

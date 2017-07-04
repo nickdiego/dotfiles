@@ -208,8 +208,9 @@ find_in_jars() {
 ## Projects confs
 
 [ -f ~/.tools-env ] && . ~/.tools-env
-[ -f ~/.projects-env ] && . ~/.projects-env
-set_project @itriad
+[ -f ~/.proj-commander/proj-commander.sh ] &&
+  . ~/.proj-commander/proj-commander.sh
+proj_set @oma
 
 export ethernet='enp1s0'
 export wlan='wlp2s0'

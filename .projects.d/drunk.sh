@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # std project variables
 projname='drunk-waiter'
 subprojects=('client' 'server')

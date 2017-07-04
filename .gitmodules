@@ -15,3 +15,7 @@
 [submodule ".tmux/plugins/tpm"]
 	path = .tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule ".proj-commander"]
+	path = .proj-commander
+	url = git@github.com:nickdiego/proj-commander.git
+	ignore = dirty

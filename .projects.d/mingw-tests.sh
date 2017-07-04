@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # std project variables
 projname='mingwtests'
 projpath="$HOME/sandbox/mingw-tests"
