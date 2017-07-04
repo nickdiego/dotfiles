@@ -1,17 +1,14 @@
 #!/bin/bash
 
 # std project variables
-projname='itriad'
-subprojects=('music-os' 'oma-dm')
+projname='gapps'
+subprojects=('music-os')
 
 setenv() {
   defaultdir=root
   case $subproj in
     music-os)
-      dirs[src]="music/src/MusicOS"
-      ;;
-    oma-dm)
-      dirs[src]="oma/src/android_packages_apps_OMA-DM"
+      dirs[src]="src/MusicOS"
       ;;
   esac
 }
