@@ -75,11 +75,19 @@ let g:mdf_listchars = 1
 
 "Powerline configs
 let g:Powerline_symbols = 'fancy'
+
+" Airline {
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#ycm#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme='laederon'
-"let g:airline_theme='hybridline'
-let g:airline_theme='minimalist'
+"let g:airline_theme='hybrid'
+let g:airline_theme='distinguished'
+"let g:airline_theme='minimalist'
+" }
 
 "Eclim configs
 let g:EclimCompletionMethod = 'omnifunc'
