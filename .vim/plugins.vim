@@ -31,6 +31,7 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'tbastos/vim-lua'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
+Plugin 'aklt/plantuml-syntax'
 
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-airline/vim-airline'

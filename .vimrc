@@ -194,14 +194,6 @@ cmap w!! w !sudo tee % >/dev/null
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf = '~/.vim/custom/ycm_extra_conf.py'
 
-augroup filetypedetect
-    au BufRead,BufNewFile *.puml set filetype=py
-    au BufRead,BufNewFile *.puml set syntax=java
-    au BufRead,BufNewFile *.iuml set filetype=py
-    au BufRead,BufNewFile *.iuml set syntax=java
-augroup END
-
-
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
