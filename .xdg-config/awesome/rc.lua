@@ -269,7 +269,7 @@ globalkeys = awful.util.table.join(
     --        if client.focus then client.focus:raise() end
     --    end),
     awful.key({ modkey,           }, "w", function () awful.util.spawn(webbrowser) end),
-    awful.key({ modkey,           }, "e", function () awful.util.spawn(filemanager_cmd) end),
+    awful.key({ modkey,           }, "e", function () awful.util.spawn(filemanager_cmd, { floating = true }) end),
     awful.key({ modkey, "Control" }, "l", function () awful.util.spawn(lockscreen) end),
 
     -- Layout manipulation
