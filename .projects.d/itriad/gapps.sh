@@ -1,12 +1,15 @@
 # std project variables
 projname='gapps'
-subprojects=('music-os')
+subprojects=('music-os' 'tools')
 
 setenv() {
   defaultdir=root
   case $subproj in
     music-os)
       dirs[src]="src/MusicOS"
+      ;;
+    tools)
+      dirs[src]="src/tools"
       ;;
   esac
 }
