@@ -2,6 +2,7 @@
 font = Hack 9
 size_hints = true
 geometry = 100x30
+scrollback_lines = 1000000
 
 [colors]
 foreground = #dcdccc
