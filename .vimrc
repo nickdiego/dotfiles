@@ -89,6 +89,9 @@ let g:airline_theme='distinguished'
 "let g:airline_theme='minimalist'
 " }
 
+" Leader-S to save as root (sudo tee trick)
+nnoremap <leader>sw :w !sudo tee %<CR>
+
 "Eclim configs
 let g:EclimCompletionMethod = 'omnifunc'
 
