@@ -4,11 +4,6 @@
 [submodule ".tmux/tmux-powerline.git"]
   path = .tmux/tmux-powerline.git
   url = git://github.com/erikw/tmux-powerline.git
-[submodule ".xdg-config/awesome/cyclefocus"]
-  path = .xdg-config/awesome/cyclefocus
-  url = https://github.com/blueyed/awesome-cyclefocus
-  ignore = dirty
-  branch = v4
 [submodule ".powerline/fonts"]
 	path = .powerline/fonts
 	url = https://github.com/powerline/fonts.git
@@ -19,3 +14,6 @@
 	path = .proj-commander
 	url = git@github.com:nickdiego/proj-commander.git
 	ignore = dirty
+[submodule ".xdg-config/awesome-config"]
+	path = .xdg-config/awesome-config
+	url = git@github.com:nickdiego/awesome-confg.git

@@ -101,7 +101,7 @@ sync_dot_files &&
 
 # Sync xdg-config files
 # FIXME generalize this to work with all dirs inside .xdg-config
-sync_dot_file .xdg-config/awesome .config/awesome
+sync_dot_file .xdg-config/awesome-config .config/awesome
 sync_dot_file .xdg-config/konsolerc .config/konsolerc
 sync_dot_file .xdg-config/mimeapps.list .config/mimeapps.list
 sync_dot_file .xdg-config/nvim .config/nvim
