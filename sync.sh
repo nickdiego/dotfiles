@@ -108,6 +108,7 @@ sync_dot_file .xdg-config/nvim .config/nvim
 sync_dot_file .xdg-config/termite .config/termite
 sync_dot_file .xdg-config/ranger .config/ranger
 sync_dot_file .xdg-config/gtk-3.0 .config/gtk-3.0
+sync_dot_file .xdg-config/kscreenlockerrc .config/kscreenlockerrc
 
 sync_dot_file .pixmaps/face.icon .face.icon
 setfacl -m u:sddm:r .pixmaps/face.icon
