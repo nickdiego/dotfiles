@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+
+set -e
+
+if ! type kcmshell5 &>/dev/null; then
+    echo '## Error: kcmshell5 not installed!!'
+    echo '## Install package plasma-workspace package'
+    echo '## and try again.'
+    exit 1
+fi
+
+exec kcmshell5 screenlocker
