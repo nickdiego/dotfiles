@@ -48,3 +48,4 @@ alias fm='ranger'
 #alias vim=nvim
 
 alias g=rg
+alias vim=nvim
