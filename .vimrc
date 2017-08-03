@@ -27,6 +27,9 @@ let g:jellybeans_use_lowcolor_black = 0
 "let g:jellybeans_use_term_background_color = 1
 colorscheme jellybeans
 
+"let base16colorspace=256  " Access colors present in 256 colorspace
+"colorscheme base16-default-dark
+
 let g:molokai_original = 1
 let g:rehash256 = 1
 "colorscheme molokai
@@ -385,6 +388,21 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     nnoremap <Leader>r :YcmCompleter GoToReferences<CR>
 " }
 
+" new tests TODO {
+    "autocmd FileType cpp let b:deoplete_disable_auto_complete = 1
+    if !exists('g:deoplete#omni#input_patterns')
+        let g:deoplete#omni#input_patterns = {}
+    endif
+
+    let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+    autocmd FileType java let g:deoplete#enable_at_startup = 1
+
+    let g:chromatica#enable_at_startup=1
+    let g:chromatica#libclang_path = '/usr/lib/libclang.so'
+    let g:chromatica#responsive_mode=1
+" }
+
 " NerdCommenter {
     " Using default ones for now
     " See https://github.com/scrooloose/nerdcommenter
@@ -410,3 +428,6 @@ let g:clang_user_options = '-std=c++11'
 
 " }
 
+" Python-specifc stuff {
+    let python_highlight_all = 1
+" }
