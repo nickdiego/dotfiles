@@ -85,5 +85,5 @@ _qt_config_completion() {
 ##########################################
 # Let's initialize with default values
 ##########################################
-qt_config
+#qt_config
 
