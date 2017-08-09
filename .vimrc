@@ -376,7 +376,7 @@ autocmd! BufWritePost vimrc source ~/.vimrc
             \ 1: ['.git', 'ag %s -l --nocolor --hidden -g "" --ignore node_modules --ignore bower_components'],
             \ 2: ['.hg', 'hg --cwd %s locate -I .'],
         \ },
-        \ 'fallback': 'find %s -type f | grep "\.cpp\$\|\.h\$\|\.cmake\$\|\.messages.in\$\|.txt\|\.js\|\.json\$\|\.java\$"'
+        \ 'fallback': 'find %s -type f | grep "\.cpp\$\|\.h\$\|\.cmake\$\|\.messages.in\$\|.txt\|\.js\|\.json\$\|\.java\$\|\.smali\$"'
     \ }
 "}
 
@@ -397,6 +397,7 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
     autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
     autocmd FileType java let g:deoplete#enable_at_startup = 1
+    let g:deoplete#enable_at_startup = 1
 
     let g:chromatica#enable_at_startup=1
     let g:chromatica#libclang_path = '/usr/lib/libclang.so'

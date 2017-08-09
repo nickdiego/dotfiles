@@ -38,6 +38,7 @@ Plugin 'lyuts/vim-rtags'
 
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-airline/vim-airline'
+Plugin 'kelwin/vim-smali'
 
 if has('nvim')
     Plugin 'ervandew/supertab'
@@ -49,7 +50,7 @@ if has('nvim')
     let g:deoplete#enable_smart_case = 1
     let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
     let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
-    let b:deoplete_disable_auto_complete = 1
+    "let b:deoplete_disable_auto_complete = 1
 
     " LanguageClient-nevim
     "Plugin 'autozimu/LanguageClient-neovim'
@@ -63,10 +64,10 @@ augroup end
 " temp enabled for nvim also (while
 " deoplete doesn't support GoTo
 " functionality. uncomment if later
-"if ! has('nvim')
+if ! has('nvim')
     Plugin 'Valloric/YouCompleteMe'
     "Plugin 'scrooloose/syntastic'
-"endif
+endif
 
 " All of your Plugins must be added before the following line
 call vundle#end()
