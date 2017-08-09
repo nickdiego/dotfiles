@@ -22,7 +22,8 @@ activate() {
   target=${targets[0]} # FIXME get from parameters
 
   if [ "$subproj" = 'aosp' ] && (( ${_opt[--docker]} )); then
-    ( cd "${dirs[root]}/${dirs[src]}/.." && aosp; )
+    ( cd "${dirs[root]}/${dirs[src]}/.." && \
+        AOSP_IMAGE="kylemanna/aosp:5.0-lollipop" aosp; )
   fi
 
   # Call env initialization script if exists
