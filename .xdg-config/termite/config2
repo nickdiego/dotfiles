@@ -8,10 +8,10 @@ scrollback_lines = 1000000
 
 ## uncomment to enable terminal
 ## rows based resizing
-#size_hints = true
+size_hints = true
 
 [colors]
-background      = #121212
+background  = rgba(18, 18, 18, 0.9)
 foreground      = #a5a2a2
 foreground_bold = #a5a2a2
 cursor          = #a5a2a2
