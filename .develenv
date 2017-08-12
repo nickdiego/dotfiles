@@ -261,4 +261,8 @@ if [ -r ~/.bin/display-utils.sh ]; then
     complete -W "${_arrange_displays_opts[*]}" arrange-displays
 fi
 
+if [ -n "$SHOW_ARCHINFO" ] && type archey3 &>/dev/null; then
+  archey3
+fi
+
 # ex: ts=2 sw=2 et filetype=sh
