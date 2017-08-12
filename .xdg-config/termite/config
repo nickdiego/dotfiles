@@ -1,5 +1,7 @@
 [options]
 font = Hack 9
+font = xos4 Terminus 9
+font = Monaco 9
 size_hints = true
 geometry = 100x30
 scrollback_lines = 1000000
