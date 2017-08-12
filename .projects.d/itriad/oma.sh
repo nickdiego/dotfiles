@@ -2,13 +2,16 @@
 
 # std project variables
 projname='oma'
-subprojects=('moto-dm' 'aosp')
+subprojects=('moto-dm' 'aosp' 'att-dm')
 
 setenv() {
   defaultdir=root
   case $subproj in
     moto-dm)
       dirs[src]="src/android_packages_apps_OMA-DM"
+      ;;
+    att-dm)
+      dirs[src]="src/ATTOMADM-repo"
       ;;
     aosp)
       dirs[src]="src/aosp-src/aosp"
