@@ -28,6 +28,7 @@
     ds = diff --staged
     fix-gitignore = cherry-pick c6b4ac781301
     enable-debug-unsigned = stash apply 6e6e0a975ba
+	sh = show
 [credential]
 	helper = store
 [diff]
