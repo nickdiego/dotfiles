@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+exec google-chrome-stable --app=https://web.whatsapp.com &>/tmp/whatsapp-web.log
