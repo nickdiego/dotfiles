@@ -1,0 +1,56 @@
+# General stuff.
+[general]
+# Here you define a comma separated list of targets.  Each of them must have a
+# section below determining their properties, how to query them, etc.  The name
+# is just a symbol, and doesn't have any functional importance.
+targets = jira.itriad
+
+# If unspecified, the default taskwarrior config will be used.
+#taskrc = /path/to/.taskrc
+
+# Setting this to true will shorten links with http://da.gd/
+#shorten = False
+
+# Setting this to True will include a link to the ticket in the description
+inline_links = False
+
+# Setting this to True will include a link to the ticket as an annotation
+annotation_links = False
+
+# Setting this to True will include issue comments and author name in task
+# annotations
+annotation_comments = False
+
+# Defines whether or not issues should be matched based upon their description.
+# In legacy mode, we will attempt to match issues to bugs based upon the
+# presence of the '(bw)' marker in the task description.
+# If this is false, we will only select issues having the appropriate UDA
+# fields defined (which is smarter, better, newer, etc..)
+legacy_matching = False
+
+# log.level specifies the verbosity.  The default is DEBUG.
+# log.level can be one of DEBUG, INFO, WARNING, ERROR, CRITICAL, DISABLED
+log.level = DEBUG
+
+#password = @oracle/use_keyring
+
+# If log.file is specified, output will be redirected there.  If it remains
+# unspecified, output is sent to sys.stderr
+#log.file = /tmp/bugwarrior.log
+
+# Configure the default description or annotation length.
+#annotation_length = 45
+
+[jira.itriad]
+service = jira
+jira.base_uri = https://alcateldev.atlassian.net
+jira.username = nickdiego
+jira.password = @oracle:eval:pass itriad/jira
+jira.query = project = OMADM and assignee = nickdiego and status != closed and status != done
+# Set this to your jira major version. We currently support only jira version
+# 4 and 5(the default). You can find your particular version in the footer at
+# the dashboard.
+jira.version = 5
+jira.add_tags = work
+
+#ex :vim:ft=conf:
