@@ -30,7 +30,7 @@ legacy_matching = False
 
 # log.level specifies the verbosity.  The default is DEBUG.
 # log.level can be one of DEBUG, INFO, WARNING, ERROR, CRITICAL, DISABLED
-log.level = DEBUG
+log.level = WARNING
 
 #password = @oracle/use_keyring
 
