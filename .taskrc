@@ -24,3 +24,5 @@ taskd.trust=ignore hostname
 context.work=+work -devenv
 context.home=-work +home
 context.hacking=+devenv or +oss or +learn -work -home
+context.learn=+study or +learn -work -home -devenv
+context.hack=+devenv or +oss -learn -work -home
