@@ -2,7 +2,7 @@
 
 # std project variables
 projname='oma'
-subprojects=('moto-dm' 'aosp' 'att-dm')
+subprojects=('moto-dm' 'aosp' 'att-dm' 'dmbridge')
 
 setenv() {
   defaultdir=root
@@ -16,6 +16,9 @@ setenv() {
     aosp)
       dirs[src]="src/aosp-src/aosp"
       options=(--docker)
+      ;;
+    dmbridge)
+      dirs[src]="src/DMBridge-sandbox"
       ;;
   esac
 }
