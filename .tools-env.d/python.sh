@@ -55,5 +55,5 @@ _python_config_completion() {
 ##########################################
 # Let's initialize with default values
 ##########################################
-python_config --version 2.7 >/dev/null
+#python_config --version 2.7 >/dev/null
 
