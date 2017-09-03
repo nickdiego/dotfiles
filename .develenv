@@ -159,7 +159,6 @@ find_in_jars() {
 [ -f ~/.tools-env ] && . ~/.tools-env
 [ -f ~/.proj-commander/proj-commander.sh ] &&
   . ~/.proj-commander/proj-commander.sh
-proj_set @oma
 
 export ethernet='enp1s0'
 export wlan='wlp2s0'
@@ -214,6 +213,10 @@ fi
 
 if [ -n "$SHOW_ARCHINFO" ] && type archey3 &>/dev/null; then
   archey3
+fi
+
+if [ -r ~/.localenv ]; then
+  source ~/.localenv
 fi
 
 # ex: ts=2 sw=2 et filetype=sh

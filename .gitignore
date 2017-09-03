@@ -1,6 +1,7 @@
 *.swp
 *.swo
 *~
+.localenv
 .vim/sessions
 .vim/bundle
 *.pyc
