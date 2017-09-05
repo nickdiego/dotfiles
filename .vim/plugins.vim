@@ -33,7 +33,7 @@ Plugin 'aklt/plantuml-syntax'
 Plugin 'sickill/vim-monokai'
 Plugin 'chriskempson/base16-vim'
 Plugin 'hdima/python-syntax'
-Plugin 'artur-shaik/vim-javacomplete2'
+"Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'lyuts/vim-rtags'
 
 Plugin 'vim-airline/vim-airline-themes'
@@ -56,10 +56,10 @@ if has('nvim')
     "Plugin 'autozimu/LanguageClient-neovim'
 endif
 
-augroup omnifuncs
-    autocmd!
-    autocmd FileType java setlocal omnifunc=javacomplete#Complete
-augroup end
+"augroup omnifuncs
+    "autocmd!
+    "autocmd FileType java setlocal omnifunc=javacomplete#Complete
+"augroup end
 
 " temp enabled for nvim also (while
 " deoplete doesn't support GoTo

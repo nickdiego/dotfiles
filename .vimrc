@@ -396,8 +396,8 @@ autocmd! BufWritePost vimrc source ~/.vimrc
 
     let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
     autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-    autocmd FileType java let g:deoplete#enable_at_startup = 1
     let g:deoplete#enable_at_startup = 1
+    autocmd FileType java let g:deoplete#enable_at_startup = 0
 
     let g:chromatica#enable_at_startup=1
     let g:chromatica#libclang_path = '/usr/lib/libclang.so'
