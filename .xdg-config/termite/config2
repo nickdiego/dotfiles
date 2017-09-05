@@ -12,7 +12,7 @@ size_hints = true
 
 [colors]
 background      = rgba(18, 18, 18, 0.9)
-foreground      = #a5a2a2
+foreground      = #c5c8c6
 foreground_bold = #a5a2a2
 cursor          = #a5a2a2
 

@@ -12,8 +12,8 @@ scrollback_lines = 1000000
 
 [colors]
 background      = #121212
-foreground      = #a5a2a2
-foreground_bold = #a5a2a2
+foreground      = #c5c8c6
+foreground_bold = #c5c8c6
 cursor          = #a5a2a2
 
 # black
