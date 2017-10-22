@@ -98,6 +98,14 @@ nnoremap <leader>sw :w !sudo tee %<CR>
 "Eclim configs
 let g:EclimCompletionMethod = 'omnifunc'
 
+" ALE (Async Lint Engine) configs
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_fixers = {
+\   'gitcommit': ['gitlint'],
+\   'python': ['flake8'],
+\}
+
 nnoremap <C-Up> :tabprevious<CR>
 nnoremap <C-Down> :tabnext<CR>
 nnoremap <silent> <C-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>

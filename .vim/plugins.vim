@@ -35,6 +35,7 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'hdima/python-syntax'
 "Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'lyuts/vim-rtags'
+Plugin 'nickdiego/ale'
 
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-airline/vim-airline'
