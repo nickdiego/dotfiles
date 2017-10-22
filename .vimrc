@@ -101,10 +101,12 @@ let g:EclimCompletionMethod = 'omnifunc'
 " ALE (Async Lint Engine) configs
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
-let g:ale_fixers = {
+let g:ale_open_list = 1
+let g:ale_linters = {
 \   'gitcommit': ['gitlint'],
 \   'python': ['flake8'],
 \}
+autocmd FileType gitcommit let g:ale_sign_column_always = 1
 
 nnoremap <C-Up> :tabprevious<CR>
 nnoremap <C-Down> :tabnext<CR>
