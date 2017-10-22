@@ -344,7 +344,7 @@ autocmd! BufWritePost vimrc source ~/.vimrc
 
 " Filetype actions {
     if has("autocmd")
-        autocmd BufNewFile,BufRead .indtenv  set filetype=sh
+        autocmd BufNewFile,BufRead .aidl  set filetype=java
     endif
 " }
 
