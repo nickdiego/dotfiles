@@ -32,6 +32,9 @@ activate() {
         AOSP_IMAGE="kylemanna/aosp:5.0-lollipop" aosp; )
   fi
 
+  # TEMP
+  export PATH=$PATH:~/projects/oma/src/tcl-patcher
+
   # Call env initialization script if exists
   [ -r ${dirs[root]}/env.sh ] && . ${dirs[root]}/env.sh $target
 }
