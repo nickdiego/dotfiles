@@ -29,6 +29,7 @@
     fix-gitignore = cherry-pick c6b4ac781301
     enable-debug-unsigned = stash apply 6e6e0a975ba
 	sh = show
+	cp = cherry-pick
 [credential]
 	helper = store
 [diff]
