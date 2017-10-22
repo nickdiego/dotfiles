@@ -9,7 +9,6 @@ Plugin 'VundleVim/Vundle.vim'
 " my plugins
 Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-scripts/sessionman.vim'
 "Plugin 'editorconfig/editorconfig-vim'
@@ -40,6 +39,10 @@ Plugin 'nickdiego/ale'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-airline/vim-airline'
 Plugin 'kelwin/vim-smali'
+
+" Git plugins
+Plugin 'tpope/vim-fugitive'
+Plugin 'rhysd/committia.vim'
 
 if has('nvim')
     Plugin 'ervandew/supertab'
