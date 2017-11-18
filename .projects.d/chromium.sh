@@ -13,6 +13,6 @@ activate() {
   dirs[build]="build/$target"
   target=${targets[0]} # FIXME get from parameters
 
-  # TODO Call come env initialization script
+  [ -r "${dirs[root]}/env.sh" ] && source "${dirs[root]}/env.sh" "$target"
 }
 
