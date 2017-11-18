@@ -108,6 +108,7 @@ let g:ale_linters = {
 \   'cpp': [],
 \}
 autocmd FileType gitcommit let g:ale_sign_column_always = 1
+"let g:ale_gitcommit_gitlint_options = '-C ~/.tcl-patcher/gitlint.ini'
 
 nnoremap <C-Up> :tabprevious<CR>
 nnoremap <C-Down> :tabnext<CR>
