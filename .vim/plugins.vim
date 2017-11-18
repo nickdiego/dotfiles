@@ -42,7 +42,7 @@ Plugin 'kelwin/vim-smali'
 
 " Git plugins
 Plugin 'tpope/vim-fugitive'
-Plugin 'rhysd/committia.vim'
+"Plugin 'rhysd/committia.vim'
 
 if has('nvim')
     Plugin 'ervandew/supertab'
