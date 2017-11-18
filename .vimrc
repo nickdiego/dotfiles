@@ -105,6 +105,7 @@ let g:ale_open_list = 1
 let g:ale_linters = {
 \   'gitcommit': ['gitlint'],
 \   'python': ['flake8'],
+\   'cpp': [],
 \}
 autocmd FileType gitcommit let g:ale_sign_column_always = 1
 
