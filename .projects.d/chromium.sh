@@ -4,8 +4,8 @@
 projname='chromium'
 
 setenv() {
-  dirs[src]="src/chromium"
-  defaultdir=root
+  dirs[src]="src"
+  defaultdir=src
   targets=('Linux-x86_64')
 }
 
