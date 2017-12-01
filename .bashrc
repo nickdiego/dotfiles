@@ -22,6 +22,9 @@ HISTFILESIZE=30000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# Enter in the dir when no command is entered
+shopt -s autocd
+
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
