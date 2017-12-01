@@ -26,3 +26,10 @@ set menu-complete-display-prefix On
 # ctrl-left/right nav through words
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
+
+# Useful keybindings
+# Alt-Enter = prepend 'sudo' in the current cmdline
+"\e\C-m": "\C-asudo \C-e"
+"\e-p": "\C-upacman "
+"\e\C-u": "sudo pacman -Syu"
+
