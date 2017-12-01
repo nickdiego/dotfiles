@@ -5,7 +5,12 @@ set output-meta on
 set show-all-if-ambiguous on
 set visible-stats on
 set page-completions off
-"\e[A":history-search-backward
-"\e[B":history-search-forward
+# directional keys == reverse-search
+#"\e[A":history-search-backward
+#"\e[B":history-search-forward
+"\e[A":history-substring-search-backward
+"\e[B":history-substring-search-forward
+
+# ctrl-left/right nav through words
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
