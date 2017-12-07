@@ -99,6 +99,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-if [ -r ~/.aliases ]; then
-    source ~/.aliases
-fi
+# Run custom initialization scripts
+for script in ~/.{develenv,aliases}; do
+    source $script
+done

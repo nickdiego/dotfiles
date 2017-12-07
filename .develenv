@@ -133,8 +133,11 @@ find_in_jars() {
 ## Projects confs
 
 [ -f ~/.tools-env ] && . ~/.tools-env
-[ -f ~/.proj-commander/proj-commander.sh ] &&
-  . ~/.proj-commander/proj-commander.sh
+# Only working on bash for now :(
+if is_bash; then
+  [ -f ~/.proj-commander/proj-commander.sh ] &&
+    source ~/.proj-commander/proj-commander.sh
+fi
 
 export ethernet='enp1s0'
 export wlan='wlp2s0'
