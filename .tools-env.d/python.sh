@@ -34,22 +34,24 @@ _python_available_versions() {
 }
 
 ### Bash completion stuff
-_python_config_completion() {
-  local cur="${COMP_WORDS[COMP_CWORD]}"
-  local prev="${COMP_WORDS[$(($COMP_CWORD - 1))]}"
-  local args=( "${COMP_WORDS[@]}" )
+if is_bash; then
+    _python_config_completion() {
+      local cur="${COMP_WORDS[COMP_CWORD]}"
+      local prev="${COMP_WORDS[$(($COMP_CWORD - 1))]}"
+      local args=( "${COMP_WORDS[@]}" )
 
-  declare -a result versions
-  versions=( $(_python_available_versions) )
-  if [[ $prev != --* ]]; then
-    result=( ${_python_config_opts[@]} )
-  else
-    if [ $prev = --version ]; then
-      result=( ${versions[@]} )
-    fi
-  fi
-  COMPREPLY=( $(compgen -W "${result[*]}" -- ${cur}) )
-} && complete -F _python_config_completion python_config
+      declare -a result versions
+      versions=( $(_python_available_versions) )
+      if [[ $prev != --* ]]; then
+        result=( ${_python_config_opts[@]} )
+      else
+        if [ $prev = --version ]; then
+          result=( ${versions[@]} )
+        fi
+      fi
+      COMPREPLY=( $(compgen -W "${result[*]}" -- ${cur}) )
+    } && complete -F _python_config_completion python_config
+fi
 
 
 ##########################################

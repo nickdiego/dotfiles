@@ -9,15 +9,15 @@ export CUSTOM_GREP_OPTIONS=('--exclude=*~' '--exclude=*.swp')
 
 export PATH=~/.bin:~/local/bin:$PATH
 
-# git completion in Arch
-if [ -f /usr/share/git/completion/git-completion.bash ]; then
-  . /usr/share/git/completion/git-completion.bash
-fi
+is_zsh() {
+  type compctl >/dev/null 2>&1
+  return $?
+}
 
-# autojump with 'j' command if it is installed
-if [ -r /etc/profile.d/autojump.bash ]; then
-  . /etc/profile.d/autojump.bash
-fi
+is_bash() {
+  type complete >/dev/null 2>&1
+  return $?
+}
 
 # Find/Grep src helper functions
 reset_findsrc_dir() {
@@ -53,19 +53,6 @@ v() {
 
   eval "vim '+SessionOpen $session' '+set columns=$COLUMNS'"
 }
-
-_vim_sessions() {
-  local cur prev sessions
-
-  cur="${COMP_WORDS[COMP_CWORD]}"
-  prev="${COMP_WORDS[COMP_CWORD-1]}"
-  sessions=$([ -d ~/.vim/sessions ] && basename -a `ls ~/.vim/sessions`)
-
-  COMPREPLY=( $(compgen -W "${sessions}" -- ${cur}) )
-  return 0
-}
-
-complete -F _vim_sessions v
 
 remove_from_path() {
   local p d dirs
@@ -134,22 +121,6 @@ set-window-title() {
   DISPLAY=':0' wmctrl -r :ACTIVE: -N "$1"
 }
 
-custom_find() {
-  declare -a opts
-  while (( $# )); do
-    case "$1" in
-      '-n') opts+=( '-name' );;
-      *) opts+=( "$1" );;
-    esac
-    shift
-  done
-  echo find "${opts[@]}"
-}
-
-#TODO not working yet
-#alias f='custom_find'
-#complete -F _find f
-
 find_in_jars() {
   local keyword=$1
   local dir=$2 i
@@ -212,8 +183,7 @@ export MY_GPG_USERID='9B41EB2ECFFBFE525E383E015C041CA1FC08A584'
 
 if [ -r ~/.bin/display-utils.sh ]; then
   source ~/.bin/display-utils.sh &&
-    alias arrange-displays=toggle-aux-display &&
-    complete -W "${_arrange_displays_opts[*]}" arrange-displays
+    alias arrange-displays=toggle-aux-display
 fi
 
 if [ -n "$SHOW_ARCHINFO" ] && type archey3 &>/dev/null; then

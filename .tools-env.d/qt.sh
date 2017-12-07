@@ -60,26 +60,28 @@ qt_config() {
 }
 
 ### Bash completion stuff
-_qt_config_completion() {
-  local cur="${COMP_WORDS[COMP_CWORD]}"
-  local prev="${COMP_WORDS[$(($COMP_CWORD - 1))]}"
-  local args=( "${COMP_WORDS[@]}" )
+if is_bash; then
+    _qt_config_completion() {
+        local cur="${COMP_WORDS[COMP_CWORD]}"
+        local prev="${COMP_WORDS[$(($COMP_CWORD - 1))]}"
+        local args=( "${COMP_WORDS[@]}" )
 
-  eval $(_parse_qt_options version target ${args[@]})
-  local versions=( $(basename -a ${_qt_rootdir}/5.*) )
-  local versiondir="${_qt_rootdir}/${version}"
-  local platforms=( $(basename -a ${versiondir}/*) )
-  declare -a result
-  if [[ $prev != --* ]]; then
-    result=( ${_qt_config_opts[@]} )
-  else
-    case $prev in
-      --version) result=( ${versions[@]} );;
-      --target) result=( ${platforms[@]} );;
-    esac
-  fi
-  COMPREPLY=( $(compgen -W "${result[*]}" -- ${cur}) )
-} && complete -F _qt_config_completion qt_config
+        eval $(_parse_qt_options version target ${args[@]})
+        local versions=( $(basename -a ${_qt_rootdir}/5.*) )
+        local versiondir="${_qt_rootdir}/${version}"
+        local platforms=( $(basename -a ${versiondir}/*) )
+        declare -a result
+        if [[ $prev != --* ]]; then
+            result=( ${_qt_config_opts[@]} )
+        else
+            case $prev in
+                --version) result=( ${versions[@]} );;
+                --target) result=( ${platforms[@]} );;
+            esac
+        fi
+        COMPREPLY=( $(compgen -W "${result[*]}" -- ${cur}) )
+    } && complete -F _qt_config_completion qt_config
+fi
 
 
 ##########################################

@@ -9,17 +9,14 @@ _polly_config() {
 
   polly_build() {
     local bindir="${POLLY_DIR}/bin"
-    PATH="$PATH:$bindir" ${bindir}/build.py $@
+    PATH="$PATH:$bindir" ${bindir}/build.py "$@"
   }
 
   # TODO improve this
-  local opts=(
-   --toolchain
-   --verbose
-   --config
-   --target
-  )
-  complete -W "${opts[*]}" polly_build
+  if is_bash; then
+      local opts=( --toolchain --verbose --config --target)
+      complete -W "${opts[*]}" polly_build
+  fi
 }
 
 _polly_download() {
