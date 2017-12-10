@@ -108,4 +108,16 @@ for script in ~/.{develenv,aliases}; do
 done
 
 # Key bindings
-bindkey -s "^[^m" '^asudo ^e'  # Alt-Enter = prepends 'sudo ' to the command
+
+# Alt-Enter = prepends 'sudo ' to the command
+bindkey -s "^[^m" '^asudo ^e'
+
+# Ctrl-Backspace : insert last command result
+zmodload -i zsh/parameter
+insert-last-command-output() {
+  LBUFFER+="$(eval $history[$((HISTCMD-1))])"
+}
+zle -N insert-last-command-output
+bindkey '^H' insert-last-command-output
+
+
