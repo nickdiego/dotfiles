@@ -106,3 +106,6 @@ source $ZSH/oh-my-zsh.sh
 for script in ~/.{develenv,aliases}; do
     source $script
 done
+
+# Key bindings
+bindkey -s "^[^m" '^asudo ^e'  # Alt-Enter = prepends 'sudo ' to the command
