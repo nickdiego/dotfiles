@@ -33,7 +33,6 @@ Plugin 'sickill/vim-monokai'
 Plugin 'chriskempson/base16-vim'
 Plugin 'hdima/python-syntax'
 "Plugin 'artur-shaik/vim-javacomplete2'
-Plugin 'lyuts/vim-rtags'
 Plugin 'nickdiego/ale'
 
 Plugin 'vim-airline/vim-airline-themes'
@@ -43,6 +42,13 @@ Plugin 'kelwin/vim-smali'
 " Git plugins
 Plugin 'tpope/vim-fugitive'
 "Plugin 'rhysd/committia.vim'
+
+Plugin 'lyuts/vim-rtags'
+
+" Clangd not feature-complete/stable enough
+" (Using deoplete + ALE + rtags for now)
+"Plugin 'prabirshrestha/async.vim'
+"Plugin 'prabirshrestha/vim-lsp'
 
 if has('nvim')
     Plugin 'ervandew/supertab'

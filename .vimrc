@@ -98,25 +98,43 @@ nnoremap <leader>sw :w !sudo tee %<CR>
 "Eclim configs
 let g:EclimCompletionMethod = 'omnifunc'
 
-" ALE (Async Lint Engine) configs
-let g:ale_set_loclist = 0
-"let g:ale_set_quickfix = 1
-"let g:ale_open_list = 1
-let g:ale_linters = {
-\   'gitcommit': ['gitlint'],
-\   'python': ['flake8'],
-\   'cpp': [],
-\}
-autocmd FileType gitcommit let g:ale_sign_column_always = 1
-"let g:ale_gitcommit_gitlint_options = '-C ~/.tcl-patcher/gitlint.ini'
+" ALE (Async Lint Engine) configs {
+  let g:ale_set_loclist = 0
+  "let g:ale_set_quickfix = 1
+  "let g:ale_open_list = 1
+  let g:ale_linters = {
+  \   'gitcommit': ['gitlint'],
+  \   'python': ['flake8'],
+  \   'cpp': [],
+  \   'c': ['clangtidy'],
+  \}
+  autocmd FileType gitcommit let g:ale_sign_column_always = 1
+  "let g:ale_gitcommit_gitlint_options = '-C ~/.tcl-patcher/gitlint.ini'
 
-nnoremap <C-Up> :tabprevious<CR>
-nnoremap <C-Down> :tabnext<CR>
-nnoremap <silent> <C-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-nnoremap <silent> <C-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
-nnoremap <F5> :e!<CR>
-nnoremap <F7> :tabedit ~/.vimrc<CR>
+  " Ctrl-j/k to navigate through ALI Errors/Warnings
+  nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+  nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
+  nnoremap <C-Up> :tabprevious<CR>
+  nnoremap <C-Down> :tabnext<CR>
+  nnoremap <silent> <C-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+  nnoremap <silent> <C-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
+  nnoremap <F5> :e!<CR>
+  nnoremap <F7> :tabedit ~/.vimrc<CR>
+" }
+
+" vim-lsp configs {
+  if executable('clangd')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd']},
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
+  endif
+
+  let g:lsp_log_verbose = 1
+  let g:lsp_log_file = expand('~/.vim-lsp.log')
+" }
 
 " Alt+<directional> to switch among splits
 let g:tmux_navigator_no_mappings = 1
