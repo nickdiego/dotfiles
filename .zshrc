@@ -9,13 +9,19 @@ export ZSH=/home/nick/.oh-my-zsh
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 ZSH_THEME="fino"
+ZSH_THEME="miloshadzic"
+ZSH_THEME="gozilla"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
 # looking in ~/.oh-my-zsh/themes/
 # An empty array have no effect
-ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "fino" )
+ZSH_THEME_RANDOM_CANDIDATES=(
+    "minimal" "robbyrussell" "fino" "skaro"
+    "zhann" "miloshadzic" "jbergantine"
+    "half-life" "gozilla" "emotty" "af-magic" )
+#ZSH_THEME="gozilla"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
