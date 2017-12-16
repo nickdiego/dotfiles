@@ -35,8 +35,8 @@ Plugin 'hdima/python-syntax'
 "Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'nickdiego/ale'
 
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'vim-airline/vim-airline'
 Plugin 'kelwin/vim-smali'
 
 " Git plugins
