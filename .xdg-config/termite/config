@@ -11,41 +11,43 @@ scrollback_lines = 1000000
 #size_hints = true
 
 [colors]
-background      = #121212
-foreground      = #c5c8c6
-foreground_bold = #c5c8c6
-cursor          = #a5a2a2
+
+# special
+foreground      = #d0d0d0
+foreground_bold = #d0d0d0
+cursor          = #d0d0d0
+background      = #151515
 
 # black
-color0  = #090300
-color8  = #5c5855
+color0  = #151515
+color8  = #505050
 
 # red
-color1  = #db2d20
-color9  = #db2d20
+color1  = #ac4142
+color9  = #ac4142
 
 # green
-color2  = #01a252
-color10 = #01a252
+color2  = #90a959
+color10 = #90a959
 
 # yellow
-color3  = #fded02
-color11 = #fded02
+color3  = #f4bf75
+color11 = #f4bf75
 
 # blue
-color4  = #01a0e4
-color12 = #01a0e4
+color4  = #6a9fb5
+color12 = #6a9fb5
 
 # magenta
-color5  = #a16a94
-color13 = #a16a94
+color5  = #aa759f
+color13 = #aa759f
 
 # cyan
-color6  = #b5e4f4
-color14 = #b5e4f4
+color6  = #75b5aa
+color14 = #75b5aa
 
 # white
-color7  = #a5a2a2
-color15 = #f7f7f7
+color7  = #d0d0d0
+color15 = #f5f5f5
 
 # ex: ts=2 sw=2 et filetype=conf
