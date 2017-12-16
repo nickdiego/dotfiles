@@ -1,0 +1,7 @@
+{
+	"name": "Default",
+	"groups": {
+		"background":                 { "fg": "white", "bg": "gray0", "attrs": [] }
+	}
+}
+
