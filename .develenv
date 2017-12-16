@@ -145,6 +145,16 @@ if [ -r $HOME/.vim/bundle/powerline/scripts/powerline-config ]; then
   export PATH="$HOME/.vim/bundle/powerline/scripts:$PATH"
 fi
 
+# Base16 theme stuff
+_B16_SHELL_PATH="$HOME/.config/base16-shell"
+_B16_THEME_NAME='default-dark'
+_B16_THEME_SCRIPT="${_B16_SHELL_PATH}/scripts/base16-${_B16_THEME_NAME}.sh"
+if [ -s $_B16_SHELL_PATH/profile_helper.sh ]; then
+  eval "$($_B16_SHELL_PATH/profile_helper.sh)"
+  test -e "$HOME/.vimrc_background" || \
+    _base16 ${_B16_THEME_SCRIPT} ${_B16_THEME_NAME}
+fi
+
 udpate_cups_ppd_file() {
   echo "## Updating ppd files..."
   sudo /usr/bin/cups-genppdupdate &&
