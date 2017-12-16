@@ -22,42 +22,10 @@ let g:indentLine_char = '┆'
 
 set background=dark
 let base16colorspace=256
-let g:jellybeans_use_lowcolor_black = 0
-"let g:jellybeans_use_term_italics = 1
-"let g:jellybeans_use_term_background_color = 1
-colorscheme jellybeans
-
-"let base16colorspace=256  " Access colors present in 256 colorspace
-"colorscheme base16-default-dark
-
-let g:molokai_original = 1
-let g:rehash256 = 1
-"colorscheme molokai
-
-let g:hybrid_custom_term_colors = 0
-let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
-"colorscheme hybrid
-
-let g:srcery_italic = 1
-let g:srcery_italic = 1
-"colorscheme srcery
-
-let g:kolor_italic = 1                    " Enable italic. Default: 1
-let g:kolor_bold = 1                      " Enable bold. Default: 1
-let g:kolor_underlined = 0                " Enable underline. Default: 0
-let g:kolor_alternative_matchparen = 0    " Gray 'MatchParen' color. Default: 0
-"colorscheme kolor
-
-let g:seoul256_background = 233
-"colorscheme seoul256
-
-let g:gruvbox_italic = 1
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_contrast_light = 'hard'
-"colorscheme gruvbox
-
-"colorscheme Tomorrow-Night-Bright
-
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 
 " NeoVim Configs {
 if !has('nvim')
