@@ -67,7 +67,10 @@ nnoremap <leader>sw :w !sudo tee %<CR>
 let g:EclimCompletionMethod = 'omnifunc'
 
 " ALE (Async Lint Engine) configs {
+  let g:ale_enabled = 0
   let g:ale_set_loclist = 0
+  let g:ale_sign_error = '!!'
+  let g:ale_sign_warning = '>>'
   "let g:ale_set_quickfix = 1
   "let g:ale_open_list = 1
   let g:ale_linters = {
