@@ -55,9 +55,9 @@ let g:airline#extensions#ycm#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme='laederon'
-let g:airline_theme='hybrid'
+"let g:airline_theme='hybrid'
 "let g:airline_theme='minimalist'
-"let g:airline_theme='base16'
+let g:airline_theme='base16'
 " }
 
 " Leader-S to save as root (sudo tee trick)
