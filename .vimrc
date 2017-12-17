@@ -382,22 +382,6 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     let g:chromatica#responsive_mode=1
 " }
 
-" NerdCommenter {
-    " Using default ones for now
-    " See https://github.com/scrooloose/nerdcommenter
-    " for more details..
-    " Tip: toogle comment in normal or visual: <Leader>c<space>
-" }
-
-" Fugitive {
-    nnoremap <silent> <Leader>gs :Gstatus<CR>
-    nnoremap <silent> <leader>gd :Gdiff<CR>
-    nnoremap <silent> <leader>gc :Gcommit<CR>
-    nnoremap <silent> <leader>gb :Gblame<CR>
-    nnoremap <silent> <leader>gl :Glog<CR>
-    nnoremap <silent> <leader>gp :Git push<CR>
-"}
-
 " compile all sources as c++11 (just for example, use .clang_complete for
 "  " setting version of the language per project)
 let g:clang_user_options = '-std=c++11'
