@@ -34,6 +34,7 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'hdima/python-syntax'
 "Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'nickdiego/ale'
+Plugin 'junegunn/vader.vim'
 
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-airline/vim-airline'
