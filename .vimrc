@@ -63,6 +63,25 @@ let g:airline_theme='hybrid'
 " Leader-S to save as root (sudo tee trick)
 nnoremap <leader>sw :w !sudo tee %<CR>
 
+" Navigation + some general keybindings {
+  nnoremap <C-Up> :tabprevious<CR>
+  nnoremap <C-Down> :tabnext<CR>
+  nnoremap <silent> <C-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+  nnoremap <silent> <C-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
+  nnoremap <F5> :e!<CR>
+
+  " Alt+<directional> to switch among splits
+  let g:tmux_navigator_no_mappings = 1
+  nnoremap <silent> <A-left> :TmuxNavigateLeft<cr>
+  nnoremap <silent> <A-down> :TmuxNavigateDown<cr>
+  nnoremap <silent> <A-up> :TmuxNavigateUp<cr>
+  nnoremap <silent> <A-right> :TmuxNavigateRight<cr>
+  nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
+  nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
+  nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
+  nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
+" }
+
 "Eclim configs
 let g:EclimCompletionMethod = 'omnifunc'
 
@@ -85,13 +104,6 @@ let g:EclimCompletionMethod = 'omnifunc'
   " Ctrl-j/k to navigate through ALI Errors/Warnings
   nmap <silent> <C-k> <Plug>(ale_previous_wrap)
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-  nnoremap <C-Up> :tabprevious<CR>
-  nnoremap <C-Down> :tabnext<CR>
-  nnoremap <silent> <C-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-  nnoremap <silent> <C-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
-  nnoremap <F5> :e!<CR>
-  nnoremap <F7> :tabedit ~/.vimrc<CR>
 " }
 
 " vim-lsp configs {
@@ -106,28 +118,6 @@ let g:EclimCompletionMethod = 'omnifunc'
   let g:lsp_log_verbose = 1
   let g:lsp_log_file = expand('~/.vim-lsp.log')
 " }
-
-" Alt+<directional> to switch among splits
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <A-left> :TmuxNavigateLeft<cr>
-nnoremap <silent> <A-down> :TmuxNavigateDown<cr>
-nnoremap <silent> <A-up> :TmuxNavigateUp<cr>
-nnoremap <silent> <A-right> :TmuxNavigateRight<cr>
-nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
-
-" ENSIME stuff (disabled for now)
-"autocmd BufWritePost *.java silent :EnTypeCheck<CR>
-"nnoremap <localleader>jt :EnTypeCheck<CR>
-
-" The current directory is the directory of the file in the current window.
-"if has("autocmd")
-"  autocmd BufEnter * :lchdir %:p:h
-"endif
-
-"autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
 set browsedir=current           " which directory to use for the file browser
 
@@ -183,19 +173,6 @@ endif
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" vim-javascript stuff
-" let b:javascript_fold = 1
-" let javascript_enable_domhtmlcss = 1
-
-" javascript-libraries-syntax.vim stuff
-" let g:used_javascript_libs = 'angularjs'
 
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
