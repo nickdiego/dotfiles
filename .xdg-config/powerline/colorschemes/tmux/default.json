@@ -1,7 +1,10 @@
 {
 	"name": "Default",
 	"groups": {
-		"background":                 { "fg": "white", "bg": "gray0", "attrs": [] }
+		"session":                    { "fg": "gray1",   "bg": "gray10",  "attrs": ["bold"]},
+		"window:current":             { "fg": "gray10",  "bg": "gray1",   "attrs": [] },
+		"window_name":                { "fg": "gray10",  "bg": "gray1",   "attrs": [] },
+		"active_window_status":       { "fg": "gray8",   "bg": "gray0",   "attrs": []}
 	}
 }
 
