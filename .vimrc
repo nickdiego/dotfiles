@@ -42,7 +42,7 @@ let g:powerline_pycmd = 'py3'
 let g:mdf_disable_arrow_keys = 0
 let g:mdf_space_instead_of_tab = 1
 let g:mdf_tabsize = 4
-let g:mdf_listchars = 1
+let g:mdf_listchars = 0
 
 "Powerline configs
 let g:Powerline_symbols = 'fancy'
@@ -86,7 +86,7 @@ nnoremap <leader>sw :w !sudo tee %<CR>
 let g:EclimCompletionMethod = 'omnifunc'
 
 " ALE (Async Lint Engine) configs {
-  let g:ale_enabled = 0
+  let g:ale_enabled = 1
   let g:ale_set_loclist = 0
   let g:ale_sign_error = '!!'
   let g:ale_sign_warning = '>>'
