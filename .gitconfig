@@ -1,33 +1,33 @@
 [core]
 	editor = nvim
-    abbrev = 12
+	abbrev = 12
 	autocrlf = input
 	excludesfile = /home/nick/.PatchDeliveryTool/pdc_tools/.gitignore_global
 
 [user]
-    name = Nick Diego Yamane
-	email = nick.yamane@tcl.com
+	name = Nick Diego Yamane
+	email = nick.yamane@itriad.org.br
 
 [color]
-    ui = auto
-    diff = auto
-    status = auto
-    branch = auto
+	ui = auto
+	diff = auto
+	status = auto
+	branch = auto
 
 [alias]
-    br = branch
-    co = checkout
-    ci = commit
-    grep = grep -n
-    l = log
-    ll = log --pretty=format:\"%h %Cblue%cr%Creset %cn %Cgreen%s%Creset\"
-    lll = log --pretty=oneline --abbrev-commit
-    tag1 = tag | sort -n -t . -k 1,1 -k 2,2 -k 3,3
-    s = status
-    ra = rebase -i --autosquash
-    ds = diff --staged
-    fix-gitignore = cherry-pick c6b4ac781301
-    enable-debug-unsigned = stash apply 6e6e0a975ba
+	br = branch
+	co = checkout
+	ci = commit
+	grep = grep -n
+	l = log
+	ll = log --pretty=format:\"%h %Cblue%cr%Creset %cn %Cgreen%s%Creset\"
+	lll = log --pretty=oneline --abbrev-commit
+	tag1 = tag | sort -n -t . -k 1,1 -k 2,2 -k 3,3
+	s = status
+	ra = rebase -i --autosquash
+	ds = diff --staged
+	fix-gitignore = cherry-pick c6b4ac781301
+	enable-debug-unsigned = stash apply 6e6e0a975ba
 	sh = show
 	cp = cherry-pick
 [credential]
