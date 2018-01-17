@@ -13,10 +13,10 @@ size_hints = true
 [colors]
 
 # special
+background      = rgba(21, 21, 21,  0.9)
 foreground      = #d0d0d0
 foreground_bold = #d0d0d0
 cursor          = #d0d0d0
-background      = #151515
 
 # black
 color0  = #151515
