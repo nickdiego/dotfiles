@@ -1,0 +1,12 @@
+#!/bin/bash
+# ex: ts=2 sw=2 et filetype=sh
+
+hex="$1"
+
+if [ -z $hex ]; then
+  echo "usage: $0 <hex-color>"
+  exit 1
+fi
+
+printf "%d %d %d\n" 0x${hex:0:2} 0x${hex:2:2} 0x${hex:4:2}
+
