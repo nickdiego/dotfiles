@@ -113,6 +113,12 @@ sync_dot_file .xdg-config/gtk-3.0 .config/gtk-3.0
 sync_dot_file .xdg-config/kscreenlockerrc .config/kscreenlockerrc
 sync_dot_file .xdg-config/base16-shell .config/base16-shell
 sync_dot_file .xdg-config/powerline .config/powerline
+sync_dot_file .xdg-config/sddm-breeze.conf .config/sddm-breeze.conf
+
+if [ -d /etc/pacman.d ]; then
+    echo "Installing pacman hooks..."
+    sudo ln -sfv "$PWD/.xdg-config/pacman-hooks" "/etc/pacman.d/hooks"
+fi
 
 sync_dot_file .pixmaps/face.icon .face.icon
 setfacl -m u:sddm:r .pixmaps/face.icon

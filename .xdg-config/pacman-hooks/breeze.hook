@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = breeze
+
+[Action]
+Description = Updating breeze theme configuration...
+When = PostTransaction
+Depends = sed
+Exec = /bin/sh -c "ln -sf /home/nick/.config/sddm-breeze.conf /usr/share/sddm/themes/breeze/theme.conf.user"
+
