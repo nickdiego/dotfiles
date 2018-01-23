@@ -1,0 +1,27 @@
+" ex: ts=2 sw=2 et filetype=vim
+
+" Basic configs
+set incsearch
+set hlsearch
+set ignorecase
+
+" Moving blocks of text in visual mode
+vnoremap < <gv
+vnoremap > >gv
+
+" Scroll screen with the cursor
+noremap <C-j> gj<C-e>
+noremap <C-k> gk<C-y>
+noremap <C-h> h
+noremap <C-l> l
+
+" Scroll screen with the cursor (Insert mode)
+inoremap <C-k> <Up>
+inoremap <C-j> <Down>
+inoremap <C-l> <Right>
+inoremap <C-h> <Left>
+
+" Editor actions
+nnoremap / :action Find<CR>
+nnoremap n :action FindNext<CR>
+nnoremap N :action FindPrevious<CR>
