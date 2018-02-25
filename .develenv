@@ -192,8 +192,6 @@ load-ssh-keys() {
 
 load-ssh-keys &>/dev/null
 
-export MY_GPG_USERID='9B41EB2ECFFBFE525E383E015C041CA1FC08A584'
-
 if [ -r ~/.bin/display-utils.sh ]; then
   source ~/.bin/display-utils.sh &&
     alias arrange-displays=toggle-aux-display
@@ -206,5 +204,8 @@ fi
 if [ -r ~/.localenv ]; then
   source ~/.localenv
 fi
+
+export MY_GPG_USERID='9B41EB2ECFFBFE525E383E015C041CA1FC08A584'
+export DOCKER_ID_USER="nickdiego"
 
 # ex: ts=2 sw=2 et filetype=sh
