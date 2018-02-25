@@ -27,4 +27,5 @@ end
 #source ~/.gdb/minibrowser.gdb
 #source ~/.gdb/drowser.gdb
 #source ~/.gdb/diagnosis.gdb
-source ~/.gdb/knockout_cc.gdb
+#source ~/.gdb/knockout_cc.gdb
+source ~/.gdb/ollvm.gdb
