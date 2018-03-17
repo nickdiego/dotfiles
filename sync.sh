@@ -115,6 +115,7 @@ sync_dot_file .xdg-config/base16-shell .config/base16-shell
 sync_dot_file .xdg-config/powerline .config/powerline
 sync_dot_file .xdg-config/sddm-breeze.conf .config/sddm-breeze.conf
 sync_dot_file .xdg-config/fontconfig .config/fontconfig
+sync_dot_file .xdg-config/htop .config/htop
 
 if [ -d /etc/pacman.d ]; then
     echo "Installing pacman hooks..."
