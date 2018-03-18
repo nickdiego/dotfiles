@@ -113,8 +113,17 @@ for script in ~/.{develenv,aliases}; do
     source $script
 done
 
+# Helper functions
+function reload() {
+    exec -l $SHELL
+}
+
 # Key bindings
 
+# Alt-r reload zsh
+bindkey -s "^[r" '^uexec -l zsh^m'
+# Alt-t = run tig
+bindkey -s "^[t" '^utig^m'
 # Alt-Enter = prepends 'sudo ' to the command
 bindkey -s "^[^m" '^asudo ^e'
 
