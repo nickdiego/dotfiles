@@ -3,3 +3,7 @@ set main-view = line-number:no,interval=5 id:yes date:relative-compact author:em
 
 # Use fancy utf-8 symbols to render graph, etc
 set line-graphics = utf-8
+
+# show commits in date order (instead of topological[default])
+set commit-order = date
+
