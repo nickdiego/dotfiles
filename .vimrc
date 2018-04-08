@@ -323,6 +323,7 @@ autocmd! BufWritePost vimrc source ~/.vimrc
 " Filetype actions {
     if has("autocmd")
         autocmd BufNewFile,BufRead .aidl  set filetype=java
+        autocmd BufNewFile,BufRead .qbs  set filetype=qml
     endif
 " }
 
