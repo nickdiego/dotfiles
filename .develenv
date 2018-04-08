@@ -41,18 +41,6 @@ reset_findsrc_dir
 alias remove_colors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"'
 alias pjson='json | pygmentize -l json'
 
-# open vim session
-v() {
-  local session=${1:-${curr_proj_vimsession}}
-
-  if [[ -z $session ]]; then
-    echo "No session passed as argument nor \$curr_proj_vimsession set!" >&2
-    return 1
-  fi
-
-  eval "vim '+SessionOpen $session' '+set columns=$COLUMNS'"
-}
-
 remove_from_path() {
   local p d dirs
   dirs=$@
