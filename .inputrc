@@ -18,10 +18,10 @@ set colored-completion-prefix On
 set menu-complete-display-prefix On
 
 # directional keys == reverse-search
-#"\e[A":history-search-backward
-#"\e[B":history-search-forward
-"\e[A":history-substring-search-backward
-"\e[B":history-substring-search-forward
+"\e[A":history-search-backward
+"\e[B":history-search-forward
+#"\e[A":history-substring-search-backward
+#"\e[B":history-substring-search-forward
 
 # ctrl-left/right nav through words
 "\e[1;5C": forward-word
