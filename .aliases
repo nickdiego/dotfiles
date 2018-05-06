@@ -47,3 +47,5 @@ alias fm='ranger'
 
 alias g=rg
 alias vim=nvim
+
+alias open=xdg-open
