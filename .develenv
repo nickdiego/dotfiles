@@ -64,10 +64,6 @@ get_external_ip() {
   curl -s http://whatismyip.org/ | grep -oP '(\d{1,3}\.){3}\d+'
 }
 
-bashrc-reload() {
-  source ~/.bashrc
-}
-
 alias image-dimensions="identify -format \"%i -> %w x %h\n\" $@"
 
 pac() {
