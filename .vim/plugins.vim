@@ -34,4 +34,21 @@ Plug 'tpope/vim-fugitive'
 Plug 'rhysd/committia.vim'
 Plug 'rust-lang/rust.vim'
 
+if has('nvim')
+    Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': '/bin/bash install.sh'
+        \ }
+
+    Plug 'ervandew/supertab'
+    Plug 'arakashic/chromatica.nvim'
+    Plug 'Shougo/neoinclude.vim'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+    Plug 'prabirshrestha/async.vim'
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
+endif
+
 call plug#end()

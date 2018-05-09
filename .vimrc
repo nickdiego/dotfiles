@@ -3,6 +3,14 @@ let g:mdf_disable_arrow_keys = 0
 let g:mdf_space_instead_of_tab = 1
 let g:mdf_tabsize = 4
 let g:mdf_listchars = 0
+let g:mdf_cquery_cache_path = expand('~/.lsp/cquery-cache')
+let g:mdf_cquery_log_path = expand('~/.lsp/cquery.log')
+
+if has('nvim')
+    let g:mdf_lsp_plugin = "LanguageClient"
+else
+    let g:mdf_lsp_plugin = "vim-lsp"
+endif
 
 " Plugins configs
 source ~/.vim/plugins.vim
@@ -108,17 +116,74 @@ let g:EclimCompletionMethod = 'omnifunc'
 " }
 
 " vim-lsp configs {
-  if executable('clangd')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'clangd',
-        \ 'cmd': {server_info->['clangd']},
-        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+
+if g:mdf_lsp_plugin == "vim-lsp"
+
+  let g:lsp_log_verbose = 0
+  let g:lsp_log_file = expand('~/.lsp/vim-lsp.log')
+  let g:asyncomplete_log_file = expand('~/.lsp/asyncomplete.log')
+
+  if executable('cquery')
+     au User lsp_setup call lsp#register_server({
+        \ 'name': 'cquery',
+        \ 'cmd': {server_info->['cquery', '--log-file', g:mdf_cquery_log_path]},
+        \ 'root_uri': {server_info->lsp#utils#path_to_uri(
+                \ lsp#utils#find_nearest_parent_file_directory(
+                \ lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+        \ 'initialization_options': { 'cacheDirectory': g:mdf_cquery_cache_path },
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
         \ })
   endif
 
-  let g:lsp_log_verbose = 1
-  let g:lsp_log_file = expand('~/.vim-lsp.log')
-" }
+  if executable('rustup')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls']},
+        \ 'whitelist': ['rust'],
+        \ })
+  endif
+
+  let g:autofmt_autosave = 1
+  let g:lsp_signs_enabled = 1         " enable signs
+  let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+
+  " LSP Keybindings
+  nnoremap <Leader>rj :LspDefinition<CR>
+  nnoremap <Leader>ri :LspImplementation<CR>
+  nnoremap <Leader>rf :LspReferences<CR>
+  " TODO add other Keybindings for vim/vim-lsp
+
+else " LanguageClient_neovim
+
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#enable_smart_case = 1
+  let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+  let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+
+  set hidden
+  let g:LanguageClient_autoStart = 1
+  let g:LanguageClient_serverCommands = {
+      \ 'rust': ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
+      \ 'c':    ['cquery', '--log-file', g:mdf_cquery_log_path ],
+      \ 'cpp':  ['cquery', '--log-file', g:mdf_cquery_log_path ],
+      \ }
+
+  let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
+  let g:LanguageClient_settingsPath = expand('~/.config/nvim/settings.json')
+  "set completefunc=LanguageClient#complete
+  set formatexpr=LanguageClient_textDocument_rangeFormatting()
+
+  " LSP KeyBindings
+  nnoremap <Leader>rj :call LanguageClient_textDocument_definition()<CR>
+  nnoremap <Leader>rf :call LanguageClient_textDocument_references()<CR>
+  nnoremap <Leader>rh :call LanguageClient_textDocument_hover()<CR>
+  nnoremap <Leader>rr :call LanguageClient_textDocument_rename()<CR>
+  nnoremap <Leader>rs :call LanguageClient_textDocument_documentSymbol()<CR>
+  nnoremap <Leader>ff :call LanguageClient_textDocument_formatting()<CR>
+
+endif
+
+" } LSP configs
 
 set browsedir=current           " which directory to use for the file browser
 
