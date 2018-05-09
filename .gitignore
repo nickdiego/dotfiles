@@ -3,7 +3,7 @@
 *~
 .localenv
 .vim/sessions
-.vim/bundle
+/.vim/plugged/
 *.pyc
 .weechat/logs
 .weechat/weechat.log

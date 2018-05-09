@@ -1,18 +1,24 @@
+" High-level Settings
+let g:mdf_disable_arrow_keys = 0
+let g:mdf_space_instead_of_tab = 1
+let g:mdf_tabsize = 4
+let g:mdf_listchars = 0
+
+" Plugins configs
 source ~/.vim/plugins.vim
 
 let mapleader=","
-nnoremap <Leader>a :echo "Hey there ,"<CR>
 set pastetoggle=<F2>
 nnoremap ; :
 
 set cursorline
 set mouse=
-"set backup                                              " keep a backup file
-set tabpagemax=15                                       " only show 15 tabs
+set tabpagemax=15
 set nowrap
 set number
 set noswapfile
 set expandtab
+
 " forcing 256 colors
 set t_Co=256
 set t_ut=
@@ -38,11 +44,6 @@ endif
 
 let g:powerline_pycmd = 'py3'
 " }
-
-let g:mdf_disable_arrow_keys = 0
-let g:mdf_space_instead_of_tab = 1
-let g:mdf_tabsize = 4
-let g:mdf_listchars = 0
 
 "Powerline configs
 let g:Powerline_symbols = 'fancy'
@@ -368,15 +369,12 @@ autocmd! BufWritePost vimrc source ~/.vimrc
 " }
 
 " new tests TODO {
-    "autocmd FileType cpp let b:deoplete_disable_auto_complete = 1
     if !exists('g:deoplete#omni#input_patterns')
         let g:deoplete#omni#input_patterns = {}
     endif
 
     let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
     autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-    let g:deoplete#enable_at_startup = 1
-    autocmd FileType java let g:deoplete#enable_at_startup = 0
 
     let g:chromatica#enable_at_startup=1
     let g:chromatica#libclang_path = '/usr/lib/libclang.so'
