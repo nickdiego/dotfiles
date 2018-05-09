@@ -70,6 +70,7 @@ PROJECT_PATHS=(~/projects ~/sandbox)
 plugins=(
   archlinux
   rust
+  cargo
   themes
   sudo
   jump
