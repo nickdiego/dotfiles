@@ -10,12 +10,8 @@ Plug 'digitaltoad/vim-pug'
 Plug 'peterhoeg/vim-qml'
 Plug 'wesQ3/vim-windowswap'
 Plug 'nanotech/jellybeans.vim'
-Plug 'roosta/srcery'
 Plug 'w0ng/vim-hybrid'
-Plug 'zeis/vim-kolor'
-Plug 'junegunn/seoul256.vim'
 Plug 'morhetz/gruvbox'
-Plug 'tomasr/molokai'
 Plug 'Yggdroot/indentLine'
 Plug 'tbastos/vim-lua'
 Plug 'scrooloose/nerdcommenter'
@@ -23,7 +19,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'aklt/plantuml-syntax'
 Plug 'sickill/vim-monokai'
 Plug 'chriskempson/base16-vim'
-Plug 'hdima/python-syntax'
 Plug 'w0rp/ale'
 Plug 'junegunn/vader.vim'
 
@@ -32,6 +27,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'kelwin/vim-smali'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/committia.vim'
+plug 'arakashic/chromatica.nvim'
 Plug 'rust-lang/rust.vim'
 
 if has('nvim')
@@ -39,11 +35,9 @@ if has('nvim')
         \ 'branch': 'next',
         \ 'do': '/bin/bash install.sh'
         \ }
-
-    Plug 'ervandew/supertab'
-    Plug 'arakashic/chromatica.nvim'
-    Plug 'Shougo/neoinclude.vim'
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    plug 'ervandew/supertab'
+    plug 'shougo/neoinclude.vim'
+    plug 'shougo/deoplete.nvim', { 'do': ':updateremoteplugins' }
 else
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'

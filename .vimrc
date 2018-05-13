@@ -158,10 +158,8 @@ else " LanguageClient_neovim
 
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#enable_smart_case = 1
-  let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-  let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
-  set hidden
+  set hidden " Needed for textDocument/rename
   let g:LanguageClient_autoStart = 1
   let g:LanguageClient_serverCommands = {
       \ 'rust':   ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
@@ -174,7 +172,7 @@ else " LanguageClient_neovim
 
   let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
   let g:LanguageClient_settingsPath = expand('~/.config/nvim/settings.json')
-  "set completefunc=LanguageClient#complete
+  set completefunc=LanguageClient#complete
   set formatexpr=LanguageClient_textDocument_rangeFormatting()
 
   " LSP KeyBindings
