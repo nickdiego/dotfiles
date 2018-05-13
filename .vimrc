@@ -5,6 +5,7 @@ let g:mdf_tabsize = 4
 let g:mdf_listchars = 0
 let g:mdf_cquery_cache_path = expand('~/.lsp/cquery-cache')
 let g:mdf_cquery_log_path = expand('~/.lsp/cquery.log')
+let g:mdf_pyls_log_path = expand('~/.lsp/pyls.log')
 
 if has('nvim')
     let g:mdf_lsp_plugin = "LanguageClient"
@@ -163,9 +164,11 @@ else " LanguageClient_neovim
   set hidden
   let g:LanguageClient_autoStart = 1
   let g:LanguageClient_serverCommands = {
-      \ 'rust': ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
-      \ 'c':    ['cquery', '--log-file', g:mdf_cquery_log_path ],
-      \ 'cpp':  ['cquery', '--log-file', g:mdf_cquery_log_path ],
+      \ 'rust':   ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
+      \ 'c':      ['cquery', '--log-file', g:mdf_cquery_log_path ],
+      \ 'cpp':    ['cquery', '--log-file', g:mdf_cquery_log_path ],
+      \ 'python': ['pyls', '--log-file', g:mdf_pyls_log_path ],
+      \ 'sh':   ['bash-language-server', 'start' ],
       \ }
 
   let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
