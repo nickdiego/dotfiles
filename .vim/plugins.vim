@@ -27,7 +27,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'kelwin/vim-smali'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/committia.vim'
-plug 'arakashic/chromatica.nvim'
+Plug 'arakashic/chromatica.nvim'
 Plug 'rust-lang/rust.vim'
 
 if has('nvim')
@@ -35,9 +35,9 @@ if has('nvim')
         \ 'branch': 'next',
         \ 'do': '/bin/bash install.sh'
         \ }
-    plug 'ervandew/supertab'
-    plug 'shougo/neoinclude.vim'
-    plug 'shougo/deoplete.nvim', { 'do': ':updateremoteplugins' }
+    Plug 'ervandew/supertab'
+    Plug 'shougo/neoinclude.vim'
+    Plug 'shougo/deoplete.nvim', { 'do': ':updateremoteplugins' }
 else
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
