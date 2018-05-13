@@ -165,10 +165,11 @@ else " LanguageClient_neovim
   let g:LanguageClient_autoStart = 1
   let g:LanguageClient_serverCommands = {
       \ 'rust':   ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
-      \ 'c':      ['cquery', '--log-file', g:mdf_cquery_log_path ],
-      \ 'cpp':    ['cquery', '--log-file', g:mdf_cquery_log_path ],
-      \ 'python': ['pyls', '--log-file', g:mdf_pyls_log_path ],
-      \ 'sh':   ['bash-language-server', 'start' ],
+      \ 'c':      ['cquery', '--log-file', g:mdf_cquery_log_path],
+      \ 'cpp':    ['cquery', '--log-file', g:mdf_cquery_log_path],
+      \ 'python': ['pyls', '--log-file', g:mdf_pyls_log_path],
+      \ 'sh':     ['bash-language-server', 'start'],
+      \ 'lua':    ['lua-lsp'],
       \ }
 
   let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
