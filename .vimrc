@@ -1,16 +1,16 @@
 " High-level Settings
-let g:mdf_disable_arrow_keys = 0
-let g:mdf_space_instead_of_tab = 1
-let g:mdf_tabsize = 4
-let g:mdf_listchars = 0
-let g:mdf_cquery_cache_path = expand('~/.lsp/cquery-cache')
-let g:mdf_cquery_log_path = expand('~/.lsp/cquery.log')
-let g:mdf_pyls_log_path = expand('~/.lsp/pyls.log')
+let g:custom_disable_arrow_keys = 0
+let g:custom_space_instead_of_tab = 1
+let g:custom_tabsize = 4
+let g:custom_listchars = 0
+let g:custom_cquery_cache_path = expand('~/.lsp/cquery-cache')
+let g:custom_cquery_log_path = expand('~/.lsp/cquery.log')
+let g:custom_pyls_log_path = expand('~/.lsp/pyls.log')
 
 if has('nvim')
-    let g:mdf_lsp_plugin = "LanguageClient"
+    let g:custom_lsp_plugin = "LanguageClient"
 else
-    let g:mdf_lsp_plugin = "vim-lsp"
+    let g:custom_lsp_plugin = "vim-lsp"
 endif
 
 " Plugins configs
@@ -118,7 +118,7 @@ let g:EclimCompletionMethod = 'omnifunc'
 
 " vim-lsp configs {
 
-if g:mdf_lsp_plugin == "vim-lsp"
+if g:custom_lsp_plugin == "vim-lsp"
 
   let g:lsp_log_verbose = 0
   let g:lsp_log_file = expand('~/.lsp/vim-lsp.log')
@@ -127,11 +127,11 @@ if g:mdf_lsp_plugin == "vim-lsp"
   if executable('cquery')
      au User lsp_setup call lsp#register_server({
         \ 'name': 'cquery',
-        \ 'cmd': {server_info->['cquery', '--log-file', g:mdf_cquery_log_path]},
+        \ 'cmd': {server_info->['cquery', '--log-file', g:custom_cquery_log_path]},
         \ 'root_uri': {server_info->lsp#utils#path_to_uri(
                 \ lsp#utils#find_nearest_parent_file_directory(
                 \ lsp#utils#get_buffer_path(), 'compile_commands.json'))},
-        \ 'initialization_options': { 'cacheDirectory': g:mdf_cquery_cache_path },
+        \ 'initialization_options': { 'cacheDirectory': g:custom_cquery_cache_path },
         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
         \ })
   endif
@@ -163,9 +163,9 @@ else " LanguageClient_neovim
   let g:LanguageClient_autoStart = 1
   let g:LanguageClient_serverCommands = {
       \ 'rust':   ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
-      \ 'c':      ['cquery', '--log-file', g:mdf_cquery_log_path],
-      \ 'cpp':    ['cquery', '--log-file', g:mdf_cquery_log_path],
-      \ 'python': ['pyls', '--log-file', g:mdf_pyls_log_path],
+      \ 'c':      ['cquery', '--log-file', g:custom_cquery_log_path],
+      \ 'cpp':    ['cquery', '--log-file', g:custom_cquery_log_path],
+      \ 'python': ['pyls', '--log-file', g:custom_pyls_log_path],
       \ 'sh':     ['bash-language-server', 'start'],
       \ 'lua':    ['lua-lsp'],
       \ }
@@ -253,7 +253,7 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/custom/ycm_extra_conf.py'
 vnoremap < <gv
 vnoremap > >gv
 
-if g:mdf_disable_arrow_keys
+if g:custom_disable_arrow_keys
     " You want to be part of the gurus? Time to get in serious stuff and stop using
     " arrow keys.
     noremap <left> <nop>
@@ -275,7 +275,7 @@ endif
 "
 "set whichwrap=b,s,h,l,<,>,[,]                       " backspace and cursor keys wrap to
 "
-if g:mdf_listchars
+if g:custom_listchars
     set list
     set listchars=tab:»·,trail:·,extends:#,nbsp:.       " strings to use in 'list' mode
 endif
@@ -305,21 +305,21 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     "set dictionary+=/usr/share/dict/words          " dictionary for word auto completion
 
     " Formatting {
-        autocmd FileType Makefile set g:mdf_space_instead_of_tab = 0
-        if g:mdf_space_instead_of_tab
+        autocmd FileType Makefile set g:custom_space_instead_of_tab = 0
+        if g:custom_space_instead_of_tab
 "            set expandtab                    " tabs are spaces, not tabs"
         endif
 
-        if !g:mdf_tabsize
-            let g:mdf_tabsize = 4
+        if !g:custom_tabsize
+            let g:custom_tabsize = 4
         endif
 
         " number of spaces to use for each step of indent
-        execute "set shiftwidth=".g:mdf_tabsize
+        execute "set shiftwidth=".g:custom_tabsize
         " number of spaces that a <Tab> counts for
-        execute "set tabstop=".g:mdf_tabsize
+        execute "set tabstop=".g:custom_tabsize
         " let backspace delete indent
-        execute "set softtabstop=".g:mdf_tabsize
+        execute "set softtabstop=".g:custom_tabsize
 
         set autoindent                  " copy indent from current line
         set smartindent                 " smart autoindenting when starting a new line
