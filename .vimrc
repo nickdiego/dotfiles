@@ -159,12 +159,15 @@ else " LanguageClient_neovim
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#enable_smart_case = 1
 
+  " cquery initialization options
+  let cq_init_opts = '{"cacheDirectory":"'. g:custom_cquery_cache_path .'"}'
+
   set hidden " Needed for textDocument/rename
   let g:LanguageClient_autoStart = 1
   let g:LanguageClient_serverCommands = {
+      \ 'c':      ['cquery', '--log-file', g:custom_cquery_log_path, '--init', cq_init_opts],
+      \ 'cpp':    ['cquery', '--log-file', g:custom_cquery_log_path, '--init', cq_init_opts],
       \ 'rust':   ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
-      \ 'c':      ['cquery', '--log-file', g:custom_cquery_log_path],
-      \ 'cpp':    ['cquery', '--log-file', g:custom_cquery_log_path],
       \ 'python': ['pyls', '--log-file', g:custom_pyls_log_path],
       \ 'sh':     ['bash-language-server', 'start'],
       \ 'lua':    ['lua-lsp'],
