@@ -179,12 +179,12 @@ else " LanguageClient_neovim
   set formatexpr=LanguageClient_textDocument_rangeFormatting()
 
   " LSP KeyBindings
-  nnoremap <Leader>rj :call LanguageClient_textDocument_definition()<CR>
-  nnoremap <Leader>rf :call LanguageClient_textDocument_references()<CR>
-  nnoremap <Leader>rh :call LanguageClient_textDocument_hover()<CR>
-  nnoremap <Leader>rr :call LanguageClient_textDocument_rename()<CR>
-  nnoremap <Leader>rs :call LanguageClient_textDocument_documentSymbol()<CR>
-  nnoremap <Leader>ff :call LanguageClient_textDocument_formatting()<CR>
+  nnoremap <silent> <Leader>rj :call LanguageClient_textDocument_definition()<CR>
+  nnoremap <silent> <Leader>rf :call LanguageClient_textDocument_references()<CR>
+  nnoremap <silent> <Leader>rh :call LanguageClient_textDocument_hover()<CR>
+  nnoremap <silent> <Leader>rr :call LanguageClient_textDocument_rename()<CR>
+  nnoremap <silent> <Leader>rs :call LanguageClient_textDocument_documentSymbol()<CR>
+  nnoremap <silent> <Leader>ff :call LanguageClient_textDocument_formatting()<CR>
 
 endif
 
