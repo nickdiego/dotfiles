@@ -42,44 +42,8 @@ sync_dot_files() {
 }
 
 install_vim_plugins() {
-  # downloads Vundle plugin manager
-  [ -d .vim/bundle ] || mkdir -p .vim/bundle
-  [ -d .vim/bundle/Vundle.vim ] || git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
   # install the Vundle plugins configured in .vimrc
-  vim -u .vim/plugins.vim +PluginInstall +qall
-
-  if [ $? -ne 0 ]; then
-    echo "### Error: Failed to install Vim plugins!"
-    return 1
-  fi
-
-  local ycm_path=.vim/bundle/YouCompleteMe
-  local ycm_core_lib=${ycm_path}/third_party/ycmd/ycm_core.so
-  if [ -f $ycm_core_lib ]; then
-    echo "YouCompleteMe: ycm_core.so already exists. Skipping..."
-    return 0
-  fi
-
-  echo ==========================================================
-  echo Trying to compile native YouCompleteMe support libs...
-  echo NOTE: If it fails you\'ll must check the logs and install
-  echo it manually \;\)
-  echo ==========================================================
-  local log=ycm_compile.log
-  pushd $ycm_path
-
-  ./install.py --clang-completer > $log
-  local result=$?
-  if [ $result -eq 0 ]; then
-    echo "YouCompleteMe build succeeded!"
-    rm ${log}
-  else
-    echo "YouCompleteMe build failed!"
-    echo "Check ${log} for more details."
-  fi
-  popd
-  return $result
+  nvim -u .vim/plugins.vim +PlugInstall +qall
 }
 
 install_submodules() {
