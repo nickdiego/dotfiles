@@ -74,6 +74,7 @@ plugins=(
   themes
   sudo
   jump
+  pip
   pj
   z
 )
