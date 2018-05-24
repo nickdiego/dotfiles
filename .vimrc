@@ -6,6 +6,7 @@ let g:custom_listchars = 0
 let g:custom_cquery_cache_path = expand('~/.lsp/cquery-cache')
 let g:custom_cquery_log_path = expand('~/.lsp/cquery.log')
 let g:custom_pyls_log_path = expand('~/.lsp/pyls.log')
+let g:custom_snippets_use_tab = 1
 
 if has('nvim')
     let g:custom_lsp_plugin = "LanguageClient"
@@ -189,6 +190,33 @@ else " LanguageClient_neovim
 endif
 
 " } LSP configs
+
+if !g:custom_snippets_use_tab
+    let g:SimpleSnippets_dont_remap_tab = 0
+    let g:SimpleSnippetsExpandOrJumpTrigger = "<C-j>"
+    let g:SimpleSnippetsJumpBackwardTrigger = "<C-k>"
+    let g:SimpleSnippetsJumpToLastTrigger = "<S-j>"
+else
+    " Disable supertab (?)
+    let g:SimpleSnippets_dont_remap_tab = 1
+    inoremap <silent><expr><Tab> pumvisible() ? "\<c-n>" :
+        \SimpleSnippets#isExpandableOrJumpable() ?
+        \"<Esc>:call SimpleSnippets#expandOrJump()<Cr>" :
+        \"\<Tab>"
+    inoremap <silent><expr><S-Tab> pumvisible() ? "\<c-p>" :
+        \SimpleSnippets#isJumpable() ?
+        \"<Esc>:call SimpleSnippets#jumpBackwards()<Cr>" :
+        \"\<S-Tab>"
+    inoremap <silent><expr><Cr> pumvisible() ?
+        \SimpleSnippets#isExpandableOrJumpable() ?
+        \"\<Esc>:call SimpleSnippets#expandOrJump()\<Cr>" :
+        \"\<Cr>" : "\<Cr>"
+    snoremap <silent><expr><Tab> SimpleSnippets#isExpandableOrJumpable() ?
+        \"<Esc>:call SimpleSnippets#expandOrJump()<Cr>" : "\<Tab>"
+        snoremap <silent><expr><S-Tab> SimpleSnippets#isJumpable() ?
+        \"<Esc>:call SimpleSnippets#jumpBackwards()<Cr>" :
+        \"\<S-Tab>"
+endif
 
 set browsedir=current           " which directory to use for the file browser
 

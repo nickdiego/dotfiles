@@ -29,15 +29,17 @@ Plug 'tpope/vim-fugitive'
 Plug 'rhysd/committia.vim'
 Plug 'arakashic/chromatica.nvim'
 Plug 'rust-lang/rust.vim'
+Plug 'andreyorst/SimpleSnippets.vim'
+Plug 'andreyorst/SimpleSnippets-snippets'
 
 if has('nvim')
     Plug 'autozimu/LanguageClient-neovim', {
         \ 'branch': 'next',
         \ 'do': '/bin/bash install.sh'
         \ }
-    Plug 'ervandew/supertab'
+    "Plug 'ervandew/supertab'
     Plug 'shougo/neoinclude.vim'
-    Plug 'shougo/deoplete.nvim', { 'do': ':updateremoteplugins' }
+    Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
