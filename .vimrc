@@ -526,10 +526,6 @@ autocmd! BufWritePost vimrc source ~/.vimrc
 
     let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
     autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-    let g:chromatica#enable_at_startup=1
-    let g:chromatica#libclang_path = '/usr/lib/libclang.so'
-    let g:chromatica#responsive_mode=1
 " }
 
 " compile all sources as c++11 (just for example, use .clang_complete for
