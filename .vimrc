@@ -458,14 +458,6 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     \ }
 "}
 
-" YouCompleteMe {
-    nnoremap <Leader>d :YcmCompleter GoTo<CR>
-    nnoremap <Leader>h :YcmCompleter GoToInclude<CR>
-    nnoremap <Leader>t :YcmCompleter GetType<CR>
-    "not supported for C/C++ :(
-    nnoremap <Leader>r :YcmCompleter GoToReferences<CR>
-" }
-
 " new tests TODO {
     if !exists('g:deoplete#omni#input_patterns')
         let g:deoplete#omni#input_patterns = {}
