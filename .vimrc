@@ -6,6 +6,7 @@ let g:custom_listchars = 0
 let g:custom_cquery_cache_path = expand('~/.lsp/cquery-cache')
 let g:custom_cquery_log_path = expand('~/.lsp/cquery.log')
 let g:custom_pyls_log_path = expand('~/.lsp/pyls.log')
+let g:custom_gols_log_path = expand('~/.lsp/go-langserver.log')
 let g:custom_snippets_use_tab = 1
 
 if has('nvim')
@@ -99,10 +100,14 @@ let g:EclimCompletionMethod = 'omnifunc'
 " ALE (Async Lint Engine) configs {
   let g:ale_enabled = 0
   let g:ale_set_loclist = 0
-  let g:ale_sign_error = '!!'
-  let g:ale_sign_warning = '>>'
+
+  let g:ale_sign_error = '⤫'
+  let g:ale_sign_warning = '⚠'
   "let g:ale_set_quickfix = 1
   "let g:ale_open_list = 1
+
+  " Enable integration with airline.
+  let g:airline#extensions#ale#enabled = 1
   let g:ale_linters = {
   \   'gitcommit': ['gitlint'],
   \   'python': ['flake8'],
@@ -115,6 +120,8 @@ let g:EclimCompletionMethod = 'omnifunc'
   " Ctrl-j/k to navigate through ALI Errors/Warnings
   nmap <silent> <C-k> <Plug>(ale_previous_wrap)
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+  au FileType go :ALEEnable
 " }
 
 " vim-lsp configs {
@@ -168,6 +175,7 @@ else " LanguageClient_neovim
   let g:LanguageClient_serverCommands = {
       \ 'c':      ['cquery', '--log-file', g:custom_cquery_log_path, '--init', cq_init_opts],
       \ 'cpp':    ['cquery', '--log-file', g:custom_cquery_log_path, '--init', cq_init_opts],
+      \ 'go':     ['go-langserver', '-logfile', g:custom_gols_log_path],
       \ 'rust':   ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
       \ 'python': ['pyls', '--log-file', g:custom_pyls_log_path],
       \ 'sh':     ['bash-language-server', 'start'],
@@ -191,6 +199,8 @@ endif
 
 " } LSP configs
 
+" SimpleSnippets configs {
+
 if !g:custom_snippets_use_tab
     let g:SimpleSnippets_dont_remap_tab = 0
     let g:SimpleSnippetsExpandOrJumpTrigger = "<C-j>"
@@ -207,7 +217,7 @@ else
         \SimpleSnippets#isJumpable() ?
         \"<Esc>:call SimpleSnippets#jumpBackwards()<Cr>" :
         \"\<S-Tab>"
-    inoremap <silent><expr><Cr> pumvisible() ?
+    inoremap <expr><Cr> pumvisible() ?
         \SimpleSnippets#isExpandableOrJumpable() ?
         \"\<Esc>:call SimpleSnippets#expandOrJump()\<Cr>" :
         \"\<Cr>" : "\<Cr>"
@@ -217,6 +227,57 @@ else
         \"<Esc>:call SimpleSnippets#jumpBackwards()<Cr>" :
         \"\<S-Tab>"
 endif
+
+" }
+
+" Golang configs {
+
+    au FileType go set noexpandtab
+    au FileType go set shiftwidth=4
+    au FileType go set softtabstop=4
+    au FileType go set tabstop=4
+
+    " Quickfix key mappings
+    map <C-n> :cnext<CR>
+    map <C-m> :cprevious<CR>
+    nnoremap <leader>a :cclose<CR>
+
+    let g:go_list_type = "quickfix"
+    let g:go_fmt_command = "goimports"
+    let g:go_auto_sameids = 0
+    let g:go_highlight_build_constraints = 1
+    let g:go_highlight_extra_types = 1
+    let g:go_highlight_fields = 1
+    let g:go_highlight_function_calls = 1
+    let g:go_highlight_functions = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_structs = 1
+    let g:go_highlight_types = 1
+
+    " run :GoBuild or :GoTestCompile based on the go file
+    function! s:build_go_files()
+      let l:file = expand('%')
+      if l:file =~# '^\f\+_test\.go$'
+        call go#test#Test(0, 1)
+      elseif l:file =~# '^\f\+\.go$'
+        call go#cmd#Build(0)
+      endif
+    endfunction
+
+    autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+    autocmd FileType go nmap <leader>r  <Plug>(go-run)
+    autocmd FileType go nmap <leader>t  <Plug>(go-test)
+    autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+    autocmd FileType go nnoremap <Leader>a :GoAlternate<CR>
+    au FileType go nmap <leader>gt :GoDeclsDir<cr>
+
+    autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+    autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+    autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+    autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+
+" }
 
 set browsedir=current           " which directory to use for the file browser
 

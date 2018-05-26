@@ -69,13 +69,14 @@ PROJECT_PATHS=(~/projects ~/sandbox)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   archlinux
-  rust
   cargo
-  themes
-  sudo
+  golang
   jump
   pip
   pj
+  rust
+  sudo
+  themes
   z
 )
 

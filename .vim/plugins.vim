@@ -28,6 +28,7 @@ Plug 'kelwin/vim-smali'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/committia.vim'
 Plug 'rust-lang/rust.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'andreyorst/SimpleSnippets.vim'
 Plug 'andreyorst/SimpleSnippets-snippets'
 
