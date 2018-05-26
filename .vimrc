@@ -302,7 +302,7 @@ else
 endif
 
 " When vimrc is edited, reload it
-autocmd! BufWritePost .vimrc source ~/.vimrc
+autocmd! BufWritePost .vimrc,*.vim source ~/.vimrc
 
 " Ctrl-Shift-f calls Ag.vim
 nnoremap <C-F> :Ag<space>
