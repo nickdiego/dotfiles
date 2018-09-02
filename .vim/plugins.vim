@@ -21,6 +21,7 @@ Plug 'sickill/vim-monokai'
 Plug 'chriskempson/base16-vim'
 Plug 'w0rp/ale'
 Plug 'junegunn/vader.vim'
+Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'

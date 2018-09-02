@@ -519,6 +519,12 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     \ }
 "}
 
+
+" denite {
+    nnoremap <silent><leader>, :Denite file/rec buffer<CR>
+
+" }
+
 " new tests TODO {
     if !exists('g:deoplete#omni#input_patterns')
         let g:deoplete#omni#input_patterns = {}
