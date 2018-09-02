@@ -21,6 +21,10 @@ source ~/.vim/plugins.vim
 let mapleader=","
 set pastetoggle=<F2>
 nnoremap ; :
+imap jj <ESC>
+nnoremap <space> za
+nnoremap <leader>ve :vsplit $MYVIMRC<cr>
+nnoremap <leader>vs :source $MYVIMRC<cr>
 
 set cursorline
 set mouse=
