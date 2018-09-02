@@ -31,6 +31,7 @@ set mouse=
 set tabpagemax=15
 set nowrap
 set number
+set relativenumber
 set noswapfile
 set expandtab
 
@@ -399,6 +400,13 @@ autocmd! BufWritePost vimrc source ~/.vimrc
 
     "set complete+=k                                " scan the files given with the 'dictionary' option
     "set dictionary+=/usr/share/dict/words          " dictionary for word auto completion
+
+    " Enable relativenumber only in non-insert mode
+    augroup numbertoggle
+        autocmd!
+        autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+        autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+    augroup END
 
     " Formatting {
         autocmd FileType Makefile set g:custom_space_instead_of_tab = 0
