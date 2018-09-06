@@ -87,29 +87,16 @@ fi
 # Sync plain/simple dot files/dirs
 sync_dot_files
 
-# Sync xdg-config files
-# FIXME generalize this to work with all dirs inside .xdg-config
-sync_dot_file .xdg-config/awesome-config .config/awesome
-sync_dot_file .xdg-config/konsolerc .config/konsolerc
-sync_dot_file .xdg-config/mimeapps.list .config/mimeapps.list
-sync_dot_file .xdg-config/nvim .config/nvim
-sync_dot_file .xdg-config/termite .config/termite
-sync_dot_file .xdg-config/ranger .config/ranger
-sync_dot_file .xdg-config/gtk-3.0 .config/gtk-3.0
-sync_dot_file .xdg-config/kscreenlockerrc .config/kscreenlockerrc
-sync_dot_file .xdg-config/base16-shell .config/base16-shell
-sync_dot_file .xdg-config/powerline .config/powerline
-sync_dot_file .xdg-config/sddm-breeze.conf .config/sddm-breeze.conf
-sync_dot_file .xdg-config/fontconfig .config/fontconfig
-sync_dot_file .xdg-config/htop .config/htop
-sync_dot_file .xdg-config/i3 .config/i3
+for d in config/*; do
+  sync_dot_file "$d" ".config/${d##config/}"
+done
 
 sync_dot_file .pixmaps/face.icon .face.icon
 setfacl -m u:sddm:r .pixmaps/face.icon
 setfacl -m u:sddm:r $HOME/.face.icon
 
 # Install vim plugins (using Vundle for now)
-install_vim_plugins
+# install_vim_plugins
 
 # TODO: Check how to install pacman hooks without root access
 
