@@ -1,34 +1,62 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
+# Symlink-based Installer/syncer script to keep
+# dotfiles easily editable and up-to-date.
 
 set -e
 
-backup_dot_file() {
-  local f=$1
-  local dir=$(dirname "$bkpdir/`echo $f | sed "s,$HOME/,,"`")
-  [ -d $dir ] || mkdir -p $dir
-  mv $f $dir
+BOOTSTRAP=0
+VERBOSE=0
+BKPDIR="$HOME/.dot-backups/bkp-`date +'%b-%d-%y_%H:%M:%S'`"
+
+while (( $# )); do
+  case $1 in
+    --bootstrap | -b)
+      BOOTSTRAP=1
+      ;;
+    --verbose | -v)
+      VERBOSE=1
+      ;;
+    *)
+      echo "Error: Unrecognized option!"
+      exit 1
+      ;;
+  esac
+  shift
+done
+
+msg() {
+  if (( VERBOSE )); then
+    printf "%s\n" "$*" >&2
+  fi
+}
+
+backup_dot() {
+  local src=$1
+  local dstdir="${BKPDIR}/${src##$HOME/}"
+  mkdir -p $dstdir
+  mv $src $dstdir
+  echo "${dstdir}/$(basename $src)"
 }
 
 sync_dot_file() {
   local file=$1
-  local link=$2
-  [ -z $link ] && link=$file
-  local src=$PWD/$file
-  local tgt=$HOME/$link
+  local link=${2:-$file}
+  local src="${PWD}/${file}"
+  local tgt="${HOME}/${link}"
 
-  echo -n "Installing ${src}: "
-  if [[ -L $tgt && `readlink -f $tgt` = $src ]]; then
-    echo "skipping..."
+  if [[ -L "$tgt" && "$(readlink -f $tgt)" == "$(readlink -f $src)" ]]; then
+    #msg "Skipping ${file} -> ${link} [already installed]"
     return 0
   fi
-  if [[ -f $tgt || -d $tgt ]]; then
-    echo "replacing..."
-    backup_dot_file $tgt || return 1
+
+  if [[ -f "$tgt" || -d "$tgt" ]]; then
+    msg "Replacing ${file} -> ${link} [bkp: $(backup_dot $tgt)]"
   else
-    echo "linking..."
+    msg "Linking ${file} -> ${link}"
   fi
+
   ln -sf $src $tgt
-  return 0
 }
 
 sync_dot_files() {
@@ -36,9 +64,8 @@ sync_dot_files() {
   local files_to_install=`eval "ls --color=never -A $ignoredirs"`
 
   for file in $files_to_install; do
-    sync_dot_file $file || return 1
+    sync_dot_file $file
   done
-  return 0
 }
 
 install_vim_plugins() {
@@ -46,24 +73,19 @@ install_vim_plugins() {
   nvim -u .vim/plugins.vim +PlugInstall +qall
 }
 
-install_submodules() {
-  echo "Fetching submodules..."
-  git submodule update --init &&
-  git submodule foreach git checkout master &&
-  echo "Installing tmux plugins..."
-  .tmux/plugins/tpm/scripts/install_plugins.sh &&
-  echo "Installing powerline..."
-  .powerline/fonts/install.sh
-}
-
-bkpdir="$HOME/.dot-backups/bkp-`date +'%b-%d-%y_%H:%M:%S'`"
-
-
 # Install submodules
-install_submodules &&
+if (( BOOTSTRAP )); then
+  msg "Fetching submodules..."
+  git submodule update --init
+  # Install tmux plugins
+  msg "Installing tmux plugins..."
+  .tmux/plugins/tpm/scripts/install_plugins.sh
+  msg "Installing powerline..."
+  .powerline/fonts/install.sh
+fi
 
 # Sync plain/simple dot files/dirs
-sync_dot_files &&
+sync_dot_files
 
 # Sync xdg-config files
 # FIXME generalize this to work with all dirs inside .xdg-config
@@ -80,11 +102,7 @@ sync_dot_file .xdg-config/powerline .config/powerline
 sync_dot_file .xdg-config/sddm-breeze.conf .config/sddm-breeze.conf
 sync_dot_file .xdg-config/fontconfig .config/fontconfig
 sync_dot_file .xdg-config/htop .config/htop
-
-if [ -d /etc/pacman.d ]; then
-    echo "Installing pacman hooks..."
-    sudo ln -sfv "$PWD/.xdg-config/pacman-hooks" "/etc/pacman.d/hooks"
-fi
+sync_dot_file .xdg-config/i3 .config/i3
 
 sync_dot_file .pixmaps/face.icon .face.icon
 setfacl -m u:sddm:r .pixmaps/face.icon
@@ -93,8 +111,8 @@ setfacl -m u:sddm:r $HOME/.face.icon
 # Install vim plugins (using Vundle for now)
 install_vim_plugins
 
-# Reload bashrc
-. ~/.bashrc &&
+# TODO: Check how to install pacman hooks without root access
 
-echo "DONE!"
-unset bkpdir
+# Reload shell
+echo "Done." >&2
+exec $SHELL -l
