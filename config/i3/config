@@ -28,7 +28,7 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+c kill
@@ -44,11 +44,10 @@ bindsym $mod+p exec dmenu_run
 bindsym $mod+Shift+l exec i3lock -ti ~/.pixmaps/universe-galaxy-red-1920x1200.png
 
 # autostart applications
-exec --no-startup-id feh --no-fehbg --bg-scale ~/.pixmaps/black.png
+exec --no-startup-id feh --no-fehbg --bg-scale ~/.pixmaps/wallpaper.png
 exec --no-startup-id xautolock -time 5 -locker "i3lock -ti ~/.pixmaps/universe-galaxy-red-1920x1200.png"
-exec --no-startup-id setxkbmap -model abnt2 -layout br
 exec --no-startup-id compton
-exec --always bionic-daemons
+#exec --no-startup-id setxkbmap -model abnt2 -layout br
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
