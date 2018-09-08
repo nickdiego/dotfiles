@@ -41,11 +41,11 @@ bindsym $mod+p exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # i3lock key binding
-bindsym $mod+Shift+l exec i3lock -ti ~/.pixmaps/universe-galaxy-red-1920x1200.png
+bindsym $mod+Shift+l exec /usr/lib/kscreenlocker_greet
 
 # autostart applications
 exec --no-startup-id feh --no-fehbg --bg-scale ~/.pixmaps/wallpaper.png
-exec --no-startup-id xautolock -time 5 -locker "i3lock -ti ~/.pixmaps/universe-galaxy-red-1920x1200.png"
+exec --no-startup-id xautolock -time 5 -locker "/usr/lib/kscreenlocker_greet"
 exec --no-startup-id compton
 #exec --no-startup-id setxkbmap -model abnt2 -layout br
 
