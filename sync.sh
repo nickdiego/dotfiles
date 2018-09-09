@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#
+# vim: et sw=2 ft=sh
 # Symlink-based Installer/syncer script to keep
 # dotfiles easily editable and up-to-date.
 
@@ -8,6 +8,7 @@ set -e
 BOOTSTRAP=0
 VERBOSE=0
 BKPDIR="$HOME/.dot-backups/bkp-`date +'%b-%d-%y_%H:%M:%S'`"
+PYTHON_PKGS=( i3ipc )
 
 while (( $# )); do
   case $1 in
@@ -68,9 +69,14 @@ install_vim_plugins() {
 if (( BOOTSTRAP )); then
   msg "Fetching submodules..."
   git submodule update --init
-  # Install tmux plugins
   msg "Installing tmux plugins..."
   tmux/plugins/tpm/scripts/install_plugins.sh
+  if type pip &>/dev/null; then
+    msg "Installing python packages..."
+    pip install --user "${PYTHON_PKGS[@]}"
+  else
+    echo "WARN: Python packages not installed (pip not found)!" >&2
+  fi
 fi
 
 # Sync plain/simple dot files/dirs
