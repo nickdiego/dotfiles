@@ -171,3 +171,7 @@ bar {
         urgent_workspace #2f343a #900000 #ffffff
     }
 }
+
+
+# bar toggle, hide or show
+bindsym $mod+b bar mode toggle
