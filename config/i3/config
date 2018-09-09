@@ -175,3 +175,8 @@ bar {
 
 # bar toggle, hide or show
 bindsym $mod+b bar mode toggle
+
+# Handle dialogs
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
