@@ -176,6 +176,29 @@ load-ssh-keys() {
 
 load-ssh-keys &>/dev/null
 
+_kbd_layouts=('br-abnt2' 'us-intl')
+kbd() {
+  if !type setxkbmap &>/dev/null; then
+    echo "Error! setxkbmap not installed (?)"
+    return 1
+  fi
+  if [ -z "$1" ]; then
+    x=$(setxkbmap -query)
+    layout=$(grep ^layout <<<$x | awk '{print $2}')
+    variant=$(grep ^variant <<<$x | awk '{print $2}')
+    echo "${layout}-${variant}"
+  else
+    local layout=${1%-*}
+    local variant=${1#*-}
+    setxkbmap $layout $variant && $0
+  fi
+} && \
+  if [ -n "$ZSH_VERSION" ]; then
+    compctl -k "(${_kbd_layouts[*]})" kbd
+  else
+    complete -W "${_kbd_layouts[*]}" kbd
+  fi
+
 if [ -r ~/.bin/display-utils.sh ]; then
   source ~/.bin/display-utils.sh &&
     alias arrange-displays=toggle-aux-display
