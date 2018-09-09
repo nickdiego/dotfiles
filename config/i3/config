@@ -62,6 +62,8 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
+bindsym $mod+b [window_role="browser"] focus
+
 # Print screen focused window
 bindsym Print exec scrot -u '%Y%m%d_%H%M%S.png' -e 'mv $f ~/Pictures/shots/'
 # Print screen entire view
@@ -181,7 +183,7 @@ bar {
 
 
 # bar toggle, hide or show
-bindsym $mod+b bar mode toggle
+bindsym $mod+Shift+b bar mode toggle
 
 # Handle dialogs
 for_window [window_role="pop-up"] floating enable
