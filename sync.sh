@@ -70,9 +70,7 @@ if (( BOOTSTRAP )); then
   git submodule update --init
   # Install tmux plugins
   msg "Installing tmux plugins..."
-  .tmux/plugins/tpm/scripts/install_plugins.sh
-  msg "Installing powerline..."
-  .powerline/fonts/install.sh
+  tmux/plugins/tpm/scripts/install_plugins.sh
 fi
 
 # Sync plain/simple dot files/dirs
