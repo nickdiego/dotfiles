@@ -183,7 +183,6 @@ else " LanguageClient_neovim
       \ 'go':     ['go-langserver', '-logfile', g:custom_gols_log_path],
       \ 'rust':   ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
       \ 'python': ['pyls', '--log-file', g:custom_pyls_log_path],
-      \ 'sh':     ['bash-language-server', 'start'],
       \ 'lua':    ['lua-lsp'],
       \ }
 
