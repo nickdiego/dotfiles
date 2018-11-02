@@ -86,13 +86,7 @@ check_shared_lib() {
   ldd -r $1
 }
 
-alias i='pac -S'
-alias s='pac -Ss'
-alias r='pac -R'
-alias rr='pac -Rs'
-alias u='pac -Syu'
-
-trust-key() {
+trust_key() {
   local key=$1
   gpg --recv-key $key
   gpg --lsign $key
