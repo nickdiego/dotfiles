@@ -131,8 +131,8 @@ def quake(title, pos, ratio):
     ws_y = workspace['rect']['y']
     ws_width = workspace['rect']['width']
     ws_height = workspace['rect']['height']
-    h_ratio = 0.7         # FIXME: expose this as cmd line option
-    override_bar = True   # FIXME: expose this as cmd line option
+    h_ratio = 0.75        # FIXME: expose this as cmd line option
+    override_bar = False  # FIXME: expose this as cmd line option
 
     width = int(ws_width * h_ratio)
     height = int(ws_height * ratio)
