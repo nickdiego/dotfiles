@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'rking/ag.vim'
+Plug 'mileszs/ack.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-scripts/sessionman.vim'
@@ -32,6 +32,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'andreyorst/SimpleSnippets.vim'
 Plug 'andreyorst/SimpleSnippets-snippets'
+Plug 'chromium/vim-codesearch'
 
 if has('nvim')
     Plug 'autozimu/LanguageClient-neovim', {

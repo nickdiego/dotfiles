@@ -31,9 +31,15 @@ set mouse=
 set tabpagemax=15
 set nowrap
 set number
-set relativenumber
+"set relativenumber
 set noswapfile
 set expandtab
+set splitbelow
+set splitright
+
+"let g:loaded_python3_provider = 0
+let g:python3_host_prog = '/usr/bin/python3'
+"let g:codesearch_source_root = '/home/igalia/nickdiego/agl/workspaces/flounder-c68-rpi3/build/workspace/sources/chromium68'
 
 " forcing 256 colors
 set t_Co=256
@@ -123,8 +129,8 @@ let g:EclimCompletionMethod = 'omnifunc'
   "let g:ale_gitcommit_gitlint_options = '-C ~/.tcl-patcher/gitlint.ini'
 
   " Ctrl-j/k to navigate through ALI Errors/Warnings
-  nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-  nmap <silent> <C-j> <Plug>(ale_next_wrap)
+  "nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+  "nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
   au FileType go :ALEEnable
 " }
@@ -169,14 +175,14 @@ if g:custom_lsp_plugin == "vim-lsp"
 
 else " LanguageClient_neovim
 
-  let g:deoplete#enable_at_startup = 1
+  "let g:deoplete#enable_at_startup = 1
   let g:deoplete#enable_smart_case = 1
 
   " cquery initialization options
   let cq_init_opts = '{"cacheDirectory":"'. g:custom_cquery_cache_path .'"}'
 
   set hidden " Needed for textDocument/rename
-  let g:LanguageClient_autoStart = 1
+  let g:LanguageClient_autoStart = 0
   let g:LanguageClient_serverCommands = {
       \ 'c':      ['cquery', '--log-file', g:custom_cquery_log_path, '--init', cq_init_opts],
       \ 'cpp':    ['cquery', '--log-file', g:custom_cquery_log_path, '--init', cq_init_opts],
@@ -207,8 +213,8 @@ endif
 
 if !g:custom_snippets_use_tab
     let g:SimpleSnippets_dont_remap_tab = 0
-    let g:SimpleSnippetsExpandOrJumpTrigger = "<C-j>"
-    let g:SimpleSnippetsJumpBackwardTrigger = "<C-k>"
+    "let g:SimpleSnippetsExpandOrJumpTrigger = "<C-j>"
+    "let g:SimpleSnippetsJumpBackwardTrigger = "<C-k>"
     let g:SimpleSnippetsJumpToLastTrigger = "<S-j>"
 else
     " Disable supertab (?)
@@ -242,10 +248,6 @@ endif
     au FileType go set tabstop=4
 
     " Quickfix key mappings
-    map <C-n> :cnext<CR>
-    map <C-m> :cprevious<CR>
-    nnoremap <leader>a :cclose<CR>
-
     let g:go_list_type = "quickfix"
     let g:go_fmt_command = "goimports"
     let g:go_auto_sameids = 0
@@ -308,10 +310,23 @@ endif
 " When vimrc is edited, reload it
 autocmd! BufWritePost .vimrc,*.vim source ~/.vimrc
 
-" Ctrl-Shift-f calls Ag.vim
-nnoremap <C-F> :Ag<space>
-" <leader>ag calls Ag.vim with the word under cursor
-nnoremap <Leader>ag :Ag <C-r><C-w><C-m>
+" Quickfix bindings
+map <C-j> :cnf<CR>
+map <C-k> :cpf<CR>
+
+" ff (normal mode) open CrSearch
+nnoremap ff :CrSearch<space>
+nnoremap fx :CrXrefSearch<space>
+
+" Ctrl-f calls Ack.vim
+nnoremap <C-F> :Ack!<space>
+let g:ackprg = "ag --vimgrep"
+let g:ackpreview = 1
+let g:ack_autofold_results = 0
+
+nnoremap <Leader>ff :Ack! <C-r><C-w>
+nnoremap fv :vs<CR>:Ack! -w <C-r><C-w><CR>
+nnoremap fh :sp<CR>:Ack -w <C-r><C-w><CR>
 
 nnoremap <Leader>ss :%s,\<<C-r><C-w>\>,
 
@@ -401,11 +416,11 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     "set dictionary+=/usr/share/dict/words          " dictionary for word auto completion
 
     " Enable relativenumber only in non-insert mode
-    augroup numbertoggle
-        autocmd!
-        autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-        autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-    augroup END
+    "augroup numbertoggle
+        "autocmd!
+        "autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+        "autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+    "augroup END
 
     " Formatting {
         autocmd FileType Makefile set g:custom_space_instead_of_tab = 0
