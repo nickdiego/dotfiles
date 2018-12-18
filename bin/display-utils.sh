@@ -9,10 +9,15 @@ if [ ! -z $WAYLAND_DISPLAY ]; then
   export DISPLAY_AUX='XWAYLAND1'
 else # assuming Running Xorg
   case `hostname` in
-    nick-laptop) export DISPLAY_MAIN='eDP1';;
-    *) export DISPLAY_MAIN='LVDS1';;
+    mayam)
+        export DISPLAY_MAIN='eDP1'
+        export DISPLAY_AUX='DP1'
+        ;;
+    *)
+        export DISPLAY_MAIN='LVDS1'
+        export DISPLAY_AUX='HDMI1'
+        ;;
   esac
-  export DISPLAY_AUX='HDMI1'
 fi
 
 # Add new xrandr display mode
