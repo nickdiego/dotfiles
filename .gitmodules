@@ -7,3 +7,6 @@
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
 	url = ../oh-my-zsh.git
+[submodule "tmux/tmux-colors-solarized"]
+	path = tmux/tmux-colors-solarized
+	url = https://github.com/seebi/tmux-colors-solarized.git
