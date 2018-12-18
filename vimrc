@@ -9,6 +9,8 @@ let g:custom_pyls_log_path = expand('~/.lsp/pyls.log')
 let g:custom_gols_log_path = expand('~/.lsp/go-langserver.log')
 let g:custom_snippets_use_tab = 1
 
+set hidden " Required by LanguageClient and Chromium Search plugins
+
 if has('nvim')
     let g:custom_lsp_plugin = "LanguageClient"
 else
@@ -181,7 +183,6 @@ else " LanguageClient_neovim
   " cquery initialization options
   let cq_init_opts = '{"cacheDirectory":"'. g:custom_cquery_cache_path .'"}'
 
-  set hidden " Needed for textDocument/rename
   let g:LanguageClient_autoStart = 0
   let g:LanguageClient_serverCommands = {
       \ 'c':      ['cquery', '--log-file', g:custom_cquery_log_path, '--init', cq_init_opts],
