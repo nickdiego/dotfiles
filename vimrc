@@ -39,7 +39,7 @@ set splitright
 
 "let g:loaded_python3_provider = 0
 let g:python3_host_prog = '/usr/bin/python3'
-"let g:codesearch_source_root = '/home/igalia/nickdiego/agl/workspaces/flounder-c68-rpi3/build/workspace/sources/chromium68'
+let g:python2_host_prog = '/usr/bin/python2'
 
 " forcing 256 colors
 set t_Co=256
