@@ -59,6 +59,7 @@ bindsym $mod+Shift+l exec /usr/lib/kscreenlocker_greet
 exec --no-startup-id feh --no-fehbg --bg-scale ~/.pixmaps/wallpaper.png
 exec --no-startup-id xautolock -time 5 -locker "/usr/lib/kscreenlocker_greet"
 exec --no-startup-id compton
+exec --no-startup-id nm-applet
 #exec --no-startup-id setxkbmap -model abnt2 -layout br
 
 # alternatively, you can use the cursor keys:
