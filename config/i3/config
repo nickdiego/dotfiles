@@ -17,8 +17,8 @@ for_window [class="^.*"] border pixel 1
 new_window 1pixel
 
 # Which workspace should be in which output(Screen)
-workspace 10 output LVDS1
-workspace 1 output HDMI1
+workspace 10 output eDP1
+workspace 1 output DP1
 
 # Let's keep the browser window always in the workspace 10 ($mod+0)
 for_window [window_role="browser"] move workspace 10
