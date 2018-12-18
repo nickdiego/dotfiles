@@ -175,7 +175,7 @@ if g:custom_lsp_plugin == "vim-lsp"
 
 else " LanguageClient_neovim
 
-  "let g:deoplete#enable_at_startup = 1
+  let g:deoplete#enable_at_startup = 1
   let g:deoplete#enable_smart_case = 1
 
   " cquery initialization options
