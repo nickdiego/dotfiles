@@ -1,7 +1,7 @@
 " High-level Settings
 let g:custom_disable_arrow_keys = 0
 let g:custom_space_instead_of_tab = 1
-let g:custom_tabsize = 4
+let g:custom_tabsize = 2
 let g:custom_listchars = 0
 let g:custom_cquery_cache_path = expand('~/.lsp/cquery-cache')
 let g:custom_cquery_log_path = expand('~/.lsp/cquery.log')
@@ -316,8 +316,9 @@ map <C-j> :cnf<CR>
 map <C-k> :cpf<CR>
 
 " ff (normal mode) open CrSearch
+let g:codesearch_source_root = '/home/nick/projects/chromium'
 nnoremap ff :CrSearch<space>
-nnoremap fx :CrXrefSearch<space>
+nnoremap fx :CrXrefSearch<CR>
 
 " Ctrl-f calls Ack.vim
 nnoremap <C-F> :Ack!<space>
