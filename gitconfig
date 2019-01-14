@@ -34,3 +34,5 @@
 	helper = store
 [diff]
 	submodule = log
+[http]
+	cookiefile = /home/nick/.gitcookies
