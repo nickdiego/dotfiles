@@ -20,8 +20,7 @@ new_window 1pixel
 workspace 10 output eDP1
 workspace 1 output DP1
 
-# Let's keep the browser window always in the workspace 10 ($mod+0)
-for_window [window_role="browser"] move workspace 10
+for_window [class="weston.*"] fullscreen
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
