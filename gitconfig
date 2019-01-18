@@ -36,3 +36,5 @@
 	submodule = log
 [http]
 	cookiefile = /home/nick/.gitcookies
+[pull]
+	rebase = true
