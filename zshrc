@@ -79,6 +79,7 @@ plugins=(
   sudo
   themes
   z
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
