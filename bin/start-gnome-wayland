@@ -1,0 +1,4 @@
+# vim: tw=80 ts=4 sw=4 et filetype=sh
+
+env QT_QPA_PLATFORM=wayland XDG_SESSION_TYPE=wayland \
+    dbus-run-session gnome-session
