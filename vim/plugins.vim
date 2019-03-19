@@ -35,10 +35,10 @@ Plug 'andreyorst/SimpleSnippets-snippets'
 Plug 'chromium/vim-codesearch'
 
 if has('nvim')
-    Plug 'autozimu/LanguageClient-neovim', {
-        \ 'branch': 'next',
-        \ 'do': '/bin/bash install.sh'
-        \ }
+    "Plug 'autozimu/LanguageClient-neovim', {
+        "\ 'branch': 'next',
+        "\ 'do': '/bin/bash install.sh'
+        "\ }
     "Plug 'ervandew/supertab'
     Plug 'shougo/neoinclude.vim'
     Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
