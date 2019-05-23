@@ -209,4 +209,7 @@ fi
 export MY_GPG_USERID='9B41EB2ECFFBFE525E383E015C041CA1FC08A584'
 export DOCKER_ID_USER="nickdiego"
 
+export BUILDMACHINE='192.168.1.110'
+
+
 # ex: ts=2 sw=2 et filetype=sh
