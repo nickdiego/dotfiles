@@ -33,6 +33,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'andreyorst/SimpleSnippets.vim'
 Plug 'andreyorst/SimpleSnippets-snippets'
 Plug 'chromium/vim-codesearch'
+Plug 'kergoth/vim-bitbake'
 
 if has('nvim')
     "Plug 'autozimu/LanguageClient-neovim', {
