@@ -22,8 +22,9 @@ workspace 1 output DP1
 
 for_window [class="Google-chrome"] floating enable
 for_window [class="Chromium-browser"] floating enable
-for_window [class="Weston Compositor"] fullscreen
 for_window [title="Ozone X11"] floating enable
+
+for_window [class="Weston Compositor"] move container workspace wayland
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -121,6 +122,9 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+
+# special wayland workspace
+bindsym $mod+equal workspace wayland
 
 # switch back and forth between workspaces
 bindsym $mod+Escape workspace back_and_forth
