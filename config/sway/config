@@ -1,6 +1,7 @@
 # sway config file
 
-set $mod Mod1
+#set $mod Mod1
+set $mod Mod4
 set $terminal termite
 
 # No window title bars
@@ -9,6 +10,8 @@ default_border pixel 1
 
 output eDP-1 pos 0 0 res 1920x1080
 output DP-1 pos 1920 0 res 1920x1080
+
+output eDP-1 scale 1.4
 
 output "*" background /home/nick/Pictures/beauty-of-the-night-sky-1920×1080.jpg fill
 
