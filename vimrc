@@ -74,6 +74,8 @@ let g:powerline_pycmd = 'py3'
 let g:Powerline_symbols = 'fancy'
 
 " Airline {
+let g:airline_section_b = 0
+let g:airline_section_y = 0
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#buffer_nr_show = 0
