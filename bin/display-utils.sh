@@ -14,8 +14,8 @@ else # assuming Running Xorg
         export DISPLAY_AUX=('DP1' 'DP2')
         export DISPLAY_CMD_ENABLE_AUX="\
           --output eDP1 --off \
-          --output DP2 --auto --primary \
-          --output DP1 --auto --left-of DP2"
+          --output DP1 --auto --primary \
+          --output DP2 --auto --left-of DP1"
         ;;
   esac
 fi
