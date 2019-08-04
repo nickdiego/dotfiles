@@ -49,3 +49,6 @@ alias g=rg
 alias vim=nvim
 
 alias open=xdg-open
+
+alias pip_list_pkg_files='pip list | tail -n +3 | cut -d" " -f1 | xargs pip show -f'
+
