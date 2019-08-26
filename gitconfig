@@ -28,7 +28,8 @@
 	ds = diff --staged
 	sh = show
 	cp = cherry-pick
-	fix-ime = cherry-pick 6f091760afba
+	ls = diff-tree --no-commit-id --name-only -r
+
 [credential]
 	helper = store
 [diff]
