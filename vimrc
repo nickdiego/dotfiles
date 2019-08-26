@@ -3,8 +3,8 @@ let g:custom_disable_arrow_keys = 0
 let g:custom_space_instead_of_tab = 1
 let g:custom_tabsize = 2
 let g:custom_listchars = 0
-let g:custom_cquery_cache_path = expand('~/.lsp/cquery-cache')
-let g:custom_cquery_log_path = expand('~/.lsp/cquery.log')
+let g:custom_ccls_cache_path = expand('~/.lsp/ccls-cache')
+let g:custom_ccls_log_path = expand('~/.lsp/ccls.log')
 let g:custom_pyls_log_path = expand('~/.lsp/pyls.log')
 let g:custom_gols_log_path = expand('~/.lsp/go-langserver.log')
 let g:custom_snippets_use_tab = 1
@@ -148,14 +148,14 @@ if g:custom_lsp_plugin == "vim-lsp"
   let g:lsp_log_file = expand('~/.lsp/vim-lsp.log')
   let g:asyncomplete_log_file = expand('~/.lsp/asyncomplete.log')
 
-  if executable('cquery')
+  if executable('ccls')
      au User lsp_setup call lsp#register_server({
-        \ 'name': 'cquery',
-        \ 'cmd': {server_info->['cquery', '--log-file', g:custom_cquery_log_path]},
+        \ 'name': 'ccls',
+        \ 'cmd': {server_info->['ccls', '-log-file', g:custom_ccls_log_path]},
         \ 'root_uri': {server_info->lsp#utils#path_to_uri(
                 \ lsp#utils#find_nearest_parent_file_directory(
                 \ lsp#utils#get_buffer_path(), 'compile_commands.json'))},
-        \ 'initialization_options': { 'cacheDirectory': g:custom_cquery_cache_path },
+        \ 'initialization_options': { 'cacheDirectory': g:custom_ccls_cache_path },
         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
         \ })
   endif
@@ -183,13 +183,13 @@ else " LanguageClient_neovim
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#enable_smart_case = 1
 
-  " cquery initialization options
-  let cq_init_opts = '{"cacheDirectory":"'. g:custom_cquery_cache_path .'"}'
+  " ccls initialization options
+  let ccls_init_opts = '{"cache": {"directory" :"'. g:custom_ccls_cache_path .'"}}'
 
   let g:LanguageClient_autoStart = 0
   let g:LanguageClient_serverCommands = {
-      \ 'c':      ['cquery', '--log-file', g:custom_cquery_log_path, '--init', cq_init_opts],
-      \ 'cpp':    ['cquery', '--log-file', g:custom_cquery_log_path, '--init', cq_init_opts],
+      \ 'c':      ['ccls', '--log-file', g:custom_ccls_log_path, '-init=' . ccls_init_opts],
+      \ 'cpp':    ['ccls', '-log-file', g:custom_ccls_log_path, '-init=' . ccls_init_opts],
       \ 'go':     ['go-langserver', '-logfile', g:custom_gols_log_path],
       \ 'rust':   ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
       \ 'python': ['pyls', '--log-file', g:custom_pyls_log_path],
