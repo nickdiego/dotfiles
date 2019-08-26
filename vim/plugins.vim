@@ -34,13 +34,14 @@ Plug 'andreyorst/SimpleSnippets.vim'
 Plug 'andreyorst/SimpleSnippets-snippets'
 Plug 'chromium/vim-codesearch'
 Plug 'kergoth/vim-bitbake'
+Plug 'octol/vim-cpp-enhanced-highlight'
 
 if has('nvim')
     "Plug 'autozimu/LanguageClient-neovim', {
         "\ 'branch': 'next',
         "\ 'do': '/bin/bash install.sh'
         "\ }
-    "Plug 'ervandew/supertab'
+    Plug 'ervandew/supertab'
     Plug 'shougo/neoinclude.vim'
     Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
