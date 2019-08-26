@@ -8,14 +8,15 @@ if [ ! -z $WAYLAND_DISPLAY ]; then
   export DISPLAY_MAIN='XWAYLAND0'
   export DISPLAY_AUX='XWAYLAND1'
 else # assuming Running Xorg
-  case `hostname` in
+  hostname=$(hostname)
+  case $hostname in
     mayam)
         export DISPLAY_MAIN='eDP1'
         export DISPLAY_AUX=('DP1' 'DP2')
         export DISPLAY_CMD_ENABLE_AUX="\
           --output eDP1 --off \
-          --output DP1 --auto --primary \
-          --output DP2 --auto --left-of DP1"
+          --output DP2 --auto --primary \
+          --output DP1 --auto --right-of DP2"
         ;;
   esac
 fi
