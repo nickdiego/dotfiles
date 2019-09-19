@@ -29,6 +29,8 @@ for_window [class="Nemo"] floating enable
 for_window [class="icemon"] floating enable
 for_window [class="Weston Compositor"] move container workspace wayland
 for_window [class="Chrtest" instance="chrtest"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [title="UIControlsDesktopX11"] floating enable
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
