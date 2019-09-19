@@ -211,5 +211,9 @@ export DOCKER_ID_USER="nickdiego"
 
 export BUILDMACHINE='192.168.1.110'
 
+# IBus settings
+#export GTK_IM_MODULE=ibus
+#export XMODIFIERS=@im=ibus
+#export QT_IM_MODULE=ibus
 
 # ex: ts=2 sw=2 et filetype=sh
