@@ -216,4 +216,7 @@ export BUILDMACHINE='192.168.1.110'
 #export XMODIFIERS=@im=ibus
 #export QT_IM_MODULE=ibus
 
+if [ -r ~/.bin/graphical-session-helpers.sh ]; then
+  source ~/.bin/graphical-session-helpers.sh
+fi
 # ex: ts=2 sw=2 et filetype=sh
