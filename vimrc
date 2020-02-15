@@ -229,6 +229,19 @@ endif
 
 " } LSP configs
 
+" FZF configs {
+
+  nnoremap <leader>f :GFiles<CR>
+  nnoremap <leader>o :History<CR>
+  nnoremap <leader>c :Commits<CR>
+  nnoremap <leader>h :Helptags<CR>
+
+  " Auto-hide statusline
+  autocmd! FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+" } FZF configs
+
 " SimpleSnippets configs {
 
 if !g:custom_snippets_use_tab
