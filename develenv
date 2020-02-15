@@ -211,10 +211,21 @@ export DOCKER_ID_USER="nickdiego"
 
 export BUILDMACHINE='192.168.1.110'
 
-# IBus settings
-#export GTK_IM_MODULE=ibus
-#export XMODIFIERS=@im=ibus
-#export QT_IM_MODULE=ibus
+# IME settings
+#export IME='ibus'
+
+case $IME in
+  ibus)
+    export GTK_IM_MODULE='ibus'
+    export XMODIFIERS='@im=ibus'
+    export QT_IM_MODULE='ibus'
+    ;;
+  uim)
+    export GTK_IM_MODULE='uim'
+    export XMODIFIERS='@im=uim'
+    export QT_IM_MODULE='uim'
+    ;;
+esac
 
 if [ -r ~/.bin/graphical-session-helpers.sh ]; then
   source ~/.bin/graphical-session-helpers.sh
