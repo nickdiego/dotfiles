@@ -35,6 +35,7 @@ Plug 'andreyorst/SimpleSnippets-snippets'
 Plug 'chromium/vim-codesearch'
 Plug 'kergoth/vim-bitbake'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'junegunn/fzf.vim'
 
 if has('nvim')
     "Plug 'autozimu/LanguageClient-neovim', {
