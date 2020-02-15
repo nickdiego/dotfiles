@@ -41,8 +41,8 @@ set splitright
 set textwidth=79
 
 "let g:loaded_python3_provider = 0
-let g:python3_host_prog = '/usr/bin/python3'
-let g:python2_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/bin/python3'
+let g:python2_host_prog = '/bin/python2'
 
 " forcing 256 colors
 set t_Co=256
