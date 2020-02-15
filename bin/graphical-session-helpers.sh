@@ -3,6 +3,9 @@
 # xsession
 _xsession_opts=(i3 gnome kde xfce)
 function xsession() {
+  #env QT_QPA_PLATFORM=x11 \
+    #GDK_BACKEND=x11 \
+    #XDG_SESSION_TYPE=x11 \
   startx ~/.xinitrc $@
 }
 
@@ -12,7 +15,7 @@ function wlsession() {
   local s=${1:-gnome}
   [ $s = 'gnome' ] && s+='-session'
   env QT_QPA_PLATFORM=wayland \
-    GDK_BACKEND=wayland,x11 \
+    GDK_BACKEND=wayland \
     XDG_SESSION_TYPE=wayland \
       dbus-run-session $s
 }
