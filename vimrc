@@ -188,27 +188,43 @@ else " LanguageClient_neovim
 
   let g:LanguageClient_autoStart = 0
   let g:LanguageClient_serverCommands = {
-      \ 'c':      ['ccls', '--log-file', g:custom_ccls_log_path, '-init=' . ccls_init_opts],
-      \ 'cpp':    ['ccls', '-log-file', g:custom_ccls_log_path, '-init=' . ccls_init_opts],
+      \ 'c':      ['clangd', '-background-index'],
+      \ 'cpp':    ['clangd', '-background-index'],
       \ 'go':     ['go-langserver', '-logfile', g:custom_gols_log_path],
       \ 'rust':   ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
       \ 'python': ['pyls', '--log-file', g:custom_pyls_log_path],
       \ 'lua':    ['lua-lsp'],
       \ }
 
-  let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
-  let g:LanguageClient_settingsPath = expand('~/.config/nvim/settings.json')
-  set completefunc=LanguageClient#complete
-  set formatexpr=LanguageClient_textDocument_rangeFormatting()
+  "let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
+  "let g:LanguageClient_settingsPath = expand('~/.config/nvim/ccls_settings.json')
+  let g:LanguageClient_serverStderr = '/tmp/lsp.stderr'
+  let g:LanguageClient_echoProjectRoot = 1
+  let g:LanguageClient_diagnosticsEnable = 0
 
   " LSP KeyBindings
-  nnoremap <silent> <Leader>rj :call LanguageClient_textDocument_definition()<CR>
-  nnoremap <silent> <Leader>rf :call LanguageClient_textDocument_references()<CR>
-  nnoremap <silent> <Leader>rh :call LanguageClient_textDocument_hover()<CR>
-  nnoremap <silent> <Leader>rr :call LanguageClient_textDocument_rename()<CR>
-  nnoremap <silent> <Leader>rs :call LanguageClient_textDocument_documentSymbol()<CR>
-  nnoremap <silent> <Leader>ff :call LanguageClient_textDocument_formatting()<CR>
+  function SetupLSP()
+    nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
+    nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
+    nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
+    nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
+    nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
+    nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
+    nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
+    nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
+    nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
+    nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
+    nnoremap <leader>lw :call LanguageClient#workspace_symbol()<CR>
 
+    set completefunc=LanguageClient#complete
+    set formatexpr=LanguageClient_textDocument_rangeFormatting()
+  endfunction()
+
+  augroup LSP
+    autocmd!
+    autocmd FileType cpp,c call SetupLSP()
+    autocmd FileType cpp,c LanguageClientStart
+  augroup END
 endif
 
 " } LSP configs
