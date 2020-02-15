@@ -38,10 +38,10 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'junegunn/fzf.vim'
 
 if has('nvim')
-    "Plug 'autozimu/LanguageClient-neovim', {
-        "\ 'branch': 'next',
-        "\ 'do': '/bin/bash install.sh'
-        "\ }
+    Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': '/bin/bash install.sh'
+        \ }
     Plug 'ervandew/supertab'
     Plug 'shougo/neoinclude.vim'
     Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
