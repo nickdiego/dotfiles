@@ -58,8 +58,11 @@ bindsym $mod+Shift+c kill
 bindsym $mod+p exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -fn "Liberation Mono-9"'
 
 # Quake terminal
-bindsym $mod+BackSpace exec --no-startup-id ~/.bin/i3-quake -t $terminal -H 0.5
-for_window [title="quake_.*"] border none, move window to scratchpad
+# FIXME: Temp disabled in favor of guake (i3-quake is failing to start).
+#bindsym $mod+BackSpace exec --no-startup-id ~/.bin/i3-quake -t $terminal -H 0.5
+#for_window [title="quake_.*"] border none, move window to scratchpad
+# Guake configs (tmp fallback to i3-quake solution
+for_window [instance="guake"] floating enable
 
 # i3lock key binding
 bindsym $mod+Shift+l exec /usr/lib/kscreenlocker_greet
@@ -69,6 +72,7 @@ exec --no-startup-id feh --no-fehbg --bg-scale ~/.pixmaps/wallpaper.png
 exec --no-startup-id xautolock -time 5 -locker /usr/lib/kscreenlocker_greet
 exec --no-startup-id compton
 exec --no-startup-id nm-applet
+exec --no-startup-id guake
 #exec --no-startup-id ibus-daemon -drx --panel /usr/lib/ibus/ibus-ui-gtk3
 
 # alternatively, you can use the cursor keys:
