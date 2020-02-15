@@ -222,8 +222,8 @@ else " LanguageClient_neovim
 
   augroup LSP
     autocmd!
-    autocmd FileType cpp,c call SetupLSP()
-    autocmd FileType cpp,c LanguageClientStart
+    autocmd FileType cpp,c,python call SetupLSP()
+    autocmd FileType cpp,c,python LanguageClientStart
   augroup END
 endif
 
