@@ -29,7 +29,7 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-# font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -171,20 +171,20 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information
 # through i3status-rust: arch package i3status-rust-git AUR package needed)
-#bar {
-    #position top
-    #status_command i3status-rs ~/.config/i3/status.toml
-    #font pango:Liberation Mono, FontAwesome 9
-    #colors {
-        #separator #666666
-        #background #222222
-        #statusline #dddddd
-        #focused_workspace #0088CC #0088CC #ffffff
-        #active_workspace #333333 #333333 #ffffff
-        #inactive_workspace #333333 #333333 #888888
-        #urgent_workspace #2f343a #900000 #ffffff
-    #}
-#}
+bar {
+    position top
+    status_command i3status-rs ~/.config/i3/status.toml
+    font pango:Liberation Mono, FontAwesome 9
+    colors {
+        separator #666666
+        background #222222
+        statusline #dddddd
+        focused_workspace #0088CC #0088CC #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+    }
+}
 
 
 # bar toggle, hide or show
