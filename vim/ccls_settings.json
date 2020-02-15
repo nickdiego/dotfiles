@@ -1,0 +1,8 @@
+{
+  "initializationOptions": {
+    "cache": {
+      "directory": "/home/nick/projects/chromium/src/out/ccls/.ccls-cache"
+    },
+    "compilationDatabaseDirectory": "/home/nick/projects/chromium/src/out/ccls"
+  }
+}
