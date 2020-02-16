@@ -222,24 +222,48 @@ else " LanguageClient_neovim
 
   augroup LSP
     autocmd!
-    autocmd FileType cpp,c,python call SetupLSP()
-    autocmd FileType cpp,c,python LanguageClientStart
+    autocmd FileType cpp,c,python,java call SetupLSP()
+    autocmd FileType cpp,c,python,java LanguageClientStart
   augroup END
 endif
 
 " } LSP configs
 
 " FZF configs {
-
   nnoremap <leader>f :GFiles<CR>
   nnoremap <leader>o :History<CR>
   nnoremap <leader>c :Commits<CR>
   nnoremap <leader>h :Helptags<CR>
 
+  " Finally replacing ctrlp.vim :)
+  noremap <C-p> :GFiles<CR>
+
+  " Let's occupie a bit less space
+  let g:fzf_layout = { 'down': '~20%' }
+
+  " With fzf open, make Ctrl+P and Ctrl-N navigate throught the history (just
+  " like CtrlP used to do)
+  let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+  " Customize fzf colors to match current color scheme
+  let g:fzf_colors =
+  \ { 'fg':      ['fg', 'Normal'],
+    \ 'bg':      ['bg', 'Normal'],
+    \ 'hl':      ['fg', 'Comment'],
+    \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+    \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+    \ 'hl+':     ['fg', 'Statement'],
+    \ 'info':    ['fg', 'PreProc'],
+    \ 'border':  ['fg', 'Ignore'],
+    \ 'prompt':  ['fg', 'Conditional'],
+    \ 'pointer': ['fg', 'Exception'],
+    \ 'marker':  ['fg', 'Keyword'],
+    \ 'spinner': ['fg', 'Label'],
+    \ 'header':  ['fg', 'Comment'] }
+
   " Auto-hide statusline
   autocmd! FileType fzf set laststatus=0 noshowmode noruler
     \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
 " } FZF configs
 
 " SimpleSnippets configs {
