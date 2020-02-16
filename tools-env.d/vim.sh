@@ -20,8 +20,8 @@ v() {
   eval "vim '+SessionOpen $session' '+set columns=$COLUMNS'"
 }
 
-if type complete &>/dev/null; then
+if is_bash; then
     complete -W "${VIM_SESSIONS[*]}" v
-elif type compctl &>/dev/null; then
+elif is_zsh; then
     compctl -k "(${VIM_SESSIONS[*]})" v
 fi

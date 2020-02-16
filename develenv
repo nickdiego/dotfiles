@@ -8,15 +8,8 @@ export FIGNORE='.swp:.un~'
 
 export PATH=~/.bin:~/local/bin:$PATH
 
-is_zsh() {
-  type compctl >/dev/null 2>&1
-  return $?
-}
-
-is_bash() {
-  type complete >/dev/null 2>&1
-  return $?
-}
+is_bash() { test -n "$BASH_VERSION" }
+is_zsh() { test -n "$ZSH_VERSION" }
 
 # Find/Grep src helper functions
 reset_findsrc_dir() {
@@ -109,10 +102,10 @@ find_in_jars() {
 
 ## Projects confs
 
-[ -f ~/.tools-env ] && . ~/.tools-env
+test -f ~/.tools-env && . ~/.tools-env
 # Only working on bash for now :(
 if is_bash; then
-  [ -f ~/.proj-commander/proj-commander.sh ] &&
+  test -f ~/.proj-commander/proj-commander.sh &&
     source ~/.proj-commander/proj-commander.sh
 fi
 
@@ -202,10 +195,6 @@ if [ -n "$SHOW_ARCHINFO" ] && type archey3 &>/dev/null; then
   archey3
 fi
 
-if [ -r ~/.localenv ]; then
-  source ~/.localenv
-fi
-
 export MY_GPG_USERID='9B41EB2ECFFBFE525E383E015C041CA1FC08A584'
 export DOCKER_ID_USER="nickdiego"
 
@@ -227,7 +216,14 @@ case $IME in
     ;;
 esac
 
+export BAT_PAGER="less -RF"
+
 if [ -r ~/.bin/graphical-session-helpers.sh ]; then
   source ~/.bin/graphical-session-helpers.sh
 fi
+
+if [ -r ~/.localenv ]; then
+  source ~/.localenv
+fi
+
 # ex: ts=2 sw=2 et filetype=sh

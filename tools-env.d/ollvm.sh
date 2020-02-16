@@ -37,8 +37,8 @@ function ollvm-switch() {
     echo -e "\n### Switched to O-LLVM NDK '${ollvm_ndk_path}'\n"
 }
 
-if type complete &>/dev/null; then
+if is_bash; then
     complete -W "${OLLVM_BUILD_TYPES[*]}" ollvm-switch
-elif type compctl &>/dev/null; then
+elif is_zsh; then
     compctl -k "(${OLLVM_BUILD_TYPES[*]})" ollvm-switch
 fi
