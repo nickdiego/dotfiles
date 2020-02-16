@@ -193,6 +193,7 @@ else " LanguageClient_neovim
       \ 'rust':   ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
       \ 'python': ['pyls', '--log-file', g:custom_pyls_log_path],
       \ 'lua':    ['lua-lsp'],
+      \ 'java':   ['jdtls', '-data', getcwd()],
       \ }
 
   "let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
@@ -221,7 +222,7 @@ else " LanguageClient_neovim
 
   augroup LSP
     autocmd!
-    autocmd FileType cpp,c,python,java call SetupLSP()
+    autocmd FileType cpp,c,python call SetupLSP()
     autocmd FileType cpp,c,python,java LanguageClientStart
   augroup END
 endif
