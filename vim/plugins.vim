@@ -1,7 +1,5 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'mileszs/ack.vim'
-Plug 'kien/ctrlp.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-scripts/sessionman.vim'
 Plug 'Shutnik/jshint2.vim'
@@ -15,13 +13,10 @@ Plug 'morhetz/gruvbox'
 Plug 'Yggdroot/indentLine'
 Plug 'tbastos/vim-lua'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
 Plug 'aklt/plantuml-syntax'
-Plug 'sickill/vim-monokai'
 Plug 'chriskempson/base16-vim'
 Plug 'w0rp/ale'
 Plug 'junegunn/vader.vim'
-Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
@@ -42,7 +37,7 @@ if has('nvim')
         \ 'branch': 'next',
         \ 'do': '/bin/bash install.sh'
         \ }
-    Plug 'ervandew/supertab'
+    "Plug 'ervandew/supertab'
     Plug 'shougo/neoinclude.vim'
     Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else

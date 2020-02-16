@@ -35,7 +35,6 @@ set nowrap
 set number
 "set relativenumber
 set noswapfile
-set expandtab
 set splitbelow
 set splitright
 set textwidth=79
@@ -483,7 +482,7 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     " Formatting {
         autocmd FileType Makefile set g:custom_space_instead_of_tab = 0
         if g:custom_space_instead_of_tab
-"            set expandtab                    " tabs are spaces, not tabs"
+          set expandtab                    " tabs are spaces, not tabs"
         endif
 
         if !g:custom_tabsize
@@ -571,44 +570,6 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     endif
 " }
 
-" NerdTree {
-    "map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-    map <leader>e :NERDTreeFind<CR>
-    nmap <leader>nt :NERDTreeFind<CR>
-
-    let NERDTreeShowBookmarks=1
-    let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.bak', '\.o', '\.e', '\.obj']
-    let NERDTreeChDirMode=0
-    let NERDTreeQuitOnOpen=1
-    let NERDTreeShowHidden=1
-    let NERDTreeKeepTreeInNewTab=1
-" }
-
-" ctrlp {
-    nnoremap <silent> <D-t> :CtrlP<CR>
-    nnoremap <silent> <D-r> :CtrlPMRU<CR>
-    "let g:ctrlp_working_path_mode = 'ra'
-    let g:ctrlp_working_path_mode = '' "will use the current PWD
-    set wildignore+=LayoutTests/,PerformanceTests/,Websites/,*.un~'
-    let g:ctrlp_root_markers = ['.git', '.repo', '.pro', 'package.json', 'build.xml', 'main.ncl' ]
-    let g:ctrlp_custom_ignore = {
-        \ 'dir': '\.git$\|\.hg$\|\.svn$',
-        \ 'file': '\.exe$\|\.so$\|\.dll$\|\.class' }
-    let g:ctrlp_user_command = {
-        \ 'types': {
-            \ 1: ['.git', 'ag %s -l --nocolor --hidden -g "" --ignore node_modules --ignore bower_components'],
-            \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-        \ },
-        \ 'fallback': 'find %s -type f | grep "\.cpp\$\|\.h\$\|\.cmake\$\|\.messages.in\$\|.txt\|\.js\|\.json\$\|\.java\$\|\.smali\$"'
-    \ }
-"}
-
-
-" denite {
-    nnoremap <silent><leader>, :Denite file/rec buffer<CR>
-
-" }
-
 " new tests TODO {
     if !exists('g:deoplete#omni#input_patterns')
         let g:deoplete#omni#input_patterns = {}
@@ -621,11 +582,6 @@ autocmd! BufWritePost vimrc source ~/.vimrc
 " compile all sources as c++11 (just for example, use .clang_complete for
 "  " setting version of the language per project)
 let g:clang_user_options = '-std=c++11'
-
-" Eclim {
-    nnoremap <Leader>ji :JavaImport<CR>
-
-" }
 
 " Python-specifc stuff {
     let python_highlight_all = 1
