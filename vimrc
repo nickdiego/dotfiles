@@ -196,6 +196,18 @@ else " LanguageClient_neovim
       \ 'java':   ['jdtls', '-data', getcwd()],
       \ }
 
+  " Semantic Highlight not working yet (tested with: clang 9.0.1, jdtls 0.48.0)
+  let g:LanguageClient_semanticHighlightMaps = {
+      \ 'cpp': {
+      \ },
+      \ 'java': {
+      \   '^entity.name.function.java': 'Function',
+      \   '^entity.name.type.class.java': 'Type',
+      \   '^[^:]*entity.name.function.java': 'Function',
+      \   '^[^:]entity.name.type.class.java': 'Type'
+      \ },
+    \ }
+
   "let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
   "let g:LanguageClient_settingsPath = expand('~/.config/nvim/ccls_settings.json')
   let g:LanguageClient_serverStderr = '/tmp/lsp.stderr'
