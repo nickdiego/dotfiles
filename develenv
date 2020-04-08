@@ -44,13 +44,14 @@ remove_from_path() {
 }
 
 take-screenshot() {
-  local outdir=${1:-$HOME/Pictures}
-  local filename="${2:-screenshot-`date +'%b-%d-%y_%H:%M:%S'`}.jpg"
+  local outdir=${outdir:-$HOME/Pictures}
+  local filename="${outfile:-screenshot-`date +'%b-%d-%y_%H:%M:%S'`}.jpg"
+  local imgviewer="${imgviewer:-feh}"
   local file="${outdir}/${filename}"
   test -d $outdir || mkdir -p $outdir
   echo "## Select the screen region."
   echo "## Will save it in $file"
-  gm import "$file" && nemo "$file"&
+  gm import "$@" "$file" && ${imgviewer} "$file"&
 }
 
 get_external_ip() {
@@ -201,7 +202,7 @@ export DOCKER_ID_USER="nickdiego"
 export BUILDMACHINE='192.168.1.110'
 
 # IME settings
-#export IME='ibus'
+export IME="${IME:-}"
 
 case $IME in
   ibus)
