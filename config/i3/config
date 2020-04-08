@@ -21,7 +21,6 @@ workspace 10 output eDP1
 workspace 1 output DP1
 
 #for_window [class="Google-chrome"] floating enable
-for_window [class="Chromium-browser"] floating enable
 for_window [title="Ozone X11"] floating enable
 for_window [title="Cast www.youtube.com"] floating enable
 for_window [class="TelegramDesktop"] floating enable
@@ -31,6 +30,9 @@ for_window [class="Weston Compositor"] move container workspace wayland
 for_window [class="Chrtest" instance="chrtest"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [title="UIControlsDesktopX11"] floating enable
+
+for_window [class="Chromium-browser"] floating enable
+for_window [class="Chromium-browser"] resize set 800 600
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
