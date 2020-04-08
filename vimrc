@@ -227,6 +227,9 @@ else " LanguageClient_neovim
     nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
     nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
     nnoremap <leader>lw :call LanguageClient#workspace_symbol()<CR>
+    " common shortcuts
+    nnoremap <C-l> :call LanguageClient_textDocument_documentSymbol()<CR>
+    nnoremap <C-Enter> :call LanguageClient#textDocument_definition()<CR>
 
     set completefunc=LanguageClient#complete
     set formatexpr=LanguageClient_textDocument_rangeFormatting()
