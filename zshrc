@@ -81,7 +81,14 @@ plugins=(
   z
   zsh-syntax-highlighting
   fzf
+  fzf-marks
+  #zsh-autoenv # FIXME: not working with chromium/env.sh :(
 )
+
+export FZF_MARKS_JUMP='^p'
+
+export AUTOENV_FILE_ENTER='env.sh'
+export AUTOENV_AUTH_FILE="$HOME/.zsh_autoenv_authorized"
 
 source $ZSH/oh-my-zsh.sh
 
