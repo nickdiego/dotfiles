@@ -8,16 +8,22 @@ set $terminal termite
 for_window [class="^.*"] border pixel 1
 default_border pixel 1
 
-output eDP-1 pos 0 0 res 1920x1080
+# Usual setup: laptop under 2 hidpi monitors
+output DP-2 pos 0 0 res 1920x1080
 output DP-1 pos 1920 0 res 1920x1080
+output eDP-1 pos 960 1080 res 1920x1080
 
 #output eDP-1 scale 1.1
 
 output "*" background /home/nick/Pictures/beauty-of-the-night-sky-1920×1080.jpg fill
 
+# Used for testing Chromium ozone/wayland
+for_window [ workspace="wayland" ] floating enable
+
 # Which workspace should be in which output(Screen)
-workspace 10 output eDP-1
-workspace 1 output DP-1
+workspace 1 output DP-2
+workspace 2 output DP-1
+workspace 0 output eDP-1
 
 # Let's keep the browser window always in the workspace 10 ($mod+0)
 #for_window [title=".*Chrome.*"] floating enable
@@ -135,6 +141,9 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
+
+# special wayland workspace
+bindsym $mod+equal workspace wayland
 
 # reload the configuration file
 #bindsym $mod+Shift+c reload
