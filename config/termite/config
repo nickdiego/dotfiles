@@ -8,6 +8,7 @@ font = Liberation Mono for Powerline 9
 font = Liberation Mono 9
 #geometry = 100x30
 scrollback_lines = 1000000
+cursor_blink = on
 
 ## uncomment to enable terminal
 ## rows based resizing
