@@ -25,8 +25,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'rhysd/committia.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'andreyorst/SimpleSnippets.vim'
-Plug 'andreyorst/SimpleSnippets-snippets'
 Plug 'chromium/vim-codesearch'
 Plug 'kergoth/vim-bitbake'
 Plug 'octol/vim-cpp-enhanced-highlight'

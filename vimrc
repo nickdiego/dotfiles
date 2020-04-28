@@ -7,7 +7,6 @@ let g:custom_ccls_cache_path = expand('~/.lsp/ccls-cache')
 let g:custom_ccls_log_path = expand('~/.lsp/ccls.log')
 let g:custom_pyls_log_path = expand('~/.lsp/pyls.log')
 let g:custom_gols_log_path = expand('~/.lsp/go-langserver.log')
-let g:custom_snippets_use_tab = 1
 
 set hidden " Required by LanguageClient and Chromium Search plugins
 
@@ -285,37 +284,6 @@ endif
   autocmd! FileType fzf set laststatus=0 noshowmode noruler
     \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 " } FZF configs
-
-" SimpleSnippets configs {
-
-if !g:custom_snippets_use_tab
-    let g:SimpleSnippets_dont_remap_tab = 0
-    "let g:SimpleSnippetsExpandOrJumpTrigger = "<C-j>"
-    "let g:SimpleSnippetsJumpBackwardTrigger = "<C-k>"
-    let g:SimpleSnippetsJumpToLastTrigger = "<S-j>"
-else
-    " Disable supertab (?)
-    let g:SimpleSnippets_dont_remap_tab = 1
-    inoremap <silent><expr><Tab> pumvisible() ? "\<c-n>" :
-        \SimpleSnippets#isExpandableOrJumpable() ?
-        \"<Esc>:call SimpleSnippets#expandOrJump()<Cr>" :
-        \"\<Tab>"
-    inoremap <silent><expr><S-Tab> pumvisible() ? "\<c-p>" :
-        \SimpleSnippets#isJumpable() ?
-        \"<Esc>:call SimpleSnippets#jumpBackwards()<Cr>" :
-        \"\<S-Tab>"
-    inoremap <expr><Cr> pumvisible() ?
-        \SimpleSnippets#isExpandableOrJumpable() ?
-        \"\<Esc>:call SimpleSnippets#expandOrJump()\<Cr>" :
-        \"\<Cr>" : "\<Cr>"
-    snoremap <silent><expr><Tab> SimpleSnippets#isExpandableOrJumpable() ?
-        \"<Esc>:call SimpleSnippets#expandOrJump()<Cr>" : "\<Tab>"
-        snoremap <silent><expr><S-Tab> SimpleSnippets#isJumpable() ?
-        \"<Esc>:call SimpleSnippets#jumpBackwards()<Cr>" :
-        \"\<S-Tab>"
-endif
-
-" }
 
 " Golang configs {
 
