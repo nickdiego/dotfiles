@@ -230,8 +230,11 @@ else " LanguageClient_neovim
     nnoremap <leader>lw :call LanguageClient#workspace_symbol()<CR>
     " common shortcuts
     nnoremap <C-l> :call LanguageClient_textDocument_documentSymbol()<CR>
-    nnoremap <M-CR> :call LanguageClient#textDocument_definition()<CR>
-    nnoremap <M-Backspace> :call LanguageClient#textDocument_references()<CR>
+
+    " Whoaaa? enter => jump to definition" ? yes! :D
+    nnoremap <CR> :call LanguageClient#textDocument_definition()<CR>
+    nnoremap <M-CR> :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
+    nnoremap <Backspace> :call LanguageClient#textDocument_references()<CR>
 
     set completefunc=LanguageClient#complete
     set formatexpr=LanguageClient_textDocument_rangeFormatting()
