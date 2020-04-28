@@ -70,7 +70,7 @@ let g:powerline_pycmd = 'py3'
 " }
 
 "Powerline configs
-let g:Powerline_symbols = 'fancy'
+"let g:Powerline_symbols = 'fancy'
 
 " Airline {
 let g:airline_section_b = 0
@@ -78,8 +78,9 @@ let g:airline_section_y = 0
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#ycm#enabled = 1
-let g:airline_powerline_fonts = 1
+"let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme='laederon'
 "let g:airline_theme='hybrid'
