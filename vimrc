@@ -494,11 +494,11 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     "set dictionary+=/usr/share/dict/words          " dictionary for word auto completion
 
     " Enable relativenumber only in non-insert mode
-    "augroup numbertoggle
-        "autocmd!
-        "autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-        "autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-    "augroup END
+    augroup numbertoggle
+      autocmd!
+      autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+      autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+    augroup END
 
     " Formatting {
         autocmd FileType Makefile set g:custom_space_instead_of_tab = 0
