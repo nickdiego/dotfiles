@@ -197,7 +197,6 @@ bar {
     }
 }
 
-
 # bar toggle, hide or show
 bindsym $mod+Shift+b bar mode toggle
 
