@@ -3,6 +3,7 @@
 *~
 /vim/sessions
 /vim/plugged/
+/vim/.netrwhist
 *.pyc
 weechat/logs
 weechat/weechat.log
