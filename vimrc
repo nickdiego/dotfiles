@@ -1,5 +1,5 @@
 " High-level Settings
-let g:custom_disable_arrow_keys = 0
+let g:custom_disable_arrow_keys = 1
 let g:custom_space_instead_of_tab = 1
 let g:custom_tabsize = 2
 let g:custom_listchars = 0
