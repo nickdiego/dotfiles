@@ -42,10 +42,18 @@ let g:indentLine_enabled = 1
 let g:indentLine_char = '┆'
 
 set background=dark
-let base16colorspace=256
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
+
+  function! s:base16_customize() abort
+    call Base16hi("LineNr", "", "", "", g:base16_cterm00, "", "")
+  endfunction
+
+  augroup on_change_colorschema
+    autocmd!
+    autocmd ColorScheme base16-* call s:base16_customize()
+  augroup END
 endif
 
 " NeoVim Configs {
