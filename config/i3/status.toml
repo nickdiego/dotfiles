@@ -34,6 +34,11 @@ interval = 5
 block = "sound"
 
 [[block]]
+block = "custom"
+command = "xkb-layout"
+interval = 2
+
+[[block]]
 block = "battery"
 interval = 10
 format = "{percentage}% {time}"

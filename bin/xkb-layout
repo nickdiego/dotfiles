@@ -1,0 +1,14 @@
+#!/bin/bash
+
+out=$(swaymsg -t get_inputs | jq '.[0].xkb_active_layout_name')
+
+if grep -qi 'brazil' <<< "$out"; then
+  echo 'pt-br'
+elif grep -qi 'us.\+intl' <<< "$out"; then
+  echo 'us-intl'
+elif grep -qi 'us' <<< "$out"; then
+  echo 'us'
+else
+  echo $out | sed 's,",,g'
+fi
+
