@@ -172,7 +172,10 @@ if g:custom_lsp_plugin == "vim-lsp"
 else " LanguageClient_neovim
 
   let g:deoplete#enable_at_startup = 1
-  let g:deoplete#enable_smart_case = 1
+  call deoplete#custom#option({
+  \ 'auto_complete_delay': 100,
+  \ 'smart_case': v:true,
+  \ })
 
   " ccls initialization options
   let ccls_init_opts = '{"cache": {"directory" :"'. g:custom_ccls_cache_path .'"}}'
