@@ -3,40 +3,32 @@ let g:custom_disable_arrow_keys = 0
 let g:custom_space_instead_of_tab = 1
 let g:custom_tabsize = 2
 let g:custom_listchars = 0
+let g:custom_lsp_plugin = "LanguageClient"
 let g:custom_ccls_cache_path = expand('~/.lsp/ccls-cache')
 let g:custom_ccls_log_path = expand('~/.lsp/ccls.log')
 let g:custom_pyls_log_path = expand('~/.lsp/pyls.log')
 let g:custom_gols_log_path = expand('~/.lsp/go-langserver.log')
 
 set hidden " Required by LanguageClient and Chromium Search plugins
-
-if has('nvim')
-    let g:custom_lsp_plugin = "LanguageClient"
-else
-    let g:custom_lsp_plugin = "vim-lsp"
-endif
-
 " Plugins configs
 source ~/.vim/plugins.vim
 
 let mapleader=","
+
 set pastetoggle=<F2>
 nnoremap ; :
 imap jj <ESC>
 nnoremap <space> za
-nnoremap <leader>ve :vsplit $MYVIMRC<cr>
-nnoremap <leader>vs :source $MYVIMRC<cr>
 
 set cursorline
 set mouse=
 set tabpagemax=15
 set nowrap
 set number
-"set relativenumber
 set noswapfile
 set splitbelow
 set splitright
-set textwidth=79
+set textwidth=72
 
 "let g:loaded_python3_provider = 0
 let g:python3_host_prog = '/bin/python3'
@@ -352,33 +344,15 @@ else
     endif " has("autocmd")
 endif
 
-" When vimrc is edited, reload it
-autocmd! BufWritePost .vimrc,*.vim source ~/.vimrc
-
-" Quickfix bindings
-map <C-j> :cnf<CR>
-map <C-k> :cpf<CR>
-
 " ff (normal mode) open CrSearch
 let g:codesearch_source_root = '/home/nick/projects/chromium'
-nnoremap ff :CrSearch<space>
-nnoremap fx :CrXrefSearch<CR>
 
 " Ctrl-f calls Ack.vim
-nnoremap <C-F> :Ack!<space>
 let g:ackprg = "ag --vimgrep"
 let g:ackpreview = 1
 let g:ack_autofold_results = 0
 
-nnoremap <Leader>ff :Ack! <C-r><C-w>
-nnoremap fv :vs<CR>:Ack! -w <C-r><C-w><CR>
-nnoremap fh :sp<CR>:Ack -w <C-r><C-w><CR>
-
 nnoremap <Leader>ss :%s,\<<C-r><C-w>\>,
-
-" sessionman
-nnoremap <Leader>SS :SessionSave<CR>
-
 
 " Stupid shift key fixes
 if has("user_commands")
@@ -436,11 +410,6 @@ if g:custom_listchars
     set list
     set listchars=tab:»·,trail:·,extends:#,nbsp:.       " strings to use in 'list' mode
 endif
-
-
-
-" When vimrc is edited, reload it
-autocmd! BufWritePost vimrc source ~/.vimrc
 
 " Editing {
     " Enable file type detection. Use the default filetype settings.
@@ -559,11 +528,7 @@ autocmd! BufWritePost vimrc source ~/.vimrc
     endif
 " }
 
-" new tests TODO {
-    if !exists('g:deoplete#omni#input_patterns')
-        let g:deoplete#omni#input_patterns = {}
-    endif
-
+" Supertab {
     let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
     autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " }
