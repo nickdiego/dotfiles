@@ -5,14 +5,10 @@ set hidden              " Allow to switch buffers without saving
 set number              " Show line numbers
 set cursorline          " Highlight cursor line
 set mouse=              " Disable mouse
-
-" Load plugins
-source ~/.vim/plugins.vim
-
-" More core configs
-set splitbelow          " Open hsplits below by default.
-set splitright          " Open vsplits at right by default.
-set nowrap              " Does not wrap text by default.
+set nowrap              " Do not wrap text
+set splitbelow          " Open hsplits below
+set splitright          " Open vsplits at right
+set scrolloff=30        " Keep cursorline mostly in the middle of the screen
 set autoindent          " Copy indent from current line
 set smartindent         " Smart autoindenting when starting a new line
 set noswapfile          " Disable swap files by default.
@@ -20,24 +16,30 @@ set textwidth=72        " Default text width.
 set tabpagemax=15       " Set a max number of tabs
 set background=dark     " Prefer dark colors
 set browsedir=current   " Use current directory for file browser
-set hlsearch            " highlight the last used search pattern
-set incsearch           " do incremental searching
+set hlsearch            " Highlight the last used search pattern
+set incsearch           " Do incremental searching
+set gdefault            " Always set global (g) when replacing
+set nojoinspaces        " Only one space are added when joining lines
 set ignorecase          " Ignore case when searching
 set smartcase           " Case-sensitive if any uppercase char
+set nowrapscan          " Do not wrap around when searching
 set foldenable          " Turn on folding
 set foldmethod=indent   " Make folding indent sensitive
 set foldlevel=100       " Do not autofold anything
 set foldopen-=search    " Do not open folds when you search into them
 set foldopen-=undo      " Do not open folds when you undo stuff
 
+" Load plugins
+source ~/.vim/plugins.vim
+
 " Enconding
 scriptencoding utf-8
 set encoding=utf-8
 
 if has('persistent_undo')
-  set undofile                "so is persistent undo ...
-  set undolevels=1000         " maximum number of changes that can be undone
-  set undoreload=10000        "maximum number lines to save for undo on a buffer reload
+  set undofile                " Enable persistent undo history
+  set undolevels=1000         " Max number of changes that can be undone
+  set undoreload=10000        " Max number lines to save for undo on a buffer reload
 endif
 
 " Basic key bindings
