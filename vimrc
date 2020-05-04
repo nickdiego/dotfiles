@@ -212,7 +212,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#wordcount#enabled = 0
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='hybrid'
+let g:airline_theme='base16'
 
 " Navigation-related keybindings
 nnoremap <C-Up> :tabprevious<CR>

@@ -12,8 +12,8 @@ Plug 'vim-scripts/sessionman.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf.vim'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " color schemes
 Plug 'chriskempson/base16-vim'
