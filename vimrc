@@ -82,10 +82,6 @@ if g:disable_arrow_keys
   noremap <right> <nop>
 endif
 
-if &t_Co > 2 || has("gui_running")  " Switch syntax highlighting on, when the terminal has colors
-  syntax on
-endif
-
 augroup numbertoggle  " Enable relativenumber only in non-insert mode
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
@@ -151,24 +147,34 @@ endif
 let g:python3_host_prog = '/bin/python3'
 let g:python2_host_prog = '/bin/python2'
 
-" Base16 colorscheme configs
-if filereadable(expand("~/.vimrc_background"))
+" Syntax highlight and colorscheme setup
+" Enable syntax highlight when the env supports it and
+" loads base16 settings if any.
+if &t_Co > 2 || has("gui_running")
+  " Force 256 colors
+  set t_Co=256
+  set t_ut=
   let base16colorspace=256
-  source ~/.vimrc_background
 
+  " Switch syntax highlighting on
+  syntax on
+
+  " Base16 customizations
   function! s:base16_customize() abort
     call Base16hi("LineNr", "", "", "", g:base16_cterm00, "", "")
   endfunction
-
   augroup on_change_colorschema
     autocmd!
     autocmd ColorScheme base16-* call s:base16_customize()
   augroup END
+
+  " Load from the shell, if any.
+  if filereadable(expand("~/.vimrc_background"))
+    source ~/.vimrc_background
+  endif
 endif
 
 " Vim-specifics (too old?)
-set t_Co=256  " forcing 256 colors
-set t_ut=
 if version >= 730 && version < 800
   if has("autocmd")
     " Autosave & Load Views.
