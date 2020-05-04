@@ -6,9 +6,6 @@ set number              " Show line numbers
 set cursorline          " Highlight cursor line
 set mouse=              " Disable mouse
 
-" Plugin loading related configs
-let g:custom_lsp_plugin = "LanguageClient" " LSP plugin to be loaded
-
 " Load plugins
 source ~/.vim/plugins.vim
 
@@ -61,11 +58,11 @@ nnoremap <leader>ss :%s,\<<C-r><C-w>\>,
 nnoremap <leader>sw :w !sudo tee %<CR>
 
 " Other custom settings
-let g:custom_disable_arrow_keys = 1
-let g:custom_space_instead_of_tab = 1
-let g:custom_tabsize = 2
-let g:custom_pyls_log_path = expand('~/.lsp/pyls.log')
-let g:custom_gols_log_path = expand('~/.lsp/go-langserver.log')
+let g:disable_arrow_keys = 1
+let g:use_space_instead_of_tabs = 1
+let g:default_tabsize = 2
+let g:lsp_pyls_log_path = expand('~/.lsp/pyls.log')
+let g:lsp_gols_log_path = expand('~/.lsp/go-langserver.log')
 
 if has('cmdline_info')
     set ruler                       " show the cursor position all the time
@@ -78,7 +75,7 @@ set backspace=indent,eol,start                  " backspacing over everything in
 set autoread                                    " auto reread file when changed outside Vim
 set autowrite                                   " write a modified buffer on each :next, etc.
 filetype plugin indent on
-if g:custom_disable_arrow_keys
+if g:disable_arrow_keys
   noremap <left> <nop>
   noremap <up> <nop>
   noremap <down> <nop>
@@ -95,21 +92,21 @@ augroup numbertoggle  " Enable relativenumber only in non-insert mode
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
-autocmd FileType Makefile set g:custom_space_instead_of_tab = 0
-if g:custom_space_instead_of_tab
+autocmd FileType Makefile set g:use_space_instead_of_tabs = 0
+if g:use_space_instead_of_tabs
   set expandtab                    " tabs are spaces, not tabs"
 endif
 
-if !g:custom_tabsize
-  let g:custom_tabsize = 4
+if !g:default_tabsize
+  let g:default_tabsize = 4
 endif
 
 " number of spaces to use for each step of indent
-execute "set shiftwidth=".g:custom_tabsize
+execute "set shiftwidth=".g:default_tabsize
 " number of spaces that a <Tab> counts for
-execute "set tabstop=".g:custom_tabsize
+execute "set tabstop=".g:default_tabsize
 " let backspace delete indent
-execute "set softtabstop=".g:custom_tabsize
+execute "set softtabstop=".g:default_tabsize
 
 " Status line config
 if has('statusline')
@@ -221,7 +218,7 @@ nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
-if !g:custom_disable_arrow_keys
+if !g:disable_arrow_keys
   nnoremap <silent> <A-left> :TmuxNavigateLeft<cr>
   nnoremap <silent> <A-down> :TmuxNavigateDown<cr>
   nnoremap <silent> <A-up> :TmuxNavigateUp<cr>
@@ -243,7 +240,7 @@ let g:ale_linters = {
 autocmd FileType gitcommit let g:ale_sign_column_always = 1
 
 " LSP configs
-if g:custom_lsp_plugin == "LanguageClient"
+if g:lsp_plugin == "LanguageClient"
 
   let g:LanguageClient_serverStderr = '/tmp/lsp.stderr'
   let g:LanguageClient_echoProjectRoot = 1
@@ -252,9 +249,9 @@ if g:custom_lsp_plugin == "LanguageClient"
   let g:LanguageClient_serverCommands = {
         \ 'c':      ['clangd', '-background-index'],
         \ 'cpp':    ['clangd', '-background-index'],
-        \ 'go':     ['go-langserver', '-logfile', g:custom_gols_log_path],
+        \ 'go':     ['go-langserver', '-logfile', g:lsp_gols_log_path],
         \ 'rust':   ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
-        \ 'python': ['pyls', '--log-file', g:custom_pyls_log_path],
+        \ 'python': ['pyls', '--log-file', g:lsp_pyls_log_path],
         \ 'lua':    ['lua-lsp'],
         \ 'java':   ['jdtls', '-data', getcwd()],
         \ }

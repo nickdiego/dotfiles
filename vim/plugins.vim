@@ -1,3 +1,8 @@
+" vim: et ts=2 sw=2 ft=vim
+
+" Plugin loading related configs
+let g:lsp_plugin = "LanguageClient"
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-surround'
@@ -36,16 +41,16 @@ Plug 'rhysd/committia.vim'
 Plug 'chromium/vim-codesearch'
 Plug 'scrooloose/nerdcommenter'
 
-if g:custom_lsp_plugin == "coc"
+if g:lsp_plugin == "coc"
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 else
   Plug 'autozimu/LanguageClient-neovim', {
         \ 'branch': 'next',
         \ 'do': '/bin/bash install.sh'
         \ }
-    Plug 'ervandew/supertab'
-    Plug 'shougo/neoinclude.vim'
-    Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'ervandew/supertab'
+  Plug 'shougo/neoinclude.vim'
+  Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 endif
 
 call plug#end()
