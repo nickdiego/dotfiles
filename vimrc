@@ -44,14 +44,21 @@ if has('persistent_undo')
 endif
 
 " Basic key bindings
-let maSleader=","       " Comma as leader key
-nnoremap ; :            " Semicolon == colon in normal mode
-vnoremap > >gv          " Increase indent level and (does not exit Visual mode)
-vnoremap < <gv          " Decrease indent level and (does not exit Visual mode)
-nnoremap <space> za     " Space to fold/unfold in normal mode
-nnore<Use current directory in<cr>:call clearmatches()<cr>  " Clear highlighted search
-nnoremap <Leader>ss :%s,\<<C-r><C-w>\>,  " Leader-ss to find/replace word under cursor
-nnoremap <leader>sw :w !sudo tee %<CR>   " Leader-sw to save as root (sudo tee trick)
+let mapleader=","
+" Semicolon as shortcut in normal mode
+nnoremap ; :
+" Indent (keeping in visual mode)
+vnoremap > >gv
+" Deindent (keeping in visual mode)
+vnoremap < <gv
+" Space to fold/unfold in normal mode
+nnoremap <space> za
+" Clear highlighted search
+nnoremap <leader><space> :noh<cr>:call clearmatches()<cr>
+" Leader-ss to find/replace word under cursor
+nnoremap <leader>ss :%s,\<<C-r><C-w>\>,
+" Leader-sw to save as root
+nnoremap <leader>sw :w !sudo tee %<CR>
 
 " Other custom settings
 let g:custom_disable_arrow_keys = 1
@@ -294,7 +301,7 @@ let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " FZF configs
-noremap <C-p> :GFiles<CR>  " Finally replacing ctrlp.vim :)
+noremap <C-p> :GFiles<CR>
 nnoremap <leader>f :GFiles<CR>
 nnoremap <leader>o :History<CR>
 nnoremap <leader>c :Commits<CR>
