@@ -17,3 +17,8 @@ font:
     family: Liberation Mono
     style: Bold Italic
 
+# Force Shift-Backspace to behave just like Backspace
+# https://github.com/alacritty/alacritty/issues/3652
+key_bindings:
+     - { key: Back, mods: Shift, chars: "\x7f" }
+
