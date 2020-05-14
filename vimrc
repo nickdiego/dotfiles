@@ -217,8 +217,13 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='base16'
 
 " Navigation-related keybindings
-nnoremap <C-Up> :tabprevious<CR>
-nnoremap <C-Down> :tabnext<CR>
+nnoremap <silent> <C-j> :tabprevious<CR>
+nnoremap <silent> <C-k> :tabnext<CR>
+if !g:disable_arrow_keys
+  nnoremap <silent> <C-Up> :tabprevious<CR>
+  nnoremap <silent> <C-Down> :tabnext<CR>
+endif
+" TODO: find alt for these ones, <C-L> already used for LPS commands
 nnoremap <silent> <C-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <C-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
