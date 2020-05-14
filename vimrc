@@ -58,6 +58,8 @@ nnoremap <leader><space> :noh<cr>:call clearmatches()<cr>
 nnoremap <leader>ss :%s,\<<C-r><C-w>\>,
 " Leader-sw to save as root
 nnoremap <leader>sw :w !sudo tee %<CR>
+" F5 to reload file from disk
+nnoremap <silent><F5> :e!<CR>
 
 " Other custom settings
 let g:disable_arrow_keys = 1
@@ -219,7 +221,7 @@ nnoremap <C-Up> :tabprevious<CR>
 nnoremap <C-Down> :tabnext<CR>
 nnoremap <silent> <C-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <C-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
-nnoremap <F5> :e!<CR>
+
   " Alt+<directional> to switch among splits
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
