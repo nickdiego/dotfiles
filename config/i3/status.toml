@@ -1,9 +1,15 @@
 icons = "awesome"
 
 [theme]
-name = "solarized-dark"
+name = "modern"
+
 [theme.overrides]
-idle_bg = "#222222"
+separator = ""           # No sep
+idle_bg = "#222222"      # black?
+good_bg = "#99c794"      # green
+info_bg = "#6699cc"      # blue
+critical_bg = "#ec5f67"  # red
+warning_bg = "#fac863"   # yellow
 
 [[block]]
 block = "focused_window"
@@ -17,7 +23,7 @@ format_swap = "{SUp}%"
 
 [[block]]
 block = "cpu"
-interval = 1
+interval = 3
 format = "{barchart} {utilization}%"
 
 [[block]]
@@ -34,9 +40,9 @@ interval = 5
 block = "sound"
 
 [[block]]
-block = "custom"
-command = "xkb-layout"
-interval = 2
+block = "time"
+interval = 60
+format = "%a %d/%m %R"
 
 [[block]]
 block = "battery"
@@ -44,6 +50,8 @@ interval = 10
 format = "{percentage}% {time}"
 
 [[block]]
-block = "time"
-interval = 60
-format = "%a %d/%m %R"
+block = "custom"
+command = "xkb-layout"
+json = true
+interval = 1
+

@@ -1,14 +1,50 @@
 #!/bin/bash
 
-out=$(swaymsg -t get_inputs | jq '.[0].xkb_active_layout_name')
+us_std='us'
+pt_br='br'
+us_intl='us(intl)'
 
-if grep -qi 'brazil' <<< "$out"; then
-  echo 'pt-br'
-elif grep -qi 'us.\+intl' <<< "$out"; then
-  echo 'us-intl'
-elif grep -qi 'us' <<< "$out"; then
-  echo 'us'
-else
-  echo $out | sed 's,",,g'
-fi
+sway_get_xkb_layout_name() {
+  out=$(swaymsg -t get_inputs | jq '.[0].xkb_active_layout_name')
+  case $out in
+    *Brazil*)
+      echo $pt_br
+      ;;
+    *US*intl*)
+      echo $us_intl
+      ;;
+    *US*)
+      echo $us_std
+      ;;
+    *)
+    echo $out | sed 's,",,g'
+  esac
+}
 
+# i3status-rust only allows setting bg colors to custom blocks using state field.
+# Ref: https://github.com/greshake/i3status-rust/blob/master/src/widget.rs#L6
+layout_to_state() {
+  case $1 in
+    $pt_br)
+      echo Warning
+      ;;
+    $us_intl|$us_std)
+      echo Info
+      ;;
+    *)
+      echo Idle
+      ;;
+  esac
+}
+
+# TODO: Support i3
+layout=$(sway_get_xkb_layout_name)
+state=$(layout_to_state $layout)
+
+cat <<EOS
+{
+  "text" : " $layout",
+  "state": "$state",
+  "icon": "keyboard"
+}
+EOS
