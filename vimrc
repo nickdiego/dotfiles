@@ -18,7 +18,6 @@ set background=dark     " Prefer dark colors
 set browsedir=current   " Use current directory for file browser
 set hlsearch            " Highlight the last used search pattern
 set incsearch           " Do incremental searching
-set gdefault            " Always set global (g) when replacing
 set nojoinspaces        " Only one space are added when joining lines
 set ignorecase          " Ignore case when searching
 set smartcase           " Case-sensitive if any uppercase char
