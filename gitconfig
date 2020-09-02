@@ -32,6 +32,7 @@
 	ls = diff-tree --no-commit-id --name-only -r
   sp = show --patch-with-stat
   dp = diff --patch-with-stat
+  ja = commit --amend --no-edit
 
 [credential]
 	helper = store
