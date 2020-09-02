@@ -8,7 +8,7 @@ set mouse=              " Disable mouse
 set nowrap              " Do not wrap text
 set splitbelow          " Open hsplits below
 set splitright          " Open vsplits at right
-set scrolloff=30        " Keep cursorline mostly in the middle of the screen
+set scrolloff=999       " Keep cursorline mostly in the middle of the screen
 set autoindent          " Copy indent from current line
 set smartindent         " Smart autoindenting when starting a new line
 set noswapfile          " Disable swap files by default.
