@@ -30,11 +30,15 @@ function wl_record_screen() {
   local outfile='screencast.mp4'
   local reclog='/tmp/scrrec.log'
   local play=0
+  local select=0
 
   while (( $# )); do
     case $1 in
       -p|--play)
         play=1
+        ;;
+      -s|--select)
+        select=1
         ;;
       -*|--*)
         opts+=("$1")
@@ -47,7 +51,7 @@ function wl_record_screen() {
   done
 
   local jq_query='.[] | select(.active) | .rect | "\(.x),\(.y) \(.width)x\(.height)"'
-  if false; then # TODO: Support selecting a screen area?
+  if (( select )); then # TODO: Support selecting a screen area?
     local rect=$(swaymsg -t get_outputs | jq -r "$jq_query" | slurp)
     opts+=(-g "$rect")
     echo "Capturing rect ${rect}..."
