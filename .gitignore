@@ -13,3 +13,4 @@ tmux/resurrect
 bin/python
 bin/python-config
 xdg-config/ranger/history
+/cache
