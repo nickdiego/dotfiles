@@ -19,6 +19,7 @@ new_window 1pixel
 # Which workspace should be in which output(Screen)
 workspace 10 output eDP1
 workspace 1 output DP1
+workspace wayland output DP1
 
 #for_window [class="Google-chrome"] floating enable
 for_window [title="Ozone X11"] floating enable
