@@ -1,28 +1,26 @@
 [general]
-accounts = Gmail
-maxsyncaccounts = 1
+accounts = Igalia
+pythonfile = ~/.bin/offlineimap.py
 
-[Account Gmail]
-localrepository = Local
-remoterepository = Gmail
+[Account Igalia]
+localrepository = igalia-local
+remoterepository = igalia-remote
 maxage = 60
-autorefresh = 5
-status_backend = sqlite
-#postsynchook = notmuch new
+autorefresh = 3
+postsynchook = ~/.bin/notmuch-hook.sh
 
-[Repository Local]
+[Repository igalia-local]
 type = Maildir
-localfolders = ~/Maildir
+localfolders = ~/mail/Igalia
 
-[Repository Gmail]
-type = Gmail
-remoteuser = nick.diego@gmail.com
-#remotepasseval = get_password_emacs("imap.gmail.com", "nick.diego@gmail.com", "993")
+[Repository igalia-remote]
+type = IMAP
+remotehost = mail.igalia.com
+remoteuser = nickdiego
 realdelete = no
-#folderfilter = lambda foldername: foldername not in ['[Gmail]/Spam', '[Gmail]/All Mail', '[Gmail]/Starred', '[Gmail]/Important']
-folderfilter = lambda foldername: foldername in ['INBOX', '[Gmail]/Sent Mail']
 holdconnectionopen = true
 keepalive = 60
+remotepasseval = get_pass("Igalia")
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 
 [mbnames]
@@ -32,3 +30,4 @@ header = "mailboxes "
 peritem = "+%(accountname)s/%(foldername)s"
 sep = " "
 footer = "\n"
+

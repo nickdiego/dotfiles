@@ -44,13 +44,15 @@ Plug 'scrooloose/nerdcommenter'
 if g:lsp_plugin == "coc"
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 else
-  Plug 'autozimu/LanguageClient-neovim', {
-        \ 'branch': 'next',
-        \ 'do': '/bin/bash install.sh'
-        \ }
-  Plug 'ervandew/supertab'
-  Plug 'shougo/neoinclude.vim'
-  Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  if has('nvim')
+    Plug 'autozimu/LanguageClient-neovim', {
+          \ 'branch': 'next',
+          \ 'do': '/bin/bash install.sh'
+          \ }
+    Plug 'ervandew/supertab'
+    Plug 'shougo/neoinclude.vim'
+    Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  endif
 endif
 
 call plug#end()

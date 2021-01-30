@@ -254,7 +254,7 @@ let g:ale_linters = {
 autocmd FileType gitcommit let g:ale_sign_column_always = 1
 
 " LSP configs
-if g:lsp_plugin == "LanguageClient"
+if g:lsp_plugin == "LanguageClient" && has('nvim')
 
   let g:LanguageClient_serverStderr = '/tmp/lsp.stderr'
   let g:LanguageClient_echoProjectRoot = 1
