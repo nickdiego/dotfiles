@@ -1,0 +1,12 @@
+# Mako notification daemon configs
+
+anchor=top-right
+font=Liberation Mono 9
+padding=8
+background-color=#285577DD
+text-color=#FFFFFFBB
+width=300
+border-size=1
+border-color=#4C789955
+border-radius=2
+

@@ -82,6 +82,7 @@ plugins=(
   zsh-syntax-highlighting
   fzf
   fzf-marks
+  taskwarrior
   #zsh-autoenv # FIXME: not working with chromium/env.sh :(
 )
 

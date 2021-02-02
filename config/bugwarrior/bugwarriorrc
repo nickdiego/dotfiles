@@ -3,23 +3,23 @@
 # Here you define a comma separated list of targets.  Each of them must have a
 # section below determining their properties, how to query them, etc.  The name
 # is just a symbol, and doesn't have any functional importance.
-targets = jira.itriad
+targets = gitlab.igalia
 
 # If unspecified, the default taskwarrior config will be used.
 #taskrc = /path/to/.taskrc
 
 # Setting this to true will shorten links with http://da.gd/
-#shorten = False
+shorten = False
 
 # Setting this to True will include a link to the ticket in the description
 inline_links = False
 
 # Setting this to True will include a link to the ticket as an annotation
-annotation_links = False
+annotation_links = True
 
 # Setting this to True will include issue comments and author name in task
 # annotations
-annotation_comments = False
+annotation_comments = True
 
 # Defines whether or not issues should be matched based upon their description.
 # In legacy mode, we will attempt to match issues to bugs based upon the
@@ -28,29 +28,36 @@ annotation_comments = False
 # fields defined (which is smarter, better, newer, etc..)
 legacy_matching = False
 
+only_if_assigned = True
+
 # log.level specifies the verbosity.  The default is DEBUG.
 # log.level can be one of DEBUG, INFO, WARNING, ERROR, CRITICAL, DISABLED
-log.level = WARNING
+log.level = DEBUG
 
 #password = @oracle/use_keyring
 
 # If log.file is specified, output will be redirected there.  If it remains
 # unspecified, output is sent to sys.stderr
-#log.file = /tmp/bugwarrior.log
+log.file = /tmp/bugwarrior.log
 
 # Configure the default description or annotation length.
-#annotation_length = 45
+annotation_length = 100
 
-[jira.itriad]
-service = jira
-jira.base_uri = https://alcateldev.atlassian.net
-jira.username = nickdiego
-jira.password = @oracle:eval:pass itriad/jira
-jira.query = project = OMADM and assignee = nickdiego and status != closed and status != done
-# Set this to your jira major version. We currently support only jira version
-# 4 and 5(the default). You can find your particular version in the footer at
-# the dashboard.
-jira.version = 5
-jira.add_tags = work
+[notifications]
+notifications = True
+backend = gobject
+task_crud_sticky = True
+only_on_new_tasks = True
+
+[gitlab.igalia]
+service = gitlab
+gitlab.login = nickdiego
+gitlab.include_repos = p/renesas/coordination, nickdiego/docs
+gitlab.token = _sbzMLStrBz8cxNf4UEA
+gitlab.host = gitlab.igalia.com
+gitlab.import_labels_as_tags = False
+gitlab.project_template = {{gitlabnamespace}}/{{gitlabrepo}}
+gitlab.description_template = {{gitlabnumber}}: {{gitlabtitle}}
+gitlab.add_tags = work chromium
 
 #ex :vim:ft=conf:

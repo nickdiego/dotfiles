@@ -3,16 +3,15 @@
 # Use the command 'task show' to see all defaults and overrides
 
 # Files
-data.location=~/.task
+data.location=~/.task-test
 
 calendar.details=full
 calendar.holidays=sparse
 
 
 # Color theme (uncomment one to use)
-include /usr/share/doc/task/rc/dark-256.theme
 #include /usr/share/doc/task/rc/dark-violets-256.theme
-#include /usr/share/doc/task/rc/dark-yellow-green.theme
+include /usr/share/doc/task/rc/solarized-dark-256.theme
 
 taskd.certificate=~/.task/imthe.am.private.certificate.pem
 taskd.key=~/.task/imthe.am.private.key.pem
