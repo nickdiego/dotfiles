@@ -1,5 +1,4 @@
 set from        = nickdiego@igalia.com
-#set smtp_url    = "smtp://nick.diego@smtp.gmail.com:587/"
 set realname    = "Nick Yamane"
 set editor      = 'vim'
 set sendmail    = "/usr/bin/msmtp"

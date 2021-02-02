@@ -5,7 +5,7 @@ pythonfile = ~/.bin/offlineimap.py
 [Account Igalia]
 localrepository = igalia-local
 remoterepository = igalia-remote
-maxage = 60
+maxage = 30
 autorefresh = 3
 postsynchook = ~/.bin/notmuch-hook.sh
 
@@ -22,6 +22,7 @@ holdconnectionopen = true
 keepalive = 60
 remotepasseval = get_pass("Igalia")
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+folderfilter = lambda foldername: foldername in ["INBOX", "Sent", "Assembly"]
 
 [mbnames]
 enabled = yes
