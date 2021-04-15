@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec i3 -c $HOME/.config/i3/crd.config
