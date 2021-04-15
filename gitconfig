@@ -43,3 +43,5 @@
 	cookiefile = /home/nick/.gitcookies
 [pull]
 	rebase = true
+[merge]
+	tool = vimdiff
