@@ -261,8 +261,8 @@ if g:lsp_plugin == "LanguageClient" && has('nvim')
   let g:LanguageClient_diagnosticsEnable = 0
   let g:LanguageClient_autoStart = 0
   let g:LanguageClient_serverCommands = {
-        \ 'c':      ['clangd', '-background-index'],
-        \ 'cpp':    ['clangd', '-background-index'],
+        \ 'c':      ['clangd', '-j=4'],
+        \ 'cpp':    ['clangd', '-j=4'],
         \ 'go':     ['go-langserver', '-logfile', g:lsp_gols_log_path],
         \ 'rust':   ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
         \ 'python': ['pyls', '--log-file', g:lsp_pyls_log_path],
