@@ -38,7 +38,7 @@
 	helper = store
 [diff]
 	submodule = log
-	noprefix = true
+	noprefix = false
 [http]
 	cookiefile = /home/nick/.gitcookies
 [pull]
