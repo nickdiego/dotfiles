@@ -22,7 +22,8 @@ workspace 1 output DP1
 workspace wayland output DP1
 
 #for_window [class="Google-chrome"] floating enable
-for_window [title="Ozone X11"] floating enable
+#for_window [title="Ozone X11"] floating enable
+for_window [title="Ozone X11"] workspace wayland
 for_window [title="Cast www.youtube.com"] floating enable
 for_window [class="TelegramDesktop"] floating enable
 for_window [class="Nemo"] floating enable
