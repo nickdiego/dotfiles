@@ -1,4 +1,4 @@
-icons = "awesome"
+icons = "awesome5"
 
 [theme]
 name = "modern"
@@ -18,22 +18,23 @@ max_width = 60
 [[block]]
 block = "memory"
 display_type = "memory"
-format_mem = "{Mup}%"
-format_swap = "{SUp}%"
+format_mem = "{mem_used}/{mem_total}({mem_used_percents})"
+format_swap = "{swap_used}/{swap_total}({swap_used_percents})"
+icons = true
+clickable = true
+warning_mem = 80
+warning_swap = 80
+critical_mem = 95
+critical_swap = 95
 
 [[block]]
 block = "cpu"
-interval = 3
-format = "{barchart} {utilization}%"
+interval = 10
+format = "{barchart} {utilization}"
 
 [[block]]
 block = "net"
 device = "wlp2s0"
-ssid = true
-ip = false
-speed_up = false
-speed_down = false
-graph_up = false
 interval = 5
 
 [[block]]
@@ -46,9 +47,6 @@ block = "custom"
 command = "xkb-layout"
 json = true
 interval = 1
-
-[[block]]
-block = "sound"
 
 [[block]]
 block = "time"
