@@ -62,15 +62,19 @@ sync_dot_file() {
 
 install_vim_plugins() {
   # install the Vundle plugins configured in .vimrc
+  msg "Installing vim plugins..."
   nvim -u vim/plugins.vim +PlugInstall +qall
+}
+
+install_tmux_plugins() {
+  msg "Installing tmux plugins..."
+  tmux/plugins/tpm/scripts/install_plugins.sh
 }
 
 # Install submodules
 if (( BOOTSTRAP )); then
   msg "Fetching submodules..."
-  git submodule update --init
-  msg "Installing tmux plugins..."
-  tmux/plugins/tpm/scripts/install_plugins.sh
+  git submodule update --init --recursive
   if type pip &>/dev/null; then
     msg "Installing python packages..."
     pip install --user "${PYTHON_PKGS[@]}"
@@ -96,8 +100,10 @@ done
 
 setfacl -m u:sddm:r face.icon ~/.face.icon
 
-# Install vim plugins (using Vundle for now)
+# Install vim plugins (using Plug for now)
 install_vim_plugins
+
+install_tmux_plugins
 
 # TODO: Check how to install pacman hooks without root access
 
