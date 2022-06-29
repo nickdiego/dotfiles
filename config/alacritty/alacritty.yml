@@ -1,4 +1,3 @@
-
 font:
   size: 9
   normal:
@@ -20,5 +19,37 @@ font:
 # Force Shift-Backspace to behave just like Backspace
 # https://github.com/alacritty/alacritty/issues/3652
 key_bindings:
-     - { key: Back, mods: Shift, chars: "\x7f" }
+  - { key: Back, mods: Shift, chars: "" }
+colors:
+  # Default colors
+  primary:
+    background: '#181818'
+    foreground: '#d8d8d8'
 
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '#d8d8d8'
+    cursor: '#d8d8d8'
+
+  # Normal colors
+  normal:
+    black: '#181818'
+    red: '#ab4642'
+    green: '#a1b56c'
+    yellow: '#f7ca88'
+    blue: '#7cafc2'
+    magenta: '#ba8baf'
+    cyan: '#86c1b9'
+    white: '#d8d8d8'
+
+  # Bright colors
+  bright:
+    black: '#585858'
+    red: '#ab4642'
+    green: '#a1b56c'
+    yellow: '#f7ca88'
+    blue: '#7cafc2'
+    magenta: '#ba8baf'
+    cyan: '#86c1b9'
+    white: '#f8f8f8'
+theme: Base16-Default-Dark
