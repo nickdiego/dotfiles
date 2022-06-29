@@ -8,8 +8,8 @@ export FIGNORE='.swp:.un~'
 
 export PATH=~/.bin:~/.local/bin:$PATH
 
-is_bash() { test -n "$BASH_VERSION" }
-is_zsh() { test -n "$ZSH_VERSION" }
+is_bash() { test -n "$BASH_VERSION"; }
+is_zsh() { test -n "$ZSH_VERSION"; }
 
 # Find/Grep src helper functions
 reset_findsrc_dir() {
