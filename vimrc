@@ -265,7 +265,7 @@ if g:lsp_plugin == "LanguageClient" && has('nvim')
         \ 'cpp':    ['clangd', '-j=4'],
         \ 'go':     ['go-langserver', '-logfile', g:lsp_gols_log_path],
         \ 'rust':   ['rustup', 'run', 'stable-x86_64-unknown-linux-gnu', 'rls'],
-        \ 'python': ['pyls', '--log-file', g:lsp_pyls_log_path],
+        \ 'python': ['pylsp', '--log-file', g:lsp_pyls_log_path],
         \ 'lua':    ['lua-lsp'],
         \ 'java':   ['jdtls', '-data', getcwd()],
         \ }
