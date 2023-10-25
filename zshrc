@@ -70,7 +70,6 @@ PROJECT_PATHS=(~/projects ~/sandbox)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   archlinux
-  cargo
   golang
   jump
   pip
