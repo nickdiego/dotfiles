@@ -8,7 +8,6 @@ set -e
 BOOTSTRAP=0
 VERBOSE=0
 BKPDIR="$HOME/.dot-backups/bkp-`date +'%b-%d-%y_%H:%M:%S'`"
-PYTHON_PKGS=( i3ipc )
 
 while (( $# )); do
   case $1 in
@@ -75,12 +74,6 @@ install_tmux_plugins() {
 if (( BOOTSTRAP )); then
   msg "Fetching submodules..."
   git submodule update --init --recursive
-  if type pip &>/dev/null; then
-    msg "Installing python packages..."
-    pip install --user "${PYTHON_PKGS[@]}"
-  else
-    echo "WARN: Python packages not installed (pip not found)!" >&2
-  fi
 fi
 
 # Sync plain/simple dot files/dirs
@@ -97,8 +90,6 @@ for d in * config/*; do
       ;;
   esac
 done
-
-setfacl -m u:sddm:r face.icon ~/.face.icon
 
 # Install vim plugins (using Plug for now)
 install_vim_plugins
