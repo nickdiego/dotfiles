@@ -83,7 +83,7 @@ plugins=(
   fzf
   fzf-marks
   taskwarrior
-  #zsh-autoenv # FIXME: not working with chromium/env.sh :(
+  base16-shell
 )
 
 export FZF_MARKS_JUMP='^p'
