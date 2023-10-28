@@ -1,0 +1,55 @@
+# ex: ts=2 sw=2 et filetype=sh
+#!/bin/env bash
+
+set -e
+set -x
+
+HIDPI=${HIDPI:-0}
+
+if ! type gsettings; then
+  echo "gsettings not installed?" >&2
+  exit 1
+fi
+
+while [ $# -gt 0 ]; do
+  case $1 in
+    --hidpi) HIDPI=1;;
+  esac
+  shift
+done
+
+# Touchpad: click with finger tap
+gsettings set org.gnome.desktop.peripherals.touchpad click-method 'fingers'
+
+# Resize windows with Super+Right Click/Drag
+gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
+
+# Show week numbers in calendar
+gsettings set org.gnome.desktop.calendar show-weekdate true
+
+# Make window buttons like in the old times :P
+gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
+
+# Do nothing when the lid is closed.
+# Ensure HandleLidSwitch=ignore is set in /etc/systemd/logind.conf
+
+if (( HIDPI )); then
+  # Values for non-fractional scaling.
+  gsettings set org.gnome.settings-daemon.plugins.xsettings overrides \
+    "[{'Gdk/WindowScalingFactor', <2>}]"
+  gsettings set org.gnome.desktop.interface scaling-factor 2
+
+  # Wayland fractional scaling support. Disabled for now as it causes blurring
+  # in X11/Xwayland apps, and Chromium Ozone/Wayland has an open issue with
+  # NVidia proprietary driver, see https://crbug.com/1273758.
+  #
+  # TODO: Check X11 fractional experimental support by Ubuntu.
+  # https://wiki.archlinux.org/title/HiDPI#Fractional_scaling
+  #  gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
+  #  # Relies on patched mutter (mutter-x11-scaling AUR). TODO: Check.
+  #  gsettings set org.gnome.mutter experimental-features "['x11-randr-fractional-scaling']"
+  gsettings set org.gnome.mutter experimental-features "[]"
+fi
+
+# TODO: Figure out how to add custom kbd shortcurs here.
+
