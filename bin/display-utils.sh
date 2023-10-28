@@ -8,7 +8,7 @@ if [ ! -z $WAYLAND_DISPLAY ]; then
   export DISPLAY_MAIN='XWAYLAND0'
   export DISPLAY_AUX='XWAYLAND1'
 else # assuming Running Xorg
-  hostname=$(hostname)
+  hostname=$(cat /etc/hostname)
   case $hostname in
     mayam)
         export DISPLAY_MAIN='eDP1'
