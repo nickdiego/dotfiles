@@ -43,8 +43,6 @@ endif
 
 " Basic key bindings
 let mapleader=","
-" Semicolon as shortcut in normal mode
-nnoremap ; :
 " Indent (keeping in visual mode)
 vnoremap > >gv
 " Deindent (keeping in visual mode)
