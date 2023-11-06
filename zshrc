@@ -12,6 +12,7 @@ ZSH_THEME="miloshadzic"
 ZSH_THEME="gozilla"
 ZSH_THEME="robbyrussell"
 ZSH_THEME="nickdiego"
+ZSH_THEME="minimal"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
