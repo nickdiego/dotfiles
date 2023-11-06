@@ -12,6 +12,7 @@ application/x-extension-xhtml=vivaldi-stable.desktop
 application/x-extension-xht=vivaldi-stable.desktop
 x-scheme-handler/about=google-chrome.desktop
 x-scheme-handler/unknown=google-chrome.desktop
+x-scheme-handler/mailspring=Mailspring.desktop
 
 [Added Associations]
 x-scheme-handler/http=vivaldi-stable.desktop;
