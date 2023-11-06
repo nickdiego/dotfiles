@@ -199,6 +199,13 @@ if [ -n "$SHOW_ARCHINFO" ] && type archey3 &>/dev/null; then
   archey3
 fi
 
+set_hidpi_vars() {
+  export QT_AUTO_SCREEN_SCALE_FACTOR=1
+  export QT_ENABLE_HIGHDPI_SCALING=1
+  export GDK_SCALE=2
+  export GDK_DPI_SCALE=0.5
+}
+
 export MY_GPG_USERID='9B41EB2ECFFBFE525E383E015C041CA1FC08A584'
 export DOCKER_ID_USER="nickdiego"
 
