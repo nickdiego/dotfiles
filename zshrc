@@ -71,6 +71,7 @@ PROJECT_PATHS=(~/projects ~/sandbox)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   archlinux
+  vi-mode
   golang
   jump
   pip
@@ -90,6 +91,9 @@ export FZF_MARKS_JUMP='^p'
 
 export AUTOENV_FILE_ENTER='env.sh'
 export AUTOENV_AUTH_FILE="$HOME/.zsh_autoenv_authorized"
+
+#export VI_MODE_SET_CURSOR=true
+#export VI_MODE_CURSOR_INSERT=5
 
 source $ZSH/oh-my-zsh.sh
 
