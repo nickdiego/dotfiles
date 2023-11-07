@@ -1,0 +1,19 @@
+#!/bin/env bash
+# vi: ts=2 sw=4 et filetype=sh
+
+GNLS_SRC_DIR=~/projects/gnls/gnls
+NODE_CMD=${NODE_CMD:-node}
+
+if [ ! -r ${GNLS_SRC_DIR}/build/server.js ]; then
+  echo "!! gnls source server not found!" >&2
+  echo "!! GNLS_SRC_DIR=$GNLS_SRC_DIR" >&2
+  exit 1
+fi
+
+if ! type $NODE_CMD >/dev/null; then
+  echo "!! node not intalled!?" >&2
+  echo "!! NODE_CMD=$NODE_CMD" >&2
+  exit 1
+fi
+
+exec ${NODE_CMD} ${GNLS_SRC_DIR}/build/server.js $@

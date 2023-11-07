@@ -251,6 +251,12 @@ let g:ale_linters = {
       \}
 autocmd FileType gitcommit let g:ale_sign_column_always = 1
 
+augroup gn_ft
+  au!
+  autocmd BufNewFile,BufRead *.gn set filetype=gn syntax=python
+  autocmd BufNewFile,BufRead *.gni set filetype=gn syntax=python
+augroup END
+
 " LSP configs
 if g:lsp_plugin == "LanguageClient" && has('nvim')
 
@@ -266,6 +272,8 @@ if g:lsp_plugin == "LanguageClient" && has('nvim')
         \ 'python': ['pylsp', '--log-file', g:lsp_pyls_log_path],
         \ 'lua':    ['lua-lsp'],
         \ 'java':   ['jdtls', '-data', getcwd()],
+        \ 'sh':     ['bash-language-server', 'start'],
+        \ 'gn':     ['gnls', '--stdio'],
         \ }
   " deoplete configs
   let g:deoplete#enable_at_startup = 1
@@ -300,8 +308,8 @@ if g:lsp_plugin == "LanguageClient" && has('nvim')
 
   augroup LSP
     autocmd!
-    autocmd FileType cpp,c,python,java call SetupLSP()
-    autocmd FileType cpp,c,python,java LanguageClientStart
+    autocmd FileType cpp,c,python,java,gn call SetupLSP()
+    autocmd FileType cpp,c,python,java,gn LanguageClientStart
   augroup END
 endif
 
