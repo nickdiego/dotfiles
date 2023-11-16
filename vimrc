@@ -308,8 +308,8 @@ if g:lsp_plugin == "LanguageClient" && has('nvim')
 
   augroup LSP
     autocmd!
-    autocmd FileType cpp,c,python,java,gn call SetupLSP()
-    autocmd FileType cpp,c,python,java,gn LanguageClientStart
+    autocmd FileType cpp,c,python,java,gn,sh call SetupLSP()
+    autocmd FileType cpp,c,python,java,gn,sh LanguageClientStart
   augroup END
 endif
 
