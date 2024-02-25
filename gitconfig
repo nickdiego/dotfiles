@@ -7,6 +7,7 @@
 [user]
 	name = Nick Diego Yamane
 	email = nickdiego@igalia.com
+	signingkey = ~/.ssh/id_ed25519_2024.pub
 
 [color]
 	ui = auto
@@ -45,3 +46,9 @@
 	rebase = true
 [merge]
 	tool = vimdiff
+[init]
+	defaultBranch = main
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
