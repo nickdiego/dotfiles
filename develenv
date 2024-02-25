@@ -156,16 +156,17 @@ vysor() {
   $electron_exe $electron_dir --app-id=gidgenkbbabolejbgbpnhbimgjbffefm
 }
 
-load-ssh-keys() {
+load_ssh_keys() {
   if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-    eval `ssh-agent`>/dev/null
+    eval $(ssh-agent) >/dev/null
     ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
   fi
   export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-  ssh-add -l || ssh-add ~/.ssh/id_rsa_2016
+  [[ $(ssh-add -l | wc -l) == 2 ]] || \
+    ssh-add ~/.ssh/id_rsa_2016 ~/.ssh/id_ed25519_2024
 }
 
-load-ssh-keys &>/dev/null
+load_ssh_keys &>/dev/null
 
 _kbd_layouts=('br-abnt2' 'us-intl')
 kbd() {
