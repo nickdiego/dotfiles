@@ -162,7 +162,7 @@ load_ssh_keys() {
     ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
   fi
   export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-  ssh-add -l || ssh-add ~/.ssh/id_ed25519_2024
+  ssh-add -l || ssh-add ~/.ssh/id_ed25519
 } && \
 load_ssh_keys &>/dev/null
 

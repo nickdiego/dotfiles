@@ -7,7 +7,7 @@
 [user]
 	name = Nick Diego Yamane
 	email = nickdiego@igalia.com
-	signingkey = /home/nick/.ssh/id_ed25519_2024.pub
+	signingkey = /home/nick/.ssh/id_ed25519.pub
 
 [color]
 	ui = auto
