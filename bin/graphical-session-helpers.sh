@@ -16,6 +16,7 @@ function wlsession() {
   [ $s = 'gnome' ] && s+='-session'
   env QT_QPA_PLATFORM=wayland \
     GDK_BACKEND=wayland \
+    MOZ_ENABLE_WAYLAND=1 \
     XDG_SESSION_TYPE=wayland \
       dbus-run-session $s
 }
