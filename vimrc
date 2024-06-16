@@ -161,18 +161,19 @@ if &t_Co > 2 || has("gui_running")
   syntax on
 
   " Base16 customizations
-  function! s:base16_customize() abort
-    call Base16hi("LineNr", "", "", "", g:base16_cterm00, "", "")
-  endfunction
-  augroup on_change_colorschema
-    autocmd!
-    autocmd ColorScheme base16-* call s:base16_customize()
-  augroup END
+  "function! s:base16_customize() abort
+    "call Base16hi("LineNr", "", "", "", g:base16_cterm00, "", "")
+  "endfunction
+  "augroup on_change_colorschema
+    "autocmd!
+    "autocmd ColorScheme base16-* call s:base16_customize()
+  "augroup END
 
   " Load from the shell, if any.
-  if filereadable(expand("~/.vimrc_background"))
-    source ~/.vimrc_background
-  endif
+  "if filereadable(expand("~/.vimrc_background"))
+    "source ~/.vimrc_background
+  "endif
+  colorscheme base16-tomorrow-night
 endif
 
 " Vim-specifics (too old?)
