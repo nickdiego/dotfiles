@@ -52,3 +52,5 @@
 	gpgsign = true
 [gpg]
 	format = ssh
+[oh-my-zsh]
+	hide-dirty = 0

@@ -4,26 +4,26 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="fino"
-ZSH_THEME="miloshadzic"
-ZSH_THEME="gozilla"
-ZSH_THEME="robbyrussell"
-ZSH_THEME="nickdiego"
-ZSH_THEME="minimal"
+FAV_THEMES=(
+  'gallifrey'
+  'fishy'
+  'philips'
+  'clean'
+  'half-life'
+  'af-magic'
+)
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
 # looking in ~/.oh-my-zsh/themes/
 # An empty array have no effect
-ZSH_THEME_RANDOM_CANDIDATES=(
-    "minimal" "robbyrussell" "fino" "skaro"
-    "zhann" "miloshadzic" "jbergantine"
-    "half-life" "gozilla" "emotty" "af-magic" )
-#ZSH_THEME="gozilla"
+ZSH_THEME_RANDOM_CANDIDATES=( "${FAV_THEMES[@]}" )
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME=${FAV_THEMES[-1]}
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -53,7 +53,7 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+#DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -70,6 +70,7 @@ PROJECT_PATHS=(~/projects ~/sandbox)
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  git
   archlinux
   golang
   jump
