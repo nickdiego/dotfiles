@@ -85,6 +85,7 @@ plugins=(
   fzf-marks
   taskwarrior
   base16-shell
+  toolbox
 )
 
 export FZF_MARKS_JUMP='^p'
