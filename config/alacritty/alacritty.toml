@@ -1,6 +1,6 @@
 #theme = "Base16-Default-Dark"
 
-window.opacity=0.95
+#window.opacity=0.95
 
 [colors.bright]
 black = "#585858"
