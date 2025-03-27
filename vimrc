@@ -15,7 +15,6 @@ set noswapfile          " Disable swap files by default.
 set textwidth=72        " Default text width.
 set tabpagemax=15       " Set a max number of tabs
 set background=dark     " Prefer dark colors
-set browsedir=current   " Use current directory for file browser
 set hlsearch            " Highlight the last used search pattern
 set incsearch           " Do incremental searching
 set nojoinspaces        " Only one space are added when joining lines
