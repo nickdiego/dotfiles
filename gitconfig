@@ -55,3 +55,8 @@
 	format = ssh
 [oh-my-zsh]
 	hide-dirty = 0
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	side-by-side = true
