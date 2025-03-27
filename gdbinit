@@ -1,6 +1,7 @@
 set pagination 0
 set follow-fork-mode parent
 set breakpoint pending on
+set debuginfod enabled on
 
 define bsave
     shell rm -f ~/.gdb/brestore.txt
