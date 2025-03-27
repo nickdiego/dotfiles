@@ -34,6 +34,7 @@
   sp = show --patch-with-stat
   dp = diff --patch-with-stat
   ja = commit --amend --no-edit
+	brief-stats = "! git log --author=\"$1\" --pretty=tformat: --numstat --since=\"$2\" | awk '{ files += 1; add += $1; subs += $2 } END { printf \"%s files changed, %s insertions(+), %s deletions(-)\\n\", files, add, subs }' #"
 
 [credential]
 	helper = store
