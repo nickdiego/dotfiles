@@ -155,26 +155,29 @@ if &t_Co > 2 || has("gui_running")
   " Force 256 colors
   set t_Co=256
   set t_ut=
-  let base16colorspace=256
 
   " Switch syntax highlighting on
   syntax on
 
+  set termguicolors
+
   " Base16 customizations
-  "function! s:base16_customize() abort
-    "call Base16hi("LineNr", "", "", "", g:base16_cterm00, "", "")
-  "endfunction
-  "augroup on_change_colorschema
-    "autocmd!
-    "autocmd ColorScheme base16-* call s:base16_customize()
-  "augroup END
+  function! s:base16_customize() abort
+    call Base16hi("LineNr", "", "", "", g:base16_cterm00, "", "")
+  endfunction
+  augroup on_change_colorschema
+    autocmd!
+    autocmd ColorScheme base16-* call s:base16_customize()
+  augroup END
+
+endif
 
   " Load from the shell, if any.
-  "if filereadable(expand("~/.vimrc_background"))
-    "source ~/.vimrc_background
-  "endif
-  colorscheme base16-tomorrow-night
-endif
+  if exists('$BASE16_THEME')
+      \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
+    let base16colorspace=256
+    colorscheme base16-$BASE16_THEME
+  endif
 
 " Vim-specifics (too old?)
 if version >= 730 && version < 800
