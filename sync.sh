@@ -62,7 +62,8 @@ sync_dot_file() {
 install_vim_plugins() {
   # install the Vundle plugins configured in .vimrc
   msg "Installing vim plugins..."
-  nvim -u vim/plugins.vim +PlugInstall +qall
+  command vim -u vim/plugins.vim +PlugInstall +qall
+  command nvim -u vim/lua/config/lazy.lua '+Lazy sync' +qall
 }
 
 install_tmux_plugins() {
