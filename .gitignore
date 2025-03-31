@@ -15,4 +15,4 @@ bin/python-config
 xdg-config/ranger/history
 /cache
 /mutt/cache
-config/btop/btop.log
+/config/btop/btop.log
