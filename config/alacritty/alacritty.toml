@@ -31,20 +31,20 @@ background = "#181818"
 foreground = "#d8d8d8"
 
 [font]
-size = 9
+size = 10
 
 [font.bold]
-family = "Liberation Mono"
+family = "CaskaydiaCove Nerd Font"
 style = "Bold"
 
 [font.bold_italic]
-family = "Liberation Mono"
+family = "CaskaydiaCove Nerd Font"
 style = "Bold Italic"
 
 [font.italic]
-family = "Liberation Mono"
+family = "CaskaydiaCove Nerd Font"
 style = "Italic"
 
 [font.normal]
-family = "Liberation Mono"
+family = "CaskaydiaCove Nerd Font"
 style = "Regular"
