@@ -15,7 +15,8 @@ return {
 
           -- Fixups for base16 theme issues. TODO: Submit upstream.
           local t0 = vim.g.base16_cterm00
-          vim.cmd('call Base16hi("LineNr", "", "", "", ' .. t0 .. ', "", "")')
+          local g0 = vim.g.base16_gui00
+          vim.cmd('call Base16hi("LineNr", "", "' .. g0 .. '", "", "' ..t0 .. '", "", "")')
           vim.cmd('call Base16hi("PmenuSel", "", "", "", "", "none", "")')
         end
       end
