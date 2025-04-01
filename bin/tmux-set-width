@@ -1,0 +1,23 @@
+#!/bin/env bash
+# vim: set sw=2 et ft=sh
+
+set -e
+
+prog=$(basename $0)
+
+# TODO(nickdiego) : generalize to work with height too?
+
+if [ $# -lt 1 ] || [[ "$proportion" =~ ^[0-9]+$ ]]; then
+  echo "Usage: $prog <proportion-width>" >&2
+  echo -e "\nExample '$prog 3' will resize current" \
+          "panel to be 1/3 of total window size" >&2
+  exit 1
+fi
+
+proportion=$1
+percent=$((100 / proportion))
+window_width=$(tmux display-message -p '#{window_width}')
+target_width=$((window_width * percent / 100))
+
+tmux resize-pane -x "$target_width"
+
