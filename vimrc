@@ -27,6 +27,19 @@ set foldlevel=100       " Do not autofold anything
 set foldopen-=search    " Do not open folds when you search into them
 set foldopen-=undo      " Do not open folds when you undo stuff
 
+" Load plugins
+source ~/.vim/plugins.vim
+
+" Enconding
+scriptencoding utf-8
+set encoding=utf-8
+
+if has('persistent_undo')
+  set undofile                " Enable persistent undo history
+  set undolevels=1000         " Max number of changes that can be undone
+  set undoreload=10000        " Max number lines to save for undo on a buffer reload
+endif
+
 " Basic key bindings
 let mapleader=","
 " Indent (keeping in visual mode)
@@ -44,11 +57,15 @@ nnoremap <leader>sw :w !sudo tee %<CR>
 " F5 to reload file from disk
 nnoremap <silent><F5> :e!<CR>
 
+if filereadable(expand("~/.vim/local.vim"))
+  source ~/.vim/local.vim
+endif
+
 " Load plugins
-if has('nvim')
-  lua require('config.lazy')
-else
+if !has('nvim') || exists("g:use_legacy_config")
   source ~/.vim/plugins.vim
+else
+  lua require('config.lazy')
 endif
 
 " Enconding
@@ -222,19 +239,6 @@ endif
 nnoremap <silent> <C-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <C-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
-  " Alt+<directional> to switch among splits
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
-if !g:disable_arrow_keys
-  nnoremap <silent> <A-left> :TmuxNavigateLeft<cr>
-  nnoremap <silent> <A-down> :TmuxNavigateDown<cr>
-  nnoremap <silent> <A-up> :TmuxNavigateUp<cr>
-  nnoremap <silent> <A-right> :TmuxNavigateRight<cr>
-endif
-
 augroup gn_ft
   au!
   autocmd BufNewFile,BufRead *.gn set filetype=gn syntax=python
@@ -242,7 +246,9 @@ augroup gn_ft
 augroup END
 
 " LSP and completion
-if has('nvim')
+if !has('nvim') || exists("g:use_legacy_config")
+  source ~/.vim/legacy.vim
+else
   lua require('config.lsp')
   lua require('config.completion')
 endif

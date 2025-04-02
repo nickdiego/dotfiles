@@ -11,6 +11,7 @@ Plug 'vim-scripts/argtextobj.vim'
 Plug 'vim-scripts/sessionman.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -40,5 +41,15 @@ Plug 'tpope/vim-fugitive'
 Plug 'rhysd/committia.vim'
 Plug 'chromium/vim-codesearch'
 Plug 'scrooloose/nerdcommenter'
+
+if has("nvim")
+  Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': '/bin/bash install.sh'
+        \ }
+  Plug 'ervandew/supertab'
+  Plug 'shougo/neoinclude.vim'
+  Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+endif
 
 call plug#end()

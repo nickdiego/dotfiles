@@ -17,3 +17,4 @@ xdg-config/ranger/history
 /mutt/cache
 /config/btop/btop.log
 /config/nvim/lazy-lock.json
+/vim/local.vim

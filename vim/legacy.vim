@@ -1,7 +1,36 @@
 " TODO(nickdiego): remove onve fully migrated to built-in LSP.
 
-if exists('g:lsp_plugin') && g:lsp_plugin == "LanguageClient" && has('nvim')
+" Base16 customizations
+function! s:base16_customize() abort
+  call Base16hi("LineNr", "", g:base16_gui00, "", g:base16_cterm00, "", "")
+  call Base16hi("PmenuSel", "", "", "", "", "none", "")
+endfunction
+augroup on_change_colorschema
+  autocmd!
+  autocmd ColorScheme base16-* call s:base16_customize()
+augroup END
 
+" Load from the shell, if any.
+if exists('$BASE16_THEME')
+    \ && (!exists('g:colors_name') ||
+    \     g:colors_name != 'base16-$BASE16_THEME')
+  let base16colorspace=256
+  colorscheme base16-$BASE16_THEME
+endif
+
+" Alt+<directional> to switch among splits
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
+
+" cpp-enhanced-hightlight options:
+let g:cpp_concepts_highlight = 1
+let g:cpp_experimental_template_highlight = 1
+
+" neovim-only legacy settings:
+if has('nvim')
   let g:lsp_pyls_log_path = expand('~/.lsp/pyls.log')
   let g:lsp_gols_log_path = expand('~/.lsp/go-langserver.log')
 
@@ -56,5 +85,10 @@ if exists('g:lsp_plugin') && g:lsp_plugin == "LanguageClient" && has('nvim')
     autocmd FileType cpp,c,python,java,gn,sh call SetupLSP()
     autocmd FileType cpp,c,python,java,gn,sh LanguageClientStart
   augroup END
+
+" Supertab
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
 endif
 
