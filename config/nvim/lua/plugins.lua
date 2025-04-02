@@ -41,6 +41,7 @@ return {
   { 'tpope/vim-fugitive' },
   { 'rhysd/committia.vim' },
   { 'chromium/vim-codesearch' },
+  { 'neovim/nvim-lspconfig' },
 
   -- completion
   { 'hrsh7th/nvim-cmp' },
