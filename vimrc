@@ -262,8 +262,11 @@ nnoremap <leader>h :Helptags<CR>
 
 " With fzf open, make Ctrl+P and Ctrl-N navigate throught the history
 let g:fzf_history_dir = '~/.local/share/fzf-history'
-let g:fzf_layout = { 'down': '~20%' }
-
+let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.5 } }
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-o': 'split',
+  \ 'ctrl-e': 'vsplit' }
 " Customize fzf colors to match current color scheme
 let g:fzf_colors = {
       \ 'fg':      ['fg', 'Normal'],
