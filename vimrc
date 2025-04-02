@@ -134,16 +134,6 @@ if has('statusline')
   set statusline+=%=%-14.(%l,%c%V%)\ %p%%     " Right aligned file nav info
 endif
 
-" from http://vim.wikia.com/wiki/Highlight_unwanted_spaces
-if has("autocmd")
-  highlight ExtraWhitespace ctermbg=red guibg=red
-  match ExtraWhitespace /\s\+$/
-  autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-  autocmd BufWinLeave * call clearmatches()
-endif
-
 if has("autocmd")
   autocmd BufNewFile,BufRead *.aidl  set filetype=java
   autocmd BufNewFile,BufRead *.qbs  set filetype=qml
