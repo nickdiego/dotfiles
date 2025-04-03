@@ -18,3 +18,4 @@ xdg-config/ranger/history
 /config/btop/btop.log
 /config/nvim/lazy-lock.json
 /vim/local.vim
+/config/nvim/test.lua

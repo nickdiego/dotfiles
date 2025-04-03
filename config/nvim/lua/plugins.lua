@@ -25,6 +25,8 @@ return {
 
   -- general
   { 'vim-scripts/sessionman.vim' },
+
+  -- navigation
   { 'christoomey/vim-tmux-navigator' },
   {
     'junegunn/fzf',
@@ -32,6 +34,15 @@ return {
     dependencies = { 'junegunn/fzf.vim' }
   },
   { 'junegunn/fzf.vim' },
+  {
+    'nvim-telescope/telescope.nvim',
+    branch = 'master',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  },
+  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+  { 'nvim-telescope/telescope-ui-select.nvim' },
+
+
 
   -- status line
   { 'vim-airline/vim-airline' },
@@ -42,6 +53,27 @@ return {
   { 'rhysd/committia.vim' },
   { 'chromium/vim-codesearch' },
   { 'neovim/nvim-lspconfig' },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      require 'nvim-treesitter.configs'.setup {
+        ensure_installed = { "lua", "vim", "python", "c", "cpp", "json", "html", "css" },
+        sync_install = false,
+        auto_install = true,
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false,
+        },
+        indent = {
+          enable = true
+        },
+        fold = {
+          enable = true,
+        },
+      }
+    end
+  },
 
   -- completion
   { 'hrsh7th/nvim-cmp' },

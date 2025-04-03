@@ -241,41 +241,8 @@ if !has('nvim') || exists("g:use_legacy_config")
 else
   lua require('config.lsp')
   lua require('config.completion')
+  lua require('config.telescope')
 endif
-
-" FZF configs
-noremap <C-p> :GFiles<CR>
-nnoremap <leader>f :GFiles<CR>
-nnoremap <leader>o :History<CR>
-nnoremap <leader>c :Commits<CR>
-nnoremap <leader>h :Helptags<CR>
-
-" With fzf open, make Ctrl+P and Ctrl-N navigate throught the history
-let g:fzf_history_dir = '~/.local/share/fzf-history'
-let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.5 } }
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-o': 'split',
-  \ 'ctrl-e': 'vsplit' }
-" Customize fzf colors to match current color scheme
-let g:fzf_colors = {
-      \ 'fg':      ['fg', 'Normal'],
-      \ 'bg':      ['bg', 'Normal'],
-      \ 'hl':      ['fg', 'Comment'],
-      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-      \ 'hl+':     ['fg', 'Statement'],
-      \ 'info':    ['fg', 'PreProc'],
-      \ 'border':  ['fg', 'Ignore'],
-      \ 'prompt':  ['fg', 'Conditional'],
-      \ 'pointer': ['fg', 'Exception'],
-      \ 'marker':  ['fg', 'Keyword'],
-      \ 'spinner': ['fg', 'Label'],
-      \ 'header':  ['fg', 'Comment'] }
-
-" Auto-hide statusline
-autocmd! FileType fzf set laststatus=0 noshowmode noruler
-      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 " Alt+<directional> to switch among splits
 let g:tmux_navigator_no_mappings = 1
