@@ -37,4 +37,18 @@ lspconfig.clangd.setup {
   on_attach = on_attach,
 }
 
-
+lspconfig.lua_ls.setup {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' },
+      },
+      workspace = {
+        -- Add Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = { enable = false, },
+    },
+  },
+  on_attach = on_attach,
+}
