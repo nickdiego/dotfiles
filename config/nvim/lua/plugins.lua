@@ -4,7 +4,7 @@ return {
   -- colorschemes
   {
     'chriskempson/base16-vim',
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       if vim.env.BASE16_THEME then
@@ -16,7 +16,7 @@ return {
           -- Fixups for base16 theme issues. TODO: Submit upstream.
           local t0 = vim.g.base16_cterm00
           local g0 = vim.g.base16_gui00
-          vim.cmd('call Base16hi("LineNr", "", "' .. g0 .. '", "", "' ..t0 .. '", "", "")')
+          vim.cmd('call Base16hi("LineNr", "", "' .. g0 .. '", "", "' .. t0 .. '", "", "")')
           vim.cmd('call Base16hi("PmenuSel", "", "", "", "", "none", "")')
         end
       end
@@ -27,7 +27,7 @@ return {
   { 'vim-scripts/sessionman.vim' },
   { 'christoomey/vim-tmux-navigator' },
   {
-   'junegunn/fzf',
+    'junegunn/fzf',
     build = ':fzf#install()',
     dependencies = { 'junegunn/fzf.vim' }
   },
