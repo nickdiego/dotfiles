@@ -18,13 +18,6 @@ if exists('$BASE16_THEME')
   colorscheme base16-$BASE16_THEME
 endif
 
-" Alt+<directional> to switch among splits
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
-
 " cpp-enhanced-hightlight options:
 let g:cpp_concepts_highlight = 1
 let g:cpp_experimental_template_highlight = 1

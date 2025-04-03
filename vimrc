@@ -276,3 +276,10 @@ let g:fzf_colors = {
 " Auto-hide statusline
 autocmd! FileType fzf set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+" Alt+<directional> to switch among splits
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
