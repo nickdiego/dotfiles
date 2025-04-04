@@ -37,9 +37,9 @@ local on_attach = function(_, bufnr)
   end, opts { desc = 'LSP incoming calls (telescope)' })
 
   -- Ctrl+L to list document symbols
-  vim.keymap.set('n', '<C-l>',
-    telescope_builtin.lsp_document_symbols,
-    opts { desc = 'LSP Symbols (telescope)' })
+  vim.keymap.set('n', '<C-l>', function()
+    telescope_builtin.lsp_document_symbols({ symbol_width = 0.8 })
+    end, opts { desc = 'LSP Symbols (telescope)' })
 
   -- Other useful LSP keybindings.
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts {})

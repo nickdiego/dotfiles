@@ -2,6 +2,7 @@
 
 local telescope = require('telescope')
 local builtin = require('telescope.builtin')
+local actions = require('telescope.actions')
 
 telescope.setup {
   defaults = {
@@ -21,12 +22,7 @@ telescope.setup {
     filesize_limit = 0.1,
   },
   mappings = {
-    i = {
-      ['<C-h>'] = 'which_key',
-      ['<C-p>'] = 'cycle_history_previous',
-      ['<C-j>'] = 'which_key',
-      ['<C-k>'] = 'which_key',
-    }
+    i = { ['<C-h>'] = actions.which_key }
   },
   extensions = {
     fzf = {
@@ -44,7 +40,25 @@ vim.keymap.set({ 'n', 'i' }, '<C-p>', builtin.git_files,
     silent = true,
     desc = 'Git files (telescope)'
   })
-vim.keymap.set({ 'n', 'i' }, '<C-k>', builtin.keymaps,
+vim.keymap.set({ 'n', 'i' }, '<C-A-p>', builtin.resume,
+  {
+    noremap = true,
+    silent = true,
+    desc = 'Latest picker (telescope)'
+  })
+vim.keymap.set({ 'n', 'i' }, '<C-A-o>', function()
+    builtin.buffers({
+      sort_mru = true,
+      ignore_current_buffer = true,
+    })
+    vim.api.nvim_input('<Esc>')
+  end,
+  {
+    noremap = true,
+    silent = true,
+    desc = 'Vim buffers (telescope)'
+  })
+vim.keymap.set({ 'n', 'i' }, '<C-A-k>', builtin.keymaps,
   {
     noremap = true,
     silent = true,
