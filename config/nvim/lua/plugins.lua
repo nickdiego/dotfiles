@@ -1,5 +1,7 @@
 -- vim: et ts=2 sw=2 ft=lua
 
+vim.g.mapleader = ','
+
 return {
   -- colorschemes
   {
