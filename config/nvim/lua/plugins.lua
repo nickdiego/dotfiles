@@ -51,6 +51,7 @@ return {
   { 'vim-airline/vim-airline-themes' },
 
   -- devtools
+  { 'scrooloose/nerdcommenter' },
   { 'tpope/vim-fugitive' },
   { 'rhysd/committia.vim' },
   { 'chromium/vim-codesearch' },
