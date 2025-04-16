@@ -19,3 +19,4 @@ xdg-config/ranger/history
 /config/nvim/lazy-lock.json
 /vim/local.vim
 /config/nvim/test.lua
+/gdb/brestore.*

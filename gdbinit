@@ -1,3 +1,7 @@
+set history filename ~/.gdb_history
+set history save on
+set history size unlimited
+
 set pagination 0
 set follow-fork-mode parent
 set breakpoint pending on
@@ -29,4 +33,5 @@ end
 #source ~/.gdb/drowser.gdb
 #source ~/.gdb/diagnosis.gdb
 #source ~/.gdb/knockout_cc.gdb
-source ~/.gdb/ollvm.gdb
+#source ~/.gdb/ollvm.gdb
+source ~/.gdb/chromium.gdb
