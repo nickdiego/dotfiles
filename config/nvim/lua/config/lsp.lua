@@ -77,3 +77,9 @@ lspconfig.lua_ls.setup {
   },
   on_attach = on_attach,
 }
+
+-- Diagnostic configs
+vim.diagnostic.config({
+  signs = false,
+})
+
