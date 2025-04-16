@@ -49,8 +49,9 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts {})
   vim.keymap.set('n', 'H', vim.lsp.buf.signature_help, opts {})
   vim.keymap.set('n', 'Rn', vim.lsp.buf.rename, opts {})
-  vim.keymap.set('n', 'Fm', function() vim.lsp.buf.format { async = true } end, opts {})
-  vim.keymap.set('n', 'Od', vim.diagnostic.open_float, opts {})
+  vim.keymap.set({'n', 'v'}, 'Fm', function() vim.lsp.buf.format { async = true } end, opts {})
+  vim.keymap.set({'n', 'v'}, 'gq', function() vim.lsp.buf.format { async = true } end, opts {})
+  vim.keymap.set('n', 'Od', vim.diagnostic.open_float, opts { desc = 'LSP diagnostics' })
 end
 
 -- LSP configs
