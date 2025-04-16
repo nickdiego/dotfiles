@@ -42,8 +42,6 @@
 [diff]
 	submodule = log
 	noprefix = false
-[http]
-	cookiefile = /home/nick/.gitcookies
 [pull]
 	rebase = true
 [merge]
@@ -61,3 +59,6 @@
 [delta]
 	navigate = true
 	side-by-side = true
+[credential "https://chromium.googlesource.com"]
+	helper = 
+	helper = luci
