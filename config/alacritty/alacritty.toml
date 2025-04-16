@@ -1,6 +1,8 @@
 #theme = "Base16-Default-Dark"
 
-#window.opacity=0.95
+[window]
+decorations = "none"
+#opacity=0.95
 
 [colors.bright]
 black = "#585858"
@@ -31,7 +33,7 @@ background = "#181818"
 foreground = "#d8d8d8"
 
 [font]
-size = 11
+size = 10
 
 [font.bold]
 family = "CaskaydiaCove Nerd Font"
