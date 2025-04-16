@@ -1,5 +1,8 @@
 " TODO(nickdiego): remove onve fully migrated to built-in LSP.
 
+set autoindent          " Copy indent from current line
+set smartindent         " Smart autoindenting when starting a new line
+
 " Base16 customizations
 function! s:base16_customize() abort
   call Base16hi("LineNr", "", g:base16_gui00, "", g:base16_cterm00, "", "")

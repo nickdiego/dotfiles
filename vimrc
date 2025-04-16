@@ -9,8 +9,6 @@ set nowrap              " Do not wrap text
 set splitbelow          " Open hsplits below
 set splitright          " Open vsplits at right
 set scrolloff=999       " Keep cursorline mostly in the middle of the screen
-set autoindent          " Copy indent from current line
-set smartindent         " Smart autoindenting when starting a new line
 set noswapfile          " Disable swap files by default.
 set textwidth=72        " Default text width.
 set tabpagemax=15       " Set a max number of tabs
@@ -27,8 +25,8 @@ set foldlevel=100       " Do not autofold anything
 set foldopen-=search    " Do not open folds when you search into them
 set foldopen-=undo      " Do not open folds when you undo stuff
 
-" Load plugins
-source ~/.vim/plugins.vim
+set et
+set sw=2
 
 " Enconding
 scriptencoding utf-8
@@ -113,7 +111,7 @@ if g:use_space_instead_of_tabs
 endif
 
 if !g:default_tabsize
-  let g:default_tabsize = 4
+  let g:default_tabsize = 2
 endif
 
 " number of spaces to use for each step of indent
