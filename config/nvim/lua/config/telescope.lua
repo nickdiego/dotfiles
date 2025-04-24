@@ -65,4 +65,11 @@ vim.keymap.set({ 'n', 'i' }, '<C-A-k>', builtin.keymaps,
     desc = 'List keybindings (telescope)'
   })
 
+vim.keymap.set({ 'n', 'i' }, '<C-A-f>', builtin.live_grep,
+  {
+    noremap = true,
+    silent = true,
+    desc = 'Live Grep (telescope)'
+  })
+
 telescope.load_extension('fzf')
