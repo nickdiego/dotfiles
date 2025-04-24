@@ -82,6 +82,10 @@ lspconfig.bashls.setup {
   on_attach = on_attach,
 }
 
+lspconfig.mesonlsp.setup {
+  on_attach = on_attach,
+}
+
 -- Diagnostic configs
 vim.diagnostic.config({
   signs = false,
