@@ -1,7 +1,7 @@
 #theme = "Base16-Default-Dark"
 
 [window]
-decorations = "none"
+#decorations = "none"
 #opacity=0.95
 
 [colors.bright]
