@@ -62,3 +62,9 @@
 [credential "https://chromium.googlesource.com"]
 	helper = 
 	helper = luci
+[url "https://invent.kde.org/"]
+	insteadOf = kde:
+[url "ssh://git@invent.kde.org/"]
+	pushInsteadOf = kde:
+[safe]
+	directory = /usr/share/kde-builder
