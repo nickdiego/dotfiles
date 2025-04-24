@@ -54,7 +54,6 @@ return {
   { 'scrooloose/nerdcommenter' },
   { 'tpope/vim-fugitive' },
   { 'rhysd/committia.vim' },
-  { 'chromium/vim-codesearch' },
   {
     'nickdiego/nvim-lspconfig',
     branch = 'gnls',
