@@ -55,7 +55,10 @@ return {
   { 'tpope/vim-fugitive' },
   { 'rhysd/committia.vim' },
   { 'chromium/vim-codesearch' },
-  { 'nickdiego/nvim-lspconfig' },
+  {
+    'nickdiego/nvim-lspconfig',
+    branch = 'gnls',
+  },
 
   -- completion
   { 'hrsh7th/nvim-cmp',

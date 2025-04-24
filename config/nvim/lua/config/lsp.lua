@@ -86,9 +86,10 @@ lspconfig.mesonlsp.setup {
   on_attach = on_attach,
 }
 
-lspconfig.gnls.setup {
+vim.lsp.config('gnls', {
   on_attach = on_attach,
-}
+})
+vim.lsp.enable('gnls')
 
 -- Diagnostic configs
 vim.diagnostic.config({
