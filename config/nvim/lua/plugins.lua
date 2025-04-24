@@ -58,11 +58,24 @@ return {
   { 'neovim/nvim-lspconfig' },
 
   -- completion
-  { 'hrsh7th/nvim-cmp' },
-  { 'hrsh7th/cmp-buffer' },
-  { 'hrsh7th/cmp-path' },
-  { 'hrsh7th/cmp-nvim-lsp' },
-  { 'hrsh7th/cmp-cmdline' },
+  { 'hrsh7th/nvim-cmp',
+    dependencies = {
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-nvim-lsp',
+      -- cmp-cmdline leads to lots of random symbols when coding in
+      -- C++ with clangd LSP. Disable for now.
+      --'hrsh7th/cmp-cmdline',
+    },
+    config = function ()
+      local cmp = require('cmp')
+      cmp.setup({
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp' }
+        })
+      })
+    end
+  },
   { 'L3MON4D3/LuaSnip' },
   { 'saadparwaiz1/cmp_luasnip' },
   { 'onsails/lspkind.nvim' },
