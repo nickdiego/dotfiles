@@ -13,9 +13,11 @@ telescope.setup {
       flip_columns = 150,
     },
     path_display = {
-      --'shorten',
+      'shorten',
+      shorten = { len = 3, exclude = {-2, -1, 0, 1, 2} },
     },
     winblend = 10,
+    dynamic_preview_title = true,
   },
   preview = {
     -- Disable preview highlight for files >1MB.
@@ -31,6 +33,15 @@ telescope.setup {
       override_file_sorter = true,
       case_mode = 'smart_case',
     },
+  },
+  entry_display = {
+    ['lsp_document_symbols'] = function(entry)
+      local filename = vim.fn.fnamemodify(entry.filename, ':t')
+      return {
+        { filename,   'TelescopeResultsTitle' },
+        { entry.name, 'TelescopeResultsKeyword' },
+      }
+    end,
   },
 }
 
