@@ -59,6 +59,15 @@ return {
       vim.opt.showtabline = 0
     end
   },
+  {
+    'mawkler/modicator.nvim',
+    dependencies = 'RRethy/base16-nvim',
+    opts = {
+      highlights = {
+        defaults = { bold = true }
+      }
+    }
+  },
 
   -- devtools
   { 'scrooloose/nerdcommenter' },
