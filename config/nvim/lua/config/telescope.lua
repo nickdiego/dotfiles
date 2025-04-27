@@ -13,7 +13,7 @@ telescope.setup {
       flip_columns = 150,
     },
     path_display = {
-      'shorten',
+      --'shorten',
     },
     winblend = 10,
   },
