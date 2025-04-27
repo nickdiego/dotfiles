@@ -5,21 +5,15 @@ vim.g.mapleader = ','
 return {
   -- colorschemes
   {
-    'chriskempson/base16-vim',
-    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
+    'RRethy/base16-nvim',
+    lazy = false,
+    priority = 1000,
+    config = function ()
       if vim.env.BASE16_THEME then
-        local t = vim.env.BASE16_THEME
-        if not vim.g.colors_name or vim.g.colors_name ~= 'base16-' .. t then
-          vim.g.base16colorspace = 256
-          vim.cmd('colorscheme base16-' .. vim.env.BASE16_THEME)
-
-          -- Fixups for base16 theme issues. TODO: Submit upstream.
-          local t0 = vim.g.base16_cterm00
-          local g0 = vim.g.base16_gui00
-          vim.cmd('call Base16hi("LineNr", "", "' .. g0 .. '", "", "' .. t0 .. '", "", "")')
-          vim.cmd('call Base16hi("PmenuSel", "", "", "", "", "none", "")')
+        local t = 'base16-' .. vim.env.BASE16_THEME
+        if not vim.g.colors_name or vim.g.colors_name ~= t then
+          vim.cmd([[let base16colorspace=256]])
+          vim.cmd('colorscheme ' .. t)
         end
       end
     end,
@@ -43,8 +37,6 @@ return {
   },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   { 'nvim-telescope/telescope-ui-select.nvim' },
-
-
 
   -- status line
   { 'vim-airline/vim-airline' },
