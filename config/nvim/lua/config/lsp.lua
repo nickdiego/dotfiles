@@ -86,10 +86,16 @@ lspconfig.mesonlsp.setup {
   on_attach = on_attach,
 }
 
-vim.lsp.config('gnls', {
+local common_lsp_config = {
   on_attach = on_attach,
-})
+}
+
+vim.lsp.config('gnls', common_lsp_config)
+vim.lsp.config('pyright', common_lsp_config)
+
 vim.lsp.enable('gnls')
+vim.lsp.enable('pyright')
+
 
 -- Diagnostic configs
 vim.diagnostic.config({
