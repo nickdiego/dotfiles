@@ -39,8 +39,11 @@ return {
   { 'nvim-telescope/telescope-ui-select.nvim' },
 
   -- status line
-  { 'vim-airline/vim-airline' },
-  { 'vim-airline/vim-airline-themes' },
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+  },
+
 
   -- devtools
   { 'scrooloose/nerdcommenter' },

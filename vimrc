@@ -205,17 +205,6 @@ if exists(':tnoremap')
     tnoremap <Esc> <C-\><C-n>
 endif
 
-" Airline configs
-let g:airline_section_b = 0
-let g:airline_section_y = 0
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#buffer_nr_show = 0
-let g:airline#extensions#wordcount#enabled = 0
-let g:airline_powerline_fonts = 0
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='base16'
-
 " Navigation-related keybindings
 nnoremap <silent> <C-j> :tabprevious<CR>
 nnoremap <silent> <C-k> :tabnext<CR>
@@ -234,6 +223,7 @@ else
   lua require('config.lsp')
   lua require('config.completion')
   lua require('config.telescope')
+  lua require('config.statusline')
 endif
 
 " Alt+<directional> to switch among splits
