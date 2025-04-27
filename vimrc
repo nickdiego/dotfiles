@@ -227,12 +227,6 @@ endif
 nnoremap <silent> <C-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <C-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
-augroup gn_ft
-  au!
-  autocmd BufNewFile,BufRead *.gn set filetype=gn syntax=python
-  autocmd BufNewFile,BufRead *.gni set filetype=gn syntax=python
-augroup END
-
 " LSP and completion
 if !has('nvim') || exists("g:use_legacy_config")
   source ~/.vim/legacy.vim

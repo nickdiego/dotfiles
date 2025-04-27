@@ -81,4 +81,32 @@ return {
   { 'L3MON4D3/LuaSnip' },
   { 'saadparwaiz1/cmp_luasnip' },
   { 'onsails/lspkind.nvim' },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    version = '*',
+    build = ':TSUpdate',
+    config = function ()
+      require('nvim-treesitter.configs').setup {
+        sync_install = false,
+        auto_install = false,
+        ignore_install = { "javascript" },
+        ensure_installed = { "cpp", "c", "bash", "lua", "vim", "gn", },
+        modules = { "highlight", "fold", "locals", "textobjects", "incremental_selection" },
+        highlight = { enable = true },
+        locals = { enable = true },
+        fold = { enable = true },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = '<c-space>',
+            node_incremental = '<c-space>',
+            scope_incremental = '<c-s>',
+            node_decremental = '<bs>',
+          },
+        },
+      }
+      vim.wo.foldmethod = 'expr'
+      vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    end
+  },
 }
