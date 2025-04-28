@@ -99,12 +99,6 @@ if g:disable_arrow_keys
   noremap <right> <nop>
 endif
 
-augroup numbertoggle  " Enable relativenumber only in non-insert mode
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
-
 autocmd FileType Makefile set g:use_space_instead_of_tabs = 0
 if g:use_space_instead_of_tabs
   set expandtab                    " tabs are spaces, not tabs"
@@ -168,16 +162,6 @@ if &t_Co > 2 || has("gui_running")
   syntax on
 endif
 
-" Base16 customizations
-function! s:base16_customize() abort
-  call Base16hi("LineNr", "", "", "", g:base16_cterm00, "", "")
-  call Base16hi("PMenuSel", "", "", "", "", , "none", "")
-endfunction
-augroup on_change_colorschema
-  autocmd!
-  autocmd ColorScheme base16-* call s:base16_customize()
-augroup END
-
 " Vim-specifics (too old?)
 if version >= 730 && version < 800
   if has("autocmd")
@@ -220,6 +204,7 @@ nnoremap <silent> <C-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 if !has('nvim') || exists("g:use_legacy_config")
   source ~/.vim/legacy.vim
 else
+  lua require('config.basics')
   lua require('config.lsp')
   lua require('config.completion')
   lua require('config.telescope')

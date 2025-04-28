@@ -21,6 +21,12 @@ if exists('$BASE16_THEME')
   colorscheme base16-$BASE16_THEME
 endif
 
+augroup numbertoggle  " Enable relativenumber only in non-insert mode
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 " FZF configs
 noremap <C-p> :GFiles<CR>
 nnoremap <leader>f :GFiles<CR>
