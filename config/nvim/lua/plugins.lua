@@ -78,6 +78,12 @@ return {
     'nickdiego/nvim-lspconfig',
     branch = 'gnls',
   },
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = require('config.snacks').options(),
+  },
 
   -- completion
   {
