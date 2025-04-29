@@ -49,10 +49,11 @@ return {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = 'make'
     },
-    config = function()
+    config = function ()
       local dropbar_api = require('dropbar.api')
       vim.keymap.set('n', '<Leader>;', dropbar_api.pick, { desc = 'Pick symbols in winbar' })
-      vim.keymap.set('n', '[;', dropbar_api.goto_context_start, { desc = 'Go to start of current context' })
+      vim.keymap.set('n', '[;', dropbar_api.goto_context_start,
+        { desc = 'Go to start of current context' })
       vim.keymap.set('n', '];', dropbar_api.select_next_context, { desc = 'Select next context' })
 
       -- Disable standard tabline to save some vertical space.
@@ -79,7 +80,8 @@ return {
   },
 
   -- completion
-  { 'hrsh7th/nvim-cmp',
+  {
+    'hrsh7th/nvim-cmp',
     dependencies = {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
