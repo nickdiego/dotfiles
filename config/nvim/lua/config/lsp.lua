@@ -52,7 +52,7 @@ local on_attach = function(_, bufnr)
 
   -- Other useful LSP keybindings.
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts {})
-  vim.keymap.set('n', 'H', vim.lsp.buf.signature_help, opts {})
+  vim.keymap.set('n', '<C-h>', vim.lsp.buf.signature_help, opts {})
   vim.keymap.set('n', 'Rn', vim.lsp.buf.rename, opts {})
   vim.keymap.set({'n', 'v'}, 'Fm', function() vim.lsp.buf.format { async = true } end, opts {})
   vim.keymap.set({'n', 'v'}, 'gq', function() vim.lsp.buf.format { async = true } end, opts {})
