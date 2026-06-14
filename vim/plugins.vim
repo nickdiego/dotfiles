@@ -39,14 +39,14 @@ Plug 'kergoth/vim-bitbake'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/committia.vim'
-Plug 'chromium/vim-codesearch'
+"Plug 'chromium/vim-codesearch'
 Plug 'scrooloose/nerdcommenter'
 
 if has("nvim")
-  Plug 'autozimu/LanguageClient-neovim', {
-        \ 'branch': 'next',
-        \ 'do': '/bin/bash install.sh'
-        \ }
+  "Plug 'autozimu/LanguageClient-neovim', {
+        "\ 'branch': 'next',
+        "\ 'do': '/bin/bash install.sh'
+        "\ }
   Plug 'ervandew/supertab'
   Plug 'shougo/neoinclude.vim'
   Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
