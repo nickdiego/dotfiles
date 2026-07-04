@@ -156,16 +156,6 @@ vysor() {
   $electron_exe $electron_dir --app-id=gidgenkbbabolejbgbpnhbimgjbffefm
 }
 
-load_ssh_keys() {
-  if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-    eval $(ssh-agent) >/dev/null
-    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
-  fi
-  export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-  ssh-add -l || ssh-add ~/.ssh/id_ed25519
-} && \
-load_ssh_keys &>/dev/null
-
 _kbd_layouts=('br-abnt2' 'us-intl')
 kbd() {
   if !type setxkbmap &>/dev/null; then
@@ -235,5 +225,15 @@ fi
 if [ -r ~/.localenv ]; then
   source ~/.localenv
 fi
+
+# SSH_AUTH_SOCK changes on every reconnect, breaking persistent tmux sessions.
+# Keep a stable symlink and refresh it whenever SSH forwards a live socket
+# (covers both regular agent forwarding and luci-auth-ssh-helper for FIDO2 reauth).
+_fixed_sock="$HOME/.ssh/ssh_auth_sock"
+if [ -n "$SSH_AUTH_SOCK" ] && [ "$SSH_AUTH_SOCK" != "$_fixed_sock" ] && [ -S "$SSH_AUTH_SOCK" ]; then
+  ln -sf "$SSH_AUTH_SOCK" "$_fixed_sock"
+  export SSH_AUTH_SOCK="$_fixed_sock"
+fi
+unset _fixed_sock
 
 # ex: ts=2 sw=2 et filetype=sh
