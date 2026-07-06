@@ -74,10 +74,7 @@ return {
   { 'scrooloose/nerdcommenter' },
   { 'tpope/vim-fugitive' },
   { 'rhysd/committia.vim' },
-  {
-    'nickdiego/nvim-lspconfig',
-    branch = 'gnls',
-  },
+  { 'neovim/nvim-lspconfig' },
   {
     "folke/snacks.nvim",
     priority = 1000,
@@ -117,7 +114,7 @@ return {
       require('nvim-treesitter').install({ 'cpp', 'c', 'bash', 'lua', 'vim', 'gn' })
       -- Enable treesitter highlighting per filetype (replaces configs.setup highlight)
       vim.api.nvim_create_autocmd('FileType', {
-        pattern = { 'c', 'cpp', 'bash', 'lua', 'vim' },
+        pattern = { 'c', 'cpp', 'bash', 'lua', 'vim', 'gn' },
         callback = function() vim.treesitter.start() end,
       })
       vim.wo.foldmethod = 'expr'

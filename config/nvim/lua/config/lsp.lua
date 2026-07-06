@@ -1,8 +1,5 @@
 -- vim: et sw=2 tw=72 wrap
-local lspconfig = require('lspconfig')
 local telescope_builtin = require('telescope.builtin')
-
--- Keybindings
 
 local gotodef = function(c)
   local split_cmd = (c.vertical) and 'vsplit' or 'split'
@@ -27,8 +24,7 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', 'Ls<cr>', function() gotodef { vertical = false } end, opts {})
   vim.keymap.set('n', 'Lv<cr>', function() gotodef { vertical = true } end, opts {})
 
-  -- List references with <backspace> or incoming calls with
-  -- Alt+Backspace.
+  -- List references with <backspace> or incoming calls with Alt+Backspace.
   vim.keymap.set('n', '<backspace>', function()
     telescope_builtin.lsp_references()
   end, opts { desc = 'LSP references (telescope)' })
@@ -36,21 +32,19 @@ local on_attach = function(_, bufnr)
     telescope_builtin.lsp_incoming_calls()
   end, opts { desc = 'LSP incoming calls (telescope)' })
 
-  -- Ctrl+L to list document symbols
+  -- Ctrl+L to list document symbols, Ctrl+Alt+L for workspace symbols.
   vim.keymap.set('n', '<C-l>', function()
     telescope_builtin.lsp_document_symbols({
       symbol_width = 0.8,
       show_line = true,
     })
   end, opts { desc = 'LSP Symbols (telescope)' })
-  -- Ctrl+Alt+L to list workspace symbols
   vim.keymap.set('n', '<C-A-l>', function()
     telescope_builtin.lsp_dynamic_workspace_symbols({
       opts = { path_display = { 'shorten' } },
       fname_width = 0.6 })
   end, opts { desc = 'LSP wokspace Symbols (telescope)' })
 
-  -- Other useful LSP keybindings.
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts {})
   vim.keymap.set('n', '<C-h>', vim.lsp.buf.signature_help, opts {})
   vim.keymap.set('n', 'Rn', vim.lsp.buf.rename, opts {})
@@ -59,48 +53,39 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', 'Od', vim.diagnostic.open_float, opts { desc = 'LSP diagnostics' })
 end
 
--- LSP configs
-
-lspconfig.clangd.setup {
-  cmd = { "clangd", "--background-index" },
-  root_dir = lspconfig.util.root_pattern(".clangd", "compile_commands.json"),
+-- Global defaults applied to all servers
+vim.lsp.config('*', {
   on_attach = on_attach,
-}
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+})
 
-lspconfig.lua_ls.setup {
+-- Per-server overrides
+
+vim.lsp.config('clangd', {
+  cmd = { 'clangd', '--background-index' },
+  root_markers = { '.clangd', 'compile_commands.json' },
+})
+
+vim.lsp.config('lua_ls', {
   settings = {
     Lua = {
-      diagnostics = {
-        globals = { 'vim' },
-      },
+      diagnostics = { globals = { 'vim' } },
       workspace = {
-        -- Add Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
+        library = vim.api.nvim_get_runtime_file('', true),
       },
-      telemetry = { enable = false, },
+      telemetry = { enable = false },
     },
   },
-  on_attach = on_attach,
-}
+})
 
-lspconfig.bashls.setup {
-  on_attach = on_attach,
-}
-
-lspconfig.mesonlsp.setup {
-  on_attach = on_attach,
-}
-
-local common_lsp_config = {
-  on_attach = on_attach,
-}
-
-vim.lsp.config('gnls', common_lsp_config)
-vim.lsp.config('pyright', common_lsp_config)
-
-vim.lsp.enable('gnls')
-vim.lsp.enable('pyright')
-
+vim.lsp.enable({
+  'clangd',
+  'lua_ls',
+  'bashls',
+  'mesonlsp',
+  'pyright',
+  'gn_language_server',
+})
 
 -- Diagnostic configs
 vim.diagnostic.config({
