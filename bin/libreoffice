@@ -1,3 +1,0 @@
-#!/bin/bash
-
-GTK_THEME=:light exec /usr/bin/libreoffice $@

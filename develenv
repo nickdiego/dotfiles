@@ -51,11 +51,6 @@ if [ -d ~/.tools-env.d ]; then
   unset env_script
 fi
 
-# Source other helper scripts
-if [ -r ~/.bin/display-utils.sh ]; then
-  source ~/.bin/display-utils.sh
-fi
-
 if [ -r ~/.bin/graphical-session-helpers.sh ]; then
   source ~/.bin/graphical-session-helpers.sh
 fi
