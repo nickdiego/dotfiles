@@ -1,7 +1,7 @@
-set -l vim_sessions_dir $HOME/.vim/sessions
+set -g VIM_SESSIONS_DIR $HOME/.vim/sessions
 set -g VIM_SESSIONS
-if test -d $vim_sessions_dir
-    set VIM_SESSIONS (ls $vim_sessions_dir)
+if test -d $VIM_SESSIONS_DIR
+    set VIM_SESSIONS (ls $VIM_SESSIONS_DIR)
 end
 
 function v
@@ -13,7 +13,7 @@ function v
         echo "No session passed as argument nor \$curr_proj_vimsession set!" >&2
         return 1
     end
-    vim "+SessionOpen $session" "+set columns=$COLUMNS"
+    nvim -S "$VIM_SESSIONS_DIR/$session"
 end
 
 complete -c v -a "$VIM_SESSIONS" -f

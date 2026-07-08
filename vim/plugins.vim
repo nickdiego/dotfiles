@@ -8,7 +8,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'vim-scripts/argtextobj.vim'
-Plug 'vim-scripts/sessionman.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf'
