@@ -139,6 +139,14 @@ function reload() {
 
 # Key bindings
 
+# Alt-left/right: move by word
+# \e[1;3x = standard Alt modifier (Linux terminals)
+# \e[1;9x = Meta modifier used by iTerm2 "Option sends Esc+" for arrow keys
+bindkey '\e[1;3D' backward-word
+bindkey '\e[1;3C' forward-word
+bindkey '\e[1;9D' backward-word
+bindkey '\e[1;9C' forward-word
+
 # Alt-r reload zsh
 bindkey -s "^[r" '^uexec -l zsh^m'
 # Alt-t = run tig

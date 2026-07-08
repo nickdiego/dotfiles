@@ -27,6 +27,14 @@ set menu-complete-display-prefix On
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
 
+# alt-left/right nav through words
+# \e[1;3x = standard Alt modifier (Linux terminals)
+# \e[1;9x = Meta modifier used by iTerm2 "Option sends Esc+" for arrow keys
+"\e[1;3C": forward-word
+"\e[1;3D": backward-word
+"\e[1;9C": forward-word
+"\e[1;9D": backward-word
+
 # Useful keybindings
 # Alt-Enter = prepend 'sudo' in the current cmdline
 "\e\C-m": "\C-asudo \C-e"
