@@ -7,6 +7,7 @@ window-decoration = true
 resize-overlay = never
 
 shell-integration = detect
+shell-integration-features = ssh-env,ssh-terminfo
 
 # Quick terminal (Quake-style drop-down). global: requires Accessibility
 # permission on macOS; on Linux needs a compositor supporting wlr-layer-shell
