@@ -1,0 +1,9 @@
+font-family = Iosevka NFM
+font-size = 15
+
+macos-option-as-alt = true
+
+window-decoration = true
+resize-overlay = never
+
+shell-integration = detect
