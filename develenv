@@ -236,4 +236,15 @@ if [ -n "$SSH_AUTH_SOCK" ] && [ "$SSH_AUTH_SOCK" != "$_fixed_sock" ] && [ -S "$S
 fi
 unset _fixed_sock
 
+# source tools' env scripts.
+tools_dir=~/devtools
+if [ -d ~/.tools-env.d ]; then
+  for env_script in ~/.tools-env.d/*.sh; do
+    if [ -r $env_script ]; then
+      . $env_script
+    fi
+  done
+  unset env_script
+fi
+
 # ex: ts=2 sw=2 et filetype=sh

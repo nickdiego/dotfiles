@@ -1,3 +1,3 @@
 # vim: ts=4 sw=4 et filetype=sh
 
-export PATH="${PATH}:${HOME}/.cargo/bin"
+test -d "${HOME}/.cargo" && export PATH="${PATH}:${HOME}/.cargo/bin"
