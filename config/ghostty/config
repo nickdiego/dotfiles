@@ -7,3 +7,12 @@ window-decoration = true
 resize-overlay = never
 
 shell-integration = detect
+
+# Quick terminal (Quake-style drop-down). global: requires Accessibility
+# permission on macOS; on Linux needs a compositor supporting wlr-layer-shell
+# (KDE Plasma, wlroots compositors - not GNOME) plus the XDG Global Shortcuts
+# portal for the keybind itself to fire outside of Ghostty.
+keybind = global:cmd+backspace=toggle_quick_terminal
+quick-terminal-position = top
+quick-terminal-size = 40%
+quick-terminal-animation-duration = 0.2
