@@ -11,7 +11,7 @@ function fish_user_key_bindings
     bind \er 'exec fish -l'
     bind \et 'tig; commandline -f repaint'
     bind \e\r _prepend_sudo
-    bind \cH _insert_last_cmd_output
+    bind \e\; _insert_last_cmd_output
 
     # Alt-.: insert last arg of previous command (bash/readline's Esc-.).
     # Repeated presses cycle further back, like readline's does too.
