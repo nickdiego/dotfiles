@@ -1,3 +1,5 @@
+export PATH=~/.bin:~/.local/bin:$PATH
+
 # Make vim the default editor.
 export EDITOR='vim';
 
@@ -26,3 +28,9 @@ export LESS_TERMCAP_md="${yellow}";
 
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
+
+export MY_GPG_USERID='9B41EB2ECFFBFE525E383E015C041CA1FC08A584'
+
+export DOCKER_ID_USER="nickdiego"
+
+export BAT_PAGER="less -RF"

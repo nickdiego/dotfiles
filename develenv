@@ -6,44 +6,10 @@ export VISUAL=vim
 export MAIL=/var/spool/mail/nick
 export FIGNORE='.swp:.un~'
 
-export PATH=~/.bin:~/.local/bin:$PATH
-
 is_bash() { test -n "$BASH_VERSION"; }
 is_zsh() { test -n "$ZSH_VERSION"; }
 
-# Find/Grep src helper functions
-reset_findsrc_dir() {
-  export FINDSRC_DIR='.'
-}
-
-findsrc() {
-  DIR='.'
-  [ -z $FINDSRC_DIR ] && DIR=$PWD
-  find $DIR | grep "$1.c\$\|$1.cpp\$\|$1.h\$"
-}
-
-grepsrc() {
-  grep $@ `find -name "*[.cpp,.h]"`
-}
-
-reset_findsrc_dir
-
-# replacing something in several files
-#cat /tmp/xxxxx | xargs -I '{}' sed -i 's/RenderPartObject {IFRAME}/RenderIFrame {IFRAME}/g' {}
-
-alias remove_colors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"'
-alias pjson='json | pygmentize -l json'
-
-remove_from_path() {
-  local p d dirs
-  dirs=$@
-  for d in $dirs; do
-    p=`echo $PATH | sed -e "s,:$d,,"`
-    export PATH=$p
-  done
-}
-
-take-screenshot() {
+screenshot() {
   local outdir=${outdir:-$HOME/Pictures}
   local filename="${outfile:-screenshot-`date +'%b-%d-%y_%H:%M:%S'`}.jpg"
   local imgviewer="${imgviewer:-feh}"
@@ -58,173 +24,11 @@ get_external_ip() {
   curl -s http://whatismyip.org/ | grep -oP '(\d{1,3}\.){3}\d+'
 }
 
-alias image-dimensions="identify -format \"%i -> %w x %h\n\" $@"
-
-pac() {
-  local needs_sudo=0
-  for arg in $@; do
-    case $arg in
-      -S | -R | -Rs | -Syu)
-        needs_sudo=1
-        ;;
-    esac
-  done
-  if (( $needs_sudo )); then
-    sudo pacman $@
-  else
-    pacman $@
-  fi
-}
-
-check_shared_lib() {
-  ldd -r $1
-}
-
 trust_key() {
   local key=$1
   gpg --recv-key $key
   gpg --lsign $key
 }
-
-set-window-title() {
-  test -n $TMUX && tmux rename-window "$1"
-  which wmctrl >/dev/null || { echo "Error! 'wmctrl' not installed!";  return 1; }
-  DISPLAY=':0' wmctrl -r :ACTIVE: -N "$1"
-}
-
-find_in_jars() {
-  local keyword=$1
-  local dir=$2 i
-  for i in $(find ${dir} -name '*.jar'); do
-    echo "----- jarfile: $i"
-    unzip -l $i | grep --color $keyword
-  done
-} && alias fj='find_in_jars'
-
-## Projects confs
-
-test -f ~/.tools-env && . ~/.tools-env
-# Only working on bash for now :(
-if is_bash; then
-  test -f ~/.proj-commander/proj-commander.sh &&
-    source ~/.proj-commander/proj-commander.sh
-fi
-
-export ethernet='enp1s0'
-export wlan='wlp2s0'
-
-if [ -r $HOME/.vim/bundle/powerline/scripts/powerline-config ]; then
-  export PATH="$HOME/.vim/bundle/powerline/scripts:$PATH"
-fi
-
-# Base16 theme stuff
-_B16_FAVS=( solarflare snazzy oceanext atelier-lakeside onedark \
-            materia monokai darktooth tomorrow-night seti default-dark )
-if is_bash; then
-  _B16_SHELL_PATH="$HOME/.config/base16-shell"
-  _B16_THEME_NAME='default-dark'
-  _B16_THEME_SCRIPT="${_B16_SHELL_PATH}/scripts/base16-${_B16_THEME_NAME}.sh"
-  if [ -s $_B16_SHELL_PATH/profile_helper.sh ]; then
-    source $_B16_SHELL_PATH/profile_helper.sh
-    test -e "$HOME/.vimrc_background" || \
-      _base16 ${_B16_THEME_SCRIPT} ${_B16_THEME_NAME}
-  fi
-fi
-
-udpate_cups_ppd_file() {
-  echo "## Updating ppd files..."
-  sudo /usr/bin/cups-genppdupdate &&
-  echo "## Restarting cuspsd service..."
-  sudo systemctl restart org.cups.cupsd.service
-}
-
-config_static_tmp_ip() {
-  local dev=${1:-enp1s0}
-  local ip='192.168.0.10'
-  local mask='255.255.255.0'
-  echo "Setting $dev static ip (temporary) to ${ip}..."
-  sudo ifconfig $dev $ip netmask $mask
-}
-
-download_dir() {
-  wget -r --no-parent --reject "index.html*" $1
-}
-
-vysor() {
-  local electron_dir="$HOME/sandbox/electron-chrome"
-  local electron_exe="${electron_dir}/node_modules/electron/dist/electron"
-  $electron_exe $electron_dir --app-id=gidgenkbbabolejbgbpnhbimgjbffefm
-}
-
-_kbd_layouts=('br-abnt2' 'us-intl')
-kbd() {
-  if !type setxkbmap &>/dev/null; then
-    echo "Error! setxkbmap not installed (?)"
-    return 1
-  fi
-  if [ -z "$1" ]; then
-    x=$(setxkbmap -query)
-    layout=$(grep ^layout <<<$x | awk '{print $2}')
-    variant=$(grep ^variant <<<$x | awk '{print $2}')
-    echo "${layout}-${variant}"
-  else
-    local layout=${1%-*}
-    local variant=${1#*-}
-    setxkbmap $layout $variant && $0
-  fi
-} && \
-  if [ -n "$ZSH_VERSION" ]; then
-    compctl -k "(${_kbd_layouts[*]})" kbd
-  else
-    complete -W "${_kbd_layouts[*]}" kbd
-  fi
-
-if [ -r ~/.bin/display-utils.sh ]; then
-  source ~/.bin/display-utils.sh &&
-    alias arrange-displays=toggle-aux-display
-fi
-
-if [ -n "$SHOW_ARCHINFO" ] && type archey3 &>/dev/null; then
-  archey3
-fi
-
-set_hidpi_vars() {
-  export QT_AUTO_SCREEN_SCALE_FACTOR=1
-  export QT_ENABLE_HIGHDPI_SCALING=1
-  export GDK_SCALE=2
-  export GDK_DPI_SCALE=0.5
-}
-
-export MY_GPG_USERID='9B41EB2ECFFBFE525E383E015C041CA1FC08A584'
-export DOCKER_ID_USER="nickdiego"
-
-export BUILDMACHINE='192.168.1.110'
-
-# IME settings
-export IME="${IME:-}"
-
-case $IME in
-  ibus)
-    export GTK_IM_MODULE='ibus'
-    export XMODIFIERS='@im=ibus'
-    export QT_IM_MODULE='ibus'
-    ;;
-  uim)
-    export GTK_IM_MODULE='uim'
-    export XMODIFIERS='@im=uim'
-    export QT_IM_MODULE='uim'
-    ;;
-esac
-
-export BAT_PAGER="less -RF"
-
-if [ -r ~/.bin/graphical-session-helpers.sh ]; then
-  source ~/.bin/graphical-session-helpers.sh
-fi
-
-if [ -r ~/.localenv ]; then
-  source ~/.localenv
-fi
 
 # SSH_AUTH_SOCK changes on every reconnect, breaking persistent tmux sessions.
 # Keep a stable symlink and refresh it whenever SSH forwards a live socket
@@ -245,6 +49,19 @@ if [ -d ~/.tools-env.d ]; then
     fi
   done
   unset env_script
+fi
+
+# Source other helper scripts
+if [ -r ~/.bin/display-utils.sh ]; then
+  source ~/.bin/display-utils.sh
+fi
+
+if [ -r ~/.bin/graphical-session-helpers.sh ]; then
+  source ~/.bin/graphical-session-helpers.sh
+fi
+
+if [ -r ~/.localenv ]; then
+  source ~/.localenv
 fi
 
 # ex: ts=2 sw=2 et filetype=sh
