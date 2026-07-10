@@ -43,3 +43,17 @@ local function setup_line_numbers_switching()
 end
 
 setup_line_numbers_switching()
+
+local function setup_cursor()
+  vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
+
+  -- Reset to terminal default (DECSCUSR 0) on exit
+  vim.api.nvim_create_autocmd("VimLeave", {
+    callback = function()
+      io.write('\27[0 q')
+      io.flush()
+    end
+  })
+end
+
+setup_cursor()
