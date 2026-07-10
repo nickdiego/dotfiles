@@ -3,6 +3,13 @@ font-size = 15
 
 macos-option-as-alt = true
 
+# Explicit baseline so the same shape/blink shows up regardless of what's
+# rendering into this surface - a plain SSH session (no shell-integration,
+# no tmux cursor-style override) otherwise falls back to Ghostty's own
+# default, which is a blinking block, not a bar.
+cursor-style = bar
+cursor-style-blink = true
+
 window-decoration = true
 resize-overlay = never
 
