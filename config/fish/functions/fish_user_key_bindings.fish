@@ -8,6 +8,9 @@ function fish_user_key_bindings
     bind \e\[1\;9D backward-word
     bind \e\[1\;9C forward-word
 
+    # Ctrl+Backspace: delete one word backward (vs Alt+Backspace which kills whole tokens/args)
+    bind \cH backward-kill-word
+
     bind \er 'exec fish -l'
     bind \et 'tig; commandline -f repaint'
     bind \e\r _prepend_sudo
