@@ -90,8 +90,26 @@ vim.lsp.enable({
   'gn_language_server',
 })
 
--- Diagnostic configs
+-- Diagnostic config
 vim.diagnostic.config({
-  signs = false,
+  signs = true,
+  virtual_text = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
 })
+
+-- Disable diagnostics for C++ files under the Chromium source tree
+local chromium_src = vim.env.CR_SOURCE_ROOT
+if chromium_src then
+  vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(args)
+      local bufnr = args.buf
+      local fname = vim.api.nvim_buf_get_name(bufnr)
+      if vim.startswith(fname, chromium_src) and vim.bo[bufnr].filetype == 'cpp' then
+        vim.diagnostic.enable(false, { bufnr = bufnr })
+      end
+    end,
+  })
+end
 
