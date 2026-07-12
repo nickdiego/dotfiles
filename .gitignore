@@ -10,6 +10,7 @@ weechat/weechat.log
 tmux/plugins/*
 !tmux/plugins/tpm
 tmux/resurrect
+tmux/tmux-pocket-pane
 bin/python
 bin/python-config
 xdg-config/ranger/history
