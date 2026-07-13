@@ -25,12 +25,6 @@ return {
   -- navigation
   { 'christoomey/vim-tmux-navigator' },
   {
-    'junegunn/fzf',
-    build = ':fzf#install()',
-    dependencies = { 'junegunn/fzf.vim' }
-  },
-  { 'junegunn/fzf.vim' },
-  {
     'nvim-telescope/telescope.nvim',
     branch = 'master',
     dependencies = { 'nvim-lua/plenary.nvim' }
@@ -102,8 +96,6 @@ return {
       })
     end
   },
-  { 'L3MON4D3/LuaSnip' },
-  { 'saadparwaiz1/cmp_luasnip' },
   { 'onsails/lspkind.nvim' },
   {
     'nvim-treesitter/nvim-treesitter',
