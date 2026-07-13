@@ -50,6 +50,7 @@ sync_dot_file() {
     return 0
   fi
 
+  mkdir -pv "$(dirname "$tgt")"
   if [[ -f "$tgt" || -d "$tgt" ]]; then
     msg "Replacing ${file} -> ${link} [bkp: $(backup_dot $tgt)]"
   else
@@ -96,7 +97,8 @@ platform_name="$(uname | tr '[:upper:]' '[:lower:]')"
 platform_config_dir="config-${platform_name}"
 msg "Installing ${platform_name}-specific dot files.."
 while IFS= read -r file; do
-  sync_dot_file "$file" ".config/${file##"$platform_config_dir/"}"
+  link=".config/${file##"$platform_config_dir/"}"
+  sync_dot_file "$file" "$link"
 done < <(find "${platform_config_dir}" -type f)
 
 # Install vim plugins (using Plug for now)
