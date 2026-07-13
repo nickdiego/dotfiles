@@ -207,7 +207,7 @@ else
   lua require('config.basics')
   lua require('config.lsp')
   lua require('config.completion')
-  lua require('config.telescope')
+  lua require('config.picker')
   lua require('config.statusline')
 endif
 

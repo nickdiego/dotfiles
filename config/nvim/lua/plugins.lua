@@ -24,13 +24,6 @@ return {
 
   -- navigation
   { 'christoomey/vim-tmux-navigator' },
-  {
-    'nvim-telescope/telescope.nvim',
-    branch = 'master',
-    dependencies = { 'nvim-lua/plenary.nvim' }
-  },
-  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-  { 'nvim-telescope/telescope-ui-select.nvim' },
 
   -- bars/decorations
   {
@@ -39,10 +32,7 @@ return {
   },
   {
     'Bekaboo/dropbar.nvim',
-    dependencies = {
-      'nvim-telescope/telescope-fzf-native.nvim',
-      build = 'make'
-    },
+    dependencies = {},
     config = function ()
       local dropbar_api = require('dropbar.api')
       vim.keymap.set('n', '<Leader>;', dropbar_api.pick, { desc = 'Pick symbols in winbar' })

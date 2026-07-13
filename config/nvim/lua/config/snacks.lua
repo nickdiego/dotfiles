@@ -1,3 +1,4 @@
+-- vim: et sw=2
 local M = {}
 
 M.options = function ()
@@ -77,7 +78,58 @@ M.options = function ()
     explorer = { replace_netrw = true },
     dashboard = { enabled = false },
     indent = { enabled = false },
-    picker = { enabled = false },
+    picker = {
+      enabled = true,
+      ui_select = true,
+      win = {
+        input = {
+          keys = {
+            ['<C-p>'] = { 'history_back',    mode = { 'i', 'n' } },
+            ['<C-n>'] = { 'history_forward', mode = { 'i', 'n' } },
+            ['<C-x>'] = { 'edit_split',      mode = { 'i', 'n' } },
+          },
+        },
+      },
+      layout = {
+        preset = function()
+          return vim.o.columns >= 150 and 'default' or 'vertical'
+        end,
+      },
+      sources = {
+        smart                 = { title = 'Open File', layout = { preset = 'vscode' } },
+        grep                  = { title = 'Search' },
+        buffers               = { title = 'Buffers' },
+        keymaps               = { title = 'Keymaps' },
+        lsp_definitions       = { title = 'Definitions' },
+        lsp_references        = { title = 'References' },
+        lsp_incoming_calls    = { title = 'Incoming Calls' },
+        lsp_symbols           = { title = 'Symbols' },
+        lsp_workspace_symbols = { title = 'Workspace Symbols' },
+      },
+      layouts = {
+        vertical = {
+          layout = {
+            backdrop = false,
+            width = 0.5,
+            min_width = 80,
+            height = 0.8,
+            min_height = 30,
+            box = 'vertical',
+            border = true,
+            title = '{title} {live} {flags}',
+            title_pos = 'center',
+            { win = 'input', height = 1, border = 'bottom' },
+            { win = 'list', border = 'none' },
+            { win = 'preview', title = '{preview}', height = 0.55, border = 'top' },
+          },
+        },
+      },
+      matcher = {
+        frecency = true,
+        filename_bonus = true,
+        smartcase = true,
+      },
+    },
     notifier = { enabled = false },
     quickfile = { enabled = false },
     statuscolumn = { enabled = false },

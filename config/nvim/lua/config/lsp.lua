@@ -1,5 +1,4 @@
 -- vim: et sw=2 tw=72 wrap
-local telescope_builtin = require('telescope.builtin')
 
 local gotodef = function(c)
   local split_cmd = (c.vertical) and 'vsplit' or 'split'
@@ -19,31 +18,26 @@ local on_attach = function(_, bufnr)
   -- Jump to definition with "enter" or prefix it with 'v' or 's' for
   -- vertical or horizontal splits respectively.
   vim.keymap.set('n', '<cr>', function()
-    telescope_builtin.lsp_definitions()
+    Snacks.picker.lsp_definitions()
   end, opts {})
   vim.keymap.set('n', 'Ls<cr>', function() gotodef { vertical = false } end, opts {})
   vim.keymap.set('n', 'Lv<cr>', function() gotodef { vertical = true } end, opts {})
 
   -- List references with <backspace> or incoming calls with Alt+Backspace.
   vim.keymap.set('n', '<backspace>', function()
-    telescope_builtin.lsp_references()
-  end, opts { desc = 'LSP references (telescope)' })
+    Snacks.picker.lsp_references()
+  end, opts { desc = 'LSP references' })
   vim.keymap.set('n', '<A-backspace>', function()
-    telescope_builtin.lsp_incoming_calls()
-  end, opts { desc = 'LSP incoming calls (telescope)' })
+    Snacks.picker.lsp_incoming_calls()
+  end, opts { desc = 'LSP incoming calls' })
 
   -- Ctrl+L to list document symbols, Ctrl+Alt+L for workspace symbols.
   vim.keymap.set('n', '<C-l>', function()
-    telescope_builtin.lsp_document_symbols({
-      symbol_width = 0.8,
-      show_line = true,
-    })
-  end, opts { desc = 'LSP Symbols (telescope)' })
+    Snacks.picker.lsp_symbols()
+  end, opts { desc = 'LSP symbols' })
   vim.keymap.set('n', '<C-A-l>', function()
-    telescope_builtin.lsp_dynamic_workspace_symbols({
-      opts = { path_display = { 'shorten' } },
-      fname_width = 0.6 })
-  end, opts { desc = 'LSP wokspace Symbols (telescope)' })
+    Snacks.picker.lsp_workspace_symbols()
+  end, opts { desc = 'LSP workspace symbols' })
 
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts {})
   vim.keymap.set('n', '<C-h>', vim.lsp.buf.signature_help, opts {})
@@ -71,7 +65,7 @@ vim.lsp.config('lua_ls', {
   settings = {
     Lua = {
       runtime = { version = 'LuaJIT' },
-      diagnostics = { globals = { 'vim' } },
+      diagnostics = { globals = { 'vim', 'Snacks' } },
       workspace = {
         library = vim.api.nvim_get_runtime_file('', true),
         checkThirdParty = false,
