@@ -1,7 +1,8 @@
 font-family = Iosevka NFM
-font-size = 15
 
-macos-option-as-alt = true
+# OS-specific overrides (font size, keybinds, etc.)
+config-file = ?config-linux
+config-file = ?config-macos
 
 # Explicit baseline so the same shape/blink shows up regardless of what's
 # rendering into this surface - a plain SSH session (no shell-integration,
