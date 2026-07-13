@@ -92,6 +92,13 @@ for d in * config/*; do
   esac
 done
 
+platform_name="$(uname | tr '[:upper:]' '[:lower:]')"
+platform_config_dir="config-${platform_name}"
+msg "Installing ${platform_name}-specific dot files.."
+while IFS= read -r file; do
+  sync_dot_file "$file" ".config/${file##"$platform_config_dir/"}"
+done < <(find "${platform_config_dir}" -type f)
+
 # Install vim plugins (using Plug for now)
 install_vim_plugins
 

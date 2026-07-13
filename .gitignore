@@ -22,3 +22,5 @@ xdg-config/ranger/history
 /config/nvim/test.lua
 /gdb/brestore.*
 /config/fish/fish_variables
+/config/**/*-linux
+/config/**/*-macos
