@@ -21,7 +21,7 @@
 	ci = commit
 	grep = grep -n
 	l = log
-	ll = log --pretty=format:\"%h %Cblue%cr%Creset %cn %Cgreen%s%Creset\"
+	ll = log --pretty=format:\"%h %Cblue%cr%Creset %cn %Cgreen%s%Creset%C(yellow)%d%Creset\" --abbrev-commit
 	lll = log --pretty=oneline --abbrev-commit
 	tag1 = tag | sort -n -t . -k 1,1 -k 2,2 -k 3,3
 	s = status
