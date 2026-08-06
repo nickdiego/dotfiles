@@ -17,3 +17,4 @@ abbr -a g rg
 abbr -a vim nvim
 abbr -a lg lazygit
 abbr -a htop btop
+abbr -a cat bat
