@@ -29,3 +29,6 @@ end
 if test -e ~/.localenv.fish
     source ~/.localenv.fish
 end
+
+# Created by `pipx` on 2026-07-31 01:37:12
+set PATH $PATH /home/nick/.local/bin
